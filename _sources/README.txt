@@ -1,6 +1,10 @@
-Pydagogue
-=========
+Curious git
+===========
 
-Being some tutorial notes about Python things
+A beginner's tutorial on git, in which we build a content management system
+from scratch to show how git works.
 
-I try to keep a build here: http://matthew-brett.github.com/pydagogue/
+Based on the ideas in `the git parable
+<http://tom.preston-werner.com/2009/05/19/the-git-parable.html>`_.
+
+The built web pages are at http://matthew-brett.github.com/curious-git

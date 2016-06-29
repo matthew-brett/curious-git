@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>The curious coder’s guide to git &mdash; pydagogue 0.2 documentation</title>
+    <title>The curious coder’s guide to git &mdash; Curious git</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -24,8 +24,8 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="pydagogue 0.2 documentation" href="index.html" />
-    <link rel="next" title="Pydagogue" href="README.html" />
+    <link rel="top" title="Curious git" href="index.html" />
+    <link rel="next" title="Curious git" href="README.html" />
     <link rel="prev" title="Reading git objects" href="reading_git_objects.html" />
    
   
@@ -1645,11 +1645,11 @@ is a specialized command that you won&#8217;t use much in daily work.</p>
 </div>
 <p>Just as we expected, it is the current contents of the
 <code class="docutils literal"><span class="pre">clever_analysis.py</span></code>.</p>
-<p>The <code class="docutils literal"><span class="pre">6560135a5943c0509608fee6d900b775e3041197</span></code> object is hashed, stored raw file.  Because the object
+<p>The <code class="docutils literal"><span class="pre">6560135a5943c0509608fee6d900b775e3041197</span></code> object is a hashed, stored raw file.  Because the object
 is a stored file rather than a stored directory listing text file or commit
 message text file, git calls this type of object a <strong>blob</strong> – for Binary
-Large Object.  You can see the object from the object hash with the <code class="docutils literal"><span class="pre">-t</span></code>
-flag to <code class="docutils literal"><span class="pre">git</span> <span class="pre">cat-file</span></code>:</p>
+Large Object.  You can get the object <em>type</em> from the object hash with the
+<code class="docutils literal"><span class="pre">-t</span></code> flag to <code class="docutils literal"><span class="pre">git</span> <span class="pre">cat-file</span></code>:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git cat-file -t 6560135a5943c0509608fee6d900b775e3041197
 blob
 </pre></div>
@@ -1711,7 +1711,7 @@ Untracked files:
 	fancy_figure.png
 </pre></div>
 </div>
-<p>Sure enough, the output tells that <code class="docutils literal"><span class="pre">new</span> <span class="pre">file:</span> <span class="pre">clever_analysis.py</span></code> is in
+<p>Sure enough, the output tells us that <code class="docutils literal"><span class="pre">new</span> <span class="pre">file:</span> <span class="pre">clever_analysis.py</span></code> is in
 the <code class="docutils literal"><span class="pre">changes</span> <span class="pre">to</span> <span class="pre">be</span> <span class="pre">committed</span></code>.  It also tells us that the other two files in
 the working directory are <code class="docutils literal"><span class="pre">untracked</span></code>.</p>
 <p>An untracked file is a file with a filename that has never been added to the
@@ -1819,7 +1819,7 @@ Git calls this  a <strong>tree</strong> object.</p>
 tree
 </pre></div>
 </div>
-<p>Each line in the directory listing give the file permissions, the type of the
+<p>Each line in the directory listing gives the file permissions, the type of the
 entry in the directory (where &#8220;tree&#8221; means a sub-directory, and &#8220;blob&#8221; means a
 file), the file hash, and the file name (see <a class="reference internal" href="git_object_types.html#git-object-types"><span>Types of git objects</span></a>).</p>
 </div>
@@ -1833,8 +1833,9 @@ Date:   Sun Apr <span class="m">1</span> 14:30:13 <span class="m">2012</span> -0
     First backup of my amazing idea
 </pre></div>
 </div>
-<p>Notice that git log identifies each commit with its hash.  As we saw above,
-the hash for our commit was <code class="docutils literal"><span class="pre">adbb65e29e881a8e62d4326d66a82a8334fab0ea</span></code>.</p>
+<p>Notice that git log identifies each commit with its hash.  The hash is the
+hash for the contents of the commit message. As we saw above, the hash for our
+commit was <code class="docutils literal"><span class="pre">adbb65e29e881a8e62d4326d66a82a8334fab0ea</span></code>.</p>
 <p>We can also ask to the see the parents of each commit in the log:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git log --parents
 commit adbb65e29e881a8e62d4326d66a82a8334fab0ea
@@ -2572,7 +2573,7 @@ Merge made by the <span class="s1">&#39;recursive&#39;</span> strategy.
 changes the Josephine made to the paper.</p>
 <p>The commit has two parents, which are the two commits from which we merged:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git log --oneline --parents
-570e6df 191c946 740d747 Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
+f83910e 191c946 740d747 Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
 740d747 09e59b6 Expand the introduction
 191c946 09e59b6 More fun with fudge
 09e59b6 3a666f1 Revert to original script <span class="p">&amp;</span> figure
@@ -2595,7 +2596,7 @@ think of this graph when we are working with a git repository.</p>
 <code class="docutils literal"><span class="pre">git</span> <span class="pre">log</span></code> has a useful flag called <code class="docutils literal"><span class="pre">--graph</span></code> which shows the commits as a
 graph using text characters:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git log --oneline --graph
-*   570e6df Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
+*   f83910e Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
 <span class="p">|</span><span class="se">\ </span> 
 <span class="p">|</span> * 740d747 Expand the introduction
 * <span class="p">|</span> 191c946 More fun with fudge
@@ -2620,7 +2621,7 @@ For example, you may want to set up an alias like this:</p>
 <code class="docutils literal"><span class="pre">slog</span></code> alias as the default for your user account, so you can use <code class="docutils literal"><span class="pre">git</span>
 <span class="pre">slog</span></code> whenever you are using git as this user on this computer.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git slog
-*   570e6df Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
+*   f83910e Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
 <span class="p">|</span><span class="se">\ </span> 
 <span class="p">|</span> * 740d747 Expand the introduction
 * <span class="p">|</span> 191c946 More fun with fudge
@@ -2837,7 +2838,7 @@ always refer to commits.</td></tr>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
       <li>Previous: <a href="reading_git_objects.html" title="previous chapter">Reading git objects</a></li>
-      <li>Next: <a href="README.html" title="next chapter">Pydagogue</a></li>
+      <li>Next: <a href="README.html" title="next chapter">Curious git</a></li>
   </ul></li>
 </ul>
 </div>
