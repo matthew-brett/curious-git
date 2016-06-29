@@ -73,9 +73,9 @@ if "%1" == "qthelp" (
 	echo.
 	echo.Build finished; now you can run "qcollectiongenerator" with the ^
 .qhcp project file in _build/qthelp, like this:
-	echo.^> qcollectiongenerator _build\qthelp\pydagogue.qhcp
+	echo.^> qcollectiongenerator _build\qthelp\curious_git.qhcp
 	echo.To view the help file:
-	echo.^> assistant -collectionFile _build\qthelp\pydagogue.ghc
+	echo.^> assistant -collectionFile _build\qthelp\curious_git.ghc
 	goto end
 )
 

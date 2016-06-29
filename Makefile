@@ -63,9 +63,9 @@ qthelp:
 	@echo
 	@echo "Build finished; now you can run "qcollectiongenerator" with the" \
 	      ".qhcp project file in $(BUILDDIR)/qthelp, like this:"
-	@echo "# qcollectiongenerator $(BUILDDIR)/qthelp/pydagogue.qhcp"
+	@echo "# qcollectiongenerator $(BUILDDIR)/qthelp/curious_git.qhcp"
 	@echo "To view the help file:"
-	@echo "# assistant -collectionFile $(BUILDDIR)/qthelp/pydagogue.qhc"
+	@echo "# assistant -collectionFile $(BUILDDIR)/qthelp/curious_git.qhc"
 
 latex:
 	$(SPHINXBUILD) -b latex $(ALLSPHINXOPTS) $(BUILDDIR)/latex
