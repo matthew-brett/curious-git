@@ -3,22 +3,21 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Pydagogue
-====================
+The curious coder's guide to git
+================================
 
-Pydagogue is a collection of tutorials that came to me while working on python
-things like nipy_.
+You'll find the main tutorial at :doc:`curious_git`.
 
-Contents:
+The other tutorial pages here assume you've read the main tutorial:
 
 .. toctree::
     :maxdepth: 2
 
-    python
-    git
-    computing
-
-You might also be interested on my `docosx`_ pages about developing on OSX.
+    curious_remotes
+    git_object_types
+    git_submodules
+    git_push_algorithm
+    reading_git_objects
 
 .. the hidden toctree is to avoid warnings during the build.  The
    gh-pages-intro should probably be retired, `ghp-import` is easier.
@@ -26,12 +25,8 @@ You might also be interested on my `docosx`_ pages about developing on OSX.
 .. toctree::
     :hidden:
 
+    curious_git
     README
-    booting_macs
-    develop_mac
-    gh-pages-intro
-    legacy_package_redux
-    mac_runtime_link
     np-versions/README
 
 .. include:: links_names.inc

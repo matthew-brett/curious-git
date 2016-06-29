@@ -8,7 +8,7 @@
     
     <title>An algorithm for git push &mdash; pydagogue 0.2 documentation</title>
     
-    <link rel="stylesheet" href="_static/traditional.css" type="text/css" />
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -25,27 +25,14 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="pydagogue 0.2 documentation" href="index.html" />
-    <link rel="up" title="Notes and tutorials on git" href="git.html" />
-    <link rel="next" title="Types of git objects" href="git_object_types.html" />
-    <link rel="prev" title="git remotes - working with other people, making backups" href="curious_remotes.html" /> 
+    <link rel="next" title="Reading git objects" href="reading_git_objects.html" />
+    <link rel="prev" title="How do git submodules work?" href="git_submodules.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
   </head>
-  <body role="document">
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="git_object_types.html" title="Types of git objects"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="curious_remotes.html" title="git remotes - working with other people, making backups"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">pydagogue 0.2 documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="git.html" accesskey="U">Notes and tutorials on git</a> &raquo;</li> 
-      </ul>
-    </div>  
+  <body role="document">  
 
     <div class="document">
       <div class="documentwrapper">
@@ -67,9 +54,9 @@ between nodes that form the <em>edges</em> in the graph.</p>
 with commits as nodes and parent links as edges.  Here&#8217;s some example output
 from the <code class="docutils literal"><span class="pre">git</span> <span class="pre">log</span></code> command with flags to make the graph structure more
 obvious:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git log --graph --oneline 49d2d6a
-* 49d2d6a Buff up the paper some more
-*   5d2ca89 Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git log --graph --oneline 9c85696
+* 9c85696 Buff up the paper some more
+*   570e6df Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
 <span class="p">|</span><span class="se">\ </span> 
 <span class="p">|</span> * 740d747 Expand the introduction
 * <span class="p">|</span> 191c946 More fun with fudge
@@ -84,8 +71,6 @@ obvious:</p>
 </div>
 <p>If we start at a particular commit, and then track back following only one
 parent for each commit, this is a <em>path</em> in the <em>commit history</em>.</p>
-<p>See <a class="reference internal" href="git_log_dots.html#git-reachable"><span>defining paths</span></a> for a more formal definition of a
-commit path.</p>
 </div>
 <div class="section" id="an-algorithm">
 <h2>An algorithm<a class="headerlink" href="#an-algorithm" title="Permalink to this headline">¶</a></h2>
@@ -110,26 +95,26 @@ point to the same commit.</li>
 <p>There&#8217;s a specific example of <code class="docutils literal"><span class="pre">git</span> <span class="pre">push</span></code> at <a class="reference internal" href="curious_remotes.html#git-push"><span>git push – synchronizing repositories</span></a>. Here is how
 that example would follow our algorithm:</p>
 <ol class="arabic simple">
-<li>We look up the hash for <code class="docutils literal"><span class="pre">master</span></code>, and we get <code class="docutils literal"><span class="pre">49d2d6a702d246c663b7787c628f498b4352edd0</span></code> (abbreviated as
-<code class="docutils literal"><span class="pre">49d2d6a</span></code>);</li>
-<li>We follow all commit history paths back from <code class="docutils literal"><span class="pre">49d2d6a</span></code> to check for
-missing commits. We start with <code class="docutils literal"><span class="pre">49d2d6a</span></code>. The remote does not have a
+<li>We look up the hash for <code class="docutils literal"><span class="pre">master</span></code>, and we get <code class="docutils literal"><span class="pre">9c856962ed62de4307ba0e7cca66624798d662dd</span></code> (abbreviated as
+<code class="docutils literal"><span class="pre">9c85696</span></code>);</li>
+<li>We follow all commit history paths back from <code class="docutils literal"><span class="pre">9c85696</span></code> to check for
+missing commits. We start with <code class="docutils literal"><span class="pre">9c85696</span></code>. The remote does not have a
 matching file in <code class="docutils literal"><span class="pre">objects</span></code>, so this is a missing commit. We only have one
-path to follow, because <code class="docutils literal"><span class="pre">49d2d6a</span></code> has only one parent –
-<code class="docutils literal"><span class="pre">5d2ca899bda0e711679039887ecd7b966615f2c1</span></code> – and the remote does have a corresponding object, so
+path to follow, because <code class="docutils literal"><span class="pre">9c85696</span></code> has only one parent –
+<code class="docutils literal"><span class="pre">570e6df01efe50b4cdefdbc4bb6b74b1e6863930</span></code> – and the remote does have a corresponding object, so
 we can stop looking for missing commits;</li>
-<li>We only have one missing commit, <code class="docutils literal"><span class="pre">49d2d6a</span></code>.  We look in the contents of
-<code class="docutils literal"><span class="pre">49d2d6a</span></code> to find the tree object hash.  This is <code class="docutils literal"><span class="pre">5479026d5fc400a536f9a89b5f60b18604d64b13</span></code>.  We
+<li>We only have one missing commit, <code class="docutils literal"><span class="pre">9c85696</span></code>.  We look in the contents of
+<code class="docutils literal"><span class="pre">9c85696</span></code> to find the tree object hash.  This is <code class="docutils literal"><span class="pre">5479026d5fc400a536f9a89b5f60b18604d64b13</span></code>.  We
 check for this object in the remote objects directory, and sure enough, it
 is missing. We add this tree to the list of missing trees;</li>
 <li>We only have one missing tree – <code class="docutils literal"><span class="pre">5479026d5fc400a536f9a89b5f60b18604d64b13</span></code>. We look in the contents
 of this tree object and check in the remote object directory for each
 object in this listing. The only missing object is <code class="docutils literal"><span class="pre">67a2b3a80e9419cfedb299c322c0da66123c0485</span></code>;</li>
-<li>We copy the objects for the missing commits (<code class="docutils literal"><span class="pre">5d2ca899bda0e711679039887ecd7b966615f2c1</span></code>), missing
+<li>We copy the objects for the missing commits (<code class="docutils literal"><span class="pre">570e6df01efe50b4cdefdbc4bb6b74b1e6863930</span></code>), missing
 trees (<code class="docutils literal"><span class="pre">5479026d5fc400a536f9a89b5f60b18604d64b13</span></code>) and missing blobs (<code class="docutils literal"><span class="pre">67a2b3a80e9419cfedb299c322c0da66123c0485</span></code>) to the
 remote objects directory;</li>
-<li>We set remote <code class="docutils literal"><span class="pre">refs/heads/master</span></code> to contain the hash <code class="docutils literal"><span class="pre">49d2d6a</span></code>;</li>
-<li>Set the local <code class="docutils literal"><span class="pre">refs/remotes/usb_backup/master</span></code> to contain <code class="docutils literal"><span class="pre">49d2d6a</span></code>.</li>
+<li>We set remote <code class="docutils literal"><span class="pre">refs/heads/master</span></code> to contain the hash <code class="docutils literal"><span class="pre">9c85696</span></code>;</li>
+<li>Set the local <code class="docutils literal"><span class="pre">refs/remotes/usb_backup/master</span></code> to contain <code class="docutils literal"><span class="pre">9c85696</span></code>.</li>
 </ol>
 <p class="rubric">Footnotes</p>
 <table class="docutils footnote" frame="void" id="sub-trees" rules="none">
@@ -159,13 +144,15 @@ into any sub-directories to get needed file (&#8220;blob&#8221;) and subdirector
 </ul>
 </li>
 </ul>
-
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="curious_remotes.html"
-                        title="previous chapter">git remotes - working with other people, making backups</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="git_object_types.html"
-                        title="next chapter">Types of git objects</a></p>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="git_submodules.html" title="previous chapter">How do git submodules work?</a></li>
+      <li>Next: <a href="reading_git_objects.html" title="next chapter">Reading git objects</a></li>
+  </ul></li>
+</ul>
+</div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -190,25 +177,20 @@ into any sub-directories to get needed file (&#8220;blob&#8221;) and subdirector
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="git_object_types.html" title="Types of git objects"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="curious_remotes.html" title="git remotes - working with other people, making backups"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">pydagogue 0.2 documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="git.html" >Notes and tutorials on git</a> &raquo;</li> 
-      </ul>
+    <div class="footer">
+      &copy;2009-2016 - Matthew Brett.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>
+      
+      |
+      <a href="_sources/git_push_algorithm.txt"
+          rel="nofollow">Page source</a>
     </div>
-    <div class="footer" role="contentinfo">
-        &copy; Copyright 2009-2016 - Matthew Brett.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
-    </div>
+
+    
+
+    
   </body>
 </html>
