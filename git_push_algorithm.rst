@@ -28,9 +28,6 @@ obvious:
 If we start at a particular commit, and then track back following only one
 parent for each commit, this is a *path* in the *commit history*.
 
-See :ref:`defining paths <git-reachable>` for a more formal definition of a
-commit path.
-
 ************
 An algorithm
 ************

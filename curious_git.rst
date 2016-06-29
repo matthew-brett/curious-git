@@ -141,7 +141,7 @@ As in the `git parable`_, we will try and design our own content manager, and
 then see what git has to say.
 
 (If you don't mind reading some Python code, and more jokes, then also try my
-:doc:`foundation` page).
+`git foundation`_ page).
 
 While we are designing our own content management system, we will do a lot of
 stuff longhand, to show how things work.  When we get to git, we will find it
@@ -1532,11 +1532,11 @@ We can see the contents of objects with the command ``git cat-file -p``.
 Just as we expected, it is the current contents of the
 ``clever_analysis.py``.
 
-The |analysis_1_hash| object is hashed, stored raw file.  Because the object
+The |analysis_1_hash| object is a hashed, stored raw file.  Because the object
 is a stored file rather than a stored directory listing text file or commit
 message text file, git calls this type of object a **blob** |--| for Binary
-Large Object.  You can see the object from the object hash with the ``-t``
-flag to ``git cat-file``:
+Large Object.  You can get the object *type* from the object hash with the
+``-t`` flag to ``git cat-file``:
 
 .. prizerun::
 
@@ -1576,7 +1576,7 @@ to the staging area.  We can see that this happened with ``git status``:
 
     git status
 
-Sure enough, the output tells that ``new file: clever_analysis.py`` is in
+Sure enough, the output tells us that ``new file: clever_analysis.py`` is in
 the ``changes to be committed``.  It also tells us that the other two files in
 the working directory are ``untracked``.
 
@@ -1659,7 +1659,7 @@ Git calls this  a **tree** object.
 
     git cat-file -t {{ commit_1_tree_sha }}
 
-Each line in the directory listing give the file permissions, the type of the
+Each line in the directory listing gives the file permissions, the type of the
 entry in the directory (where "tree" means a sub-directory, and "blob" means a
 file), the file hash, and the file name (see :ref:`git-object-types`).
 
@@ -1670,8 +1670,9 @@ git log |--| what are the commits so far?
 
     git log
 
-Notice that git log identifies each commit with its hash.  As we saw above,
-the hash for our commit was |commit_1_sha|.
+Notice that git log identifies each commit with its hash.  The hash is the
+hash for the contents of the commit message. As we saw above, the hash for our
+commit was |commit_1_sha|.
 
 We can also ask to the see the parents of each commit in the log:
 
@@ -2389,7 +2390,7 @@ You will probably also find use for:
 * `git rebase
   <http://www.kernel.org/pub/software/scm/git/docs/git-rebase.html>`_ |--|
   rewrite the development history by altering or transplanting commits.  See
-  :doc:`rebase_without_tears`.
+  `rebase without tears`_.
 
 *******************
 Git: are you ready?
@@ -2409,21 +2410,21 @@ As you've seen, this tutorial makes the bold assumption that you'll be able to
 understand how git works by seeing how it is *built*. These documents take a
 similar approach to varying levels of detail:
 
-* This `visual git tutorial
+* The `Git parable
+  <http://tom.preston-werner.com/2009/05/19/the-git-parable.html>`__ by Tom
+  Preston-Werner;
+* The `visual git tutorial
   <http://www.ralfebert.de/blog/tools/visual_git_tutorial_1>`__ gives a nice
-  visual idea of git at work.
+  visual idea of git at work;
 * `Understanding Git Conceptually
   <http://www.sbf5.com/~cduan/technical/git>`__ gives another review of how
-  the ideas behind git.
+  the ideas behind git;
 * For more detail, see the start of the excellent `Pro Git
   <http://progit.org/book>`__ online book, or similarly the early parts of the
   `Git community book <http://book.git-scm.com>`__. Pro Git's chapters are
   very short and well illustrated; the community book tends to have more
-  detail and has nice screencasts at the end of some sections.
-* The `Git parable
-  <http://tom.preston-werner.com/2009/05/19/the-git-parable.html>`__ by Tom
-  Preston-Werner.
-*  :doc:`foundation`
+  detail and has nice screencasts at the end of some sections;
+* `git foundation`_;
 
 You might also try:
 

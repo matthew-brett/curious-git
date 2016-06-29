@@ -75,7 +75,10 @@
 .. _osx legacy packaging redux:
     http://matthew-brett.github.com/docosx/osx_legacy_package_redux.html
 
-.. This repo
+.. Pydagogue
+.. _pydagogue : http://matthew-brett.github.io/pydagogue
+.. _git foundation : http://matthew-brett.github.io/pydagogue/foundation.html
+.. _rebase without tears : http://matthew-brett.github.io/pydagogue/foundation.html
 .. _pydagogue issue : https://github.com/matthew-brett/pydagogue/issues
 
 .. Substitutions
