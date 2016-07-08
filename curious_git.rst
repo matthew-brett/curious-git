@@ -9,8 +9,8 @@ git - love - hate
 *****************
 
 I've used git now for a long time.  I think it is a masterpiece of design, I
-use it all day every day and I just can't imagine what it would be like not to
-use it. So, no question, I *love* git.
+use it all day every day and I can't imagine what it would be like not to use
+it. So, no question, I *love* git.
 
 As y'all may know, `Linus Torvalds wrote git from scratch
 <http://git-scm.com/book/en/Getting-Started-A-Short-History-of-Git>`_.  He
@@ -30,7 +30,7 @@ But some people hate git.  Really *hate* it. They find it confusing and
 error prone and it makes them angry.  Why are there such different views?
 
 I think the reason some people hate git, is because they don't yet understand
-it.  I reason I can say this without being patronizing is because I went
+it.  The reason I can say this without being patronizing is because I went
 through something similar myself.
 
 When I first started using git, I found it uncomfortable.  I could see it was
