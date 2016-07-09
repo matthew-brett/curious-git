@@ -31,7 +31,7 @@ error prone and it makes them angry.  Why are there such different views?
 
 I think the reason some people hate git, is because they don't yet understand
 it.  The reason I can say this without being patronizing is because I went
-through something similar myself.
+through the same thing myself.
 
 When I first started using git, I found it uncomfortable.  I could see it was
 very powerful, but I sometimes got lost and stuck and had to Google for a set
