@@ -392,7 +392,7 @@ Now you are used to having the commit messages in ``message.txt``, you aren't
 so pleased with your fourth commit.  You now prefer to break your changes up
 into self-contained chunks of work, with a matching commit message.  But,
 looking at your fourth commit, it looks like you included two separate chunks
-of work.  Here is the commit message:
+of work.  You've even confessed to this in your commit message:
 
 .. prizewrite:: snapshot_4/message.txt
 
@@ -400,22 +400,47 @@ of work.  Here is the commit message:
     Author: I. M. Awesome
     Notes: Change analysis and add references
 
-You decide to break this commit into two separate commits:
+You realize that you will often be in the situation where you have made
+several changes in the working tree, and you want to split those changes up
+into different commits, with their own commit messages.  How can you adapt SAP
+to deal with that situation?
 
-* A commit with the changes to the analysis script and figure, but without
-  the references;
+To help yourself think about this problem, you decide to scrap your last
+commit, and go back to the situation where your working tree has the changes,
+but the snapshots (commits) do not.  All you have to do to get there, is
+delete the snapshot directory:
+
+.. nprun::
+    :hide:
+
+    rm -rf snapshot_4
+
+.. prizeout::
+
+    {{ np_tree }} --hasta snapshot_2
+
+    rm -rf staging
+    cp -r snapshot_3 staging
+    rm staging/message.txt
+
+You still have your changes in the working tree.  You have changed the
+analysis script and figure, and you have the new ``references.bib`` file.
+
+You want to break these changes changes up into two seperate commits:
+
+* A commit with the changes to the analysis script and figure, but without the
+  references;
 * Another commit to add the references.
 
-To do this kind of thing, you adapt the workflow. Each time you have done a
-commit, you copy the contents of the commit to new directory called
-``staging``. This directory will become the contents for your next commit.
-You can add changes from your working tree by copying the changed file into
-``staging``.  When ``staging`` contains the changes you want, you make the
-commit by copying ``staging`` into its own commit directory.
+To do this kind of thing, you are going to use a new directory called
+``staging``.  The ``staging`` directory starts off with the files from the
+last commit.  When you want to add some changes to a commit, you copy the
+changes from the working tree to the ``staging`` directory.  You make the
+commit by copying the contents of ``staging`` to a new snapshot directory, and
+adding a commit message.
 
-To get started, first you delete the old ``snapshot_4``.  Next you replace the
-contents of ``staging`` with the contents of ``snapshot_3``.  You already have
-the two sets of changes ready to stage in ``working``.
+To get started, you make the new ``staging`` directory by copying the contents
+of the last commit (except the commit message):
 
 .. nprun::
     :hide:
@@ -432,14 +457,15 @@ the two sets of changes ready to stage in ``working``.
 Call the ``staging`` directory |--| the **staging area**.  Your new sequence
 for making a commit is:
 
-* Make sure the contents of the last commit are in the staging area;
 * Copy any changes for the next commit from the working tree to the staging
   area;
-* Make the commit by taking a snapshot of the staging area.
+* Make the commit by copying the contents of the staging area to a snapshot
+  directory, and adding a commit message.
 
 You are doing this by hand, but later git will make this much more automatic.
 
-First you copy the changes you want from the working tree to the staging area:
+Now you are ready to make the first of your two new commits.  You copy the
+changed analysis script and figure from the working tree to the staging area:
 
 .. nprun::
 
@@ -471,20 +497,18 @@ This gives:
 
 To finish, you make the second of the two commits.  Remember the sequence:
 
-* Make sure the contents of the last commit are in the staging area;
 * Copy any changes for the next commit from the working tree to the staging
   area;
 * Make the commit by taking a snapshot of the staging area.
 
-The staging area already contains the contents of the last commit (now
-``snapshot_4``).  You copy the rest of the changes to the staging area:
+You copy the rest of the changes to the staging area:
 
 .. nprun::
 
     cp working/references.bib staging
 
-Finally, you do the commit by copying ``staging`` to ``snapshot_5``, and
-adding a commit message:
+Finally, you do the commit by copying the contents of ``staging`` to a new
+directory ``snapshot_5``, and adding a commit message:
 
 .. nprun::
     :hide:
@@ -503,7 +527,7 @@ Now you have:
 
     {{ np_tree }} --hasta snapshot_4
 
-Now we can add a new term to our vocabulary:
+We can add a couple of new terms to our vocabulary:
 
 .. note::
 
