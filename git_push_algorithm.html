@@ -1,5 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -8,8 +7,11 @@
     
     <title>An algorithm for git push &mdash; Curious git</title>
     
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -24,21 +26,123 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="Curious git" href="index.html" />
     <link rel="next" title="Reading git objects" href="reading_git_objects.html" />
     <link rel="prev" title="How do git submodules work?" href="git_submodules.html" />
-   
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
 
   </head>
-  <body role="document">  
+  <body role="document">
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          Curious git</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.2</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
             
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="curious_remotes.html">git remotes - working with other people, making backups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="git_object_types.html">Types of git objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="git_submodules.html">How do git submodules work?</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">An algorithm for git push</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reading_git_objects.html">Reading git objects</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="curious_git.html">The curious coder&#8217;s guide to git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html">Curious git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="np-versions/README.html">np-versions</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">An algorithm for git push</a><ul>
+<li><a class="reference internal" href="#paths-through-commits">Paths through commits</a></li>
+<li><a class="reference internal" href="#an-algorithm">An algorithm</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="git_submodules.html" title="Previous Chapter: How do git submodules work?"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; How do git su...</span>
+    </a>
+  </li>
+  <li>
+    <a href="reading_git_objects.html" title="Next Chapter: Reading git objects"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Reading git o... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/git_push_algorithm.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
   <div class="section" id="an-algorithm-for-git-push">
 <h1>An algorithm for git push<a class="headerlink" href="#an-algorithm-for-git-push" title="Permalink to this headline">¶</a></h1>
 <p>We saw how git stores its object in <a class="reference internal" href="curious_git.html"><em>The curious coder&#8217;s guide to git</em></a>.</p>
@@ -54,19 +158,19 @@ between nodes that form the <em>edges</em> in the graph.</p>
 with commits as nodes and parent links as edges.  Here&#8217;s some example output
 from the <code class="docutils literal"><span class="pre">git</span> <span class="pre">log</span></code> command with flags to make the graph structure more
 obvious:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git log --graph --oneline 2e316b3
-* 2e316b3 Buff up the paper some more
-*   e6d39a2 Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ git log --graph --oneline fe67959
+* fe67959 Buff up the paper some more
+*   a9850f8 Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
 <span class="p">|</span><span class="se">\ </span> 
-<span class="p">|</span> * 0a5a1b9 Expand the introduction
-* <span class="p">|</span> 7598e4e More fun with fudge
+<span class="p">|</span> * aa9dd5c Expand the introduction
+* <span class="p">|</span> 33420bf More fun with fudge
 <span class="p">|</span>/  
-* 677c9a6 Revert to original script <span class="p">&amp;</span> figure
-* c3f19b2 Add references
-* d0ef727 Change parameters of analysis
-* 003c54a Add another fudge factor
-* 7919d37 Add first draft of paper
-* 75206bc First backup of my amazing idea
+* 32038b1 Revert to original script <span class="p">&amp;</span> figure
+* a9f35cf Add references
+* b373eb4 Change parameters of analysis
+* 8fca247 Add another fudge factor
+* 33f112b Add first draft of paper
+* b00d812 First backup of my amazing idea
 </pre></div>
 </div>
 <p>If we start at a particular commit, and then track back following only one
@@ -95,26 +199,26 @@ point to the same commit.</li>
 <p>There&#8217;s a specific example of <code class="docutils literal"><span class="pre">git</span> <span class="pre">push</span></code> at <a class="reference internal" href="curious_remotes.html#git-push"><span>git push – synchronizing repositories</span></a>. Here is how
 that example would follow our algorithm:</p>
 <ol class="arabic simple">
-<li>We look up the hash for <code class="docutils literal"><span class="pre">master</span></code>, and we get <code class="docutils literal"><span class="pre">2e316b35cb70cb7a3dd3cb4b563e0625c3a2c286</span></code> (abbreviated as
-<code class="docutils literal"><span class="pre">2e316b3</span></code>);</li>
-<li>We follow all commit history paths back from <code class="docutils literal"><span class="pre">2e316b3</span></code> to check for
-missing commits. We start with <code class="docutils literal"><span class="pre">2e316b3</span></code>. The remote does not have a
+<li>We look up the hash for <code class="docutils literal"><span class="pre">master</span></code>, and we get <code class="docutils literal"><span class="pre">fe67959d77e0448f4caf960bddfcf7f0646481aa</span></code> (abbreviated as
+<code class="docutils literal"><span class="pre">fe67959</span></code>);</li>
+<li>We follow all commit history paths back from <code class="docutils literal"><span class="pre">fe67959</span></code> to check for
+missing commits. We start with <code class="docutils literal"><span class="pre">fe67959</span></code>. The remote does not have a
 matching file in <code class="docutils literal"><span class="pre">objects</span></code>, so this is a missing commit. We only have one
-path to follow, because <code class="docutils literal"><span class="pre">2e316b3</span></code> has only one parent –
-<code class="docutils literal"><span class="pre">e6d39a2ced2c65b5757322acdafd8f261d8494b4</span></code> – and the remote does have a corresponding object, so
+path to follow, because <code class="docutils literal"><span class="pre">fe67959</span></code> has only one parent –
+<code class="docutils literal"><span class="pre">a9850f8785924da45e016598c417b632a4056b74</span></code> – and the remote does have a corresponding object, so
 we can stop looking for missing commits;</li>
-<li>We only have one missing commit, <code class="docutils literal"><span class="pre">2e316b3</span></code>.  We look in the contents of
-<code class="docutils literal"><span class="pre">2e316b3</span></code> to find the tree object hash.  This is <code class="docutils literal"><span class="pre">5479026d5fc400a536f9a89b5f60b18604d64b13</span></code>.  We
+<li>We only have one missing commit, <code class="docutils literal"><span class="pre">fe67959</span></code>.  We look in the contents of
+<code class="docutils literal"><span class="pre">fe67959</span></code> to find the tree object hash.  This is <code class="docutils literal"><span class="pre">5479026d5fc400a536f9a89b5f60b18604d64b13</span></code>.  We
 check for this object in the remote objects directory, and sure enough, it
 is missing. We add this tree to the list of missing trees;</li>
 <li>We only have one missing tree – <code class="docutils literal"><span class="pre">5479026d5fc400a536f9a89b5f60b18604d64b13</span></code>. We look in the contents
 of this tree object and check in the remote object directory for each
 object in this listing. The only missing object is <code class="docutils literal"><span class="pre">67a2b3a80e9419cfedb299c322c0da66123c0485</span></code>;</li>
-<li>We copy the objects for the missing commits (<code class="docutils literal"><span class="pre">e6d39a2ced2c65b5757322acdafd8f261d8494b4</span></code>), missing
+<li>We copy the objects for the missing commits (<code class="docutils literal"><span class="pre">a9850f8785924da45e016598c417b632a4056b74</span></code>), missing
 trees (<code class="docutils literal"><span class="pre">5479026d5fc400a536f9a89b5f60b18604d64b13</span></code>) and missing blobs (<code class="docutils literal"><span class="pre">67a2b3a80e9419cfedb299c322c0da66123c0485</span></code>) to the
 remote objects directory;</li>
-<li>We set remote <code class="docutils literal"><span class="pre">refs/heads/master</span></code> to contain the hash <code class="docutils literal"><span class="pre">2e316b3</span></code>;</li>
-<li>Set the local <code class="docutils literal"><span class="pre">refs/remotes/usb_backup/master</span></code> to contain <code class="docutils literal"><span class="pre">2e316b3</span></code>.</li>
+<li>We set remote <code class="docutils literal"><span class="pre">refs/heads/master</span></code> to contain the hash <code class="docutils literal"><span class="pre">fe67959</span></code>;</li>
+<li>Set the local <code class="docutils literal"><span class="pre">refs/remotes/usb_backup/master</span></code> to contain <code class="docutils literal"><span class="pre">fe67959</span></code>.</li>
 </ol>
 <p class="rubric">Footnotes</p>
 <table class="docutils footnote" frame="void" id="sub-trees" rules="none">
@@ -131,66 +235,21 @@ into any sub-directories to get needed file (&#8220;blob&#8221;) and subdirector
 </div>
 
 
-          </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">An algorithm for git push</a><ul>
-<li><a class="reference internal" href="#paths-through-commits">Paths through commits</a></li>
-<li><a class="reference internal" href="#an-algorithm">An algorithm</a></li>
-</ul>
-</li>
-</ul>
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="git_submodules.html" title="previous chapter">How do git submodules work?</a></li>
-      <li>Next: <a href="reading_git_objects.html" title="next chapter">Reading git objects</a></li>
-  </ul></li>
-</ul>
+    </div>
+      
+  </div>
 </div>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/git_push_algorithm.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
     </p>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &copy;2009-2016 - Matthew Brett.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>
-      
-      |
-      <a href="_sources/git_push_algorithm.txt"
-          rel="nofollow">Page source</a>
-    </div>
-
-    
-
-    
+    <p>
+        &copy; Copyright 2012-2016 - Matthew Brett.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.<br/>
+    </p>
+  </div>
+</footer>
   </body>
 </html>

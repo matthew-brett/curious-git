@@ -31,7 +31,7 @@ error prone and it makes them angry.  Why are there such different views?
 
 I think the reason some people hate git, is because they don't yet understand
 it.  The reason I can say this without being patronizing is because I went
-through something similar myself.
+through the same thing myself.
 
 When I first started using git, I found it uncomfortable.  I could see it was
 very powerful, but I sometimes got lost and stuck and had to Google for a set
@@ -230,7 +230,7 @@ The snapshot is a copy of all the files in the working directory.
 First you make a directory called ``working``, and move your files to that
 directory:
 
-.. prizerun::
+.. nprun::
     :hide:
     :allow-fail:
 
@@ -245,7 +245,7 @@ When you've finished work for the day, you make a snapshot of the directory
 containing the files you are working on.  The snapshot is just a copy of your
 working directory:
 
-.. prizerun::
+.. nprun::
     :hide:
 
     cp -r working snapshot_1
@@ -260,7 +260,7 @@ On the second day, you add your first draft of the paper, ``nobel_prize.md``.
 You can download this ground-breaking work at :download:`nobel_prize.md
 </np-versions/work2/nobel_prize.md>`.
 
-.. prizerun::
+.. nprun::
     :hide:
 
     cp {{ np_versions }}/work2/nobel_prize.md working
@@ -271,7 +271,7 @@ You can download this ground-breaking work at :download:`nobel_prize.md
 
 At the end of the day you make your second snapshot:
 
-.. prizerun::
+.. nprun::
     :hide:
 
     cp -r working snapshot_2
@@ -283,7 +283,7 @@ At the end of the day you make your second snapshot:
 On the third day, you did some edits to the analysis script, and refreshed the
 figure by running the script.  You did a third snapshot.
 
-.. prizerun::
+.. nprun::
     :hide:
 
     cp {{ np_versions }}/work3/* working
@@ -305,7 +305,7 @@ snapshot:
 Finally, on the fourth day, you make some more edits to the script, and you
 add some references for the paper.
 
-.. prizerun::
+.. nprun::
     :hide:
 
     cp {{ np_versions }}/work4/* working
@@ -392,33 +392,57 @@ Now you are used to having the commit messages in ``message.txt``, you aren't
 so pleased with your fourth commit.  You now prefer to break your changes up
 into self-contained chunks of work, with a matching commit message.  But,
 looking at your fourth commit, it looks like you included two separate chunks
-of work:
+of work.  You've even confessed to this in your commit message:
 
 .. prizewrite:: snapshot_4/message.txt
-    :hide:
 
     Date: April 4 2012, 01.40
     Author: I. M. Awesome
     Notes: Change analysis and add references
 
-You decide to break this commit into two separate commits:
+You realize that you will often be in the situation where you have made
+several changes in the working tree, and you want to split those changes up
+into different commits, with their own commit messages.  How can you adapt SAP
+to deal with that situation?
 
-* A commit with the changes to the analysis script and figure, but without
-  the references;
+To help yourself think about this problem, you decide to scrap your last
+commit, and go back to the situation where your working tree has the changes,
+but the snapshots (commits) do not.  All you have to do to get there, is
+delete the snapshot directory:
+
+.. nprun::
+    :hide:
+
+    rm -rf snapshot_4
+
+.. prizeout::
+
+    {{ np_tree }} --hasta snapshot_2
+
+    rm -rf staging
+    cp -r snapshot_3 staging
+    rm staging/message.txt
+
+You still have your changes in the working tree.  You have changed the
+analysis script and figure, and you have the new ``references.bib`` file.
+
+You want to break these changes changes up into two seperate commits:
+
+* A commit with the changes to the analysis script and figure, but without the
+  references;
 * Another commit to add the references.
 
-To do this kind of thing, you adapt the workflow. Each time you have done a
-commit, you copy the contents of the commit to new directory called
-``staging``. This directory will become the contents for your next commit.
-You can add changes from your working tree by copying the changed file into
-``staging``.  When ``staging`` contains the changes you want, you make the
-commit by copying ``staging`` into its own commit directory.
+To do this kind of thing, you are going to use a new directory called
+``staging``.  The ``staging`` directory starts off with the files from the
+last commit.  When you want to add some changes to a commit, you copy the
+changes from the working tree to the ``staging`` directory.  You make the
+commit by copying the contents of ``staging`` to a new snapshot directory, and
+adding a commit message.
 
-To get started, first you delete the old ``snapshot_4``.  Next you replace the
-contents of ``staging`` with the contents of ``snapshot_3``.  You already have
-the two sets of changes ready to stage in ``working``.
+To get started, you make the new ``staging`` directory by copying the contents
+of the last commit (except the commit message):
 
-.. prizerun::
+.. nprun::
     :hide:
 
     rm -rf snapshot_4
@@ -433,16 +457,17 @@ the two sets of changes ready to stage in ``working``.
 Call the ``staging`` directory |--| the **staging area**.  Your new sequence
 for making a commit is:
 
-* Make sure the contents of the last commit are in the staging area;
 * Copy any changes for the next commit from the working tree to the staging
   area;
-* Make the commit by taking a snapshot of the staging area.
+* Make the commit by copying the contents of the staging area to a snapshot
+  directory, and adding a commit message.
 
 You are doing this by hand, but later git will make this much more automatic.
 
-First you copy the changes you want from the working tree to the staging area:
+Now you are ready to make the first of your two new commits.  You copy the
+changed analysis script and figure from the working tree to the staging area:
 
-.. prizerun::
+.. nprun::
 
     cp working/clever_analysis.py staging
     cp working/fancy_figure.png staging
@@ -453,7 +478,7 @@ first of your two commits.
 Next you make a commit by copying the staging area to ``snapshot_4`` and
 adding a message:
 
-.. prizerun::
+.. nprun::
     :hide:
 
     cp -r staging snapshot_4
@@ -472,22 +497,20 @@ This gives:
 
 To finish, you make the second of the two commits.  Remember the sequence:
 
-* Make sure the contents of the last commit are in the staging area;
 * Copy any changes for the next commit from the working tree to the staging
   area;
 * Make the commit by taking a snapshot of the staging area.
 
-The staging area already contains the contents of the last commit (now
-``snapshot_4``).  You copy the rest of the changes to the staging area:
+You copy the rest of the changes to the staging area:
 
-.. prizerun::
+.. nprun::
 
     cp working/references.bib staging
 
-Finally, you do the commit by copying ``staging`` to ``snapshot_5``, and
-adding a commit message:
+Finally, you do the commit by copying the contents of ``staging`` to a new
+directory ``snapshot_5``, and adding a commit message:
 
-.. prizerun::
+.. nprun::
     :hide:
 
     cp -r staging snapshot_5
@@ -504,7 +527,7 @@ Now you have:
 
     {{ np_tree }} --hasta snapshot_4
 
-Now we can add a new term to our vocabulary:
+We can add a couple of new terms to our vocabulary:
 
 .. note::
 
@@ -535,19 +558,19 @@ Following our new standard staging workflow, that means:
 
 For our simple SAP system, that looks like this:
 
-.. prizerun::
+.. nprun::
 
     # Copy files from old commit to working tree
     cp snapshot_1/clever_analysis.py working
     cp snapshot_1/fancy_figure.png working
 
-.. prizerun::
+.. nprun::
 
     # Copy files from working tree to staging area
     cp working/clever_analysis.py staging
     cp working/fancy_figure.png staging
 
-.. prizerun::
+.. nprun::
     :hide:
 
     cp -r staging snapshot_6
@@ -589,7 +612,7 @@ She goes away for a conference.
 While she is away, you do some work on the analysis script, and regenerate the
 figure, to make ``shapshot_7``:
 
-.. prizerun::
+.. nprun::
     :hide:
 
     cp {{ np_versions }}/work7m/* working
@@ -624,7 +647,7 @@ into the directory ``snapshot_7_josephine``.  When she comes back from the
 conference, you copy her ``snapshot_7_josephine`` into your ``nobel_prize``
 directory:
 
-.. prizerun::
+.. nprun::
     :hide:
 
     cp -r snapshot_6 snapshot_7_josephine
@@ -646,7 +669,7 @@ Josephine's changes to the paper. You want to combine your changes with her
 changes.  To do this you do a **merge** by copying her changes to the paper
 into the working directory.
 
-.. prizerun::
+.. nprun::
 
     # Get Josephine's changes to the paper
     cp snapshot_7_josephine/nobel_prize.md working
@@ -654,7 +677,7 @@ into the working directory.
 Now you do a commit with these merged changes, by copying them into the
 staging area, and thence to ``snapshot_8``, with a suitable message:
 
-.. prizerun::
+.. nprun::
     :hide:
 
     cp working/* staging
@@ -707,7 +730,7 @@ data. The hash is a fixed length string that is the characteristic
 *fingerprint* of that exact block of data.  One common hash function is called
 SHA1.  Let's run this via the command line:
 
-.. desktoprun::
+.. workrun::
 
     # Make a file with a single line of text
     echo "git is a rude word in UK English" > git_is_rude
@@ -732,7 +755,7 @@ different contents that will give the same hash.
 For example, a tiny change in the string makes the hash completely different.
 Here I've just added a full stop at the end:
 
-.. desktoprun::
+.. workrun::
 
     echo "git is a rude word in UK English." > git_is_rude_stop
     shasum git_is_rude_stop
@@ -754,7 +777,7 @@ commit directory.  Because each message has the date and time and author and
 notes, it's very unlikely that any two ``message.txt`` files will be the same.
 Here are the hashes for the current ``message.txt`` files:
 
-.. prizerun::
+.. nprun::
 
     # Show the SHA1 hash values for each message.txt
     shasum snapshot*/message.txt
@@ -796,7 +819,7 @@ After some thought, you come up with a quite brilliant idea.  Each
 add a new field to ``messsage.txt`` called ``Parents``.
 ``snapshot_1/message.txt`` stays the same, because it has no parents:
 
-.. prizerun::
+.. nprun::
 
     cat snapshot_1/message.txt
 
@@ -805,12 +828,12 @@ add a new field to ``messsage.txt`` called ``Parents``.
 want ``snapshot_2/message.txt`` to point back to the hash for
 ``snapshot_1/message.txt``, which you know is |snapshot_1_sha|:
 
-.. prizerun::
+.. nprun::
     :hide:
 
     {{ np_tools }}/link_commits.py
 
-.. prizerun::
+.. nprun::
 
     cat snapshot_2/message.txt
 
@@ -818,7 +841,7 @@ Now we've changed the contents and therefore the hash for
 ``snapshot_2/message.txt``.  The hash was |snapshot_2_orig_sha|, but now it
 is:
 
-.. prizerun::
+.. nprun::
 
     shasum snapshot_2/message.txt
 
@@ -830,22 +853,22 @@ parents into the ``Parents`` field of ``snapshot_8/message.txt``, being the
 new hashes for ``snapshot_7/message.txt`` and
 ``snapshot_7_josephine/message.txt``:
 
-.. prizerun::
+.. nprun::
 
     shasum snapshot_7/message.txt
 
-.. prizerun::
+.. nprun::
 
     shasum snapshot_7_josephine/message.txt
 
-.. prizerun::
+.. nprun::
 
     cat snapshot_8/message.txt
 
 With the new ``Parents`` field, you have new hashes for all the
 ``message.txt`` files, except ``snapshot_1`` (that has no parent):
 
-.. prizerun::
+.. nprun::
 
     shasum snapshot_*/message.txt
 
@@ -854,7 +877,7 @@ knowledge that the ``message.txt`` files have the information about the commit
 sequence.
 
 
-.. prizerun::
+.. nprun::
     :hide:
 
     {{ np_tools }}/mv_shas.sh
@@ -936,29 +959,29 @@ their hash strings are different, the files must be different.  All copies of
     # Because * as in file system glob messes up syntax highlighting in vim
     echo "*"
 
-.. prizerun::
+.. nprun::
 
     shasum {{ asterisk }}/expensive_data.csv
 
 ``fancy_figure.png`` is the same for the first two commits, changes for the
 third commit, and reverts back to the same contents at the 6th commit:
 
-.. prizerun::
+.. nprun::
 
     # First commit
     shasum {{ snapshot_1_sha }}/fancy_figure.png
 
-.. prizerun::
+.. nprun::
 
     # Second commit
     shasum {{ snapshot_2_sha }}/fancy_figure.png
 
-.. prizerun::
+.. nprun::
 
     # Third commit
     shasum {{ snapshot_3_sha }}/fancy_figure.png
 
-.. prizerun::
+.. nprun::
 
     # Sixth commit
     shasum {{ snapshot_6_sha }}/fancy_figure.png
@@ -968,14 +991,14 @@ once, and make the commits point to the matching version.
 
 First you make a new directory to store files generated from your commits:
 
-.. prizerun::
+.. nprun::
 
     mkdir repo
 
 Next you make a sub-directory to store the unique copies of the files in
 commits:
 
-.. prizerun::
+.. nprun::
 
     mkdir repo/objects
 
@@ -1006,7 +1029,7 @@ Now you have your second quite brilliant hashing idea.  Why not use the
 
 For example, here are the hash values for the files in the first commit:
 
-.. prizerun::
+.. nprun::
 
     shasum {{ snapshot_1_sha }}/*
 
@@ -1027,27 +1050,27 @@ To store the unique copies, you copy each file in the first commit to
 file contents**.  For example, the hash for ``fancy_figure.png`` is
 |fancy_figure_v1_sha|.  So, you do:
 
-.. prizerun::
+.. nprun::
 
     cp {{ snapshot_1_sha }}/fancy_figure.png repo/objects/{{ fancy_figure_v1_sha }}
 
 The hash values for ``clever_analysis.py`` and ``expensive_data.csv`` are
 |clever_analysis_v1_sha| and |expensive_data_sha| respectively, so:
 
-.. prizerun::
+.. nprun::
 
     cp {{ snapshot_1_sha }}/clever_analysis.py repo/objects/{{ clever_analysis_v1_sha }}
     cp {{ snapshot_1_sha }}/expensive_data.csv repo/objects/{{ expensive_data_sha }}
 
 These hash values become the ``directory_listing.txt`` for the first commit:
 
-.. prizerun::
+.. nprun::
     :hide:
 
     cd {{ snapshot_1_sha }}
     shasum * | grep -v 'message.txt' > directory_listing.txt
 
-.. prizerun::
+.. nprun::
 
     cat {{ snapshot_1_sha }}/directory_listing.txt
 
@@ -1059,7 +1082,7 @@ So far you haven't gained anything much except some odd-looking filenames.
 The payoff comes when you apply the same procedure to the second commit.  Here
 are the hashes for the files in the second commit:
 
-.. prizerun::
+.. nprun::
 
     shasum {{ snapshot_2_sha }}/*
 
@@ -1082,7 +1105,7 @@ second time.  By checking the hashes for each file in the commit, you find
 that the only file you are missing is the new file ``nobel_prize.md``.  This
 has hash |nobel_prize_v1_sha|, so you do a single copy to ``repo/objects``:
 
-.. prizerun::
+.. nprun::
 
     # Only one copy needed to store files in second commit
     cp {{ snapshot_2_sha }}/nobel_prize.md repo/objects/{{ nobel_prize_v1_sha }}
@@ -1090,25 +1113,25 @@ has hash |nobel_prize_v1_sha|, so you do a single copy to ``repo/objects``:
 As before, you can make ``directory_listing.txt`` for the second commit by
 recording the hashes of the files:
 
-.. prizerun::
+.. nprun::
     :hide:
 
     cd {{ snapshot_2_sha }}
     shasum * | grep -v 'message.txt' > directory_listing.txt
 
-.. prizerun::
+.. nprun::
 
     cat {{ snapshot_2_sha }}/directory_listing.txt
 
 Before you start this procedure of moving the unique copies into
 ``repo/objects``, your whole ``nobel_prize`` directory is size:
 
-.. prizerun::
+.. nprun::
     :hide:
 
     rm -rf repo/objects
 
-.. prizerun::
+.. nprun::
 
     # Size of the contents of nobel_prize before moving to repo/objects
     du -hs .
@@ -1116,7 +1139,7 @@ Before you start this procedure of moving the unique copies into
 When you run the procedure above on every commit, moving files to
 ``repo/objects``, you have this:
 
-.. prizerun::
+.. nprun::
     :hide:
 
     {{ np_tools }}/to_repo_objects.py
@@ -1128,7 +1151,7 @@ When you run the procedure above on every commit, moving files to
 The whole ``nobel_prize`` directory is now smaller because you have no
 duplicated files:
 
-.. prizerun::
+.. nprun::
 
     # Size of the contents of nobel_prize after moving to repo/objects
     du -hs .
@@ -1157,7 +1180,7 @@ contain a list of hashes and corresponding file names for this commit
 (snapshot).  For example, here is ``directory_listing.txt`` for the first
 commit:
 
-.. prizerun::
+.. nprun::
 
     cat {{ snapshot_1_sha }}/directory_listing.txt
 
@@ -1170,11 +1193,11 @@ corresponding line in ``directory_listing.txt`` would change.
 Now you know what to do.  You take a hash of the ``directory_listing.txt``
 file:
 
-.. prizerun::
+.. nprun::
 
     shasum {{ snapshot_1_sha }}/directory_listing.txt
 
-.. prizerun::
+.. nprun::
     :hide:
 
     {{ np_tools }}/add_tree.py
@@ -1195,7 +1218,7 @@ changed the hashes of the ``message.txt`` files, you go back through your
 commits updating the parent hashes to the new ones, and renaming the commit
 directories with the new hashes.  You end up with this:
 
-.. prizerun::
+.. nprun::
     :hide:
 
     {{ np_tools }}/mv_shas.sh
@@ -1241,17 +1264,17 @@ First you take the hash of each ``directory_listing.txt`` and move it into the
 
     shasum {{ snapshot_1_with_tree_sha }}/directory_listing.txt | awk '{print $1}'
 
-.. prizerun::
+.. nprun::
 
     shasum {{ snapshot_1_with_tree_sha }}/directory_listing.txt
 
-.. prizerun::
+.. nprun::
 
     cp {{ snapshot_1_with_tree_sha }}/directory_listing.txt repo/objects/{{ snapshot_1_tree_hash }}
 
 Then you do the same for the ``message.txt`` file:
 
-.. prizerun::
+.. nprun::
 
     cp {{ snapshot_1_with_tree_sha }}/message.txt repo/objects/{{ snapshot_1_with_tree_sha }}
 
@@ -1267,7 +1290,7 @@ and ``message.txt`` for each commit).
 Now you don't need the snapshot directories at all, because the hashed files
 in ``repo/objects`` have all the information about the snapshots.
 
-.. prizerun::
+.. nprun::
     :hide:
 
     ../../np-tools/move_snapshots.py
@@ -1299,7 +1322,7 @@ make the commit, but this sounds like a job better done by a computer.
 
     echo $({{ np_tools }}/name2sha.sh {{ snapshot_8_sha }})
 
-.. prizerun::
+.. nprun::
     :hide:
 
     echo {{ snapshot_8_with_tree_sha }} > repo/my_bookmark
@@ -1309,7 +1332,7 @@ called ``repo/my_bookmark``.  It is a text file with the hash string as
 contents.  Your last commit was |snapshot_8_with_tree_sha|, so
 ``repo/my_bookmark`` has contents:
 
-.. prizerun::
+.. nprun::
 
     cat repo/my_bookmark
 
@@ -1342,7 +1365,7 @@ We need to tell git our name and email address before we start.
 Git will use this information to fill in the author information in each
 **commit message**, so we don't have to type it out every time.
 
-.. prizerun::
+.. nprun::
 
     git config --global user.name "Matthew Brett"
     git config --global user.email "matthew.brett@gmail.com"
@@ -1364,14 +1387,14 @@ text editor we prefer.  Set your own preferred text editor here::
 We also turn on the use of color, which is very helpful in making the
 output of git easier to read:
 
-.. prizerun::
+.. nprun::
 
     git config --global color.ui "auto"
 
 Getting help
 ============
 
-.. prizerun::
+.. nprun::
 
     git help
 
@@ -1389,7 +1412,7 @@ Initializing the repository directory
 We first set this ``nobel_prize`` directory to be version controlled with git.
 We start off the working tree with the original files for the paper:
 
-.. desktoprun::
+.. workrun::
     :hide:
 
     rm -rf nobel_prize
@@ -1410,7 +1433,7 @@ We start off the working tree with the original files for the paper:
 To get started with git, create the git **repository directory** with ``git
 init``:
 
-.. desktoprun::
+.. workrun::
 
     cd nobel_prize
     git init
@@ -1454,7 +1477,7 @@ First, we show ourselves that the **staging area** is empty. We haven't yet
 discussed the git implementation of the staging area, but this command shows
 us which files are in the staging area.
 
-.. prizerun::
+.. nprun::
 
     git ls-files --stage
 
@@ -1467,7 +1490,7 @@ As expected, there are no files in the staging area yet.
 
 Now we do our add:
 
-.. prizerun::
+.. nprun::
 
     git add clever_analysis.py
 
@@ -1490,7 +1513,7 @@ inside ``.git/index`` to point to this backup copy.
 Now we have done the ``git add``, we expect that the new file will show up in
 the staging area:
 
-.. prizerun::
+.. nprun::
 
     git ls-files --stage
 
@@ -1519,7 +1542,7 @@ We can see the contents of objects with the command ``git cat-file -p``.
 
     git rev-parse :clever_analysis.py
 
-.. prizerun::
+.. nprun::
 
     git cat-file -p {{ analysis_1_hash }}
 
@@ -1538,7 +1561,7 @@ message text file, git calls this type of object a **blob** |--| for Binary
 Large Object.  You can get the object *type* from the object hash with the
 ``-t`` flag to ``git cat-file``:
 
-.. prizerun::
+.. nprun::
 
     git cat-file -t {{ analysis_1_hash }}
 
@@ -1556,7 +1579,7 @@ uniquely.  7 digits is nearly always enough, as in:
 
     {{ sha_7 }} {{ analysis_1_hash }}
 
-.. prizerun::
+.. nprun::
 
     git cat-file -p {{ analysis_1_hash_7 }}
 
@@ -1572,7 +1595,7 @@ tree to the repository and staging area.
 We have done a ``git add`` on ``clever_analysis.py``, and that added the file
 to the staging area.  We can see that this happened with ``git status``:
 
-.. prizerun::
+.. nprun::
 
     git status
 
@@ -1589,7 +1612,7 @@ Staging the other files with git add
 
 We do want to keep track of the other files, so we stage them:
 
-.. prizerun::
+.. nprun::
 
     git add fancy_figure.png
     git add expensive_data.csv
@@ -1631,11 +1654,11 @@ directory listing text file, and another for the commit message:
 Here is the contents of the commit message text file for the new commit.  Git
 calls this a **commit object**:
 
-.. prizerun::
+.. nprun::
 
     git cat-file -p {{ commit_1_sha }}
 
-.. prizerun::
+.. nprun::
 
     # What type of git object is this?
     git cat-file -t {{ commit_1_sha }}
@@ -1651,11 +1674,11 @@ Git calls this  a **tree** object.
 
     git rev-parse HEAD:./
 
-.. prizerun::
+.. nprun::
 
     git cat-file -p {{ commit_1_tree_sha }}
 
-.. prizerun::
+.. nprun::
 
     git cat-file -t {{ commit_1_tree_sha }}
 
@@ -1666,7 +1689,7 @@ file), the file hash, and the file name (see :ref:`git-object-types`).
 git log |--| what are the commits so far?
 =========================================
 
-.. prizerun::
+.. nprun::
 
     git log
 
@@ -1676,7 +1699,7 @@ commit was |commit_1_sha|.
 
 We can also ask to the see the parents of each commit in the log:
 
-.. prizerun::
+.. nprun::
 
     git log --parents
 
@@ -1692,14 +1715,14 @@ with a commit (such as |commit_1_sha|).
 The default branch (bookmark) for git is called ``master``. Git creates it
 automatically when we do our first commit.
 
-.. prizerun::
+.. nprun::
 
     git branch
 
 Asking for more verbose detail shows us that the branch is pointing to a
 particular commit (where the commit is given by a hash):
 
-.. prizerun::
+.. nprun::
 
     git branch -v
 
@@ -1710,11 +1733,11 @@ A branch is nothing but a name that points to a commit.  In fact, git stores
 branches as we did in SAP, as tiny text files, where the filename is the name
 of the branch, and the contents is the hash of the commit that it points to:
 
-.. prizerun::
+.. nprun::
 
     ls .git/refs/heads
 
-.. prizerun::
+.. nprun::
 
     cat .git/refs/heads/master
 
@@ -1732,25 +1755,25 @@ typing along, download ``nobel_prize.md`` to the ``nobel_prize`` directory.
 This git repository has not seen the filename ``nobel_prize.md`` before, so
 ``git status`` identifies this file as **untracked**:
 
-.. prizerun::
+.. nprun::
     :hide:
 
     cp {{ np_versions }}/work2/nobel_prize.md .
 
-.. prizerun::
+.. nprun::
 
     git status
 
 We add the file to the staging area with ``git add``:
 
-.. prizerun::
+.. nprun::
 
     git add nobel_prize.md
 
 Now ``git status`` records this file being in the staging area, by listing it
 under "changes to be committed":
 
-.. prizerun::
+.. nprun::
 
     git status
 
@@ -1767,24 +1790,24 @@ Git shows us the first 7 digits of the new commit hash in the output from
 Notice that the position of the current ``master`` branch is now this last
 commit:
 
-.. prizerun::
+.. nprun::
 
     git branch -v
 
-.. prizerun::
+.. nprun::
 
     cat .git/refs/heads/master
 
 We use ``git log`` to look at our short history.
 
-.. prizerun::
+.. nprun::
 
     git log
 
 We add the ``--parents`` flag to show that the second commit points back to
 the first via its hash.  Git lists the parent hash after the commit hash:
 
-.. prizerun::
+.. nprun::
 
     git log --parents
 
@@ -1797,7 +1820,7 @@ also refresh the figure with the result of running the script.
 I open the ``clever_analysis.py`` file in text editor and adjust the fudge
 factor, add a new fudge factor, and apply the new factor to the data.
 
-.. prizerun::
+.. nprun::
     :hide:
 
     # Copy the updated version from the local archive
@@ -1809,7 +1832,7 @@ my working tree differ from the files in the staging area.
 Remember, the files the staging area knows about so far are the files as of
 the last commit.
 
-.. prizerun::
+.. nprun::
 
     git diff
 
@@ -1822,7 +1845,7 @@ replicate my changes by editing the file, and checking with ``git diff``.
 
 Now check the status of ``clever_analysis.py`` with:
 
-.. prizerun::
+.. nprun::
 
     git status
 
@@ -1841,20 +1864,20 @@ different from the version we have in the working tree.
 If we try to do a commit, git will tell us there is nothing to commit, because
 there is nothing new in the staging area:
 
-.. prizerun::
+.. nprun::
     :allow-fail:
 
     git commit
 
 To stage this version of ``clever_analysis.py`` we use ``git add``:
 
-.. prizerun::
+.. nprun::
 
     git add clever_analysis.py
 
 Git status now shows these changes as "Changes to be committed".
 
-.. prizerun::
+.. nprun::
 
     git status
 
@@ -1869,12 +1892,12 @@ If not, you can download a :download:`version of the figure I generated
 earlier </np-versions/work3/fancy_figure.png>`.  After you have generated or
 downloaded the figure:
 
-.. prizerun::
+.. nprun::
     :hide:
 
     cp {{ np_versions }}/work3/fancy_figure.png .
 
-.. prizerun::
+.. nprun::
 
     git add fancy_figure.png
 
@@ -1886,7 +1909,7 @@ Do a final check with ``git status``, then make the commit with:
 
 The branch bookmark has moved again:
 
-.. prizerun::
+.. nprun::
 
     git branch -v
 
@@ -1910,33 +1933,33 @@ figure, and add a new file, ``references.bib``.
 To follow along, first download :download:`references.bib
 </np-versions/work4/references.bib>`.
 
-.. prizerun::
+.. nprun::
     :hide:
 
     cp {{ np_versions }}/work4/references.bib .
 
 Next, edit ``clever_analysis.py`` again, to make these changes:
 
-.. prizerun::
+.. nprun::
     :hide:
 
     cp {{ np_versions }}/work4/clever_analysis.py .
 
-.. prizerun::
+.. nprun::
 
     git diff
 
 Finally regenerate ``fancy_figure.png``, or download the updated copy
 :download:`from here </np-versions/work4/fancy_figure.png>`.
 
-.. prizerun::
+.. nprun::
     :hide:
 
     cp {{ np_versions }}/work4/fancy_figure.png .
 
 What will git status show now?
 
-.. prizerun::
+.. nprun::
 
     git status
 
@@ -1947,7 +1970,7 @@ copy that the staging area knows about.
 
 Before we add our changes, we confirm that they are as we expect with:
 
-.. prizerun::
+.. nprun::
 
     git diff
 
@@ -1957,7 +1980,7 @@ file.
 
 Now we have reviewed the changes, we add them to the staging area and commit:
 
-.. prizerun::
+.. nprun::
 
     git add references.bib
     git add clever_analysis.py
@@ -1969,7 +1992,7 @@ Now we have reviewed the changes, we add them to the staging area and commit:
 
 The branch bookmark has moved to point to the new commit:
 
-.. prizerun::
+.. nprun::
 
     git branch -v
 
@@ -2011,13 +2034,13 @@ will point two steps back in the commit history, and so on.
 
 So, a readable reset command for our purpose is:
 
-.. prizerun::
+.. nprun::
 
     git reset master~1
 
 Notice that the branch pointer now points to the previous commit:
 
-.. prizerun::
+.. nprun::
 
     git branch -v
 
@@ -2032,7 +2055,7 @@ area to the state as of the older commit, but it has left the working tree
 alone.  That means that ``git status`` will show us the changes in the working
 tree compared to the commit we have just reset to:
 
-.. prizerun::
+.. nprun::
 
     git status
 
@@ -2045,7 +2068,7 @@ A new fourth commit
 As we planned, we make a commit by adding only the changes from the script and
 figure:
 
-.. prizerun::
+.. nprun::
 
     git add clever_analysis.py
     git add fancy_figure.png
@@ -2057,7 +2080,7 @@ figure:
 Notice that git status now tells us that we still have untracked (and
 therefore not staged) changes in our working tree:
 
-.. prizerun::
+.. nprun::
 
     git status
 
@@ -2067,7 +2090,7 @@ The fifth commit
 To finish our work splitting the fourth commit into two, we add and commit the
 ``references.bib`` file:
 
-.. prizerun::
+.. nprun::
 
     git add references.bib
 
@@ -2095,26 +2118,26 @@ want.  We want the version of ``clever_analysis.py`` as of the first commit.
 To find the first commit, we can use git log.  To make git log a bit less
 verbose, I've added the ``--oneline`` flag, to print out one line per commit:
 
-.. prizerun::
+.. nprun::
 
     git log --oneline
 
 Now we have the abbreviated commit hash for the first commit, we can checkout
 that version to the working tree:
 
-.. prizerun::
+.. nprun::
 
     git checkout {{ commit_1_sha_7 }} clever_analysis.py
 
 We also want the previous version of the figure:
 
-.. prizerun::
+.. nprun::
 
     git checkout {{ commit_1_sha_7 }} fancy_figure.png
 
 Notice that the checkout also added the files to the staging area:
 
-.. prizerun::
+.. nprun::
 
     git status
 
@@ -2136,14 +2159,14 @@ working directory to the conference.
 We as Josephine don't want to change the previous bookmark, which is
 ``master``:
 
-.. prizerun::
+.. nprun::
 
     git branch -v
 
 We would like to use our own bookmark, so we can make changes without
 affecting anyone else.  To do this we use ``git branch`` with arguments:
 
-.. prizerun::
+.. nprun::
 
     git branch josephines-branch master
 
@@ -2151,13 +2174,13 @@ The first argument is the name of the branch we want to create.  The second is
 the commit at which the branch should start.  Now we have a new branch, that
 currently points to the same commit as ``master``:
 
-.. prizerun::
+.. nprun::
 
     git branch -v
 
 The new branch is nothing but a text file pointing to the commit:
 
-.. prizerun::
+.. nprun::
 
     cat .git/refs/heads/josephines-branch
 
@@ -2168,7 +2191,7 @@ update the ``master`` bookmark.
 
 Git stores the current branch in the file ``.git/HEAD``:
 
-.. prizerun::
+.. nprun::
 
     cat .git/HEAD
 
@@ -2197,19 +2220,19 @@ are only going to see the first of these two effects, because ``master`` and
 ``josephines-branch`` point to the same commit, and so have the same file
 contents:
 
-.. prizerun::
+.. nprun::
 
     git checkout josephines-branch
 
 The asterisk has now moved to ``josephines-branch``:
 
-.. prizerun::
+.. nprun::
 
     git branch -v
 
 This is because the file ``HEAD`` now points to ``josephines-branch``:
 
-.. prizerun::
+.. nprun::
 
     cat .git/HEAD
 
@@ -2221,19 +2244,19 @@ Making commits on branches
 Josephine did some edits to the paper.  If you are typing along, make these
 changes to ``nobel_prize.md``:
 
-.. prizerun::
+.. nprun::
     :hide:
 
     cp {{ np_versions }}/work7j/nobel_prize.md .
 
-.. prizerun::
+.. nprun::
 
     git diff
 
 As usual, we add the file to the staging area, and check the status of the
 working tree:
 
-.. prizerun::
+.. nprun::
 
     git add nobel_prize.md
     git status
@@ -2247,20 +2270,20 @@ Finally we make the commit:
 The ``master`` branch has not changed, but ``josephines-branch`` changed to
 point to the new commit:
 
-.. prizerun::
+.. nprun::
 
     git branch -v
 
 Now we go back to being ourselves, working in the lab.  We change back to the
 ``master`` branch:
 
-.. prizerun::
+.. nprun::
 
     git checkout master
 
 The asterisk now points at ``master``:
 
-.. prizerun::
+.. nprun::
 
     git branch -v
 
@@ -2272,12 +2295,12 @@ of the last commit on the ``master`` branch.
 Now we make our own changes to the script and figure. Here are the changes to
 the script:
 
-.. prizerun::
+.. nprun::
     :hide:
 
     cp {{ np_versions }}/work7m/clever_analysis.py .
 
-.. prizerun::
+.. nprun::
 
     git diff
 
@@ -2285,20 +2308,20 @@ If you are typing along, then you will also want to regenerate the figure with
 ``python clever_analysis.py`` or :download:`download the new version
 </np-versions/work7m/fancy_figure.png>`.
 
-.. prizerun::
+.. nprun::
     :hide:
 
     cp {{ np_versions }}/work7m/fancy_figure.png .
 
 This gives:
 
-.. prizerun::
+.. nprun::
 
     git status
 
 As usual, we add the files and do the commit:
 
-.. prizerun::
+.. nprun::
 
     git add clever_analysis.py
     git add fancy_figure.png
@@ -2310,7 +2333,7 @@ As usual, we add the files and do the commit:
 Because ``HEAD`` currently current points to ``master``, git updated the
 ``master`` branch with the new commit:
 
-.. prizerun::
+.. nprun::
 
     git branch -v
 
@@ -2321,7 +2344,7 @@ We next want to get Josephine's changes into the ``master`` branch.
 
 We do this with ``git merge``:
 
-.. prizerun::
+.. nprun::
 
     git merge josephines-branch
 
@@ -2330,7 +2353,7 @@ changes the Josephine made to the paper.
 
 The commit has two parents, which are the two commits from which we merged:
 
-.. prizerun::
+.. nprun::
 
     git log --oneline --parents
 
@@ -2348,7 +2371,7 @@ There are a lot of graphical tools to show the git history as a graph, but
 ``git log`` has a useful flag called ``--graph`` which shows the commits as a
 graph using text characters:
 
-.. prizerun::
+.. nprun::
 
     git log --oneline --graph
 
@@ -2357,7 +2380,7 @@ command, that we use instead of the standard git log.  You can make customized
 shortcuts to git commands by setting ``alias`` entries using ``git config``.
 For example, you may want to set up an alias like this:
 
-.. prizerun::
+.. nprun::
 
     git config --global alias.slog "log --oneline --graph"
 
@@ -2366,7 +2389,7 @@ Now you can use the command ``git slog`` to mean ``git log --oneline
 ``slog`` alias as the default for your user account, so you can use ``git
 slog`` whenever you are using git as this user on this computer.
 
-.. prizerun::
+.. nprun::
 
     git slog
 
@@ -2483,10 +2506,6 @@ You might also try:
    reasonable range.  If git had to store hash filenames for every object in
    one flat directory, the directory would soon have a very large number of
    files.
-.. [#tag-other-objects] You might have guessed by now that a tag can refer to
-   any git object, not just a commit.  For example a tag can refer to a tree
-   (directory listing) or blob (file) object, although in practice tags almost
-   always refer to commits.
 
 .. include:: links_names.inc
 .. include:: working/object_names.inc

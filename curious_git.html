@@ -1,5 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -8,8 +7,11 @@
     
     <title>The curious coder’s guide to git &mdash; Curious git</title>
     
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -24,21 +26,178 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="Curious git" href="index.html" />
     <link rel="next" title="Curious git" href="README.html" />
     <link rel="prev" title="Reading git objects" href="reading_git_objects.html" />
-   
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
 
   </head>
-  <body role="document">  
+  <body role="document">
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          Curious git</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.2</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
             
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="curious_remotes.html">git remotes - working with other people, making backups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="git_object_types.html">Types of git objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="git_submodules.html">How do git submodules work?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="git_push_algorithm.html">An algorithm for git push</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reading_git_objects.html">Reading git objects</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">The curious coder&#8217;s guide to git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html">Curious git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="np-versions/README.html">np-versions</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">The curious coder&#8217;s guide to git</a><ul>
+<li><a class="reference internal" href="#git-love-hate">git - love - hate</a><ul>
+<li><a class="reference internal" href="#the-one-thing-about-git-you-really-need-to-understand">The one thing about git you really need to understand</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#a-familiar-story">A familiar story</a><ul>
+<li><a class="reference internal" href="#the-story-so-far">The story so far...</a></li>
+<li><a class="reference internal" href="#the-dog-ate-my-results">The dog ate my results</a></li>
+<li><a class="reference internal" href="#deja-vu-all-over-again">Deja vu all over again</a></li>
+<li><a class="reference internal" href="#gitwards-1-make-regular-snapshots">Gitwards 1: make regular snapshots</a></li>
+<li><a class="reference internal" href="#gitwards-2-reminding-yourself-of-what-you-did">Gitwards 2: reminding yourself of what you did</a></li>
+<li><a class="reference internal" href="#gitwards-3-breaking-up-work-into-chunks">Gitwards 3: breaking up work into chunks</a></li>
+<li><a class="reference internal" href="#gitwards-4-getting-files-from-previous-commits">Gitwards 4: getting files from previous commits</a></li>
+<li><a class="reference internal" href="#gitwards-5-two-people-working-at-the-same-time">Gitwards 5: two people working at the same time</a></li>
+<li><a class="reference internal" href="#gitwards-6-how-should-you-name-your-commit-directories">Gitwards 6: how should you name your commit directories?</a></li>
+<li><a class="reference internal" href="#a-diversion-on-cryptographic-hashes">A diversion on cryptographic hashes</a></li>
+<li><a class="reference internal" href="#gitwards-7-naming-commits-from-hashes">Gitwards 7: naming commits from hashes</a></li>
+<li><a class="reference internal" href="#gitwards-8-the-development-history-is-a-graph">Gitwards 8: the development history is a graph</a></li>
+<li><a class="reference internal" href="#gitwards-9-saving-space-with-file-hashes">Gitwards 9: saving space with file hashes</a></li>
+<li><a class="reference internal" href="#gitwards-10-making-the-commits-unique">Gitwards 10: making the commits unique</a></li>
+<li><a class="reference internal" href="#gitwards-11-away-with-the-snapshot-directories">Gitwards 11: away with the snapshot directories</a></li>
+<li><a class="reference internal" href="#gitwards-12-where-am-i">Gitwards 12: where am I?</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#from-gitwards-to-gitworld">From gitwards to gitworld</a><ul>
+<li><a class="reference internal" href="#basic-configuration">Basic configuration</a></li>
+<li><a class="reference internal" href="#getting-help">Getting help</a></li>
+<li><a class="reference internal" href="#initializing-the-repository-directory">Initializing the repository directory</a></li>
+<li><a class="reference internal" href="#updating-terms-for-git">Updating terms for git</a></li>
+<li><a class="reference internal" href="#git-add-put-stuff-into-the-staging-area">git add – put stuff into the staging area</a></li>
+<li><a class="reference internal" href="#the-git-staging-area">The git staging area</a></li>
+<li><a class="reference internal" href="#git-objects">Git objects</a></li>
+<li><a class="reference internal" href="#hash-values-can-usually-be-abbreviated-to-seven-characters">Hash values can usually be abbreviated to seven characters</a></li>
+<li><a class="reference internal" href="#git-status-showing-the-status-of-files-in-the-working-tree">git status – showing the status of files in the working tree</a></li>
+<li><a class="reference internal" href="#staging-the-other-files-with-git-add">Staging the other files with git add</a></li>
+<li><a class="reference internal" href="#git-commit-making-the-snapshot">git commit – making the snapshot</a></li>
+<li><a class="reference internal" href="#git-log-what-are-the-commits-so-far">git log – what are the commits so far?</a></li>
+<li><a class="reference internal" href="#git-branch-which-branch-are-we-on">git branch - which branch are we on?</a></li>
+<li><a class="reference internal" href="#a-second-commit">A second commit</a></li>
+<li><a class="reference internal" href="#git-diff-what-has-changed">git diff – what has changed?</a></li>
+<li><a class="reference internal" href="#you-need-to-git-add-a-file-to-put-it-into-the-staging-area">You need to <code class="docutils literal"><span class="pre">git</span> <span class="pre">add</span></code> a file to put it into the staging area</a></li>
+<li><a class="reference internal" href="#an-ordinary-day-in-gitworld">An ordinary day in gitworld</a></li>
+<li><a class="reference internal" href="#commit-four">Commit four</a></li>
+<li><a class="reference internal" href="#undoing-a-commit-with-git-reset">Undoing a commit with <code class="docutils literal"><span class="pre">git</span> <span class="pre">reset</span></code></a></li>
+<li><a class="reference internal" href="#pointing-backwards-in-history">Pointing backwards in history</a></li>
+<li><a class="reference internal" href="#a-new-fourth-commit">A new fourth commit</a></li>
+<li><a class="reference internal" href="#the-fifth-commit">The fifth commit</a></li>
+<li><a class="reference internal" href="#getting-a-file-from-a-previous-commit-git-checkout">Getting a file from a previous commit – <code class="docutils literal"><span class="pre">git</span> <span class="pre">checkout</span></code></a></li>
+<li><a class="reference internal" href="#using-bookmarks-git-branch">Using bookmarks – <code class="docutils literal"><span class="pre">git</span> <span class="pre">branch</span></code></a></li>
+<li><a class="reference internal" href="#changing-the-current-branch-with-git-checkout">Changing the current branch with <code class="docutils literal"><span class="pre">git</span> <span class="pre">checkout</span></code></a></li>
+<li><a class="reference internal" href="#making-commits-on-branches">Making commits on branches</a></li>
+<li><a class="reference internal" href="#merging-lines-of-development-with-git-merge">Merging lines of development with <code class="docutils literal"><span class="pre">git</span> <span class="pre">merge</span></code></a></li>
+<li><a class="reference internal" href="#the-commit-parents-make-the-development-history-into-a-graph">The commit parents make the development history into a graph</a></li>
+<li><a class="reference internal" href="#other-commands-you-need-to-know">Other commands you need to know</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#git-are-you-ready">Git: are you ready?</a></li>
+<li><a class="reference internal" href="#git-resources">Git resources</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="reading_git_objects.html" title="Previous Chapter: Reading git objects"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Reading git o...</span>
+    </a>
+  </li>
+  <li>
+    <a href="README.html" title="Next Chapter: Curious git"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Curious git &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/curious_git.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
   <div class="section" id="the-curious-coder-s-guide-to-git">
 <h1>The curious coder&#8217;s guide to git<a class="headerlink" href="#the-curious-coder-s-guide-to-git" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="git-love-hate">
@@ -61,7 +220,7 @@ well also do good design from scratch.</div></blockquote>
 error prone and it makes them angry.  Why are there such different views?</p>
 <p>I think the reason some people hate git, is because they don&#8217;t yet understand
 it.  The reason I can say this without being patronizing is because I went
-through something similar myself.</p>
+through the same thing myself.</p>
 <p>When I first started using git, I found it uncomfortable.  I could see it was
 very powerful, but I sometimes got lost and stuck and had to Google for a set
 of magic commands to get me out of trouble.  I once accidentally made a huge
@@ -163,7 +322,7 @@ directory modestly named <code class="docutils literal"><span class="pre">nobel_
 <p>You can get this, the first draft, by downloading and unzipping
 <a class="reference download internal" href="_downloads/nobel_prize.zip"><code class="xref download docutils literal"><span class="pre">nobel_prize</span></code></a>.</p>
 <p>Here&#8217;s the current contents of our <code class="docutils literal"><span class="pre">nobel_prize</span></code> directory:</p>
-<div class="highlight-none"><div class="highlight"><pre>nobel_prize
+<div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
 ├── clever_analysis.py [618B]
 ├── expensive_data.csv [244K]
 └── fancy_figure.png [183K]
@@ -203,7 +362,7 @@ of the analysis directory.</p>
 <p>The snapshot is a copy of all the files in the working directory.</p>
 <p>First you make a directory called <code class="docutils literal"><span class="pre">working</span></code>, and move your files to that
 directory:</p>
-<div class="highlight-none"><div class="highlight"><pre>nobel_prize
+<div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
 └── working
     ├── clever_analysis.py [618B]
     ├── expensive_data.csv [244K]
@@ -213,7 +372,7 @@ directory:</p>
 <p>When you&#8217;ve finished work for the day, you make a snapshot of the directory
 containing the files you are working on.  The snapshot is just a copy of your
 working directory:</p>
-<div class="highlight-none"><div class="highlight"><pre>nobel_prize
+<div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
 ├── working
 │   ├── clever_analysis.py [618B]
 │   ├── expensive_data.csv [244K]
@@ -227,7 +386,7 @@ working directory:</p>
 <p>You are going to do this every day you work on the project.</p>
 <p>On the second day, you add your first draft of the paper, <code class="docutils literal"><span class="pre">nobel_prize.md</span></code>.
 You can download this ground-breaking work at <a class="reference download internal" href="_downloads/nobel_prize.md"><code class="xref download docutils literal"><span class="pre">nobel_prize.md</span></code></a>.</p>
-<div class="highlight-none"><div class="highlight"><pre>nobel_prize
+<div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
 ├── working
 │   ├── clever_analysis.py [618B]
 │   ├── expensive_data.csv [244K]
@@ -240,7 +399,7 @@ You can download this ground-breaking work at <a class="reference download inter
 </pre></div>
 </div>
 <p>At the end of the day you make your second snapshot:</p>
-<div class="highlight-none"><div class="highlight"><pre>nobel_prize
+<div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
 ├── working
 │   ├── clever_analysis.py [618B]
 │   ├── expensive_data.csv [244K]
@@ -259,7 +418,7 @@ You can download this ground-breaking work at <a class="reference download inter
 </div>
 <p>On the third day, you did some edits to the analysis script, and refreshed the
 figure by running the script.  You did a third snapshot.</p>
-<div class="highlight-none"><div class="highlight"><pre>nobel_prize
+<div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
 ├── working
 │   ├── clever_analysis.py [716B]
 │   ├── expensive_data.csv [244K]
@@ -285,7 +444,7 @@ figure by running the script.  You did a third snapshot.</p>
 number of files / directories in a subdirectory.  For example, here&#8217;s a
 listing of the three snapshots, but only showing the contents of the third
 snapshot:</p>
-<div class="highlight-none"><div class="highlight"><pre>nobel_prize
+<div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
 ├── working
 │   ├── clever_analysis.py [716B]
 │   ├── expensive_data.csv [244K]
@@ -304,7 +463,7 @@ snapshot:</p>
 </div>
 <p>Finally, on the fourth day, you make some more edits to the script, and you
 add some references for the paper.</p>
-<div class="highlight-none"><div class="highlight"><pre>nobel_prize
+<div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
 ├── working
 │   ├── clever_analysis.py [752B]
 │   ├── expensive_data.csv [244K]
@@ -355,7 +514,7 @@ time when you want to narrow down where to look for problems.</p>
 <p>So, for each commit, you write write a file called <code class="docutils literal"><span class="pre">message.txt</span></code>. The
 message for the first commit looks like this:</p>
 <div class="admonition">
-<em class="first">Contents of </em><code class="docutils literal"><span class="pre">snapshot_1/message.txt</span></code><div class="last highlight-none"><div class="highlight"><pre>Date: April 1 2012, 14.30
+<em class="first">Contents of </em><code class="docutils literal"><span class="pre">snapshot_1/message.txt</span></code><div class="last highlight-none"><div class="highlight"><pre><span></span>Date: April 1 2012, 14.30
 Author: I. M. Awesome
 Notes: First backup of my amazing idea
 </pre></div>
@@ -364,7 +523,7 @@ Notes: First backup of my amazing idea
 <p>There is a similar <code class="docutils literal"><span class="pre">messsage.txt</span></code> file for each commit. For example,
 here&#8217;s the message for the third commit:</p>
 <div class="admonition">
-<em class="first">Contents of </em><code class="docutils literal"><span class="pre">snapshot_3/message.txt</span></code><div class="last highlight-none"><div class="highlight"><pre>Date: April 3 2012, 11.20
+<em class="first">Contents of </em><code class="docutils literal"><span class="pre">snapshot_3/message.txt</span></code><div class="last highlight-none"><div class="highlight"><pre><span></span>Date: April 3 2012, 11.20
 Author: I. M. Awesome
 Notes: Add another fudge factor
 </pre></div>
@@ -388,23 +547,55 @@ commits.</dd>
 so pleased with your fourth commit.  You now prefer to break your changes up
 into self-contained chunks of work, with a matching commit message.  But,
 looking at your fourth commit, it looks like you included two separate chunks
-of work:</p>
-<p>You decide to break this commit into two separate commits:</p>
+of work.  You&#8217;ve even confessed to this in your commit message:</p>
+<div class="admonition">
+<em class="first">Contents of </em><code class="docutils literal"><span class="pre">snapshot_4/message.txt</span></code><div class="last highlight-none"><div class="highlight"><pre><span></span>Date: April 4 2012, 01.40
+Author: I. M. Awesome
+Notes: Change analysis and add references
+</pre></div>
+</div>
+</div>
+<p>You realize that you will often be in the situation where you have made
+several changes in the working tree, and you want to split those changes up
+into different commits, with their own commit messages.  How can you adapt SAP
+to deal with that situation?</p>
+<p>To help yourself think about this problem, you decide to scrap your last
+commit, and go back to the situation where your working tree has the changes,
+but the snapshots (commits) do not.  All you have to do to get there, is
+delete the snapshot directory:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
+├── working
+│   ├── clever_analysis.py [752B]
+│   ├── expensive_data.csv [244K]
+│   ├── fancy_figure.png [251K]
+│   ├── nobel_prize.md [730B]
+│   └── references.bib [244B]
+├── snapshot_3
+│   ├── clever_analysis.py [716B]
+│   ├── expensive_data.csv [244K]
+│   ├── fancy_figure.png [239K]
+│   ├── nobel_prize.md [730B]
+│   └── message.txt [80B]
+...
+</pre></div>
+</div>
+<p>You still have your changes in the working tree.  You have changed the
+analysis script and figure, and you have the new <code class="docutils literal"><span class="pre">references.bib</span></code> file.</p>
+<p>You want to break these changes changes up into two seperate commits:</p>
 <ul class="simple">
-<li>A commit with the changes to the analysis script and figure, but without
-the references;</li>
+<li>A commit with the changes to the analysis script and figure, but without the
+references;</li>
 <li>Another commit to add the references.</li>
 </ul>
-<p>To do this kind of thing, you adapt the workflow. Each time you have done a
-commit, you copy the contents of the commit to new directory called
-<code class="docutils literal"><span class="pre">staging</span></code>. This directory will become the contents for your next commit.
-You can add changes from your working tree by copying the changed file into
-<code class="docutils literal"><span class="pre">staging</span></code>.  When <code class="docutils literal"><span class="pre">staging</span></code> contains the changes you want, you make the
-commit by copying <code class="docutils literal"><span class="pre">staging</span></code> into its own commit directory.</p>
-<p>To get started, first you delete the old <code class="docutils literal"><span class="pre">snapshot_4</span></code>.  Next you replace the
-contents of <code class="docutils literal"><span class="pre">staging</span></code> with the contents of <code class="docutils literal"><span class="pre">snapshot_3</span></code>.  You already have
-the two sets of changes ready to stage in <code class="docutils literal"><span class="pre">working</span></code>.</p>
-<div class="highlight-none"><div class="highlight"><pre>nobel_prize
+<p>To do this kind of thing, you are going to use a new directory called
+<code class="docutils literal"><span class="pre">staging</span></code>.  The <code class="docutils literal"><span class="pre">staging</span></code> directory starts off with the files from the
+last commit.  When you want to add some changes to a commit, you copy the
+changes from the working tree to the <code class="docutils literal"><span class="pre">staging</span></code> directory.  You make the
+commit by copying the contents of <code class="docutils literal"><span class="pre">staging</span></code> to a new snapshot directory, and
+adding a commit message.</p>
+<p>To get started, you make the new <code class="docutils literal"><span class="pre">staging</span></code> directory by copying the contents
+of the last commit (except the commit message):</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
 ├── working
 │   ├── clever_analysis.py [752B]
 │   ├── expensive_data.csv [244K]
@@ -428,15 +619,16 @@ the two sets of changes ready to stage in <code class="docutils literal"><span c
 <p>Call the <code class="docutils literal"><span class="pre">staging</span></code> directory – the <strong>staging area</strong>.  Your new sequence
 for making a commit is:</p>
 <ul class="simple">
-<li>Make sure the contents of the last commit are in the staging area;</li>
 <li>Copy any changes for the next commit from the working tree to the staging
 area;</li>
-<li>Make the commit by taking a snapshot of the staging area.</li>
+<li>Make the commit by copying the contents of the staging area to a snapshot
+directory, and adding a commit message.</li>
 </ul>
 <p>You are doing this by hand, but later git will make this much more automatic.</p>
-<p>First you copy the changes you want from the working tree to the staging area:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>cp working/clever_analysis.py staging
-<span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>cp working/fancy_figure.png staging
+<p>Now you are ready to make the first of your two new commits.  You copy the
+changed analysis script and figure from the working tree to the staging area:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cp working/clever_analysis.py staging
+$ cp working/fancy_figure.png staging
 </pre></div>
 </div>
 <p>The staging directory (staging area) now contains the right files for the
@@ -444,14 +636,14 @@ first of your two commits.</p>
 <p>Next you make a commit by copying the staging area to <code class="docutils literal"><span class="pre">snapshot_4</span></code> and
 adding a message:</p>
 <div class="admonition">
-<em class="first">Contents of </em><code class="docutils literal"><span class="pre">snapshot_4/message.txt</span></code><div class="last highlight-none"><div class="highlight"><pre>Date: April 4 2012, 01.40
+<em class="first">Contents of </em><code class="docutils literal"><span class="pre">snapshot_4/message.txt</span></code><div class="last highlight-none"><div class="highlight"><pre><span></span>Date: April 4 2012, 01.40
 Author: I. M. Awesome
 Notes: Change parameters of analysis
 </pre></div>
 </div>
 </div>
 <p>This gives:</p>
-<div class="highlight-none"><div class="highlight"><pre>nobel_prize
+<div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
 ├── working
 │   ├── clever_analysis.py [752B]
 │   ├── expensive_data.csv [244K]
@@ -474,27 +666,25 @@ Notes: Change parameters of analysis
 </div>
 <p>To finish, you make the second of the two commits.  Remember the sequence:</p>
 <ul class="simple">
-<li>Make sure the contents of the last commit are in the staging area;</li>
 <li>Copy any changes for the next commit from the working tree to the staging
 area;</li>
 <li>Make the commit by taking a snapshot of the staging area.</li>
 </ul>
-<p>The staging area already contains the contents of the last commit (now
-<code class="docutils literal"><span class="pre">snapshot_4</span></code>).  You copy the rest of the changes to the staging area:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>cp working/references.bib staging
+<p>You copy the rest of the changes to the staging area:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cp working/references.bib staging
 </pre></div>
 </div>
-<p>Finally, you do the commit by copying <code class="docutils literal"><span class="pre">staging</span></code> to <code class="docutils literal"><span class="pre">snapshot_5</span></code>, and
-adding a commit message:</p>
+<p>Finally, you do the commit by copying the contents of <code class="docutils literal"><span class="pre">staging</span></code> to a new
+directory <code class="docutils literal"><span class="pre">snapshot_5</span></code>, and adding a commit message:</p>
 <div class="admonition">
-<em class="first">Contents of </em><code class="docutils literal"><span class="pre">snapshot_5/message.txt</span></code><div class="last highlight-none"><div class="highlight"><pre>Date: April 4 2012, 02.10
+<em class="first">Contents of </em><code class="docutils literal"><span class="pre">snapshot_5/message.txt</span></code><div class="last highlight-none"><div class="highlight"><pre><span></span>Date: April 4 2012, 02.10
 Author: I. M. Awesome
 Notes: Add references
 </pre></div>
 </div>
 </div>
 <p>Now you have:</p>
-<div class="highlight-none"><div class="highlight"><pre>nobel_prize
+<div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
 ├── working
 │   ├── clever_analysis.py [752B]
 │   ├── expensive_data.csv [244K]
@@ -517,7 +707,7 @@ Notes: Add references
 ...
 </pre></div>
 </div>
-<p>Now we can add a new term to our vocabulary:</p>
+<p>We can add a couple of new terms to our vocabulary:</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <dl class="last docutils">
@@ -544,26 +734,26 @@ the staging area;</li>
 <li>Make a new commit from the staging area.</li>
 </ul>
 <p>For our simple SAP system, that looks like this:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span><span class="c"># Copy files from old commit to working tree</span>
-<span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>cp snapshot_1/clever_analysis.py working
-<span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>cp snapshot_1/fancy_figure.png working
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="c1"># Copy files from old commit to working tree</span>
+$ cp snapshot_1/clever_analysis.py working
+$ cp snapshot_1/fancy_figure.png working
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span><span class="c"># Copy files from working tree to staging area</span>
-<span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>cp working/clever_analysis.py staging
-<span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>cp working/fancy_figure.png staging
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="c1"># Copy files from working tree to staging area</span>
+$ cp working/clever_analysis.py staging
+$ cp working/fancy_figure.png staging
 </pre></div>
 </div>
 <p>Then do the commit by copying <code class="docutils literal"><span class="pre">staging</span></code>, and add a message:</p>
 <div class="admonition">
-<em class="first">Contents of </em><code class="docutils literal"><span class="pre">snapshot_6/message.txt</span></code><div class="last highlight-none"><div class="highlight"><pre>Date: April 5 2012, 18.40
+<em class="first">Contents of </em><code class="docutils literal"><span class="pre">snapshot_6/message.txt</span></code><div class="last highlight-none"><div class="highlight"><pre><span></span>Date: April 5 2012, 18.40
 Author: I. M. Awesome
 Notes: Revert to original script &amp; figure
 </pre></div>
 </div>
 </div>
 <p>This gives:</p>
-<div class="highlight-none"><div class="highlight"><pre>nobel_prize
+<div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
 ├── working
 │   ├── clever_analysis.py [618B]
 │   ├── expensive_data.csv [244K]
@@ -617,7 +807,7 @@ use it to make some edits to the paper.  She takes a copy of your
 <p>She goes away for a conference.</p>
 <p>While she is away, you do some work on the analysis script, and regenerate the
 figure, to make <code class="docutils literal"><span class="pre">shapshot_7</span></code>:</p>
-<div class="highlight-none"><div class="highlight"><pre>nobel_prize
+<div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
 ├── working
 │   ├── clever_analysis.py [692B]
 │   ├── expensive_data.csv [244K]
@@ -649,7 +839,7 @@ directory, to make it clear this is her snapshot.  So, she makes her commit
 into the directory <code class="docutils literal"><span class="pre">snapshot_7_josephine</span></code>.  When she comes back from the
 conference, you copy her <code class="docutils literal"><span class="pre">snapshot_7_josephine</span></code> into your <code class="docutils literal"><span class="pre">nobel_prize</span></code>
 directory:</p>
-<div class="highlight-none"><div class="highlight"><pre>nobel_prize
+<div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
 ├── working
 │   ├── clever_analysis.py [692B]
 │   ├── expensive_data.csv [244K]
@@ -679,13 +869,13 @@ directory:</p>
 Josephine&#8217;s changes to the paper. You want to combine your changes with her
 changes.  To do this you do a <strong>merge</strong> by copying her changes to the paper
 into the working directory.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span><span class="c"># Get Josephine&#39;s changes to the paper</span>
-<span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>cp snapshot_7_josephine/nobel_prize.md working
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="c1"># Get Josephine&#39;s changes to the paper</span>
+$ cp snapshot_7_josephine/nobel_prize.md working
 </pre></div>
 </div>
 <p>Now you do a commit with these merged changes, by copying them into the
 staging area, and thence to <code class="docutils literal"><span class="pre">snapshot_8</span></code>, with a suitable message:</p>
-<div class="highlight-none"><div class="highlight"><pre>nobel_prize
+<div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
 ├── working
 │   ├── clever_analysis.py [692B]
 │   ├── expensive_data.csv [244K]
@@ -748,10 +938,10 @@ functions</a>.</p>
 data. The hash is a fixed length string that is the characteristic
 <em>fingerprint</em> of that exact block of data.  One common hash function is called
 SHA1.  Let&#8217;s run this via the command line:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span><span class="c"># Make a file with a single line of text</span>
-<span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span><span class="nb">echo</span> <span class="s2">&quot;git is a rude word in UK English&quot;</span> &gt; git_is_rude
-<span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span><span class="c"># Show the SHA1 hash</span>
-<span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>shasum git_is_rude
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="c1"># Make a file with a single line of text</span>
+$ <span class="nb">echo</span> <span class="s2">&quot;git is a rude word in UK English&quot;</span> &gt; git_is_rude
+$ <span class="c1"># Show the SHA1 hash</span>
+$ shasum git_is_rude
 30ad6c360a692c1fe66335bb00d00e0528346be5  git_is_rude
 </pre></div>
 </div>
@@ -770,8 +960,8 @@ different files (where 16 is the number of different hexadecimal digits, and
 different contents that will give the same hash.</p>
 <p>For example, a tiny change in the string makes the hash completely different.
 Here I&#8217;ve just added a full stop at the end:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span><span class="nb">echo</span> <span class="s2">&quot;git is a rude word in UK English.&quot;</span> &gt; git_is_rude_stop
-<span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>shasum git_is_rude_stop
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">echo</span> <span class="s2">&quot;git is a rude word in UK English.&quot;</span> &gt; git_is_rude_stop
+$ shasum git_is_rude_stop
 23d97b00299c250b43049be67c97cf2e5ffc2428  git_is_rude_stop
 </pre></div>
 </div>
@@ -788,8 +978,8 @@ unique name for the commits.  You could take the SHA1 hash for the
 commit directory.  Because each message has the date and time and author and
 notes, it&#8217;s very unlikely that any two <code class="docutils literal"><span class="pre">message.txt</span></code> files will be the same.
 Here are the hashes for the current <code class="docutils literal"><span class="pre">message.txt</span></code> files:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span><span class="c"># Show the SHA1 hash values for each message.txt</span>
-<span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>shasum snapshot*/message.txt
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="c1"># Show the SHA1 hash values for each message.txt</span>
+$ shasum snapshot*/message.txt
 99b52473039acea4427e13e42b96c78776e2baf5  snapshot_1/message.txt
 d396475cc691c8ac7ba7a318726f220c924cf60b  snapshot_2/message.txt
 6a04028960ead9e8db180dd6ebc108e1fc52891d  snapshot_3/message.txt
@@ -803,7 +993,7 @@ df3e787c2a89ac991b1c89b39fb014c1f049a939  snapshot_8/message.txt
 </div>
 <p>For example you could rename the <code class="docutils literal"><span class="pre">snapshot_1</span></code> directory to <code class="docutils literal"><span class="pre">99b52473039acea4427e13e42b96c78776e2baf5</span></code>,
 then rename <code class="docutils literal"><span class="pre">snapshot_2</span></code> to <code class="docutils literal"><span class="pre">d396475cc691c8ac7ba7a318726f220c924cf60b</span></code> and so on.</p>
-<div class="highlight-none"><div class="highlight"><pre>nobel_prize
+<div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
 ├── working
 │   (5 files)
 ├── staging
@@ -832,7 +1022,7 @@ then rename <code class="docutils literal"><span class="pre">snapshot_2</span></
 sequence of the commits, so you can&#8217;t tell that <code class="docutils literal"><span class="pre">snapshot_2</span></code> (now
 <code class="docutils literal"><span class="pre">d396475cc691c8ac7ba7a318726f220c924cf60b</span></code>) follows <code class="docutils literal"><span class="pre">snapshot_1</span></code> (now <code class="docutils literal"><span class="pre">99b52473039acea4427e13e42b96c78776e2baf5</span></code>).</p>
 <p>OK – you scratch the renaming for now while you have a rethink.</p>
-<div class="highlight-none"><div class="highlight"><pre>nobel_prize
+<div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
 ├── working
 │   (5 files)
 ├── staging
@@ -864,7 +1054,7 @@ done this.</p>
 <code class="docutils literal"><span class="pre">message.txt</span></code> will point back to the previous commit in the sequence.  You
 add a new field to <code class="docutils literal"><span class="pre">messsage.txt</span></code> called <code class="docutils literal"><span class="pre">Parents</span></code>.
 <code class="docutils literal"><span class="pre">snapshot_1/message.txt</span></code> stays the same, because it has no parents:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>cat snapshot_1/message.txt
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cat snapshot_1/message.txt
 Date: April <span class="m">1</span> 2012, 14.30
 Author: I. M. Awesome
 Notes: First backup of my amazing idea
@@ -874,7 +1064,7 @@ Notes: First backup of my amazing idea
 <code class="docutils literal"><span class="pre">snapshot_1</span></code>.  But, you&#8217;re going to rename the snapshot directories, so you
 want <code class="docutils literal"><span class="pre">snapshot_2/message.txt</span></code> to point back to the hash for
 <code class="docutils literal"><span class="pre">snapshot_1/message.txt</span></code>, which you know is <code class="docutils literal"><span class="pre">99b52473039acea4427e13e42b96c78776e2baf5</span></code>:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>cat snapshot_2/message.txt
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cat snapshot_2/message.txt
 Date: April <span class="m">2</span> 2012, 18.03
 Author: I. M. Awesome
 Notes: Add first draft of paper
@@ -884,7 +1074,7 @@ Parents: 99b52473039acea4427e13e42b96c78776e2baf5
 <p>Now we&#8217;ve changed the contents and therefore the hash for
 <code class="docutils literal"><span class="pre">snapshot_2/message.txt</span></code>.  The hash was <code class="docutils literal"><span class="pre">d396475cc691c8ac7ba7a318726f220c924cf60b</span></code>, but now it
 is:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>shasum snapshot_2/message.txt
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ shasum snapshot_2/message.txt
 9bf4cdd8847feeb49fe94cb96298acf7986a587d  snapshot_2/message.txt
 </pre></div>
 </div>
@@ -895,15 +1085,15 @@ commit.  This commit is the result of merging two commits: <code class="docutils
 parents into the <code class="docutils literal"><span class="pre">Parents</span></code> field of <code class="docutils literal"><span class="pre">snapshot_8/message.txt</span></code>, being the
 new hashes for <code class="docutils literal"><span class="pre">snapshot_7/message.txt</span></code> and
 <code class="docutils literal"><span class="pre">snapshot_7_josephine/message.txt</span></code>:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>shasum snapshot_7/message.txt
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ shasum snapshot_7/message.txt
 bee09a3b1c11456c6e1bc6784319954f40fef24b  snapshot_7/message.txt
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>shasum snapshot_7_josephine/message.txt
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ shasum snapshot_7_josephine/message.txt
 905376d349af193c367217712bc231186f17fca7  snapshot_7_josephine/message.txt
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre>[desktop]$ cat snapshot_8/message.txt
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cat snapshot_8/message.txt
 Date: April 7 2012, 15.03
 Author: I. M. Awesome
 Notes: Merged Josephine&#39;s changes
@@ -912,7 +1102,7 @@ Parents: bee09a3b1c11456c6e1bc6784319954f40fef24b 905376d349af193c367217712bc231
 </div>
 <p>With the new <code class="docutils literal"><span class="pre">Parents</span></code> field, you have new hashes for all the
 <code class="docutils literal"><span class="pre">message.txt</span></code> files, except <code class="docutils literal"><span class="pre">snapshot_1</span></code> (that has no parent):</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>shasum snapshot_*/message.txt
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ shasum snapshot_*/message.txt
 99b52473039acea4427e13e42b96c78776e2baf5  snapshot_1/message.txt
 9bf4cdd8847feeb49fe94cb96298acf7986a587d  snapshot_2/message.txt
 d9accd0a27c78b4333d70ee1a9d7dca0bcc3e682  snapshot_3/message.txt
@@ -927,7 +1117,7 @@ bd9dc5fb9aacf208536fad1fad22696c9a79e277  snapshot_8/message.txt
 <p>You can now rename your snapshot directories with the hash values, safe in the
 knowledge that the <code class="docutils literal"><span class="pre">message.txt</span></code> files have the information about the commit
 sequence.</p>
-<div class="highlight-none"><div class="highlight"><pre>nobel_prize
+<div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
 ├── working
 │   (5 files)
 ├── staging
@@ -955,7 +1145,7 @@ sequence.</p>
 <p>Now the commit directories are hash names, it is harder to see which commit is
 which, so here&#8217;s the directory listing where the commit directories have a
 label from the <code class="docutils literal"><span class="pre">Notes:</span></code> field in <code class="docutils literal"><span class="pre">message.txt</span></code>:</p>
-<div class="highlight-none"><div class="highlight"><pre>nobel_prize
+<div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
 ├── working
 │   (5 files)
 ├── staging
@@ -1013,7 +1203,7 @@ first two commits, and then again when you reverted to that copy in
 <p>You can show these files are the same by checking their hash strings.  If
 their hash strings are different, the files must be different.  All copies of
 <code class="docutils literal"><span class="pre">expensive_data.csv</span></code> have the same hash, and are therefore identical:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>shasum */expensive_data.csv
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ shasum */expensive_data.csv
 bf2c7158afc60b244cba860fb0b2c04bb6481daf  00d03e9d1bf4ebaea380da3c62e9226189e39ff4/expensive_data.csv
 bf2c7158afc60b244cba860fb0b2c04bb6481daf  905376d349af193c367217712bc231186f17fca7/expensive_data.csv
 bf2c7158afc60b244cba860fb0b2c04bb6481daf  9920fff7b55370a2c4c7566011de8aa2a263171f/expensive_data.csv
@@ -1029,35 +1219,35 @@ bf2c7158afc60b244cba860fb0b2c04bb6481daf  working/expensive_data.csv
 </div>
 <p><code class="docutils literal"><span class="pre">fancy_figure.png</span></code> is the same for the first two commits, changes for the
 third commit, and reverts back to the same contents at the 6th commit:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span><span class="c"># First commit</span>
-<span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>shasum 99b52473039acea4427e13e42b96c78776e2baf5/fancy_figure.png
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="c1"># First commit</span>
+$ shasum 99b52473039acea4427e13e42b96c78776e2baf5/fancy_figure.png
 e8fe49b1faf23b428865d0315c4763c6ec459897  99b52473039acea4427e13e42b96c78776e2baf5/fancy_figure.png
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span><span class="c"># Second commit</span>
-<span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>shasum 9bf4cdd8847feeb49fe94cb96298acf7986a587d/fancy_figure.png
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="c1"># Second commit</span>
+$ shasum 9bf4cdd8847feeb49fe94cb96298acf7986a587d/fancy_figure.png
 e8fe49b1faf23b428865d0315c4763c6ec459897  9bf4cdd8847feeb49fe94cb96298acf7986a587d/fancy_figure.png
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span><span class="c"># Third commit</span>
-<span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>shasum d9accd0a27c78b4333d70ee1a9d7dca0bcc3e682/fancy_figure.png
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="c1"># Third commit</span>
+$ shasum d9accd0a27c78b4333d70ee1a9d7dca0bcc3e682/fancy_figure.png
 863cf24c03c6ab1eb33c1022d6fc8f7a2876875a  d9accd0a27c78b4333d70ee1a9d7dca0bcc3e682/fancy_figure.png
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span><span class="c"># Sixth commit</span>
-<span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>shasum 9920fff7b55370a2c4c7566011de8aa2a263171f/fancy_figure.png
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="c1"># Sixth commit</span>
+$ shasum 9920fff7b55370a2c4c7566011de8aa2a263171f/fancy_figure.png
 e8fe49b1faf23b428865d0315c4763c6ec459897  9920fff7b55370a2c4c7566011de8aa2a263171f/fancy_figure.png
 </pre></div>
 </div>
 <p>You wonder if there is a way to store each unique version of the file just
 once, and make the commits point to the matching version.</p>
 <p>First you make a new directory to store files generated from your commits:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>mkdir repo
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ mkdir repo
 </pre></div>
 </div>
 <p>Next you make a sub-directory to store the unique copies of the files in
 commits:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>mkdir repo/objects
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ mkdir repo/objects
 </pre></div>
 </div>
 <p>You play with the idea of calling these unique versions something like
@@ -1066,13 +1256,13 @@ so on.  You would then need something like a text file called
 <code class="docutils literal"><span class="pre">directory_listing.txt</span></code> in the first commit directory to say that the file
 <code class="docutils literal"><span class="pre">fancy_figure.png</span></code> for this commit is available at
 <code class="docutils literal"><span class="pre">repo/objects/fancy_figure.png.v1</span></code>.  This could be something like:</p>
-<div class="highlight-python"><div class="highlight"><pre># directory_listing.txt in first commit
+<div class="highlight-python"><div class="highlight"><pre><span></span># directory_listing.txt in first commit
 fancy_figure.png -&gt; repo/objects/fancy_figure.png.v1
 </pre></div>
 </div>
 <p><code class="docutils literal"><span class="pre">directory_listing.txt</span></code> for the second commit would point to the same file,
 but the third commit would have something like:</p>
-<div class="highlight-python"><div class="highlight"><pre># directory_listing.txt in third commit
+<div class="highlight-python"><div class="highlight"><pre><span></span># directory_listing.txt in third commit
 fancy_figure.png -&gt; repo/objects/fancy_figure.png.v2
 </pre></div>
 </div>
@@ -1084,7 +1274,7 @@ version of the file.</p>
 <p>Now you have your second quite brilliant hashing idea.  Why not use the
 <strong>hash</strong> of the file to make a unique file name?</p>
 <p>For example, here are the hash values for the files in the first commit:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>shasum 99b52473039acea4427e13e42b96c78776e2baf5/*
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ shasum 99b52473039acea4427e13e42b96c78776e2baf5/*
 c25a0bd91a7e8eb574b17296a25111233eac94b5  99b52473039acea4427e13e42b96c78776e2baf5/clever_analysis.py
 bf2c7158afc60b244cba860fb0b2c04bb6481daf  99b52473039acea4427e13e42b96c78776e2baf5/expensive_data.csv
 e8fe49b1faf23b428865d0315c4763c6ec459897  99b52473039acea4427e13e42b96c78776e2baf5/fancy_figure.png
@@ -1095,17 +1285,17 @@ e8fe49b1faf23b428865d0315c4763c6ec459897  99b52473039acea4427e13e42b96c78776e2ba
 <code class="docutils literal"><span class="pre">repo/objects</span></code> with a unique file name.  <strong>The file name is the hash of the
 file contents</strong>.  For example, the hash for <code class="docutils literal"><span class="pre">fancy_figure.png</span></code> is
 <code class="docutils literal"><span class="pre">e8fe49b1faf23b428865d0315c4763c6ec459897</span></code>.  So, you do:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>cp 99b52473039acea4427e13e42b96c78776e2baf5/fancy_figure.png repo/objects/e8fe49b1faf23b428865d0315c4763c6ec459897
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cp 99b52473039acea4427e13e42b96c78776e2baf5/fancy_figure.png repo/objects/e8fe49b1faf23b428865d0315c4763c6ec459897
 </pre></div>
 </div>
 <p>The hash values for <code class="docutils literal"><span class="pre">clever_analysis.py</span></code> and <code class="docutils literal"><span class="pre">expensive_data.csv</span></code> are
 <code class="docutils literal"><span class="pre">c25a0bd91a7e8eb574b17296a25111233eac94b5</span></code> and <code class="docutils literal"><span class="pre">bf2c7158afc60b244cba860fb0b2c04bb6481daf</span></code> respectively, so:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>cp 99b52473039acea4427e13e42b96c78776e2baf5/clever_analysis.py repo/objects/c25a0bd91a7e8eb574b17296a25111233eac94b5
-<span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>cp 99b52473039acea4427e13e42b96c78776e2baf5/expensive_data.csv repo/objects/bf2c7158afc60b244cba860fb0b2c04bb6481daf
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cp 99b52473039acea4427e13e42b96c78776e2baf5/clever_analysis.py repo/objects/c25a0bd91a7e8eb574b17296a25111233eac94b5
+$ cp 99b52473039acea4427e13e42b96c78776e2baf5/expensive_data.csv repo/objects/bf2c7158afc60b244cba860fb0b2c04bb6481daf
 </pre></div>
 </div>
 <p>These hash values become the <code class="docutils literal"><span class="pre">directory_listing.txt</span></code> for the first commit:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>cat 99b52473039acea4427e13e42b96c78776e2baf5/directory_listing.txt
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cat 99b52473039acea4427e13e42b96c78776e2baf5/directory_listing.txt
 c25a0bd91a7e8eb574b17296a25111233eac94b5  clever_analysis.py
 bf2c7158afc60b244cba860fb0b2c04bb6481daf  expensive_data.csv
 e8fe49b1faf23b428865d0315c4763c6ec459897  fancy_figure.png
@@ -1117,7 +1307,7 @@ backed up in <code class="docutils literal"><span class="pre">repo/objects</span
 <p>So far you haven&#8217;t gained anything much except some odd-looking filenames.
 The payoff comes when you apply the same procedure to the second commit.  Here
 are the hashes for the files in the second commit:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>shasum 9bf4cdd8847feeb49fe94cb96298acf7986a587d/*
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ shasum 9bf4cdd8847feeb49fe94cb96298acf7986a587d/*
 c25a0bd91a7e8eb574b17296a25111233eac94b5  9bf4cdd8847feeb49fe94cb96298acf7986a587d/clever_analysis.py
 bf2c7158afc60b244cba860fb0b2c04bb6481daf  9bf4cdd8847feeb49fe94cb96298acf7986a587d/expensive_data.csv
 e8fe49b1faf23b428865d0315c4763c6ec459897  9bf4cdd8847feeb49fe94cb96298acf7986a587d/fancy_figure.png
@@ -1138,13 +1328,13 @@ named <code class="docutils literal"><span class="pre">e8fe49b1faf23b428865d0315
 second time.  By checking the hashes for each file in the commit, you find
 that the only file you are missing is the new file <code class="docutils literal"><span class="pre">nobel_prize.md</span></code>.  This
 has hash <code class="docutils literal"><span class="pre">47eef829586738a0855060dc83f8e0781fbcac2c</span></code>, so you do a single copy to <code class="docutils literal"><span class="pre">repo/objects</span></code>:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span><span class="c"># Only one copy needed to store files in second commit</span>
-<span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>cp 9bf4cdd8847feeb49fe94cb96298acf7986a587d/nobel_prize.md repo/objects/47eef829586738a0855060dc83f8e0781fbcac2c
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="c1"># Only one copy needed to store files in second commit</span>
+$ cp 9bf4cdd8847feeb49fe94cb96298acf7986a587d/nobel_prize.md repo/objects/47eef829586738a0855060dc83f8e0781fbcac2c
 </pre></div>
 </div>
 <p>As before, you can make <code class="docutils literal"><span class="pre">directory_listing.txt</span></code> for the second commit by
 recording the hashes of the files:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>cat 9bf4cdd8847feeb49fe94cb96298acf7986a587d/directory_listing.txt
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cat 9bf4cdd8847feeb49fe94cb96298acf7986a587d/directory_listing.txt
 c25a0bd91a7e8eb574b17296a25111233eac94b5  clever_analysis.py
 bf2c7158afc60b244cba860fb0b2c04bb6481daf  expensive_data.csv
 e8fe49b1faf23b428865d0315c4763c6ec459897  fancy_figure.png
@@ -1153,14 +1343,14 @@ e8fe49b1faf23b428865d0315c4763c6ec459897  fancy_figure.png
 </div>
 <p>Before you start this procedure of moving the unique copies into
 <code class="docutils literal"><span class="pre">repo/objects</span></code>, your whole <code class="docutils literal"><span class="pre">nobel_prize</span></code> directory is size:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span><span class="c"># Size of the contents of nobel_prize before moving to repo/objects</span>
-<span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>du -hs .
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="c1"># Size of the contents of nobel_prize before moving to repo/objects</span>
+$ du -hs .
 5.4M	.
 </pre></div>
 </div>
 <p>When you run the procedure above on every commit, moving files to
 <code class="docutils literal"><span class="pre">repo/objects</span></code>, you have this:</p>
-<div class="highlight-none"><div class="highlight"><pre>nobel_prize
+<div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
 ├── working
 │   (5 files)
 ├── staging
@@ -1212,8 +1402,8 @@ e8fe49b1faf23b428865d0315c4763c6ec459897  fancy_figure.png
 </div>
 <p>The whole <code class="docutils literal"><span class="pre">nobel_prize</span></code> directory is now smaller because you have no
 duplicated files:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span><span class="c"># Size of the contents of nobel_prize after moving to repo/objects</span>
-<span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>du -hs .
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="c1"># Size of the contents of nobel_prize after moving to repo/objects</span>
+$ du -hs .
 2.3M	.
 </pre></div>
 </div>
@@ -1235,7 +1425,7 @@ the commit, including the contents of the files in the commit.</p>
 contain a list of hashes and corresponding file names for this commit
 (snapshot).  For example, here is <code class="docutils literal"><span class="pre">directory_listing.txt</span></code> for the first
 commit:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>cat 99b52473039acea4427e13e42b96c78776e2baf5/directory_listing.txt
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cat 99b52473039acea4427e13e42b96c78776e2baf5/directory_listing.txt
 c25a0bd91a7e8eb574b17296a25111233eac94b5 clever_analysis.py
 815bbcf64edacb6791cc2ebdc3afeb09797c9347 directory_listing.txt
 bf2c7158afc60b244cba860fb0b2c04bb6481daf expensive_data.csv
@@ -1249,13 +1439,13 @@ change.  If you renamed the file, the name of the file would change and the
 corresponding line in <code class="docutils literal"><span class="pre">directory_listing.txt</span></code> would change.</p>
 <p>Now you know what to do.  You take a hash of the <code class="docutils literal"><span class="pre">directory_listing.txt</span></code>
 file:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>shasum 99b52473039acea4427e13e42b96c78776e2baf5/directory_listing.txt
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ shasum 99b52473039acea4427e13e42b96c78776e2baf5/directory_listing.txt
 85d49d8555aeb254d1d4acd377034772944a35fe  99b52473039acea4427e13e42b96c78776e2baf5/directory_listing.txt
 </pre></div>
 </div>
 <p>You put this has into a new field in <code class="docutils literal"><span class="pre">message.txt</span></code> called <code class="docutils literal"><span class="pre">Directory</span>
 <span class="pre">hash:</span></code>:</p>
-<div class="highlight-none"><div class="highlight"><pre>Date: April 1 2012, 14.30
+<div class="highlight-none"><div class="highlight"><pre><span></span>Date: April 1 2012, 14.30
 Author: I. M. Awesome
 Notes: First backup of my amazing idea
 Directory hash: 85d49d8555aeb254d1d4acd377034772944a35fe
@@ -1268,7 +1458,7 @@ also changed the hash values of the <code class="docutils literal"><span class="
 changed the hashes of the <code class="docutils literal"><span class="pre">message.txt</span></code> files, you go back through your
 commits updating the parent hashes to the new ones, and renaming the commit
 directories with the new hashes.  You end up with this:</p>
-<div class="highlight-none"><div class="highlight"><pre>nobel_prize
+<div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
 ├── working
 │   (5 files)
 ├── staging
@@ -1309,7 +1499,7 @@ are therefore exactly the same commit.</p>
 <h3>Gitwards 11: away with the snapshot directories<a class="headerlink" href="#gitwards-11-away-with-the-snapshot-directories" title="Permalink to this headline">¶</a></h3>
 <p>You are reflecting on your idea about hashing the directory listing, and your
 eye falls idly on the current directory tree of <code class="docutils literal"><span class="pre">nobel_prize</span></code>:</p>
-<div class="highlight-none"><div class="highlight"><pre>nobel_prize
+<div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
 ├── working
 │   (5 files)
 ├── staging
@@ -1351,15 +1541,15 @@ eye falls idly on the current directory tree of <code class="docutils literal"><
 done that, you can get rid of the commit directories entirely.</p>
 <p>First you take the hash of each <code class="docutils literal"><span class="pre">directory_listing.txt</span></code> and move it into the
 <code class="docutils literal"><span class="pre">repo/objects</span></code> directory as you did for the other files:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>shasum 9c0b782981cc2ee322ec4b595dc472799f8808bd/directory_listing.txt
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ shasum 9c0b782981cc2ee322ec4b595dc472799f8808bd/directory_listing.txt
 85d49d8555aeb254d1d4acd377034772944a35fe  9c0b782981cc2ee322ec4b595dc472799f8808bd/directory_listing.txt
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>cp 9c0b782981cc2ee322ec4b595dc472799f8808bd/directory_listing.txt repo/objects/85d49d8555aeb254d1d4acd377034772944a35fe
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cp 9c0b782981cc2ee322ec4b595dc472799f8808bd/directory_listing.txt repo/objects/85d49d8555aeb254d1d4acd377034772944a35fe
 </pre></div>
 </div>
 <p>Then you do the same for the <code class="docutils literal"><span class="pre">message.txt</span></code> file:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>cp 9c0b782981cc2ee322ec4b595dc472799f8808bd/message.txt repo/objects/9c0b782981cc2ee322ec4b595dc472799f8808bd
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cp 9c0b782981cc2ee322ec4b595dc472799f8808bd/message.txt repo/objects/9c0b782981cc2ee322ec4b595dc472799f8808bd
 </pre></div>
 </div>
 <p>There are 9 commits, so there are 9 x 2 new files with
@@ -1367,7 +1557,7 @@ hash filenames in <code class="docutils literal"><span class="pre">repo/objects<
 and <code class="docutils literal"><span class="pre">message.txt</span></code> for each commit).</p>
 <p>Now you don&#8217;t need the snapshot directories at all, because the hashed files
 in <code class="docutils literal"><span class="pre">repo/objects</span></code> have all the information about the snapshots.</p>
-<div class="highlight-none"><div class="highlight"><pre>nobel_prize
+<div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
 ├── working
 │   (5 files)
 ├── staging
@@ -1397,7 +1587,7 @@ make the commit, but this sounds like a job better done by a computer.</p>
 called <code class="docutils literal"><span class="pre">repo/my_bookmark</span></code>.  It is a text file with the hash string as
 contents.  Your last commit was <code class="docutils literal"><span class="pre">f46773cff294d07a331a6aa0ee32b3615cb009b8</span></code>, so
 <code class="docutils literal"><span class="pre">repo/my_bookmark</span></code> has contents:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>cat repo/my_bookmark
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cat repo/my_bookmark
 f46773cff294d07a331a6aa0ee32b3615cb009b8
 </pre></div>
 </div>
@@ -1424,8 +1614,8 @@ content management tasks in git.</p>
 <p>We need to tell git our name and email address before we start.</p>
 <p>Git will use this information to fill in the author information in each
 <strong>commit message</strong>, so we don&#8217;t have to type it out every time.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git config --global user.name <span class="s2">&quot;Matthew Brett&quot;</span>
-<span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git config --global user.email <span class="s2">&quot;matthew.brett@gmail.com&quot;</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git config --global user.name <span class="s2">&quot;Matthew Brett&quot;</span>
+$ git config --global user.email <span class="s2">&quot;matthew.brett@gmail.com&quot;</span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal"><span class="pre">--global</span></code> flag tells git to store this information in its default
@@ -1436,25 +1626,25 @@ working in.</p>
 <p>Every time we make a commit, we need to type a commit message.  Git will open
 our text editor for us to type the message, but first it needs to know what
 text editor we prefer.  Set your own preferred text editor here:</p>
-<div class="highlight-python"><div class="highlight"><pre># gedit is a reasonable choice for Linux
+<div class="highlight-python"><div class="highlight"><pre><span></span># gedit is a reasonable choice for Linux
 # &quot;vi&quot; is the default.
 git config --global core.editor gedit
 </pre></div>
 </div>
 <p>We also turn on the use of color, which is very helpful in making the
 output of git easier to read:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git config --global color.ui <span class="s2">&quot;auto&quot;</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git config --global color.ui <span class="s2">&quot;auto&quot;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="getting-help">
 <h3>Getting help<a class="headerlink" href="#getting-help" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git <span class="nb">help</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git <span class="nb">help</span>
 usage: git <span class="o">[</span>--version<span class="o">]</span> <span class="o">[</span>--help<span class="o">]</span> <span class="o">[</span>-C &lt;path&gt;<span class="o">]</span> <span class="o">[</span>-c <span class="nv">name</span><span class="o">=</span>value<span class="o">]</span>
            <span class="o">[</span>--exec-path<span class="o">[=</span>&lt;path&gt;<span class="o">]]</span> <span class="o">[</span>--html-path<span class="o">]</span> <span class="o">[</span>--man-path<span class="o">]</span> <span class="o">[</span>--info-path<span class="o">]</span>
            <span class="o">[</span>-p<span class="p">|</span>--paginate<span class="p">|</span>--no-pager<span class="o">]</span> <span class="o">[</span>--no-replace-objects<span class="o">]</span> <span class="o">[</span>--bare<span class="o">]</span>
            <span class="o">[</span>--git-dir<span class="o">=</span>&lt;path&gt;<span class="o">]</span> <span class="o">[</span>--work-tree<span class="o">=</span>&lt;path&gt;<span class="o">]</span> <span class="o">[</span>--namespace<span class="o">=</span>&lt;name&gt;<span class="o">]</span>
-           &lt;<span class="nb">command</span>&gt; <span class="o">[</span>&lt;args&gt;<span class="o">]</span>
+           &lt;command&gt; <span class="o">[</span>&lt;args&gt;<span class="o">]</span>
 
 The most commonly used git commands are:
    add        Add file contents to the index
@@ -1470,9 +1660,9 @@ The most commonly used git commands are:
    log        Show commit logs
    merge      Join two or more development histories together
    mv         Move or rename a file, a directory, or a symlink
-   pull       Fetch from and integrate with another repository or a <span class="nb">local </span>branch
+   pull       Fetch from and integrate with another repository or a <span class="nb">local</span> branch
    push       Update remote refs along with associated objects
-   rebase     Forward-port <span class="nb">local </span>commits to the updated upstream head
+   rebase     Forward-port <span class="nb">local</span> commits to the updated upstream head
    reset      Reset current HEAD to the specified state
    rm         Remove files from the working tree and from the index
    show       Show various types of objects
@@ -1481,7 +1671,7 @@ The most commonly used git commands are:
 
 <span class="s1">&#39;git help -a&#39;</span> and <span class="s1">&#39;git help -g&#39;</span> lists available subcommands and some
 concept guides. See <span class="s1">&#39;git help &lt;command&gt;&#39;</span> or <span class="s1">&#39;git help &lt;concept&gt;&#39;</span>
-to <span class="nb">read </span>about a specific subcommand or concept.
+to <span class="nb">read</span> about a specific subcommand or concept.
 </pre></div>
 </div>
 <p>Try <code class="docutils literal"><span class="pre">git</span> <span class="pre">help</span> <span class="pre">add</span></code> for an example.</p>
@@ -1502,7 +1692,7 @@ We start off the working tree with the original files for the paper:</p>
 <a class="reference download internal" href="_downloads/nobel_prize.zip"><code class="xref download docutils literal"><span class="pre">nobel_prize.zip</span></code></a> and unzip the
 files to make the same <code class="docutils literal"><span class="pre">nobel_prize</span></code> directory as I have here?</p>
 </div>
-<div class="highlight-none"><div class="highlight"><pre>nobel_prize
+<div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
 ├── clever_analysis.py [618B]
 ├── expensive_data.csv [244K]
 └── fancy_figure.png [183K]
@@ -1510,14 +1700,14 @@ files to make the same <code class="docutils literal"><span class="pre">nobel_pr
 </div>
 <p>To get started with git, create the git <strong>repository directory</strong> with <code class="docutils literal"><span class="pre">git</span>
 <span class="pre">init</span></code>:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span><span class="nb">cd </span>nobel_prize
-<span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git init
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> nobel_prize
+$ git init
 Initialized empty Git repository in /Users/mb312/dev_trees/curious-git/working/nobel_prize/.git/
 </pre></div>
 </div>
 <p>What happened when we did <code class="docutils literal"><span class="pre">git</span> <span class="pre">init</span></code>? Just what we were expecting; we have a
 new repository directory in <code class="docutils literal"><span class="pre">nobel_prize</span></code> called <code class="docutils literal"><span class="pre">.git</span></code></p>
-<div class="highlight-none"><div class="highlight"><pre>.git
+<div class="highlight-none"><div class="highlight"><pre><span></span>.git
 ├── refs
 │   ├── tags
 │   └── heads
@@ -1559,7 +1749,7 @@ default, and almost always in practice.</dd>
 <p>First, we show ourselves that the <strong>staging area</strong> is empty. We haven&#8217;t yet
 discussed the git implementation of the staging area, but this command shows
 us which files are in the staging area.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git ls-files --stage
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git ls-files --stage
 </pre></div>
 </div>
 <p>As expected, there are no files in the staging area yet.</p>
@@ -1569,7 +1759,7 @@ us which files are in the staging area.</p>
 your daily git life.  I&#8217;m using it here to show you how git works.</p>
 </div>
 <p>Now we do our add:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git add clever_analysis.py
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git add clever_analysis.py
 </pre></div>
 </div>
 </div>
@@ -1588,13 +1778,13 @@ file with its hash to <code class="docutils literal"><span class="pre">.git/obje
 inside <code class="docutils literal"><span class="pre">.git/index</span></code> to point to this backup copy.</p>
 <p>Now we have done the <code class="docutils literal"><span class="pre">git</span> <span class="pre">add</span></code>, we expect that the new file will show up in
 the staging area:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git ls-files --stage
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git ls-files --stage
 <span class="m">100755</span> 6560135a5943c0509608fee6d900b775e3041197 0	clever_analysis.py
 </pre></div>
 </div>
 <p>The output shows the hash of the backed up copy of <code class="docutils literal"><span class="pre">clever_analysis.py</span></code>.</p>
 <p>We can see this hashed backup file in <code class="docutils literal"><span class="pre">.git/objects</span></code>:</p>
-<div class="highlight-none"><div class="highlight"><pre>objects
+<div class="highlight-none"><div class="highlight"><pre><span></span>objects
 ├── pack
 ├── info
 └── 65
@@ -1611,24 +1801,24 @@ digits are the filename <a class="footnote-reference" href="#git-object-dir" id=
 The hash is not the hash of the raw file, but the raw file prepended with a
 short housekeeping string.  See <a class="reference internal" href="reading_git_objects.html"><em>Reading git objects</em></a> for details.</p>
 <p>We can see the contents of objects with the command <code class="docutils literal"><span class="pre">git</span> <span class="pre">cat-file</span> <span class="pre">-p</span></code>.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git cat-file -p 6560135a5943c0509608fee6d900b775e3041197
-<span class="c"># The brain analysis script</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git cat-file -p 6560135a5943c0509608fee6d900b775e3041197
+<span class="c1"># The brain analysis script</span>
 import numpy as np
 
 import matplotlib.pyplot as plt
 
 <span class="nv">FUDGE</span> <span class="o">=</span> 42
 
-<span class="c"># Load data from the brain</span>
+<span class="c1"># Load data from the brain</span>
 <span class="nv">data</span> <span class="o">=</span> np.loadtxt<span class="o">(</span><span class="s1">&#39;expensive_data.csv&#39;</span>, <span class="nv">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="o">)</span>
 
-<span class="c"># First column is something from world, second is something from brain</span>
+<span class="c1"># First column is something from world, second is something from brain</span>
 from_world, <span class="nv">from_brain</span> <span class="o">=</span> data.T
 
-<span class="c"># Process data</span>
+<span class="c1"># Process data</span>
 <span class="nv">from_brain_processed</span> <span class="o">=</span> np.log<span class="o">(</span>from_brain<span class="o">)</span> * FUDGE * np.e ** np.pi
 
-<span class="c"># Make plot</span>
+<span class="c1"># Make plot</span>
 plt.plot<span class="o">(</span>from_world, from_brain_processed, <span class="s1">&#39;r:&#39;</span><span class="o">)</span>
 plt.plot<span class="o">(</span>from_world, from_brain_processed, <span class="s1">&#39;bx&#39;</span><span class="o">)</span>
 plt.xlabel<span class="o">(</span><span class="s1">&#39;Data from the outside world&#39;</span><span class="o">)</span>
@@ -1650,7 +1840,7 @@ is a stored file rather than a stored directory listing text file or commit
 message text file, git calls this type of object a <strong>blob</strong> – for Binary
 Large Object.  You can get the object <em>type</em> from the object hash with the
 <code class="docutils literal"><span class="pre">-t</span></code> flag to <code class="docutils literal"><span class="pre">git</span> <span class="pre">cat-file</span></code>:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git cat-file -t 6560135a5943c0509608fee6d900b775e3041197
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git cat-file -t 6560135a5943c0509608fee6d900b775e3041197
 blob
 </pre></div>
 </div>
@@ -1659,24 +1849,24 @@ blob
 <h3>Hash values can usually be abbreviated to seven characters<a class="headerlink" href="#hash-values-can-usually-be-abbreviated-to-seven-characters" title="Permalink to this headline">¶</a></h3>
 <p>We only need to give git enough hash digits for git to identify the object
 uniquely.  7 digits is nearly always enough, as in:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git cat-file -p 6560135
-<span class="c"># The brain analysis script</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git cat-file -p 6560135
+<span class="c1"># The brain analysis script</span>
 import numpy as np
 
 import matplotlib.pyplot as plt
 
 <span class="nv">FUDGE</span> <span class="o">=</span> 42
 
-<span class="c"># Load data from the brain</span>
+<span class="c1"># Load data from the brain</span>
 <span class="nv">data</span> <span class="o">=</span> np.loadtxt<span class="o">(</span><span class="s1">&#39;expensive_data.csv&#39;</span>, <span class="nv">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="o">)</span>
 
-<span class="c"># First column is something from world, second is something from brain</span>
+<span class="c1"># First column is something from world, second is something from brain</span>
 from_world, <span class="nv">from_brain</span> <span class="o">=</span> data.T
 
-<span class="c"># Process data</span>
+<span class="c1"># Process data</span>
 <span class="nv">from_brain_processed</span> <span class="o">=</span> np.log<span class="o">(</span>from_brain<span class="o">)</span> * FUDGE * np.e ** np.pi
 
-<span class="c"># Make plot</span>
+<span class="c1"># Make plot</span>
 plt.plot<span class="o">(</span>from_world, from_brain_processed, <span class="s1">&#39;r:&#39;</span><span class="o">)</span>
 plt.plot<span class="o">(</span>from_world, from_brain_processed, <span class="s1">&#39;bx&#39;</span><span class="o">)</span>
 plt.xlabel<span class="o">(</span><span class="s1">&#39;Data from the outside world&#39;</span><span class="o">)</span>
@@ -1694,7 +1884,7 @@ the <code class="docutils literal"><span class="pre">.git</span></code> reposito
 tree to the repository and staging area.</p>
 <p>We have done a <code class="docutils literal"><span class="pre">git</span> <span class="pre">add</span></code> on <code class="docutils literal"><span class="pre">clever_analysis.py</span></code>, and that added the file
 to the staging area.  We can see that this happened with <code class="docutils literal"><span class="pre">git</span> <span class="pre">status</span></code>:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git status
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git status
 On branch master
 
 Initial commit
@@ -1721,9 +1911,9 @@ git will ignore these files and assume you don&#8217;t want to keep track of the
 <div class="section" id="staging-the-other-files-with-git-add">
 <h3>Staging the other files with git add<a class="headerlink" href="#staging-the-other-files-with-git-add" title="Permalink to this headline">¶</a></h3>
 <p>We do want to keep track of the other files, so we stage them:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git add fancy_figure.png
-<span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git add expensive_data.csv
-<span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git status
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git add fancy_figure.png
+$ git add expensive_data.csv
+$ git status
 On branch master
 
 Initial commit
@@ -1738,7 +1928,7 @@ Changes to be committed:
 </div>
 <p>We have staged all three of our files.  We have three objects in
 <code class="docutils literal"><span class="pre">.git/objects</span></code>:</p>
-<div class="highlight-none"><div class="highlight"><pre>objects
+<div class="highlight-none"><div class="highlight"><pre><span></span>objects
 ├── pack
 ├── info
 ├── 7b
@@ -1752,8 +1942,20 @@ Changes to be committed:
 </div>
 <div class="section" id="git-commit-making-the-snapshot">
 <h3>git commit – making the snapshot<a class="headerlink" href="#git-commit-making-the-snapshot" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git commit -m <span class="s2">&quot;First backup of my amazing idea&quot;</span>
-<span class="o">[</span>master <span class="o">(</span>root-commit<span class="o">)</span> 75206bc<span class="o">]</span> First backup of my amazing idea
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ git commit -m <span class="s2">&quot;First backup of my amazing idea&quot;</span>
+<span class="o">[</span>master <span class="o">(</span>root-commit<span class="o">)</span> b00d812<span class="o">]</span> First backup of my amazing idea
+ Committer: Matthew &lt;mb312@shanghai.local&gt;
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name <span class="s2">&quot;Your Name&quot;</span>
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used <span class="k">for</span> this commit with:
+
+    git commit --amend --reset-author
+
  <span class="m">3</span> files changed, <span class="m">5023</span> insertions<span class="o">(</span>+<span class="o">)</span>
  create mode <span class="m">100755</span> clever_analysis.py
  create mode <span class="m">100644</span> expensive_data.csv
@@ -1774,15 +1976,15 @@ you to write a more complete commit message, and gives feedback about the
 <p>Following the logic of your SAP system, we expect that the action of making
 the commit will generate two new files in <code class="docutils literal"><span class="pre">.git/objects</span></code>, one for the
 directory listing text file, and another for the commit message:</p>
-<div class="highlight-none"><div class="highlight"><pre>objects
+<div class="highlight-none"><div class="highlight"><pre><span></span>objects
 ├── pack
 ├── info
 ├── ff
 │   └── c871b48a6b9df8dc4a13e8e5da99ccf2ce458d [150B]
+├── b0
+│   └── 0d8121a60532b1ff45a8fadd10c4f539f0d56c [143B]
 ├── 7b
 │   └── 37886351b3df2463fd29c87bc5184b637f0926 [119K]
-├── 75
-│   └── 206bcb33ff9ad4f15f89b52cdf95bf666d67a8 [148B]
 ├── 65
 │   └── 60135a5943c0509608fee6d900b775e3041197 [335B]
 └── 1e
@@ -1791,16 +1993,16 @@ directory listing text file, and another for the commit message:</p>
 </div>
 <p>Here is the contents of the commit message text file for the new commit.  Git
 calls this a <strong>commit object</strong>:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git cat-file -p 75206bcb33ff9ad4f15f89b52cdf95bf666d67a8
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git cat-file -p b00d8121a60532b1ff45a8fadd10c4f539f0d56c
 tree ffc871b48a6b9df8dc4a13e8e5da99ccf2ce458d
-author Matthew Brett &lt;matthew.brett@gmail.com&gt; <span class="m">1333287013</span> +0100
-committer Matthew Brett &lt;matthew.brett@gmail.com&gt; <span class="m">1333287013</span> +0100
+author Matthew &lt;mb312@shanghai.local&gt; <span class="m">1333287013</span> +0100
+committer Matthew &lt;mb312@shanghai.local&gt; <span class="m">1333287013</span> +0100
 
 First backup of my amazing idea
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span><span class="c"># What type of git object is this?</span>
-<span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git cat-file -t 75206bcb33ff9ad4f15f89b52cdf95bf666d67a8
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="c1"># What type of git object is this?</span>
+$ git cat-file -t b00d8121a60532b1ff45a8fadd10c4f539f0d56c
 commit
 </pre></div>
 </div>
@@ -1809,13 +2011,13 @@ file (<code class="docutils literal"><span class="pre">tree</span></code>), the 
 parents), the author, date and time, and the note.</p>
 <p>Here&#8217;s the contents of the directory listing text file for the new commit.
 Git calls this  a <strong>tree</strong> object.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git cat-file -p ffc871b48a6b9df8dc4a13e8e5da99ccf2ce458d
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git cat-file -p ffc871b48a6b9df8dc4a13e8e5da99ccf2ce458d
 <span class="m">100755</span> blob 6560135a5943c0509608fee6d900b775e3041197	clever_analysis.py
 <span class="m">100644</span> blob 7b37886351b3df2463fd29c87bc5184b637f0926	expensive_data.csv
 <span class="m">100644</span> blob 1ed447c15c125991b8a292bdb433aaf19998a3e9	fancy_figure.png
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git cat-file -t ffc871b48a6b9df8dc4a13e8e5da99ccf2ce458d
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git cat-file -t ffc871b48a6b9df8dc4a13e8e5da99ccf2ce458d
 tree
 </pre></div>
 </div>
@@ -1825,9 +2027,9 @@ file), the file hash, and the file name (see <a class="reference internal" href=
 </div>
 <div class="section" id="git-log-what-are-the-commits-so-far">
 <h3>git log – what are the commits so far?<a class="headerlink" href="#git-log-what-are-the-commits-so-far" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git log
-commit 75206bcb33ff9ad4f15f89b52cdf95bf666d67a8
-Author: Matthew Brett &lt;matthew.brett@gmail.com&gt;
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git log
+commit b00d8121a60532b1ff45a8fadd10c4f539f0d56c
+Author: Matthew &lt;mb312@shanghai.local&gt;
 Date:   Sun Apr <span class="m">1</span> 14:30:13 <span class="m">2012</span> +0100
 
     First backup of my amazing idea
@@ -1835,11 +2037,11 @@ Date:   Sun Apr <span class="m">1</span> 14:30:13 <span class="m">2012</span> +0
 </div>
 <p>Notice that git log identifies each commit with its hash.  The hash is the
 hash for the contents of the commit message. As we saw above, the hash for our
-commit was <code class="docutils literal"><span class="pre">75206bcb33ff9ad4f15f89b52cdf95bf666d67a8</span></code>.</p>
+commit was <code class="docutils literal"><span class="pre">b00d8121a60532b1ff45a8fadd10c4f539f0d56c</span></code>.</p>
 <p>We can also ask to the see the parents of each commit in the log:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git log --parents
-commit 75206bcb33ff9ad4f15f89b52cdf95bf666d67a8
-Author: Matthew Brett &lt;matthew.brett@gmail.com&gt;
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git log --parents
+commit b00d8121a60532b1ff45a8fadd10c4f539f0d56c
+Author: Matthew &lt;mb312@shanghai.local&gt;
 Date:   Sun Apr <span class="m">1</span> 14:30:13 <span class="m">2012</span> +0100
 
     First backup of my amazing idea
@@ -1851,17 +2053,17 @@ case? (answer <a class="footnote-reference" href="#no-parents" id="id2">[3]</a>)
 <div class="section" id="git-branch-which-branch-are-we-on">
 <h3>git branch - which branch are we on?<a class="headerlink" href="#git-branch-which-branch-are-we-on" title="Permalink to this headline">¶</a></h3>
 <p>Branches are bookmarks. They associate a name (like &#8220;my_bookmark&#8221; or &#8220;master&#8221;)
-with a commit (such as <code class="docutils literal"><span class="pre">75206bcb33ff9ad4f15f89b52cdf95bf666d67a8</span></code>).</p>
+with a commit (such as <code class="docutils literal"><span class="pre">b00d8121a60532b1ff45a8fadd10c4f539f0d56c</span></code>).</p>
 <p>The default branch (bookmark) for git is called <code class="docutils literal"><span class="pre">master</span></code>. Git creates it
 automatically when we do our first commit.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git branch
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git branch
 * master
 </pre></div>
 </div>
 <p>Asking for more verbose detail shows us that the branch is pointing to a
 particular commit (where the commit is given by a hash):</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git branch -v
-* master 75206bc First backup of my amazing idea
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git branch -v
+* master b00d812 First backup of my amazing idea
 </pre></div>
 </div>
 <p>In this case git abbreviated the 40 character hash to the first 7 digits,
@@ -1869,12 +2071,12 @@ because these are enough to uniquely identify the commit.</p>
 <p>A branch is nothing but a name that points to a commit.  In fact, git stores
 branches as we did in SAP, as tiny text files, where the filename is the name
 of the branch, and the contents is the hash of the commit that it points to:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>ls .git/refs/heads
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ls .git/refs/heads
 master
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>cat .git/refs/heads/master
-75206bcb33ff9ad4f15f89b52cdf95bf666d67a8
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cat .git/refs/heads/master
+b00d8121a60532b1ff45a8fadd10c4f539f0d56c
 </pre></div>
 </div>
 <p>We will soon see that, if we are working on a branch, and we do a commit, then
@@ -1888,7 +2090,7 @@ As before, you can download this from
 typing along, download <code class="docutils literal"><span class="pre">nobel_prize.md</span></code> to the <code class="docutils literal"><span class="pre">nobel_prize</span></code> directory.</p>
 <p>This git repository has not seen the filename <code class="docutils literal"><span class="pre">nobel_prize.md</span></code> before, so
 <code class="docutils literal"><span class="pre">git</span> <span class="pre">status</span></code> identifies this file as <strong>untracked</strong>:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git status
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git status
 On branch master
 Untracked files:
   <span class="o">(</span>use <span class="s2">&quot;git add &lt;file&gt;...&quot;</span> to include in what will be committed<span class="o">)</span>
@@ -1899,12 +2101,12 @@ nothing added to commit but untracked files present <span class="o">(</span>use 
 </pre></div>
 </div>
 <p>We add the file to the staging area with <code class="docutils literal"><span class="pre">git</span> <span class="pre">add</span></code>:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git add nobel_prize.md
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git add nobel_prize.md
 </pre></div>
 </div>
 <p>Now <code class="docutils literal"><span class="pre">git</span> <span class="pre">status</span></code> records this file being in the staging area, by listing it
 under &#8220;changes to be committed&#8221;:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git status
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git status
 On branch master
 Changes to be committed:
   <span class="o">(</span>use <span class="s2">&quot;git reset HEAD &lt;file&gt;...&quot;</span> to unstage<span class="o">)</span>
@@ -1914,34 +2116,46 @@ Changes to be committed:
 </div>
 <p>Finally we move the changes from the staging area into a commit with <code class="docutils literal"><span class="pre">git</span>
 <span class="pre">commit</span></code>:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git commit -m <span class="s2">&quot;Add first draft of paper&quot;</span>
-<span class="o">[</span>master 7919d37<span class="o">]</span> Add first draft of paper
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ git commit -m <span class="s2">&quot;Add first draft of paper&quot;</span>
+<span class="o">[</span>master 33f112b<span class="o">]</span> Add first draft of paper
+ Committer: Matthew &lt;mb312@shanghai.local&gt;
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name <span class="s2">&quot;Your Name&quot;</span>
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used <span class="k">for</span> this commit with:
+
+    git commit --amend --reset-author
+
  <span class="m">1</span> file changed, <span class="m">29</span> insertions<span class="o">(</span>+<span class="o">)</span>
  create mode <span class="m">100644</span> nobel_prize.md
 </pre></div>
 </div>
 <p>Git shows us the first 7 digits of the new commit hash in the output from
-<code class="docutils literal"><span class="pre">git</span> <span class="pre">commit</span></code> – these are <code class="docutils literal"><span class="pre">7919d37</span></code>.</p>
+<code class="docutils literal"><span class="pre">git</span> <span class="pre">commit</span></code> – these are <code class="docutils literal"><span class="pre">33f112b</span></code>.</p>
 <p>Notice that the position of the current <code class="docutils literal"><span class="pre">master</span></code> branch is now this last
 commit:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git branch -v
-* master 7919d37 Add first draft of paper
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git branch -v
+* master 33f112b Add first draft of paper
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>cat .git/refs/heads/master
-7919d37dda9044f00cf2dc0677eed18156f75404
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cat .git/refs/heads/master
+33f112b0d300c12f2431000277fe9b4253ae06eb
 </pre></div>
 </div>
 <p>We use <code class="docutils literal"><span class="pre">git</span> <span class="pre">log</span></code> to look at our short history.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git log
-commit 7919d37dda9044f00cf2dc0677eed18156f75404
-Author: Matthew Brett &lt;matthew.brett@gmail.com&gt;
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git log
+commit 33f112b0d300c12f2431000277fe9b4253ae06eb
+Author: Matthew &lt;mb312@shanghai.local&gt;
 Date:   Mon Apr <span class="m">2</span> 18:03:00 <span class="m">2012</span> +0100
 
     Add first draft of paper
 
-commit 75206bcb33ff9ad4f15f89b52cdf95bf666d67a8
-Author: Matthew Brett &lt;matthew.brett@gmail.com&gt;
+commit b00d8121a60532b1ff45a8fadd10c4f539f0d56c
+Author: Matthew &lt;mb312@shanghai.local&gt;
 Date:   Sun Apr <span class="m">1</span> 14:30:13 <span class="m">2012</span> +0100
 
     First backup of my amazing idea
@@ -1949,15 +2163,15 @@ Date:   Sun Apr <span class="m">1</span> 14:30:13 <span class="m">2012</span> +0
 </div>
 <p>We add the <code class="docutils literal"><span class="pre">--parents</span></code> flag to show that the second commit points back to
 the first via its hash.  Git lists the parent hash after the commit hash:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git log --parents
-commit 7919d37dda9044f00cf2dc0677eed18156f75404 75206bcb33ff9ad4f15f89b52cdf95bf666d67a8
-Author: Matthew Brett &lt;matthew.brett@gmail.com&gt;
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git log --parents
+commit 33f112b0d300c12f2431000277fe9b4253ae06eb b00d8121a60532b1ff45a8fadd10c4f539f0d56c
+Author: Matthew &lt;mb312@shanghai.local&gt;
 Date:   Mon Apr <span class="m">2</span> 18:03:00 <span class="m">2012</span> +0100
 
     Add first draft of paper
 
-commit 75206bcb33ff9ad4f15f89b52cdf95bf666d67a8
-Author: Matthew Brett &lt;matthew.brett@gmail.com&gt;
+commit b00d8121a60532b1ff45a8fadd10c4f539f0d56c
+Author: Matthew &lt;mb312@shanghai.local&gt;
 Date:   Sun Apr <span class="m">1</span> 14:30:13 <span class="m">2012</span> +0100
 
     First backup of my amazing idea
@@ -1974,7 +2188,7 @@ factor, add a new fudge factor, and apply the new factor to the data.</p>
 my working tree differ from the files in the staging area.</p>
 <p>Remember, the files the staging area knows about so far are the files as of
 the last commit.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git diff
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git diff
 diff --git a/clever_analysis.py b/clever_analysis.py
 index 6560135..99cd07b 100755
 --- a/clever_analysis.py
@@ -1987,16 +2201,16 @@ index 6560135..99cd07b 100755
 +FUDGE <span class="o">=</span> 106
 +MORE_FUDGE <span class="o">=</span> 2.0
  
- <span class="c"># Load data from the brain</span>
+ <span class="c1"># Load data from the brain</span>
  <span class="nv">data</span> <span class="o">=</span> np.loadtxt<span class="o">(</span><span class="s1">&#39;expensive_data.csv&#39;</span>, <span class="nv">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="o">)</span>
 @@ -13,6 +14,8 @@ from_world, <span class="nv">from_brain</span> <span class="o">=</span> data.T
  
- <span class="c"># Process data</span>
+ <span class="c1"># Process data</span>
  <span class="nv">from_brain_processed</span> <span class="o">=</span> np.log<span class="o">(</span>from_brain<span class="o">)</span> * FUDGE * np.e ** np.pi
 +# Apply the new factor
 +from_brain_processed <span class="o">=</span> from_brain_processed / MORE_FUDGE
  
- <span class="c"># Make plot</span>
+ <span class="c1"># Make plot</span>
  plt.plot<span class="o">(</span>from_world, from_brain_processed, <span class="s1">&#39;r:&#39;</span><span class="o">)</span>
 </pre></div>
 </div>
@@ -2006,7 +2220,7 @@ have edited one line in this file, and added three more.</p>
 <p>Open your text editor and edit <code class="docutils literal"><span class="pre">clever_analysis.py</span></code>.  See if you can
 replicate my changes by editing the file, and checking with <code class="docutils literal"><span class="pre">git</span> <span class="pre">diff</span></code>.</p>
 <p>Now check the status of <code class="docutils literal"><span class="pre">clever_analysis.py</span></code> with:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git status
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git status
 On branch master
 Changes not staged <span class="k">for</span> commit:
   <span class="o">(</span>use <span class="s2">&quot;git add &lt;file&gt;...&quot;</span> to update what will be committed<span class="o">)</span>
@@ -2028,7 +2242,7 @@ the version of the file as of the last commit, and so that version is
 different from the version we have in the working tree.</p>
 <p>If we try to do a commit, git will tell us there is nothing to commit, because
 there is nothing new in the staging area:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git commit
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git commit
 On branch master
 Changes not staged <span class="k">for</span> commit:
 	modified:   clever_analysis.py
@@ -2037,11 +2251,11 @@ no changes added to commit
 </pre></div>
 </div>
 <p>To stage this version of <code class="docutils literal"><span class="pre">clever_analysis.py</span></code> we use <code class="docutils literal"><span class="pre">git</span> <span class="pre">add</span></code>:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git add clever_analysis.py
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git add clever_analysis.py
 </pre></div>
 </div>
 <p>Git status now shows these changes as &#8220;Changes to be committed&#8221;.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git status
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git status
 On branch master
 Changes to be committed:
   <span class="o">(</span>use <span class="s2">&quot;git reset HEAD &lt;file&gt;...&quot;</span> to unstage<span class="o">)</span>
@@ -2053,25 +2267,37 @@ Changes to be committed:
 script analyzes the data and writes the figure to the current directory.  If
 you have Python installed, with the <code class="docutils literal"><span class="pre">numpy</span></code> and <code class="docutils literal"><span class="pre">matplotlib</span></code> packages, you
 can run the analysis yourself with:</p>
-<div class="highlight-python"><div class="highlight"><pre>python clever_analysis.py
+<div class="highlight-python"><div class="highlight"><pre><span></span>python clever_analysis.py
 </pre></div>
 </div>
 <p>If not, you can download a <a class="reference download internal" href="_downloads/fancy_figure.png"><code class="xref download docutils literal"><span class="pre">version</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">figure</span> <span class="pre">I</span> <span class="pre">generated</span>
 <span class="pre">earlier</span></code></a>.  After you have generated or
 downloaded the figure:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git add fancy_figure.png
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git add fancy_figure.png
 </pre></div>
 </div>
 <p>Do a final check with <code class="docutils literal"><span class="pre">git</span> <span class="pre">status</span></code>, then make the commit with:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git commit -m <span class="s2">&quot;Add another fudge factor&quot;</span>
-<span class="o">[</span>master 003c54a<span class="o">]</span> Add another fudge factor
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ git commit -m <span class="s2">&quot;Add another fudge factor&quot;</span>
+<span class="o">[</span>master 8fca247<span class="o">]</span> Add another fudge factor
+ Committer: Matthew &lt;mb312@shanghai.local&gt;
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name <span class="s2">&quot;Your Name&quot;</span>
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used <span class="k">for</span> this commit with:
+
+    git commit --amend --reset-author
+
  <span class="m">2</span> files changed, <span class="m">4</span> insertions<span class="o">(</span>+<span class="o">)</span>, <span class="m">1</span> deletion<span class="o">(</span>-<span class="o">)</span>
  rewrite fancy_figure.png <span class="o">(</span>96%<span class="o">)</span>
 </pre></div>
 </div>
 <p>The branch bookmark has moved again:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git branch -v
-* master 003c54a Add another fudge factor
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git branch -v
+* master 8fca247 Add another fudge factor
 </pre></div>
 </div>
 </div>
@@ -2092,7 +2318,7 @@ downloaded the figure:</p>
 figure, and add a new file, <code class="docutils literal"><span class="pre">references.bib</span></code>.</p>
 <p>To follow along, first download <a class="reference download internal" href="_downloads/references.bib"><code class="xref download docutils literal"><span class="pre">references.bib</span></code></a>.</p>
 <p>Next, edit <code class="docutils literal"><span class="pre">clever_analysis.py</span></code> again, to make these changes:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git diff
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git diff
 diff --git a/clever_analysis.py b/clever_analysis.py
 index 99cd07b..e5b2efa 100755
 --- a/clever_analysis.py
@@ -2103,25 +2329,25 @@ index 99cd07b..e5b2efa 100755
  <span class="nv">MORE_FUDGE</span> <span class="o">=</span> 2.0
 +NUDGE_FUDGE <span class="o">=</span> 1.25
  
- <span class="c"># Load data from the brain</span>
+ <span class="c1"># Load data from the brain</span>
  <span class="nv">data</span> <span class="o">=</span> np.loadtxt<span class="o">(</span><span class="s1">&#39;expensive_data.csv&#39;</span>, <span class="nv">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="o">)</span>
 @@ -14,8 +15,8 @@ from_world, <span class="nv">from_brain</span> <span class="o">=</span> data.T
  
- <span class="c"># Process data</span>
+ <span class="c1"># Process data</span>
  <span class="nv">from_brain_processed</span> <span class="o">=</span> np.log<span class="o">(</span>from_brain<span class="o">)</span> * FUDGE * np.e ** np.pi
 -# Apply the new factor
 -from_brain_processed <span class="o">=</span> from_brain_processed / MORE_FUDGE
 +# Apply the new factor<span class="o">(</span>s<span class="o">)</span>
 +from_brain_processed <span class="o">=</span> from_brain_processed / MORE_FUDGE / NUDGE_FUDGE
  
- <span class="c"># Make plot</span>
+ <span class="c1"># Make plot</span>
  plt.plot<span class="o">(</span>from_world, from_brain_processed, <span class="s1">&#39;r:&#39;</span><span class="o">)</span>
 </pre></div>
 </div>
 <p>Finally regenerate <code class="docutils literal"><span class="pre">fancy_figure.png</span></code>, or download the updated copy
 <a class="reference download internal" href="_downloads/fancy_figure1.png"><code class="xref download docutils literal"><span class="pre">from</span> <span class="pre">here</span></code></a>.</p>
 <p>What will git status show now?</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git status
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git status
 On branch master
 Changes not staged <span class="k">for</span> commit:
   <span class="o">(</span>use <span class="s2">&quot;git add &lt;file&gt;...&quot;</span> to update what will be committed<span class="o">)</span>
@@ -2143,7 +2369,7 @@ no changes added to commit <span class="o">(</span>use <span class="s2">&quot;gi
 these files are tracked, and git sees that they are modified compared to the
 copy that the staging area knows about.</p>
 <p>Before we add our changes, we confirm that they are as we expect with:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git diff
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git diff
 diff --git a/clever_analysis.py b/clever_analysis.py
 index 99cd07b..e5b2efa 100755
 --- a/clever_analysis.py
@@ -2154,18 +2380,18 @@ index 99cd07b..e5b2efa 100755
  <span class="nv">MORE_FUDGE</span> <span class="o">=</span> 2.0
 +NUDGE_FUDGE <span class="o">=</span> 1.25
  
- <span class="c"># Load data from the brain</span>
+ <span class="c1"># Load data from the brain</span>
  <span class="nv">data</span> <span class="o">=</span> np.loadtxt<span class="o">(</span><span class="s1">&#39;expensive_data.csv&#39;</span>, <span class="nv">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="o">)</span>
 @@ -14,8 +15,8 @@ from_world, <span class="nv">from_brain</span> <span class="o">=</span> data.T
  
- <span class="c"># Process data</span>
+ <span class="c1"># Process data</span>
  <span class="nv">from_brain_processed</span> <span class="o">=</span> np.log<span class="o">(</span>from_brain<span class="o">)</span> * FUDGE * np.e ** np.pi
 -# Apply the new factor
 -from_brain_processed <span class="o">=</span> from_brain_processed / MORE_FUDGE
 +# Apply the new factor<span class="o">(</span>s<span class="o">)</span>
 +from_brain_processed <span class="o">=</span> from_brain_processed / MORE_FUDGE / NUDGE_FUDGE
  
- <span class="c"># Make plot</span>
+ <span class="c1"># Make plot</span>
  plt.plot<span class="o">(</span>from_world, from_brain_processed, <span class="s1">&#39;r:&#39;</span><span class="o">)</span>
 diff --git a/fancy_figure.png b/fancy_figure.png
 index 81fc437..d1f40df 100644
@@ -2176,21 +2402,33 @@ Binary files a/fancy_figure.png and b/fancy_figure.png differ
 old and new figures, guessing correctly that this is a binary and not a text
 file.</p>
 <p>Now we have reviewed the changes, we add them to the staging area and commit:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git add references.bib
-<span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git add clever_analysis.py
-<span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git add fancy_figure.png
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git add references.bib
+$ git add clever_analysis.py
+$ git add fancy_figure.png
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git commit -m <span class="s2">&quot;Change analysis and add references&quot;</span>
-<span class="o">[</span>master 2d9e1df<span class="o">]</span> Change analysis and add references
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ git commit -m <span class="s2">&quot;Change analysis and add references&quot;</span>
+<span class="o">[</span>master 6bf4912<span class="o">]</span> Change analysis and add references
+ Committer: Matthew &lt;mb312@shanghai.local&gt;
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name <span class="s2">&quot;Your Name&quot;</span>
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used <span class="k">for</span> this commit with:
+
+    git commit --amend --reset-author
+
  <span class="m">3</span> files changed, <span class="m">13</span> insertions<span class="o">(</span>+<span class="o">)</span>, <span class="m">2</span> deletions<span class="o">(</span>-<span class="o">)</span>
  rewrite fancy_figure.png <span class="o">(</span>89%<span class="o">)</span>
  create mode <span class="m">100644</span> references.bib
 </pre></div>
 </div>
 <p>The branch bookmark has moved to point to the new commit:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git branch -v
-* master 2d9e1df Change analysis and add references
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git branch -v
+* master 6bf4912 Change analysis and add references
 </pre></div>
 </div>
 </div>
@@ -2218,24 +2456,24 @@ area for us.  The command to move the branch bookmark is <code class="docutils l
 <h3>Pointing backwards in history<a class="headerlink" href="#pointing-backwards-in-history" title="Permalink to this headline">¶</a></h3>
 <p>The commit that we want the branch to point to is the previous commit in our
 commit history.  We can use <code class="docutils literal"><span class="pre">git</span> <span class="pre">log</span></code> to see that this commit has hash
-<code class="docutils literal"><span class="pre">003c54a</span></code>.  So, we could do our reset with <code class="docutils literal"><span class="pre">git</span> <span class="pre">reset</span></code>
-<code class="docutils literal"><span class="pre">003c54a</span></code>.  There is a simpler and more readable way to write this
+<code class="docutils literal"><span class="pre">8fca247</span></code>.  So, we could do our reset with <code class="docutils literal"><span class="pre">git</span> <span class="pre">reset</span></code>
+<code class="docutils literal"><span class="pre">8fca247</span></code>.  There is a simpler and more readable way to write this
 common idea, of one commit back in history, and that is to add <code class="docutils literal"><span class="pre">~1</span></code> to a
 reference.  For example, to refer to the commit that is one step back in the
 history from the commit pointed to by the <code class="docutils literal"><span class="pre">master</span></code> branch, you can write
-<code class="docutils literal"><span class="pre">master~1</span></code>.  Because <code class="docutils literal"><span class="pre">master</span></code> points to commit <code class="docutils literal"><span class="pre">2d9e1df</span></code>, you could
-also append the <code class="docutils literal"><span class="pre">~1</span></code> to <code class="docutils literal"><span class="pre">2d9e1df</span></code>.  You can imagine that <code class="docutils literal"><span class="pre">master~2</span></code>
+<code class="docutils literal"><span class="pre">master~1</span></code>.  Because <code class="docutils literal"><span class="pre">master</span></code> points to commit <code class="docutils literal"><span class="pre">6bf4912</span></code>, you could
+also append the <code class="docutils literal"><span class="pre">~1</span></code> to <code class="docutils literal"><span class="pre">6bf4912</span></code>.  You can imagine that <code class="docutils literal"><span class="pre">master~2</span></code>
 will point two steps back in the commit history, and so on.</p>
 <p>So, a readable reset command for our purpose is:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git reset master~1
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git reset master~1
 Unstaged changes after reset:
 M	clever_analysis.py
 M	fancy_figure.png
 </pre></div>
 </div>
 <p>Notice that the branch pointer now points to the previous commit:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git branch -v
-* master 003c54a Add another fudge factor
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git branch -v
+* master 8fca247 Add another fudge factor
 </pre></div>
 </div>
 <p>Remember in SAP that your procedure for breaking up the snapshot was to 1)
@@ -2247,7 +2485,7 @@ adding to the staging area, and doing the commits.</p>
 area to the state as of the older commit, but it has left the working tree
 alone.  That means that <code class="docutils literal"><span class="pre">git</span> <span class="pre">status</span></code> will show us the changes in the working
 tree compared to the commit we have just reset to:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git status
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git status
 On branch master
 Changes not staged <span class="k">for</span> commit:
   <span class="o">(</span>use <span class="s2">&quot;git add &lt;file&gt;...&quot;</span> to update what will be committed<span class="o">)</span>
@@ -2271,19 +2509,31 @@ we have not staged them.  We are ready to make our new separate commits.</p>
 <h3>A new fourth commit<a class="headerlink" href="#a-new-fourth-commit" title="Permalink to this headline">¶</a></h3>
 <p>As we planned, we make a commit by adding only the changes from the script and
 figure:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git add clever_analysis.py
-<span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git add fancy_figure.png
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git add clever_analysis.py
+$ git add fancy_figure.png
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git commit -m <span class="s2">&quot;Change parameters of analysis&quot;</span>
-<span class="o">[</span>master d0ef727<span class="o">]</span> Change parameters of analysis
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ git commit -m <span class="s2">&quot;Change parameters of analysis&quot;</span>
+<span class="o">[</span>master b373eb4<span class="o">]</span> Change parameters of analysis
+ Committer: Matthew &lt;mb312@shanghai.local&gt;
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name <span class="s2">&quot;Your Name&quot;</span>
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used <span class="k">for</span> this commit with:
+
+    git commit --amend --reset-author
+
  <span class="m">2</span> files changed, <span class="m">3</span> insertions<span class="o">(</span>+<span class="o">)</span>, <span class="m">2</span> deletions<span class="o">(</span>-<span class="o">)</span>
  rewrite fancy_figure.png <span class="o">(</span>89%<span class="o">)</span>
 </pre></div>
 </div>
 <p>Notice that git status now tells us that we still have untracked (and
 therefore not staged) changes in our working tree:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git status
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git status
 On branch master
 Untracked files:
   <span class="o">(</span>use <span class="s2">&quot;git add &lt;file&gt;...&quot;</span> to include in what will be committed<span class="o">)</span>
@@ -2298,11 +2548,23 @@ nothing added to commit but untracked files present <span class="o">(</span>use 
 <h3>The fifth commit<a class="headerlink" href="#the-fifth-commit" title="Permalink to this headline">¶</a></h3>
 <p>To finish our work splitting the fourth commit into two, we add and commit the
 <code class="docutils literal"><span class="pre">references.bib</span></code> file:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git add references.bib
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git add references.bib
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git commit -m <span class="s2">&quot;Add references&quot;</span>
-<span class="o">[</span>master c3f19b2<span class="o">]</span> Add references
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ git commit -m <span class="s2">&quot;Add references&quot;</span>
+<span class="o">[</span>master a9f35cf<span class="o">]</span> Add references
+ Committer: Matthew &lt;mb312@shanghai.local&gt;
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name <span class="s2">&quot;Your Name&quot;</span>
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used <span class="k">for</span> this commit with:
+
+    git commit --amend --reset-author
+
  <span class="m">1</span> file changed, <span class="m">10</span> insertions<span class="o">(</span>+<span class="o">)</span>
  create mode <span class="m">100644</span> references.bib
 </pre></div>
@@ -2323,25 +2585,25 @@ checkout in its second role, to restore files to the working tree.</p>
 want.  We want the version of <code class="docutils literal"><span class="pre">clever_analysis.py</span></code> as of the first commit.
 To find the first commit, we can use git log.  To make git log a bit less
 verbose, I&#8217;ve added the <code class="docutils literal"><span class="pre">--oneline</span></code> flag, to print out one line per commit:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git log --oneline
-c3f19b2 Add references
-d0ef727 Change parameters of analysis
-003c54a Add another fudge factor
-7919d37 Add first draft of paper
-75206bc First backup of my amazing idea
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git log --oneline
+a9f35cf Add references
+b373eb4 Change parameters of analysis
+8fca247 Add another fudge factor
+33f112b Add first draft of paper
+b00d812 First backup of my amazing idea
 </pre></div>
 </div>
 <p>Now we have the abbreviated commit hash for the first commit, we can checkout
 that version to the working tree:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git checkout 75206bc clever_analysis.py
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git checkout b00d812 clever_analysis.py
 </pre></div>
 </div>
 <p>We also want the previous version of the figure:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git checkout 75206bc fancy_figure.png
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git checkout b00d812 fancy_figure.png
 </pre></div>
 </div>
 <p>Notice that the checkout also added the files to the staging area:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git status
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git status
 On branch master
 Changes to be committed:
   <span class="o">(</span>use <span class="s2">&quot;git reset HEAD &lt;file&gt;...&quot;</span> to unstage<span class="o">)</span>
@@ -2351,8 +2613,20 @@ Changes to be committed:
 </pre></div>
 </div>
 <p>We are ready for our sixth commit:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git commit -m <span class="s2">&quot;Revert to original script &amp; figure&quot;</span>
-<span class="o">[</span>master 677c9a6<span class="o">]</span> Revert to original script <span class="p">&amp;</span> figure
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ git commit -m <span class="s2">&quot;Revert to original script &amp; figure&quot;</span>
+<span class="o">[</span>master 32038b1<span class="o">]</span> Revert to original script <span class="p">&amp;</span> figure
+ Committer: Matthew &lt;mb312@shanghai.local&gt;
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name <span class="s2">&quot;Your Name&quot;</span>
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used <span class="k">for</span> this commit with:
+
+    git commit --amend --reset-author
+
  <span class="m">2</span> files changed, <span class="m">1</span> insertion<span class="o">(</span>+<span class="o">)</span>, <span class="m">5</span> deletions<span class="o">(</span>-<span class="o">)</span>
  rewrite fancy_figure.png <span class="o">(</span>97%<span class="o">)</span>
 </pre></div>
@@ -2366,26 +2640,26 @@ conference.</p>
 working directory to the conference.</p>
 <p>We as Josephine don&#8217;t want to change the previous bookmark, which is
 <code class="docutils literal"><span class="pre">master</span></code>:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git branch -v
-* master 677c9a6 Revert to original script <span class="p">&amp;</span> figure
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git branch -v
+* master 32038b1 Revert to original script <span class="p">&amp;</span> figure
 </pre></div>
 </div>
 <p>We would like to use our own bookmark, so we can make changes without
 affecting anyone else.  To do this we use <code class="docutils literal"><span class="pre">git</span> <span class="pre">branch</span></code> with arguments:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git branch josephines-branch master
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git branch josephines-branch master
 </pre></div>
 </div>
 <p>The first argument is the name of the branch we want to create.  The second is
 the commit at which the branch should start.  Now we have a new branch, that
 currently points to the same commit as <code class="docutils literal"><span class="pre">master</span></code>:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git branch -v
-  josephines-branch 677c9a6 Revert to original script <span class="p">&amp;</span> figure
-* master            677c9a6 Revert to original script <span class="p">&amp;</span> figure
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git branch -v
+  josephines-branch 32038b1 Revert to original script <span class="p">&amp;</span> figure
+* master            32038b1 Revert to original script <span class="p">&amp;</span> figure
 </pre></div>
 </div>
 <p>The new branch is nothing but a text file pointing to the commit:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>cat .git/refs/heads/josephines-branch
-677c9a6ac3004e5d84d9739751a89867e09238f4
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cat .git/refs/heads/josephines-branch
+32038b105308dbd3b45b05b0b2c64e09a87861cf
 </pre></div>
 </div>
 <p>Now we have two branches, git needs to know which branch we are working on.
@@ -2393,7 +2667,7 @@ The asterisk next to <code class="docutils literal"><span class="pre">master</sp
 are working on <code class="docutils literal"><span class="pre">master</span></code> at the moment.  If we make another commit, it will
 update the <code class="docutils literal"><span class="pre">master</span></code> bookmark.</p>
 <p>Git stores the current branch in the file <code class="docutils literal"><span class="pre">.git/HEAD</span></code>:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>cat .git/HEAD
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cat .git/HEAD
 ref: refs/heads/master
 </pre></div>
 </div>
@@ -2419,18 +2693,18 @@ given commit.</li>
 are only going to see the first of these two effects, because <code class="docutils literal"><span class="pre">master</span></code> and
 <code class="docutils literal"><span class="pre">josephines-branch</span></code> point to the same commit, and so have the same file
 contents:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git checkout josephines-branch
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git checkout josephines-branch
 Switched to branch <span class="s1">&#39;josephines-branch&#39;</span>
 </pre></div>
 </div>
 <p>The asterisk has now moved to <code class="docutils literal"><span class="pre">josephines-branch</span></code>:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git branch -v
-* josephines-branch 677c9a6 Revert to original script <span class="p">&amp;</span> figure
-  master            677c9a6 Revert to original script <span class="p">&amp;</span> figure
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git branch -v
+* josephines-branch 32038b1 Revert to original script <span class="p">&amp;</span> figure
+  master            32038b1 Revert to original script <span class="p">&amp;</span> figure
 </pre></div>
 </div>
 <p>This is because the file <code class="docutils literal"><span class="pre">HEAD</span></code> now points to <code class="docutils literal"><span class="pre">josephines-branch</span></code>:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>cat .git/HEAD
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cat .git/HEAD
 ref: refs/heads/josephines-branch
 </pre></div>
 </div>
@@ -2440,7 +2714,7 @@ ref: refs/heads/josephines-branch
 <h3>Making commits on branches<a class="headerlink" href="#making-commits-on-branches" title="Permalink to this headline">¶</a></h3>
 <p>Josephine did some edits to the paper.  If you are typing along, make these
 changes to <code class="docutils literal"><span class="pre">nobel_prize.md</span></code>:</p>
-<div class="highlight-bash"><div class="highlight"><pre>[desktop]$ git diff
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git diff
 diff --git a/nobel_prize.md b/nobel_prize.md
 index 3ef5df2..19fd4c5 100644
 --- a/nobel_prize.md
@@ -2462,8 +2736,8 @@ index 3ef5df2..19fd4c5 100644
 </div>
 <p>As usual, we add the file to the staging area, and check the status of the
 working tree:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git add nobel_prize.md
-<span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git status
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git add nobel_prize.md
+$ git status
 On branch josephines-branch
 Changes to be committed:
   <span class="o">(</span>use <span class="s2">&quot;git reset HEAD &lt;file&gt;...&quot;</span> to unstage<span class="o">)</span>
@@ -2472,28 +2746,40 @@ Changes to be committed:
 </pre></div>
 </div>
 <p>Finally we make the commit:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git commit -m <span class="s2">&quot;Expand the introduction&quot;</span>
-<span class="o">[</span>josephines-branch 0a5a1b9<span class="o">]</span> Expand the introduction
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ git commit -m <span class="s2">&quot;Expand the introduction&quot;</span>
+<span class="o">[</span>josephines-branch aa9dd5c<span class="o">]</span> Expand the introduction
+ Committer: Matthew &lt;mb312@shanghai.local&gt;
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name <span class="s2">&quot;Your Name&quot;</span>
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used <span class="k">for</span> this commit with:
+
+    git commit --amend --reset-author
+
  <span class="m">1</span> file changed, <span class="m">6</span> insertions<span class="o">(</span>+<span class="o">)</span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal"><span class="pre">master</span></code> branch has not changed, but <code class="docutils literal"><span class="pre">josephines-branch</span></code> changed to
 point to the new commit:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git branch -v
-* josephines-branch 0a5a1b9 Expand the introduction
-  master            677c9a6 Revert to original script <span class="p">&amp;</span> figure
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git branch -v
+* josephines-branch aa9dd5c Expand the introduction
+  master            32038b1 Revert to original script <span class="p">&amp;</span> figure
 </pre></div>
 </div>
 <p>Now we go back to being ourselves, working in the lab.  We change back to the
 <code class="docutils literal"><span class="pre">master</span></code> branch:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git checkout master
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git checkout master
 Switched to branch <span class="s1">&#39;master&#39;</span>
 </pre></div>
 </div>
 <p>The asterisk now points at <code class="docutils literal"><span class="pre">master</span></code>:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git branch -v
-  josephines-branch 0a5a1b9 Expand the introduction
-* master            677c9a6 Revert to original script <span class="p">&amp;</span> figure
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git branch -v
+  josephines-branch aa9dd5c Expand the introduction
+* master            32038b1 Revert to original script <span class="p">&amp;</span> figure
 </pre></div>
 </div>
 <p>If you look at the contents of <code class="docutils literal"><span class="pre">nobel_prize.md</span></code> in the working directory,
@@ -2502,7 +2788,7 @@ This is because <code class="docutils literal"><span class="pre">git</span> <spa
 of the last commit on the <code class="docutils literal"><span class="pre">master</span></code> branch.</p>
 <p>Now we make our own changes to the script and figure. Here are the changes to
 the script:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git diff
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git diff
 diff --git a/clever_analysis.py b/clever_analysis.py
 index 6560135..cf163af 100755
 --- a/clever_analysis.py
@@ -2513,22 +2799,22 @@ index 6560135..cf163af 100755
  <span class="nv">FUDGE</span> <span class="o">=</span> 42
 +HOT_FUDGE <span class="o">=</span> 1.707
  
- <span class="c"># Load data from the brain</span>
+ <span class="c1"># Load data from the brain</span>
  <span class="nv">data</span> <span class="o">=</span> np.loadtxt<span class="o">(</span><span class="s1">&#39;expensive_data.csv&#39;</span>, <span class="nv">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="o">)</span>
 @@ -13,6 +14,7 @@ from_world, <span class="nv">from_brain</span> <span class="o">=</span> data.T
  
- <span class="c"># Process data</span>
+ <span class="c1"># Process data</span>
  <span class="nv">from_brain_processed</span> <span class="o">=</span> np.log<span class="o">(</span>from_brain<span class="o">)</span> * FUDGE * np.e ** np.pi
 +from_brain_processed <span class="o">=</span> from_brain_processed / HOT_FUDGE
  
- <span class="c"># Make plot</span>
+ <span class="c1"># Make plot</span>
  plt.plot<span class="o">(</span>from_world, from_brain_processed, <span class="s1">&#39;r:&#39;</span><span class="o">)</span>
 </pre></div>
 </div>
 <p>If you are typing along, then you will also want to regenerate the figure with
 <code class="docutils literal"><span class="pre">python</span> <span class="pre">clever_analysis.py</span></code> or <a class="reference download internal" href="_downloads/fancy_figure2.png"><code class="xref download docutils literal"><span class="pre">download</span> <span class="pre">the</span> <span class="pre">new</span> <span class="pre">version</span></code></a>.</p>
 <p>This gives:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git status
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git status
 On branch master
 Changes not staged <span class="k">for</span> commit:
   <span class="o">(</span>use <span class="s2">&quot;git add &lt;file&gt;...&quot;</span> to update what will be committed<span class="o">)</span>
@@ -2541,21 +2827,33 @@ no changes added to commit <span class="o">(</span>use <span class="s2">&quot;gi
 </pre></div>
 </div>
 <p>As usual, we add the files and do the commit:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git add clever_analysis.py
-<span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git add fancy_figure.png
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git add clever_analysis.py
+$ git add fancy_figure.png
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git commit -m <span class="s2">&quot;More fun with fudge&quot;</span>
-<span class="o">[</span>master 7598e4e<span class="o">]</span> More fun with fudge
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ git commit -m <span class="s2">&quot;More fun with fudge&quot;</span>
+<span class="o">[</span>master 33420bf<span class="o">]</span> More fun with fudge
+ Committer: Matthew &lt;mb312@shanghai.local&gt;
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name <span class="s2">&quot;Your Name&quot;</span>
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used <span class="k">for</span> this commit with:
+
+    git commit --amend --reset-author
+
  <span class="m">2</span> files changed, <span class="m">2</span> insertions<span class="o">(</span>+<span class="o">)</span>
  rewrite fancy_figure.png <span class="o">(</span>96%<span class="o">)</span>
 </pre></div>
 </div>
 <p>Because <code class="docutils literal"><span class="pre">HEAD</span></code> currently current points to <code class="docutils literal"><span class="pre">master</span></code>, git updated the
 <code class="docutils literal"><span class="pre">master</span></code> branch with the new commit:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git branch -v
-  josephines-branch 0a5a1b9 Expand the introduction
-* master            7598e4e More fun with fudge
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git branch -v
+  josephines-branch aa9dd5c Expand the introduction
+* master            33420bf More fun with fudge
 </pre></div>
 </div>
 </div>
@@ -2563,7 +2861,7 @@ no changes added to commit <span class="o">(</span>use <span class="s2">&quot;gi
 <h3>Merging lines of development with <code class="docutils literal"><span class="pre">git</span> <span class="pre">merge</span></code><a class="headerlink" href="#merging-lines-of-development-with-git-merge" title="Permalink to this headline">¶</a></h3>
 <p>We next want to get Josephine&#8217;s changes into the <code class="docutils literal"><span class="pre">master</span></code> branch.</p>
 <p>We do this with <code class="docutils literal"><span class="pre">git</span> <span class="pre">merge</span></code>:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git merge josephines-branch
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git merge josephines-branch
 Merge made by the <span class="s1">&#39;recursive&#39;</span> strategy.
  nobel_prize.md <span class="p">|</span> <span class="m">6</span> ++++++
  <span class="m">1</span> file changed, <span class="m">6</span> insertions<span class="o">(</span>+<span class="o">)</span>
@@ -2572,16 +2870,16 @@ Merge made by the <span class="s1">&#39;recursive&#39;</span> strategy.
 <p>This commit has the changes we just made to the script and figure, and the
 changes the Josephine made to the paper.</p>
 <p>The commit has two parents, which are the two commits from which we merged:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git log --oneline --parents
-e6d39a2 7598e4e 0a5a1b9 Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
-0a5a1b9 677c9a6 Expand the introduction
-7598e4e 677c9a6 More fun with fudge
-677c9a6 c3f19b2 Revert to original script <span class="p">&amp;</span> figure
-c3f19b2 d0ef727 Add references
-d0ef727 003c54a Change parameters of analysis
-003c54a 7919d37 Add another fudge factor
-7919d37 75206bc Add first draft of paper
-75206bc First backup of my amazing idea
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git log --oneline --parents
+a9850f8 33420bf aa9dd5c Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
+aa9dd5c 32038b1 Expand the introduction
+33420bf 32038b1 More fun with fudge
+32038b1 a9f35cf Revert to original script <span class="p">&amp;</span> figure
+a9f35cf b373eb4 Add references
+b373eb4 8fca247 Change parameters of analysis
+8fca247 33f112b Add another fudge factor
+33f112b b00d812 Add first draft of paper
+b00d812 First backup of my amazing idea
 </pre></div>
 </div>
 </div>
@@ -2595,43 +2893,43 @@ think of this graph when we are working with a git repository.</p>
 <p>There are a lot of graphical tools to show the git history as a graph, but
 <code class="docutils literal"><span class="pre">git</span> <span class="pre">log</span></code> has a useful flag called <code class="docutils literal"><span class="pre">--graph</span></code> which shows the commits as a
 graph using text characters:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git log --oneline --graph
-*   e6d39a2 Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git log --oneline --graph
+*   a9850f8 Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
 <span class="p">|</span><span class="se">\ </span> 
-<span class="p">|</span> * 0a5a1b9 Expand the introduction
-* <span class="p">|</span> 7598e4e More fun with fudge
+<span class="p">|</span> * aa9dd5c Expand the introduction
+* <span class="p">|</span> 33420bf More fun with fudge
 <span class="p">|</span>/  
-* 677c9a6 Revert to original script <span class="p">&amp;</span> figure
-* c3f19b2 Add references
-* d0ef727 Change parameters of analysis
-* 003c54a Add another fudge factor
-* 7919d37 Add first draft of paper
-* 75206bc First backup of my amazing idea
+* 32038b1 Revert to original script <span class="p">&amp;</span> figure
+* a9f35cf Add references
+* b373eb4 Change parameters of analysis
+* 8fca247 Add another fudge factor
+* 33f112b Add first draft of paper
+* b00d812 First backup of my amazing idea
 </pre></div>
 </div>
 <p>This kind of display is so useful that many of us have a shortcut to this
 command, that we use instead of the standard git log.  You can make customized
 shortcuts to git commands by setting <code class="docutils literal"><span class="pre">alias</span></code> entries using <code class="docutils literal"><span class="pre">git</span> <span class="pre">config</span></code>.
 For example, you may want to set up an alias like this:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git config --global alias.slog <span class="s2">&quot;log --oneline --graph&quot;</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git config --global alias.slog <span class="s2">&quot;log --oneline --graph&quot;</span>
 </pre></div>
 </div>
 <p>Now you can use the command <code class="docutils literal"><span class="pre">git</span> <span class="pre">slog</span></code> to mean <code class="docutils literal"><span class="pre">git</span> <span class="pre">log</span> <span class="pre">--oneline</span>
 <span class="pre">--graph</span></code>.  Because of the <code class="docutils literal"><span class="pre">--global</span></code> flag, this command sets up the
 <code class="docutils literal"><span class="pre">slog</span></code> alias as the default for your user account, so you can use <code class="docutils literal"><span class="pre">git</span>
 <span class="pre">slog</span></code> whenever you are using git as this user on this computer.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>desktop<span class="o">]</span><span class="nv">$ </span>git slog
-*   e6d39a2 Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git slog
+*   a9850f8 Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
 <span class="p">|</span><span class="se">\ </span> 
-<span class="p">|</span> * 0a5a1b9 Expand the introduction
-* <span class="p">|</span> 7598e4e More fun with fudge
+<span class="p">|</span> * aa9dd5c Expand the introduction
+* <span class="p">|</span> 33420bf More fun with fudge
 <span class="p">|</span>/  
-* 677c9a6 Revert to original script <span class="p">&amp;</span> figure
-* c3f19b2 Add references
-* d0ef727 Change parameters of analysis
-* 003c54a Add another fudge factor
-* 7919d37 Add first draft of paper
-* 75206bc First backup of my amazing idea
+* 32038b1 Revert to original script <span class="p">&amp;</span> figure
+* a9f35cf Add references
+* b373eb4 Change parameters of analysis
+* 8fca247 Add another fudge factor
+* 33f112b Add first draft of paper
+* b00d812 First backup of my amazing idea
 </pre></div>
 </div>
 </div>
@@ -2752,134 +3050,25 @@ one flat directory, the directory would soon have a very large number of
 files.</td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="tag-other-objects" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label">[5]</td><td>You might have guessed by now that a tag can refer to
-any git object, not just a commit.  For example a tag can refer to a tree
-(directory listing) or blob (file) object, although in practice tags almost
-always refer to commits.</td></tr>
-</tbody>
-</table>
 </div>
 </div>
 
 
-          </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">The curious coder&#8217;s guide to git</a><ul>
-<li><a class="reference internal" href="#git-love-hate">git - love - hate</a><ul>
-<li><a class="reference internal" href="#the-one-thing-about-git-you-really-need-to-understand">The one thing about git you really need to understand</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#a-familiar-story">A familiar story</a><ul>
-<li><a class="reference internal" href="#the-story-so-far">The story so far...</a></li>
-<li><a class="reference internal" href="#the-dog-ate-my-results">The dog ate my results</a></li>
-<li><a class="reference internal" href="#deja-vu-all-over-again">Deja vu all over again</a></li>
-<li><a class="reference internal" href="#gitwards-1-make-regular-snapshots">Gitwards 1: make regular snapshots</a></li>
-<li><a class="reference internal" href="#gitwards-2-reminding-yourself-of-what-you-did">Gitwards 2: reminding yourself of what you did</a></li>
-<li><a class="reference internal" href="#gitwards-3-breaking-up-work-into-chunks">Gitwards 3: breaking up work into chunks</a></li>
-<li><a class="reference internal" href="#gitwards-4-getting-files-from-previous-commits">Gitwards 4: getting files from previous commits</a></li>
-<li><a class="reference internal" href="#gitwards-5-two-people-working-at-the-same-time">Gitwards 5: two people working at the same time</a></li>
-<li><a class="reference internal" href="#gitwards-6-how-should-you-name-your-commit-directories">Gitwards 6: how should you name your commit directories?</a></li>
-<li><a class="reference internal" href="#a-diversion-on-cryptographic-hashes">A diversion on cryptographic hashes</a></li>
-<li><a class="reference internal" href="#gitwards-7-naming-commits-from-hashes">Gitwards 7: naming commits from hashes</a></li>
-<li><a class="reference internal" href="#gitwards-8-the-development-history-is-a-graph">Gitwards 8: the development history is a graph</a></li>
-<li><a class="reference internal" href="#gitwards-9-saving-space-with-file-hashes">Gitwards 9: saving space with file hashes</a></li>
-<li><a class="reference internal" href="#gitwards-10-making-the-commits-unique">Gitwards 10: making the commits unique</a></li>
-<li><a class="reference internal" href="#gitwards-11-away-with-the-snapshot-directories">Gitwards 11: away with the snapshot directories</a></li>
-<li><a class="reference internal" href="#gitwards-12-where-am-i">Gitwards 12: where am I?</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#from-gitwards-to-gitworld">From gitwards to gitworld</a><ul>
-<li><a class="reference internal" href="#basic-configuration">Basic configuration</a></li>
-<li><a class="reference internal" href="#getting-help">Getting help</a></li>
-<li><a class="reference internal" href="#initializing-the-repository-directory">Initializing the repository directory</a></li>
-<li><a class="reference internal" href="#updating-terms-for-git">Updating terms for git</a></li>
-<li><a class="reference internal" href="#git-add-put-stuff-into-the-staging-area">git add – put stuff into the staging area</a></li>
-<li><a class="reference internal" href="#the-git-staging-area">The git staging area</a></li>
-<li><a class="reference internal" href="#git-objects">Git objects</a></li>
-<li><a class="reference internal" href="#hash-values-can-usually-be-abbreviated-to-seven-characters">Hash values can usually be abbreviated to seven characters</a></li>
-<li><a class="reference internal" href="#git-status-showing-the-status-of-files-in-the-working-tree">git status – showing the status of files in the working tree</a></li>
-<li><a class="reference internal" href="#staging-the-other-files-with-git-add">Staging the other files with git add</a></li>
-<li><a class="reference internal" href="#git-commit-making-the-snapshot">git commit – making the snapshot</a></li>
-<li><a class="reference internal" href="#git-log-what-are-the-commits-so-far">git log – what are the commits so far?</a></li>
-<li><a class="reference internal" href="#git-branch-which-branch-are-we-on">git branch - which branch are we on?</a></li>
-<li><a class="reference internal" href="#a-second-commit">A second commit</a></li>
-<li><a class="reference internal" href="#git-diff-what-has-changed">git diff – what has changed?</a></li>
-<li><a class="reference internal" href="#you-need-to-git-add-a-file-to-put-it-into-the-staging-area">You need to <code class="docutils literal"><span class="pre">git</span> <span class="pre">add</span></code> a file to put it into the staging area</a></li>
-<li><a class="reference internal" href="#an-ordinary-day-in-gitworld">An ordinary day in gitworld</a></li>
-<li><a class="reference internal" href="#commit-four">Commit four</a></li>
-<li><a class="reference internal" href="#undoing-a-commit-with-git-reset">Undoing a commit with <code class="docutils literal"><span class="pre">git</span> <span class="pre">reset</span></code></a></li>
-<li><a class="reference internal" href="#pointing-backwards-in-history">Pointing backwards in history</a></li>
-<li><a class="reference internal" href="#a-new-fourth-commit">A new fourth commit</a></li>
-<li><a class="reference internal" href="#the-fifth-commit">The fifth commit</a></li>
-<li><a class="reference internal" href="#getting-a-file-from-a-previous-commit-git-checkout">Getting a file from a previous commit – <code class="docutils literal"><span class="pre">git</span> <span class="pre">checkout</span></code></a></li>
-<li><a class="reference internal" href="#using-bookmarks-git-branch">Using bookmarks – <code class="docutils literal"><span class="pre">git</span> <span class="pre">branch</span></code></a></li>
-<li><a class="reference internal" href="#changing-the-current-branch-with-git-checkout">Changing the current branch with <code class="docutils literal"><span class="pre">git</span> <span class="pre">checkout</span></code></a></li>
-<li><a class="reference internal" href="#making-commits-on-branches">Making commits on branches</a></li>
-<li><a class="reference internal" href="#merging-lines-of-development-with-git-merge">Merging lines of development with <code class="docutils literal"><span class="pre">git</span> <span class="pre">merge</span></code></a></li>
-<li><a class="reference internal" href="#the-commit-parents-make-the-development-history-into-a-graph">The commit parents make the development history into a graph</a></li>
-<li><a class="reference internal" href="#other-commands-you-need-to-know">Other commands you need to know</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#git-are-you-ready">Git: are you ready?</a></li>
-<li><a class="reference internal" href="#git-resources">Git resources</a></li>
-</ul>
-</li>
-</ul>
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="reading_git_objects.html" title="previous chapter">Reading git objects</a></li>
-      <li>Next: <a href="README.html" title="next chapter">Curious git</a></li>
-  </ul></li>
-</ul>
+    </div>
+      
+  </div>
 </div>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/curious_git.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
     </p>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &copy;2009-2016 - Matthew Brett.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>
-      
-      |
-      <a href="_sources/curious_git.txt"
-          rel="nofollow">Page source</a>
-    </div>
-
-    
-
-    
+    <p>
+        &copy; Copyright 2012-2016 - Matthew Brett.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.<br/>
+    </p>
+  </div>
+</footer>
   </body>
 </html>

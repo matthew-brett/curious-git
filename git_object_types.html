@@ -1,5 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -8,8 +7,11 @@
     
     <title>Types of git objects &mdash; Curious git</title>
     
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -24,21 +26,125 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="Curious git" href="index.html" />
     <link rel="next" title="How do git submodules work?" href="git_submodules.html" />
     <link rel="prev" title="git remotes - working with other people, making backups" href="curious_remotes.html" />
-   
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
 
   </head>
-  <body role="document">  
+  <body role="document">
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          Curious git</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.2</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
             
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="curious_remotes.html">git remotes - working with other people, making backups</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Types of git objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="git_submodules.html">How do git submodules work?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="git_push_algorithm.html">An algorithm for git push</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reading_git_objects.html">Reading git objects</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="curious_git.html">The curious coder&#8217;s guide to git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html">Curious git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="np-versions/README.html">np-versions</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Types of git objects</a><ul>
+<li><a class="reference internal" href="#commit-object-type">Commit object type</a></li>
+<li><a class="reference internal" href="#tree-object-type">Tree object type</a></li>
+<li><a class="reference internal" href="#blob-object-type">Blob object type</a></li>
+<li><a class="reference internal" href="#tag-object-type">Tag object type</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="curious_remotes.html" title="Previous Chapter: git remotes - working with other people, making backups"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; git remotes -...</span>
+    </a>
+  </li>
+  <li>
+    <a href="git_submodules.html" title="Next Chapter: How do git submodules work?"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">How do git su... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/git_object_types.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
   <div class="section" id="types-of-git-objects">
 <span id="git-object-types"></span><h1>Types of git objects<a class="headerlink" href="#types-of-git-objects" title="Permalink to this headline">¶</a></h1>
 <p>If you have read <a class="reference internal" href="curious_git.html"><em>The curious coder&#8217;s guide to git</em></a>, you know that git stores different types
@@ -51,17 +157,17 @@ of objects in <code class="docutils literal"><span class="pre">.git/objects</spa
 </ul>
 <p>Here we make examples of each of these object types in a new repository.</p>
 <p>First we make the working tree and initialize the repository:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>mkdir example_repo
-<span class="nv">$ </span><span class="nb">cd </span>example_repo
-<span class="nv">$ </span>git init
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ mkdir example_repo
+$ <span class="nb">cd</span> example_repo
+$ git init
 Initialized empty Git repository in /Users/mb312/dev_trees/curious-git/working/example_repo/.git/
 </pre></div>
 </div>
 <p>Next we make an example commit:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">echo</span> <span class="s2">&quot;An example file&quot;</span> &gt; example_file.txt
-<span class="nv">$ </span>git add example_file.txt
-<span class="nv">$ </span>git commit -m <span class="s2">&quot;An example commit&quot;</span>
-<span class="o">[</span>master <span class="o">(</span>root-commit<span class="o">)</span> 869405d<span class="o">]</span> An example commit
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">echo</span> <span class="s2">&quot;An example file&quot;</span> &gt; example_file.txt
+$ git add example_file.txt
+$ git commit -m <span class="s2">&quot;An example commit&quot;</span>
+<span class="o">[</span>master <span class="o">(</span>root-commit<span class="o">)</span> 5f69a1c<span class="o">]</span> An example commit
  <span class="m">1</span> file changed, <span class="m">1</span> insertion<span class="o">(</span>+<span class="o">)</span>
  create mode <span class="m">100644</span> example_file.txt
 </pre></div>
@@ -70,13 +176,13 @@ Initialized empty Git repository in /Users/mb312/dev_trees/curious-git/working/e
 directory <code class="docutils literal"><span class="pre">.git/objects</span></code>, one storing the backup of <code class="docutils literal"><span class="pre">example_file.txt</span></code>,
 one storing the directory listing for the commit, and one storing the commit
 message:</p>
-<div class="highlight-none"><div class="highlight"><pre>objects
+<div class="highlight-none"><div class="highlight"><pre><span></span>objects
 ├── 2f
 │   └── 781156939ad540b2434d012446154321e41e03 [32B]
+├── 5f
+│   └── 69a1c681fcb173d6991f86fc4b0fe6ad8a1ecb [135B]
 ├── 83
 │   └── 207f0274383b4a79ff6d6c297e95204ba961bc [60B]
-├── 86
-│   └── 9405da8688ce5eadfd2839ac4825f0a4f53221 [136B]
 ├── info
 └── pack
 </pre></div>
@@ -86,10 +192,10 @@ message:</p>
 <p>The commit object contains the directory tree object hash, parent commit hash,
 author, committer, date and message.</p>
 <p>Git log will show us the hash for the commit message:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git log
-commit 869405da8688ce5eadfd2839ac4825f0a4f53221
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git log
+commit 5f69a1c681fcb173d6991f86fc4b0fe6ad8a1ecb
 Author: Matthew Brett &lt;matthew.brett@gmail.com&gt;
-Date:   Fri Jul <span class="m">8</span> 19:36:13 <span class="m">2016</span> +0100
+Date:   Sat Jul <span class="m">9</span> 11:56:25 <span class="m">2016</span> +0100
 
     An example commit
 </pre></div>
@@ -102,15 +208,15 @@ that you will probably not need in your daily git work.</p>
 </div>
 <p><code class="docutils literal"><span class="pre">git</span> <span class="pre">cat-file</span> <span class="pre">-t</span></code> shows us the type of the object represented by a
 particular hash:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git cat-file -t 869405da8688ce5eadfd2839ac4825f0a4f53221
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git cat-file -t 5f69a1c681fcb173d6991f86fc4b0fe6ad8a1ecb
 commit
 </pre></div>
 </div>
 <p><code class="docutils literal"><span class="pre">git</span> <span class="pre">cat-file</span> <span class="pre">-p</span></code> shows the contents of the file associated with this hash:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git cat-file -p 869405da8688ce5eadfd2839ac4825f0a4f53221
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git cat-file -p 5f69a1c681fcb173d6991f86fc4b0fe6ad8a1ecb
 tree 83207f0274383b4a79ff6d6c297e95204ba961bc
-author Matthew Brett &lt;matthew.brett@gmail.com&gt; <span class="m">1468002973</span> +0100
-committer Matthew Brett &lt;matthew.brett@gmail.com&gt; <span class="m">1468002973</span> +0100
+author Matthew Brett &lt;matthew.brett@gmail.com&gt; <span class="m">1468061785</span> +0100
+committer Matthew Brett &lt;matthew.brett@gmail.com&gt; <span class="m">1468061785</span> +0100
 
 An example commit
 </pre></div>
@@ -121,11 +227,11 @@ An example commit
 <p>The commit contents gave us the hash of the directory listing for the
 commit.  If we inspect this object, we find it is of type &#8220;tree&#8221; and contains
 the directory listing for the commit:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git cat-file -t 83207f0274383b4a79ff6d6c297e95204ba961bc
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git cat-file -t 83207f0274383b4a79ff6d6c297e95204ba961bc
 tree
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git cat-file -p 83207f0274383b4a79ff6d6c297e95204ba961bc
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git cat-file -p 83207f0274383b4a79ff6d6c297e95204ba961bc
 <span class="m">100644</span> blob 2f781156939ad540b2434d012446154321e41e03	example_file.txt
 </pre></div>
 </div>
@@ -138,11 +244,11 @@ type</em> is usually one of &#8220;blob&#8221; for a file or &#8220;tree&#8221; 
 <h2>Blob object type<a class="headerlink" href="#blob-object-type" title="Permalink to this headline">¶</a></h2>
 <p>The directory listing gave us the hash of the stored of <code class="docutils literal"><span class="pre">example_file.txt</span></code>.
 This object is of type &#8220;blob&#8221; and contains the file snapshot:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git cat-file -t 2f781156939ad540b2434d012446154321e41e03
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git cat-file -t 2f781156939ad540b2434d012446154321e41e03
 blob
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git cat-file -p 2f781156939ad540b2434d012446154321e41e03
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git cat-file -p 2f781156939ad540b2434d012446154321e41e03
 An example file
 </pre></div>
 </div>
@@ -155,35 +261,35 @@ files.</p>
 <h2>Tag object type<a class="headerlink" href="#tag-object-type" title="Permalink to this headline">¶</a></h2>
 <p>There is also a git type for annotated tags.  We don&#8217;t have one of those yet,
 so let&#8217;s make one:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git tag -a first-commit -m <span class="s2">&quot;Tag pointing to first commit&quot;</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git tag -a first-commit -m <span class="s2">&quot;Tag pointing to first commit&quot;</span>
 </pre></div>
 </div>
 <p>This gives us a new object in <code class="docutils literal"><span class="pre">.git/objects</span></code>:</p>
-<div class="highlight-none"><div class="highlight"><pre>objects
+<div class="highlight-none"><div class="highlight"><pre><span></span>objects
+├── 26
+│   └── f01ced4835adb74d1dca3166f89c92e1d5e619 [145B]
 ├── 2f
 │   └── 781156939ad540b2434d012446154321e41e03 [32B]
+├── 5f
+│   └── 69a1c681fcb173d6991f86fc4b0fe6ad8a1ecb [135B]
 ├── 83
 │   └── 207f0274383b4a79ff6d6c297e95204ba961bc [60B]
-├── 86
-│   └── 9405da8688ce5eadfd2839ac4825f0a4f53221 [136B]
-├── a5
-│   └── 03ba8cd833634880ff5c3ecdd383b555b06e8c [147B]
 ├── info
 └── pack
 </pre></div>
 </div>
 <p>The object is of type &#8220;tag&#8221;:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git cat-file -t a503ba8cd833634880ff5c3ecdd383b555b06e8c
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git cat-file -t 26f01ced4835adb74d1dca3166f89c92e1d5e619
 tag
 </pre></div>
 </div>
 <p>The tag object type contains the hash of the tagged object, the type of tagged
 object (usually a commit), the tag name, author, date and message:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git cat-file -p a503ba8cd833634880ff5c3ecdd383b555b06e8c
-object 869405da8688ce5eadfd2839ac4825f0a4f53221
-<span class="nb">type </span>commit
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git cat-file -p 26f01ced4835adb74d1dca3166f89c92e1d5e619
+object 5f69a1c681fcb173d6991f86fc4b0fe6ad8a1ecb
+<span class="nb">type</span> commit
 tag first-commit
-tagger Matthew Brett &lt;matthew.brett@gmail.com&gt; <span class="m">1468002973</span> +0100
+tagger Matthew Brett &lt;matthew.brett@gmail.com&gt; <span class="m">1468061785</span> +0100
 
 Tag pointing to first commit
 </pre></div>
@@ -203,68 +309,21 @@ the commit of a git submodule - see <a class="reference internal" href="git_subm
 </div>
 
 
-          </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Types of git objects</a><ul>
-<li><a class="reference internal" href="#commit-object-type">Commit object type</a></li>
-<li><a class="reference internal" href="#tree-object-type">Tree object type</a></li>
-<li><a class="reference internal" href="#blob-object-type">Blob object type</a></li>
-<li><a class="reference internal" href="#tag-object-type">Tag object type</a></li>
-</ul>
-</li>
-</ul>
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="curious_remotes.html" title="previous chapter">git remotes - working with other people, making backups</a></li>
-      <li>Next: <a href="git_submodules.html" title="next chapter">How do git submodules work?</a></li>
-  </ul></li>
-</ul>
+    </div>
+      
+  </div>
 </div>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/git_object_types.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
     </p>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &copy;2009-2016 - Matthew Brett.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>
-      
-      |
-      <a href="_sources/git_object_types.txt"
-          rel="nofollow">Page source</a>
-    </div>
-
-    
-
-    
+    <p>
+        &copy; Copyright 2012-2016 - Matthew Brett.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.<br/>
+    </p>
+  </div>
+</footer>
   </body>
 </html>
