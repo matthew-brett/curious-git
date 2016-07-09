@@ -10,6 +10,11 @@ from workrun import WorkVar, OBJECTS_INC
 from writefile import WriteFile
 
 
+class NPRun(RunBlock):
+    # Run something in nobel_prize directory, nothing fancy
+    default_cwd = '/working/nobel_prize'
+
+
 class FakeUsbRun(RunBlock):
     default_home = '/working'
     def process_out(self):
@@ -74,6 +79,7 @@ class PrizeLapCommit(RunCommit):
 
 
 def setup(app):
+    app.add_directive('nprun', NPRun)
     app.add_directive('desktoprun', DesktopRun)
     app.add_directive('desktopout', DesktopOut)
     app.add_directive('prizerun', PrizeRun)
