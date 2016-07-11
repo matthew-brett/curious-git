@@ -13,6 +13,7 @@ from writefile import WriteFile
 class NPRun(RunBlock):
     # Run something in nobel_prize directory, nothing fancy
     default_cwd = '/working/nobel_prize'
+    default_home = '/working'
 
 
 class FakeUsbRun(RunBlock):
