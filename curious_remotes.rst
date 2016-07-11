@@ -99,7 +99,7 @@ we ``git add``\ed, one for the directory listing, and one for the commit file:
     {{ np_tree }} .git/objects
 
 Make the empty backup repository
---------------------------------
+================================
 
 .. workvar:: usb_mountpoint
     :var_type: render
@@ -137,7 +137,7 @@ locally (as we have done above), and then "pushing" these changes to the
 backup repository [#bare-detail]_.
 
 Tell the current git repository about the backup repository
------------------------------------------------------------
+===========================================================
 
 Check we're in our local git repository:
 
@@ -168,7 +168,7 @@ file |--| ``.git/config``:
     cat .git/config
 
 git push |--| push all data for a local branch to the remote
-------------------------------------------------------------
+============================================================
 
 We now want to synchronize the data in our ``nobel_prize`` repository with the
 remote ``usb_backup``.  The command to do this is ``git push``.
@@ -188,7 +188,8 @@ Then we push:
 
 This command tells git to take all the information necessary to reconstruct
 the history of the ``master`` branch, and send it to the remote repository.
-Sure enough, we now have files in ``.git/objects`` of the backup repository:
+Sure enough, we now have the new files in ``.git/objects`` of the backup
+repository:
 
 .. prizeout::
 
@@ -653,7 +654,7 @@ We still need to do an explicit merge:
     git merge usb_backup/master
 
 Remotes in the interwebs
-------------------------
+========================
 
 So far we've only used remotes on the filesystem of the laptop and desktop.
 
