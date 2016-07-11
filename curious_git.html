@@ -25,7 +25,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
@@ -358,7 +358,7 @@ start again.</p>
 thing that could possibly work, so you call it the &#8220;Simple As Possible&#8221;
 system, or SAP for short.</p>
 <p>Every time you finish doing some work on your paper, you make a snapshot
-of the analysis directory.</p>
+of all the files for the paper.</p>
 <p>The snapshot is a copy of all the files in the working directory.</p>
 <p>First you make a directory called <code class="docutils literal"><span class="pre">working</span></code>, and move your files to that
 directory:</p>
@@ -507,10 +507,10 @@ apply to our system and that will later apply to git:</p>
 <h3>Gitwards 2: reminding yourself of what you did<a class="headerlink" href="#gitwards-2-reminding-yourself-of-what-you-did" title="Permalink to this headline">¶</a></h3>
 <p>Your experience tracking down the change in the figure makes you think that it
 would be good to save a message with each snapshot (commit) to record the
-commit date and something about what changes you made.  Next time you need
-to track down when and why something changed, you can look at the message to
-give yourself an idea of the changes in the commit.  That might save you
-time when you want to narrow down where to look for problems.</p>
+commit date and some text giving a summary of the changes you made.  Next time
+you need to track down when and why something changed, you can look at the
+message to give yourself an idea of the changes in the commit.  That might
+save you time when you want to narrow down where to look for problems.</p>
 <p>So, for each commit, you write write a file called <code class="docutils literal"><span class="pre">message.txt</span></code>. The
 message for the first commit looks like this:</p>
 <div class="admonition">
@@ -589,10 +589,10 @@ references;</li>
 </ul>
 <p>To do this kind of thing, you are going to use a new directory called
 <code class="docutils literal"><span class="pre">staging</span></code>.  The <code class="docutils literal"><span class="pre">staging</span></code> directory starts off with the files from the
-last commit.  When you want to add some changes to a commit, you copy the
-changes from the working tree to the <code class="docutils literal"><span class="pre">staging</span></code> directory.  You make the
-commit by copying the contents of <code class="docutils literal"><span class="pre">staging</span></code> to a new snapshot directory, and
-adding a commit message.</p>
+last commit.  When you want to add some changes that will go into your next
+commit, you copy the changes from the working tree to the <code class="docutils literal"><span class="pre">staging</span></code>
+directory.  You make the commit by copying the contents of <code class="docutils literal"><span class="pre">staging</span></code> to a
+new snapshot directory, and adding a commit message.</p>
 <p>To get started, you make the new <code class="docutils literal"><span class="pre">staging</span></code> directory by copying the contents
 of the last commit (except the commit message):</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
@@ -2778,7 +2778,7 @@ Merge made by the <span class="s1">&#39;recursive&#39;</span> strategy.
 changes the Josephine made to the paper.</p>
 <p>The commit has two parents, which are the two commits from which we merged:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git log --oneline --parents
-fe75762 7598e4e 0a5a1b9 Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
+a4c66b0 7598e4e 0a5a1b9 Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
 0a5a1b9 677c9a6 Expand the introduction
 7598e4e 677c9a6 More fun with fudge
 677c9a6 c3f19b2 Revert to original script <span class="p">&amp;</span> figure
@@ -2801,7 +2801,7 @@ think of this graph when we are working with a git repository.</p>
 <code class="docutils literal"><span class="pre">git</span> <span class="pre">log</span></code> has a useful flag called <code class="docutils literal"><span class="pre">--graph</span></code> which shows the commits as a
 graph using text characters:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git log --oneline --graph
-*   fe75762 Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
+*   a4c66b0 Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
 <span class="p">|</span><span class="se">\ </span> 
 <span class="p">|</span> * 0a5a1b9 Expand the introduction
 * <span class="p">|</span> 7598e4e More fun with fudge
@@ -2826,7 +2826,7 @@ For example, you may want to set up an alias like this:</p>
 <code class="docutils literal"><span class="pre">slog</span></code> alias as the default for your user account, so you can use <code class="docutils literal"><span class="pre">git</span>
 <span class="pre">slog</span></code> whenever you are using git as this user on this computer.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git slog
-*   fe75762 Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
+*   a4c66b0 Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
 <span class="p">|</span><span class="se">\ </span> 
 <span class="p">|</span> * 0a5a1b9 Expand the introduction
 * <span class="p">|</span> 7598e4e More fun with fudge

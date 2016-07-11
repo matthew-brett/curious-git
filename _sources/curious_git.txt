@@ -223,7 +223,7 @@ thing that could possibly work, so you call it the "Simple As Possible"
 system, or SAP for short.
 
 Every time you finish doing some work on your paper, you make a snapshot
-of the analysis directory.
+of all the files for the paper.
 
 The snapshot is a copy of all the files in the working directory.
 
@@ -343,10 +343,10 @@ Gitwards 2: reminding yourself of what you did
 
 Your experience tracking down the change in the figure makes you think that it
 would be good to save a message with each snapshot (commit) to record the
-commit date and something about what changes you made.  Next time you need
-to track down when and why something changed, you can look at the message to
-give yourself an idea of the changes in the commit.  That might save you
-time when you want to narrow down where to look for problems.
+commit date and some text giving a summary of the changes you made.  Next time
+you need to track down when and why something changed, you can look at the
+message to give yourself an idea of the changes in the commit.  That might
+save you time when you want to narrow down where to look for problems.
 
 So, for each commit, you write write a file called ``message.txt``. The
 message for the first commit looks like this:
@@ -434,10 +434,10 @@ You want to break these changes changes up into two seperate commits:
 
 To do this kind of thing, you are going to use a new directory called
 ``staging``.  The ``staging`` directory starts off with the files from the
-last commit.  When you want to add some changes to a commit, you copy the
-changes from the working tree to the ``staging`` directory.  You make the
-commit by copying the contents of ``staging`` to a new snapshot directory, and
-adding a commit message.
+last commit.  When you want to add some changes that will go into your next
+commit, you copy the changes from the working tree to the ``staging``
+directory.  You make the commit by copying the contents of ``staging`` to a
+new snapshot directory, and adding a commit message.
 
 To get started, you make the new ``staging`` directory by copying the contents
 of the last commit (except the commit message):
