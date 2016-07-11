@@ -229,7 +229,7 @@ To see both local and remote branches, use the ``-a`` flag:
 .. _git-push:
 
 git push |--| synchronizing repositories
-----------------------------------------
+========================================
 
 ``git push`` is an excellent way to do backups, because it only transfers the
 information that the remote repository does not have.
@@ -365,8 +365,8 @@ After the push, we do have the new objects in the remote repository:
 You might also be able to see how git would work out what to transfer.  See
 :doc:`git_push_algorithm` for how it could work in general, and for this case.
 
-git clone |--| make a fresh new copy of the repo
-------------------------------------------------
+git clone |--| make a fresh new copy of the repository
+======================================================
 
 Imagine we have so far been working on our trusty work desktop.
 
@@ -450,7 +450,7 @@ The local and remote are synchronized again:
     git branch -a -v
 
 git fetch |--| get all data from a remote
------------------------------------------
+=========================================
 
 ``git fetch`` fetches data from a remote repository into a local one.
 
@@ -524,7 +524,7 @@ lines of development with a merge commit:
     git log --oneline --graph
 
 git pull |--| git fetch followed by git merge
----------------------------------------------
+=============================================
 
 ``git pull`` is a shortcut for ``git fetch`` followed by ``git merge``.
 
@@ -549,7 +549,7 @@ confusing, even for experienced users.  If you do ``git fetch`` followed by
 and it is more obvious what to do.
 
 Linking local and remote branches
----------------------------------
+=================================
 
 It can get a bit boring typing all of::
 
@@ -604,8 +604,15 @@ Notice that git didn't need to ask where to "push" to.
 
 Git also knows what to do if we do ``git fetch`` from this branch.
 
-To show this in action, we go home to the laptop and fetch the desktop work
-from the USB drive.
+To show this in action, we'll go over to the laptop, make a new commit, and
+push it to the backup on the USB drive.  Then we'll try a ``git fetch`` from
+the desktop, to show that git knows that the fetch should be from the USB
+remote.
+
+Making a new commit to the USB remote
+-------------------------------------
+
+We go home to the laptop and fetch the desktop work from the USB drive.
 
 .. laptoprun::
 
@@ -631,15 +638,20 @@ We add these edits as a new commit:
     git add nobel_prize.md
     git commit -m "I think better at home"
 
-Then we push this commit back to the USB disk, setting the link between the
-laptop branch and the remote for good measure:
+Then we push this commit back to the USB disk:
 
 .. prizelaprun::
 
-    git push origin master --set-upstream
+    git push origin master
 
-Back to the work desktop to demonstrate "fetch" after we have done ``git
-push`` with ``--set-upstream`` above:
+A fetch from the desktop, fetches from the USB remote
+-----------------------------------------------------
+
+We now have a new commit on the USB remote.  We can use this new commit to
+show that our previous ``git push usb_backup master --set-upstream`` from the
+desktop has associated the ``master`` branch with the USB remote, by default.
+
+We are now back to the work desktop to demonstrate "fetch":
 
 .. prizerun::
 
