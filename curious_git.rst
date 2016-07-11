@@ -1510,9 +1510,9 @@ The git staging area
 It is time to think about what the staging area is, in git.  In your SAP
 system, the staging area was a directory.  You also started off by using
 directories to store commits (snapshots).  Later you found you could do
-without the commit directories, because you could store the directory
-structure in ``directory_listing.txt`` text files, and then copy these into
-your ``repo/objects`` directory.
+without the commit directories, because you could store the files in
+``repo/objects`` and the directory structure in ``directory_listing.txt`` text
+files.
 
 In git, the staging area is a single file called ``.git/index``.  This file
 contains a directory listing that is the equivalent of the ``staging``
@@ -1565,7 +1565,7 @@ The hash is not the hash of the raw file, but the raw file prepended with a
 short housekeeping string.  See :doc:`reading_git_objects` for details.
 
 We can see the contents of objects with the command ``git cat-file -p``.  For
-example, here is the contents of the backup we just made of
+example, here are the contents of the backup we just made of
 ``clever_analysis.py``:
 
 .. nprun::
@@ -1629,9 +1629,9 @@ Sure enough, the output tells us that ``new file: clever_analysis.py`` is in
 the ``changes to be committed``.  It also tells us that the other two files in
 the working directory are ``untracked``.
 
-An untracked file is a file with a filename that has never been added to the
-repository with ``git add``.  Until you run ``git add`` on an untracked file,
-git will ignore these files and assume you don't want to keep track of them.
+An untracked file is a file with a filename that is not listed the staging
+area directory listing. Until you run ``git add`` on an untracked file, git
+will ignore these files and assume you don't want to keep track of them.
 
 Staging the other files with git add
 ====================================
@@ -1778,8 +1778,8 @@ As before, you can download this from
 :download:`nobel_prize.md </np-versions/work2/nobel_prize.md>`.  If you are
 typing along, download ``nobel_prize.md`` to the ``nobel_prize`` directory.
 
-This git repository has not seen the filename ``nobel_prize.md`` before, so
-``git status`` identifies this file as **untracked**:
+The staging area does not have an entry for ``nobel_prize.md``, so ``git
+status`` identifies this file as **untracked**:
 
 .. nprun::
     :hide:
@@ -1989,10 +1989,12 @@ What will git status show now?
 
     git status
 
-Git has not previously seen a file called ``references.bib`` so this file is
-"untracked".  Git has seen ``clever_analysis.py`` and ``fancy_figure.png``, so
-these files are tracked, and git sees that they are modified compared to the
-copy that the staging area knows about.
+The staging area does not list a file called ``references.bib`` so this file
+is "untracked".  The staging area does contain an entry for
+``clever_analysis.py`` and ``fancy_figure.png``, so these files are tracked.
+Git has checked the hashes for these files, and they are different from the
+hashes in the staging area, so git knows these files have changed, compared
+the versions listed in the staging area.
 
 Before we add our changes, we confirm that they are as we expect with:
 
