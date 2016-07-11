@@ -200,8 +200,8 @@ She was excited too. You get ready to publish in Science.
 
 You've done a few changes to the script and figure since then.  Today you
 finished cleaning up for the Science paper, and reran the analysis, and it
-doesn't quite the same. You go to see Josephine. She says "It used to look
-better than that". That's what you think too. But:
+doesn't look quite the same. You go to see Josephine. She says "It used to
+look better than that". That's what you think too. But:
 
 * **Did it really look different before?**
 * If it did, **what caused the change in the figure?**
