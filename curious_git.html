@@ -1773,9 +1773,9 @@ your daily git life.  I&#8217;m using it here to show you how git works.</p>
 <p>It is time to think about what the staging area is, in git.  In your SAP
 system, the staging area was a directory.  You also started off by using
 directories to store commits (snapshots).  Later you found you could do
-without the commit directories, because you could store the directory
-structure in <code class="docutils literal"><span class="pre">directory_listing.txt</span></code> text files, and then copy these into
-your <code class="docutils literal"><span class="pre">repo/objects</span></code> directory.</p>
+without the commit directories, because you could store the files in
+<code class="docutils literal"><span class="pre">repo/objects</span></code> and the directory structure in <code class="docutils literal"><span class="pre">directory_listing.txt</span></code> text
+files.</p>
 <p>In git, the staging area is a single file called <code class="docutils literal"><span class="pre">.git/index</span></code>.  This file
 contains a directory listing that is the equivalent of the <code class="docutils literal"><span class="pre">staging</span></code>
 directory in SAP.  When we add a file to the staging area, git backs up the
@@ -1814,7 +1814,7 @@ the staging area.</p>
 The hash is not the hash of the raw file, but the raw file prepended with a
 short housekeeping string.  See <a class="reference internal" href="reading_git_objects.html"><em>Reading git objects</em></a> for details.</p>
 <p>We can see the contents of objects with the command <code class="docutils literal"><span class="pre">git</span> <span class="pre">cat-file</span> <span class="pre">-p</span></code>.  For
-example, here is the contents of the backup we just made of
+example, here are the contents of the backup we just made of
 <code class="docutils literal"><span class="pre">clever_analysis.py</span></code>:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git cat-file -p 6560135a5943c0509608fee6d900b775e3041197
 <span class="c1"># The brain analysis script</span>
@@ -1919,9 +1919,9 @@ Untracked files:
 <p>Sure enough, the output tells us that <code class="docutils literal"><span class="pre">new</span> <span class="pre">file:</span> <span class="pre">clever_analysis.py</span></code> is in
 the <code class="docutils literal"><span class="pre">changes</span> <span class="pre">to</span> <span class="pre">be</span> <span class="pre">committed</span></code>.  It also tells us that the other two files in
 the working directory are <code class="docutils literal"><span class="pre">untracked</span></code>.</p>
-<p>An untracked file is a file with a filename that has never been added to the
-repository with <code class="docutils literal"><span class="pre">git</span> <span class="pre">add</span></code>.  Until you run <code class="docutils literal"><span class="pre">git</span> <span class="pre">add</span></code> on an untracked file,
-git will ignore these files and assume you don&#8217;t want to keep track of them.</p>
+<p>An untracked file is a file with a filename that is not listed the staging
+area directory listing. Until you run <code class="docutils literal"><span class="pre">git</span> <span class="pre">add</span></code> on an untracked file, git
+will ignore these files and assume you don&#8217;t want to keep track of them.</p>
 </div>
 <div class="section" id="staging-the-other-files-with-git-add">
 <h3>Staging the other files with git add<a class="headerlink" href="#staging-the-other-files-with-git-add" title="Permalink to this headline">¶</a></h3>
@@ -2091,8 +2091,8 @@ git will update the branch to point to the new commit.</p>
 As before, you can download this from
 <a class="reference download internal" href="_downloads/nobel_prize.md"><code class="xref download docutils literal"><span class="pre">nobel_prize.md</span></code></a>.  If you are
 typing along, download <code class="docutils literal"><span class="pre">nobel_prize.md</span></code> to the <code class="docutils literal"><span class="pre">nobel_prize</span></code> directory.</p>
-<p>This git repository has not seen the filename <code class="docutils literal"><span class="pre">nobel_prize.md</span></code> before, so
-<code class="docutils literal"><span class="pre">git</span> <span class="pre">status</span></code> identifies this file as <strong>untracked</strong>:</p>
+<p>The staging area does not have an entry for <code class="docutils literal"><span class="pre">nobel_prize.md</span></code>, so <code class="docutils literal"><span class="pre">git</span>
+<span class="pre">status</span></code> identifies this file as <strong>untracked</strong>:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git status
 On branch master
 Untracked files:
@@ -2343,10 +2343,12 @@ Untracked files:
 no changes added to commit <span class="o">(</span>use <span class="s2">&quot;git add&quot;</span> and/or <span class="s2">&quot;git commit -a&quot;</span><span class="o">)</span>
 </pre></div>
 </div>
-<p>Git has not previously seen a file called <code class="docutils literal"><span class="pre">references.bib</span></code> so this file is
-&#8220;untracked&#8221;.  Git has seen <code class="docutils literal"><span class="pre">clever_analysis.py</span></code> and <code class="docutils literal"><span class="pre">fancy_figure.png</span></code>, so
-these files are tracked, and git sees that they are modified compared to the
-copy that the staging area knows about.</p>
+<p>The staging area does not list a file called <code class="docutils literal"><span class="pre">references.bib</span></code> so this file
+is &#8220;untracked&#8221;.  The staging area does contain an entry for
+<code class="docutils literal"><span class="pre">clever_analysis.py</span></code> and <code class="docutils literal"><span class="pre">fancy_figure.png</span></code>, so these files are tracked.
+Git has checked the hashes for these files, and they are different from the
+hashes in the staging area, so git knows these files have changed, compared
+the versions listed in the staging area.</p>
 <p>Before we add our changes, we confirm that they are as we expect with:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git diff
 diff --git a/clever_analysis.py b/clever_analysis.py
@@ -2778,7 +2780,7 @@ Merge made by the <span class="s1">&#39;recursive&#39;</span> strategy.
 changes the Josephine made to the paper.</p>
 <p>The commit has two parents, which are the two commits from which we merged:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git log --oneline --parents
-a4c66b0 7598e4e 0a5a1b9 Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
+bb56b46 7598e4e 0a5a1b9 Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
 0a5a1b9 677c9a6 Expand the introduction
 7598e4e 677c9a6 More fun with fudge
 677c9a6 c3f19b2 Revert to original script <span class="p">&amp;</span> figure
@@ -2801,7 +2803,7 @@ think of this graph when we are working with a git repository.</p>
 <code class="docutils literal"><span class="pre">git</span> <span class="pre">log</span></code> has a useful flag called <code class="docutils literal"><span class="pre">--graph</span></code> which shows the commits as a
 graph using text characters:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git log --oneline --graph
-*   a4c66b0 Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
+*   bb56b46 Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
 <span class="p">|</span><span class="se">\ </span> 
 <span class="p">|</span> * 0a5a1b9 Expand the introduction
 * <span class="p">|</span> 7598e4e More fun with fudge
@@ -2826,7 +2828,7 @@ For example, you may want to set up an alias like this:</p>
 <code class="docutils literal"><span class="pre">slog</span></code> alias as the default for your user account, so you can use <code class="docutils literal"><span class="pre">git</span>
 <span class="pre">slog</span></code> whenever you are using git as this user on this computer.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git slog
-*   a4c66b0 Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
+*   bb56b46 Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
 <span class="p">|</span><span class="se">\ </span> 
 <span class="p">|</span> * 0a5a1b9 Expand the introduction
 * <span class="p">|</span> 7598e4e More fun with fudge
