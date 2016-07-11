@@ -72,8 +72,8 @@ WORK1 = pjoin(OUT_PATH, 'work1')
 os.chdir(OUT_PATH)
 shutil.copytree(WORK1, 'nobel_prize')
 z = zipfile.ZipFile('nobel_prize.zip', 'w')
-for path in os.listdir(WORK1):
-    fname = pjoin(WORK1, path)
+for path in os.listdir('nobel_prize'):
+    fname = pjoin('nobel_prize', path)
     z.write(fname, fname)
 z.close()
 shutil.rmtree('nobel_prize')
