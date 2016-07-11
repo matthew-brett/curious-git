@@ -183,19 +183,7 @@ Initialized empty Git repository in /Users/mb312/dev_trees/curious-git/working/m
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">echo</span> <span class="s2">&quot;Important code and data&quot;</span> &gt; some_data.txt
 $ git add some_data.txt
 $ git commit -m <span class="s2">&quot;Initial commit on myproject&quot;</span>
-<span class="o">[</span>master <span class="o">(</span>root-commit<span class="o">)</span> 76e5522<span class="o">]</span> Initial commit on myproject
- Committer: Matthew &lt;mb312@shanghai.local&gt;
-Your name and email address were configured automatically based
-on your username and hostname. Please check that they are accurate.
-You can suppress this message by setting them explicitly:
-
-    git config --global user.name <span class="s2">&quot;Your Name&quot;</span>
-    git config --global user.email you@example.com
-
-After doing this, you may fix the identity used <span class="k">for</span> this commit with:
-
-    git commit --amend --reset-author
-
+<span class="o">[</span>master <span class="o">(</span>root-commit<span class="o">)</span> 196bbbb<span class="o">]</span> Initial commit on myproject
  <span class="m">1</span> file changed, <span class="m">1</span> insertion<span class="o">(</span>+<span class="o">)</span>
  create mode <span class="m">100644</span> some_data.txt
 </pre></div>
@@ -247,19 +235,7 @@ $ git add README.txt
 </div>
 <p>Now do the first commit for &#8220;super&#8221;:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git commit -m <span class="s2">&quot;Initial commit on super&quot;</span>
-<span class="o">[</span>master <span class="o">(</span>root-commit<span class="o">)</span> 5b89b31<span class="o">]</span> Initial commit on super
- Committer: Matthew &lt;mb312@shanghai.local&gt;
-Your name and email address were configured automatically based
-on your username and hostname. Please check that they are accurate.
-You can suppress this message by setting them explicitly:
-
-    git config --global user.name <span class="s2">&quot;Your Name&quot;</span>
-    git config --global user.email you@example.com
-
-After doing this, you may fix the identity used <span class="k">for</span> this commit with:
-
-    git commit --amend --reset-author
-
+<span class="o">[</span>master <span class="o">(</span>root-commit<span class="o">)</span> 2326240<span class="o">]</span> Initial commit on super
  <span class="m">1</span> file changed, <span class="m">1</span> insertion<span class="o">(</span>+<span class="o">)</span>
  create mode <span class="m">100644</span> README.txt
 </pre></div>
@@ -272,8 +248,8 @@ After doing this, you may fix the identity used <span class="k">for</span> this 
 <p>So, we now have three files in <code class="docutils literal"><span class="pre">.git/objects</span></code>:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ tree -a .git/objects
 .git/objects
-├── 5b
-│   └── 89b31e6a6392c31a983f0190d01ed2aed7ca4d
+├── 23
+│   └── 262403a0b913d02219ead935dd1a85d3724a0d
 ├── 9c
 │   └── 0042144fc489d7b528ef186af49e78c2867f91
 ├── f1
@@ -319,11 +295,11 @@ index 0000000..00b54ec
 +	<span class="nv">url</span> <span class="o">=</span> ../myproject
 diff --git a/subproject b/subproject
 new file mode 160000
-index 0000000..76e5522
+index 0000000..196bbbb
 --- /dev/null
 +++ b/subproject
 @@ -0,0 +1 @@
-+Subproject commit 76e55220b2a49bfa252a99d2c85c48ab6e89e395
++Subproject commit 196bbbb2b7497fdc868fa61425959d23ff1c0fe5
 </pre></div>
 </div>
 <p>As you saw, the output from <code class="docutils literal"><span class="pre">git</span> <span class="pre">submodule</span></code> says <code class="docutils literal"><span class="pre">Cloning</span> <span class="pre">into</span>
@@ -358,8 +334,8 @@ after the first commit.  After <code class="docutils literal"><span class="pre">
 .git/objects
 ├── 00
 │   └── b54ece7789a75ca80a0edb1e1b1e532a1833d8
-├── 5b
-│   └── 89b31e6a6392c31a983f0190d01ed2aed7ca4d
+├── 23
+│   └── 262403a0b913d02219ead935dd1a85d3724a0d
 ├── 9c
 │   └── 0042144fc489d7b528ef186af49e78c2867f91
 ├── f1
@@ -387,19 +363,7 @@ object).  That is a bit difficult to see at the moment, because the directory
 listing is in the git staging area and not yet written into a tree object.  To
 write the tree object, we do a commit:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git commit -m <span class="s2">&quot;Adding the submodule&quot;</span>
-<span class="o">[</span>master d47cccc<span class="o">]</span> Adding the submodule
- Committer: Matthew &lt;mb312@shanghai.local&gt;
-Your name and email address were configured automatically based
-on your username and hostname. Please check that they are accurate.
-You can suppress this message by setting them explicitly:
-
-    git config --global user.name <span class="s2">&quot;Your Name&quot;</span>
-    git config --global user.email you@example.com
-
-After doing this, you may fix the identity used <span class="k">for</span> this commit with:
-
-    git commit --amend --reset-author
-
+<span class="o">[</span>master 7c556d2<span class="o">]</span> Adding the submodule
  <span class="m">2</span> files changed, <span class="m">4</span> insertions<span class="o">(</span>+<span class="o">)</span>
  create mode <span class="m">100644</span> .gitmodules
  create mode <span class="m">160000</span> subproject
@@ -410,7 +374,7 @@ object (directory listing) for this commit:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git ls-tree master
 <span class="m">100644</span> blob 00b54ece7789a75ca80a0edb1e1b1e532a1833d8	.gitmodules
 <span class="m">100644</span> blob 9c0042144fc489d7b528ef186af49e78c2867f91	README.txt
-<span class="m">160000</span> commit 76e55220b2a49bfa252a99d2c85c48ab6e89e395	subproject
+<span class="m">160000</span> commit 196bbbb2b7497fdc868fa61425959d23ff1c0fe5	subproject
 </pre></div>
 </div>
 <p>As you can see, the two real files – <code class="docutils literal"><span class="pre">.gitmodules</span></code> and <code class="docutils literal"><span class="pre">README.txt</span></code>
@@ -421,8 +385,8 @@ is the usual way git refers to a file in a directory listing (see
 of the &#8220;myproject&#8221; repository, in the <code class="docutils literal"><span class="pre">subproject</span></code> copy:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> subproject
 $ git log
-commit 76e55220b2a49bfa252a99d2c85c48ab6e89e395
-Author: Matthew &lt;mb312@shanghai.local&gt;
+commit 196bbbb2b7497fdc868fa61425959d23ff1c0fe5
+Author: Matthew Brett &lt;matthew.brett@gmail.com&gt;
 Date:   Tue May <span class="m">1</span> 11:13:13 <span class="m">2012</span> +0100
 
     Initial commit on myproject
@@ -441,25 +405,13 @@ original <code class="docutils literal"><span class="pre">myproject</span></code
 $ <span class="nb">echo</span> <span class="s2">&quot;More data&quot;</span> &gt; some_more_data.txt
 $ git add some_more_data.txt
 $ git commit -m <span class="s2">&quot;Add some more data&quot;</span>
-<span class="o">[</span>master f8ad0dd<span class="o">]</span> Add some more data
- Committer: Matthew &lt;mb312@shanghai.local&gt;
-Your name and email address were configured automatically based
-on your username and hostname. Please check that they are accurate.
-You can suppress this message by setting them explicitly:
-
-    git config --global user.name <span class="s2">&quot;Your Name&quot;</span>
-    git config --global user.email you@example.com
-
-After doing this, you may fix the identity used <span class="k">for</span> this commit with:
-
-    git commit --amend --reset-author
-
+<span class="o">[</span>master 43c26bf<span class="o">]</span> Add some more data
  <span class="m">1</span> file changed, <span class="m">1</span> insertion<span class="o">(</span>+<span class="o">)</span>
  create mode <span class="m">100644</span> some_more_data.txt
 </pre></div>
 </div>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git branch -v
-* master f8ad0dd Add some more data
+* master 43c26bf Add some more data
 </pre></div>
 </div>
 <p>Of course &#8220;super&#8221; has not changed, because we haven&#8217;t updated the submodule
@@ -488,13 +440,13 @@ origin	/Users/mb312/dev_trees/curious-git/working/myproject <span class="o">(</s
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="c1"># This is the same as &quot;git pull&quot;</span>
 $ git fetch origin
 $ git merge origin/master
-Updating 76e5522..f8ad0dd
+Updating 196bbbb..43c26bf
 Fast-forward
  some_more_data.txt <span class="p">|</span> <span class="m">1</span> +
  <span class="m">1</span> file changed, <span class="m">1</span> insertion<span class="o">(</span>+<span class="o">)</span>
  create mode <span class="m">100644</span> some_more_data.txt
 From /Users/mb312/dev_trees/curious-git/working/myproject
-   76e5522..f8ad0dd  master     -&gt; origin/master
+   196bbbb..43c26bf  master     -&gt; origin/master
 </pre></div>
 </div>
 <p>Now what do we see in &#8220;super&#8221;?</p>
@@ -515,12 +467,12 @@ no changes added to commit <span class="o">(</span>use <span class="s2">&quot;gi
 </div>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git diff
 diff --git a/subproject b/subproject
-index 76e5522..f8ad0dd 160000
+index 196bbbb..43c26bf 160000
 --- a/subproject
 +++ b/subproject
 @@ -1 +1 @@
--Subproject commit 76e55220b2a49bfa252a99d2c85c48ab6e89e395
-+Subproject commit f8ad0ddac762778e3db93a6730a40d16987f3715
+-Subproject commit 196bbbb2b7497fdc868fa61425959d23ff1c0fe5
++Subproject commit 43c26bf6df6a4efade8082f3a5473b807d07c161
 </pre></div>
 </div>
 <p>Git is not tracking the <em>contents</em> of the &#8220;subproject&#8221; directory, but the <em>git
@@ -531,10 +483,10 @@ has the effect of updating the commit that the &#8220;super&#8221; tree is point
 in the staging area, but adds no new files to <code class="docutils literal"><span class="pre">.git/objects</span></code>:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ ls .git/objects/*/*
 .git/objects/00/b54ece7789a75ca80a0edb1e1b1e532a1833d8
-.git/objects/5b/89b31e6a6392c31a983f0190d01ed2aed7ca4d
+.git/objects/23/262403a0b913d02219ead935dd1a85d3724a0d
+.git/objects/7c/556d246e95b5cb5b57fbeab8e29686e24225af
 .git/objects/9c/0042144fc489d7b528ef186af49e78c2867f91
-.git/objects/d4/7ccccd0a6920cc0c8a3ece19ca68406dffa00f
-.git/objects/e5/6125b34ebc851cd19dd997afb26c74b847222a
+.git/objects/b6/f9da32793466297a8aeb3d6048c1e96cbd3849
 .git/objects/f1/3a8c8331c76ac965c43b09d11ee2d72bb053c1
 </pre></div>
 </div>
@@ -545,10 +497,10 @@ in the staging area, but adds no new files to <code class="docutils literal"><sp
 </div>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ ls .git/objects/*/*
 .git/objects/00/b54ece7789a75ca80a0edb1e1b1e532a1833d8
-.git/objects/5b/89b31e6a6392c31a983f0190d01ed2aed7ca4d
+.git/objects/23/262403a0b913d02219ead935dd1a85d3724a0d
+.git/objects/7c/556d246e95b5cb5b57fbeab8e29686e24225af
 .git/objects/9c/0042144fc489d7b528ef186af49e78c2867f91
-.git/objects/d4/7ccccd0a6920cc0c8a3ece19ca68406dffa00f
-.git/objects/e5/6125b34ebc851cd19dd997afb26c74b847222a
+.git/objects/b6/f9da32793466297a8aeb3d6048c1e96cbd3849
 .git/objects/f1/3a8c8331c76ac965c43b09d11ee2d72bb053c1
 </pre></div>
 </div>
@@ -557,26 +509,14 @@ in the staging area, but adds no new files to <code class="docutils literal"><sp
 <p>If we do the commit, we can see the root tree listing now points
 <code class="docutils literal"><span class="pre">subproject</span></code> to the new commit of &#8220;myproject&#8221;:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git commit -m <span class="s2">&quot;Update myproject with more data&quot;</span>
-<span class="o">[</span>master e163950<span class="o">]</span> Update myproject with more data
- Committer: Matthew &lt;mb312@shanghai.local&gt;
-Your name and email address were configured automatically based
-on your username and hostname. Please check that they are accurate.
-You can suppress this message by setting them explicitly:
-
-    git config --global user.name <span class="s2">&quot;Your Name&quot;</span>
-    git config --global user.email you@example.com
-
-After doing this, you may fix the identity used <span class="k">for</span> this commit with:
-
-    git commit --amend --reset-author
-
+<span class="o">[</span>master 3379d64<span class="o">]</span> Update myproject with more data
  <span class="m">1</span> file changed, <span class="m">1</span> insertion<span class="o">(</span>+<span class="o">)</span>, <span class="m">1</span> deletion<span class="o">(</span>-<span class="o">)</span>
 </pre></div>
 </div>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git ls-tree master
 <span class="m">100644</span> blob 00b54ece7789a75ca80a0edb1e1b1e532a1833d8	.gitmodules
 <span class="m">100644</span> blob 9c0042144fc489d7b528ef186af49e78c2867f91	README.txt
-<span class="m">160000</span> commit f8ad0ddac762778e3db93a6730a40d16987f3715	subproject
+<span class="m">160000</span> commit 43c26bf6df6a4efade8082f3a5473b807d07c161	subproject
 </pre></div>
 </div>
 </div>
@@ -672,7 +612,7 @@ subproject
 <p>To do the submodule clone, use <code class="docutils literal"><span class="pre">git</span> <span class="pre">submodule</span> <span class="pre">update</span></code> after <code class="docutils literal"><span class="pre">git</span> <span class="pre">submodule</span>
 <span class="pre">init</span></code>:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git submodule update
-Submodule path <span class="s1">&#39;subproject&#39;</span>: checked out <span class="s1">&#39;f8ad0ddac762778e3db93a6730a40d16987f3715&#39;</span>
+Submodule path <span class="s1">&#39;subproject&#39;</span>: checked out <span class="s1">&#39;43c26bf6df6a4efade8082f3a5473b807d07c161&#39;</span>
 Cloning into <span class="s1">&#39;subproject&#39;</span>...
 <span class="k">done</span>.
 </pre></div>

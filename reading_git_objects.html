@@ -91,10 +91,7 @@
   <ul class="dropdown-menu localtoc"
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">Reading git objects</a><ul>
-<li><a class="reference internal" href="#python">Python</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#">Reading git objects</a></li>
 </ul>
 </ul>
 </li>
@@ -153,14 +150,22 @@ store the data, called <em>packfiles</em>, in which case these simple code fragm
 won&#8217;t work.  The fragments are to show the simplicity of the default way that
 git stores objects.</p>
 <p>git uses a library called <code class="docutils literal"><span class="pre">zlib</span></code> for compressing the objects.</p>
-<p>I&#8217;ll generate a small git repository to make an object file.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ mkdir git_example
+<p>To show how this works, first generate a small git repository to make an
+object file:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="c1"># Make a new empty git repository</span>
+$ mkdir git_example
 $ <span class="nb">cd</span> git_example
-$ <span class="nb">echo</span> <span class="s2">&quot;My data fits on one line&quot;</span> &gt; my_file.txt
 $ git init
-$ git add my_file.txt
-$ tree -a .git/objects
 Initialized empty Git repository in /Users/mb312/dev_trees/curious-git/working/git_example/.git/
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="c1"># Make and stage a file, to create an object in .git/objects</span>
+$ <span class="nb">echo</span> <span class="s2">&quot;My data fits on one line&quot;</span> &gt; my_file.txt
+$ git add my_file.txt
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="c1"># Show the .git/objects directory</span>
+$ tree -a .git/objects
 .git/objects
 ├── e2
 │   └── 7bb34b0807ebf1b91bb66a4c147430cde4f08f
@@ -170,36 +175,32 @@ Initialized empty Git repository in /Users/mb312/dev_trees/curious-git/working/g
 <span class="m">3</span> directories, <span class="m">1</span> file
 </pre></div>
 </div>
-<div class="section" id="python">
-<h2>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">zlib</span> <span class="c1"># A compression / decompression library</span>
-
-<span class="k">def</span> <span class="nf">read_git_object</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Read an object in the ``.git/objects`` directory</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">compressed_contents</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">zlib</span><span class="o">.</span><span class="n">decompress</span><span class="p">(</span><span class="n">compressed_contents</span><span class="p">)</span>
-
-<span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;working/git_example/.git/objects/e2/7bb34b0807ebf1b91bb66a4c147430cde4f08f&#39;</span>
-<span class="n">new_object_data</span> <span class="o">=</span> <span class="n">read_git_object</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">new_object_data</span><span class="p">)</span>
+<p>We can read this object using some simple Python code.  Start up the Python
+console and:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">zlib</span>  <span class="c1"># A compression / decompression library</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;working/git_example/.git/objects/e2/7bb34b0807ebf1b91bb66a4c147430cde4f08f&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">compressed_contents</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">decompressed_contents</span> <span class="o">=</span> <span class="n">zlib</span><span class="o">.</span><span class="n">decompress</span><span class="p">(</span><span class="n">compressed_contents</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-none"><div class="highlight"><pre><span></span>blob 25 My data fits on one line
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">decompressed_contents</span>
+<span class="go">&#39;blob 25\x00My data fits on one line\n&#39;</span>
 </pre></div>
 </div>
-<p>The contents of the object file is the original contents prepended by
-<code class="docutils literal"><span class="pre">blob25</span></code> and a 0 byte, where 25 is the number of characters in the file.</p>
-<p>The hash value for the file is the hash of the uncompressed file, with the
-<code class="docutils literal"><span class="pre">blob</span> <span class="pre">25</span></code> prefix:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">hashlib</span> <span class="kn">import</span> <span class="n">sha1</span>  <span class="c1"># SHA1 hash algorithm</span>
-<span class="n">hash_value</span> <span class="o">=</span> <span class="n">sha1</span><span class="p">(</span><span class="n">new_object_data</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
-<span class="k">print</span><span class="p">(</span><span class="n">hash_value</span><span class="p">)</span>
+<p>The contents of the object file is the original contents prepended by <code class="docutils literal"><span class="pre">blob</span>
+<span class="pre">25</span></code> and a 0 byte, where 25 is the number of characters in the file, not
+including the housekeeping string:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">decompressed_contents</span><span class="p">)</span>  <span class="c1"># (length of housekeeping string = 8) + 25</span>
+<span class="go">33</span>
 </pre></div>
 </div>
-<div class="highlight-none"><div class="highlight"><pre><span></span>e27bb34b0807ebf1b91bb66a4c147430cde4f08f
+<p>The hash value for the file is the hash of the decompressed file, including
+the housekeeping string:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">hashlib</span> <span class="kn">import</span> <span class="n">sha1</span>  <span class="c1"># SHA1 hash algorithm</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hash_value</span> <span class="o">=</span> <span class="n">sha1</span><span class="p">(</span><span class="n">decompressed_contents</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hash_value</span>
+<span class="go">&#39;e27bb34b0807ebf1b91bb66a4c147430cde4f08f&#39;</span>
 </pre></div>
-</div>
 </div>
 </div>
 

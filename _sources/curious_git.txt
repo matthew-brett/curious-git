@@ -1473,7 +1473,7 @@ First we will put the files for the commit into the staging area.
 
 The command to put files into the staging area is ``git add``.
 
-First, we show ourselves that the **staging area** is empty. We haven't yet
+To start, we show ourselves that the **staging area** is empty. We haven't yet
 discussed the git implementation of the staging area, but this command shows
 us which files are in the staging area.
 
@@ -1494,6 +1494,16 @@ Now we do our add:
 
     git add clever_analysis.py
 
+Sure enough:
+
+.. nprun::
+
+    git ls-files --stage
+
+.. prizevar:: analysis_1_hash
+
+    git rev-parse :clever_analysis.py
+
 The git staging area
 ====================
 
@@ -1510,24 +1520,42 @@ directory in SAP.  When we add a file to the staging area, git backs up the
 file with its hash to ``.git/objects``, and then changes the directory listing
 inside ``.git/index`` to point to this backup copy.
 
-Now we have done the ``git add``, we expect that the new file will show up in
-the staging area:
+If all that is true, then we now expect to see a) a new file ``.git/index``
+containing the directory listing and b) a new file in the ``.git/objects``
+directory corresponding to the hash for the ``clever_analysis.py`` file. We
+saw from the output of ``git ls-files --stage`` above that the hash for
+``clever_analysis.py`` is |analysis_1_hash|.  So |--| do we see these files?
+
+First |--| there is now a new file ``.git/index`` that was not present in our
+first listing of the ``.git`` directory above:
 
 .. nprun::
 
-    git ls-files --stage
+    ls .git/index
 
-The output shows the hash of the backed up copy of ``clever_analysis.py``.
+Second, there is a new directory and file in ``.git/objects``:
 
-We can see this hashed backup file in ``.git/objects``:
+.. prizevar:: sha_fname
+
+    echo "function sha_fname { echo \${1:0:2}/\${1:2}; }; sha_fname "
+
+.. prizevar:: analysis_fname
+
+    fname=$({{ sha_fname }} {{ analysis_1_hash }})
+    echo ".git/objects/$fname"
 
 .. prizeout::
 
     {{ np_tree }} .git/objects
 
-The filename of the new file comes from the hash recorded in the staging area.
-The first two digits of the hash form the directory name and the rest of the
-digits are the filename [#git-object-dir]_.
+The directory and filename in ``.git/objects`` come from the hash of
+``clever_analysis.py``.  The first two digits of the hash form the directory
+name and the rest of the digits are the filename [#git-object-dir]_. So, the
+file |analysis_fname| is the copy of ``clever_analysis.py`` that we added to
+the staging area.
+
+For extra points, what do you think would happen if we deleted the
+``.git/index`` file (answer [#delete-git-index]_)?
 
 Git objects
 ===========
@@ -1536,11 +1564,9 @@ Git objects are nearly as simple as the objects you were writing in your SAP.
 The hash is not the hash of the raw file, but the raw file prepended with a
 short housekeeping string.  See :doc:`reading_git_objects` for details.
 
-We can see the contents of objects with the command ``git cat-file -p``.
-
-.. prizevar:: analysis_1_hash
-
-    git rev-parse :clever_analysis.py
+We can see the contents of objects with the command ``git cat-file -p``.  For
+example, here is the contents of the backup we just made of
+``clever_analysis.py``:
 
 .. nprun::
 
@@ -2483,15 +2509,11 @@ You might also try:
 
 .. rubric:: Footnotes
 
-.. [#list-figure] Would I get the same hash for the directory listing if I had
-   had a different figure?  No |--| because the figure hash would be
-   different, the directory listing would contain this different hash, and so
-   the hash for the directory listing must be different.
-.. [#commit-figure] Would the commit hash value change if the figure changed?
-   Yes, because the change in the figure would cause a different hash for the
-   figure; this would cause a different hash for the directory listing, and
-   this hash in turn appears in the commit contents, causing a different hash
-   for the commit.
+.. [#delete-git-index] What would happen if we delete the ``.git/index`` file?
+   Remember, the ``.git/index`` file contains the directory listing for the
+   staging area.  If we delete the file, git will assume that the directory
+   listing is empty, and therefore that there are no files in the staging
+   area.
 .. [#no-parents] Why are the output of ``git log`` and ``git log --parents``
    the same in this case?  They are the same because this is the first commit,
    and the first commit has no parents.

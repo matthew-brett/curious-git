@@ -1183,7 +1183,7 @@ label from the <code class="docutils literal"><span class="pre">Notes:</span></c
 <p>The commits are linked by the &#8220;Parents&#8221; field in the <code class="docutils literal"><span class="pre">message.txt</span></code> file.  We
 can think of the commits in a graph, where the commits are the nodes, and the
 links between the nodes come from the hashes in the &#8220;Parents&#8221; field.</p>
-<div class="figure" id="id4">
+<div class="figure" id="id5">
 <img alt="_images/snapshot_graph1.png" src="_images/snapshot_graph1.png" />
 <p class="caption"><span class="caption-text">Graph of development history for your SAP content management system.  The
 most recent commit is at the top, the first commit is at the bottom.  Your
@@ -1746,7 +1746,7 @@ default, and almost always in practice.</dd>
 <p>In the next few sections, we will do our first commit (snapshot).</p>
 <p>First we will put the files for the commit into the staging area.</p>
 <p>The command to put files into the staging area is <code class="docutils literal"><span class="pre">git</span> <span class="pre">add</span></code>.</p>
-<p>First, we show ourselves that the <strong>staging area</strong> is empty. We haven&#8217;t yet
+<p>To start, we show ourselves that the <strong>staging area</strong> is empty. We haven&#8217;t yet
 discussed the git implementation of the staging area, but this command shows
 us which files are in the staging area.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git ls-files --stage
@@ -1760,6 +1760,11 @@ your daily git life.  I&#8217;m using it here to show you how git works.</p>
 </div>
 <p>Now we do our add:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git add clever_analysis.py
+</pre></div>
+</div>
+<p>Sure enough:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git ls-files --stage
+<span class="m">100755</span> 6560135a5943c0509608fee6d900b775e3041197 0	clever_analysis.py
 </pre></div>
 </div>
 </div>
@@ -1776,14 +1781,18 @@ contains a directory listing that is the equivalent of the <code class="docutils
 directory in SAP.  When we add a file to the staging area, git backs up the
 file with its hash to <code class="docutils literal"><span class="pre">.git/objects</span></code>, and then changes the directory listing
 inside <code class="docutils literal"><span class="pre">.git/index</span></code> to point to this backup copy.</p>
-<p>Now we have done the <code class="docutils literal"><span class="pre">git</span> <span class="pre">add</span></code>, we expect that the new file will show up in
-the staging area:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git ls-files --stage
-<span class="m">100755</span> 6560135a5943c0509608fee6d900b775e3041197 0	clever_analysis.py
+<p>If all that is true, then we now expect to see a) a new file <code class="docutils literal"><span class="pre">.git/index</span></code>
+containing the directory listing and b) a new file in the <code class="docutils literal"><span class="pre">.git/objects</span></code>
+directory corresponding to the hash for the <code class="docutils literal"><span class="pre">clever_analysis.py</span></code> file. We
+saw from the output of <code class="docutils literal"><span class="pre">git</span> <span class="pre">ls-files</span> <span class="pre">--stage</span></code> above that the hash for
+<code class="docutils literal"><span class="pre">clever_analysis.py</span></code> is <code class="docutils literal"><span class="pre">6560135a5943c0509608fee6d900b775e3041197</span></code>.  So – do we see these files?</p>
+<p>First – there is now a new file <code class="docutils literal"><span class="pre">.git/index</span></code> that was not present in our
+first listing of the <code class="docutils literal"><span class="pre">.git</span></code> directory above:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ls .git/index
+.git/index
 </pre></div>
 </div>
-<p>The output shows the hash of the backed up copy of <code class="docutils literal"><span class="pre">clever_analysis.py</span></code>.</p>
-<p>We can see this hashed backup file in <code class="docutils literal"><span class="pre">.git/objects</span></code>:</p>
+<p>Second, there is a new directory and file in <code class="docutils literal"><span class="pre">.git/objects</span></code>:</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>objects
 ├── pack
 ├── info
@@ -1791,16 +1800,22 @@ the staging area:</p>
     └── 60135a5943c0509608fee6d900b775e3041197 [335B]
 </pre></div>
 </div>
-<p>The filename of the new file comes from the hash recorded in the staging area.
-The first two digits of the hash form the directory name and the rest of the
-digits are the filename <a class="footnote-reference" href="#git-object-dir" id="id1">[4]</a>.</p>
+<p>The directory and filename in <code class="docutils literal"><span class="pre">.git/objects</span></code> come from the hash of
+<code class="docutils literal"><span class="pre">clever_analysis.py</span></code>.  The first two digits of the hash form the directory
+name and the rest of the digits are the filename <a class="footnote-reference" href="#git-object-dir" id="id1">[3]</a>. So, the
+file <code class="docutils literal"><span class="pre">.git/objects/65/60135a5943c0509608fee6d900b775e3041197</span></code> is the copy of <code class="docutils literal"><span class="pre">clever_analysis.py</span></code> that we added to
+the staging area.</p>
+<p>For extra points, what do you think would happen if we deleted the
+<code class="docutils literal"><span class="pre">.git/index</span></code> file (answer <a class="footnote-reference" href="#delete-git-index" id="id2">[1]</a>)?</p>
 </div>
 <div class="section" id="git-objects">
 <h3>Git objects<a class="headerlink" href="#git-objects" title="Permalink to this headline">¶</a></h3>
 <p>Git objects are nearly as simple as the objects you were writing in your SAP.
 The hash is not the hash of the raw file, but the raw file prepended with a
 short housekeeping string.  See <a class="reference internal" href="reading_git_objects.html"><em>Reading git objects</em></a> for details.</p>
-<p>We can see the contents of objects with the command <code class="docutils literal"><span class="pre">git</span> <span class="pre">cat-file</span> <span class="pre">-p</span></code>.</p>
+<p>We can see the contents of objects with the command <code class="docutils literal"><span class="pre">git</span> <span class="pre">cat-file</span> <span class="pre">-p</span></code>.  For
+example, here is the contents of the backup we just made of
+<code class="docutils literal"><span class="pre">clever_analysis.py</span></code>:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git cat-file -p 6560135a5943c0509608fee6d900b775e3041197
 <span class="c1"># The brain analysis script</span>
 import numpy as np
@@ -1943,19 +1958,7 @@ Changes to be committed:
 <div class="section" id="git-commit-making-the-snapshot">
 <h3>git commit – making the snapshot<a class="headerlink" href="#git-commit-making-the-snapshot" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ git commit -m <span class="s2">&quot;First backup of my amazing idea&quot;</span>
-<span class="o">[</span>master <span class="o">(</span>root-commit<span class="o">)</span> b00d812<span class="o">]</span> First backup of my amazing idea
- Committer: Matthew &lt;mb312@shanghai.local&gt;
-Your name and email address were configured automatically based
-on your username and hostname. Please check that they are accurate.
-You can suppress this message by setting them explicitly:
-
-    git config --global user.name <span class="s2">&quot;Your Name&quot;</span>
-    git config --global user.email you@example.com
-
-After doing this, you may fix the identity used <span class="k">for</span> this commit with:
-
-    git commit --amend --reset-author
-
+<span class="o">[</span>master <span class="o">(</span>root-commit<span class="o">)</span> 75206bc<span class="o">]</span> First backup of my amazing idea
  <span class="m">3</span> files changed, <span class="m">5023</span> insertions<span class="o">(</span>+<span class="o">)</span>
  create mode <span class="m">100755</span> clever_analysis.py
  create mode <span class="m">100644</span> expensive_data.csv
@@ -1981,10 +1984,10 @@ directory listing text file, and another for the commit message:</p>
 ├── info
 ├── ff
 │   └── c871b48a6b9df8dc4a13e8e5da99ccf2ce458d [150B]
-├── b0
-│   └── 0d8121a60532b1ff45a8fadd10c4f539f0d56c [143B]
 ├── 7b
 │   └── 37886351b3df2463fd29c87bc5184b637f0926 [119K]
+├── 75
+│   └── 206bcb33ff9ad4f15f89b52cdf95bf666d67a8 [148B]
 ├── 65
 │   └── 60135a5943c0509608fee6d900b775e3041197 [335B]
 └── 1e
@@ -1993,16 +1996,16 @@ directory listing text file, and another for the commit message:</p>
 </div>
 <p>Here is the contents of the commit message text file for the new commit.  Git
 calls this a <strong>commit object</strong>:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git cat-file -p b00d8121a60532b1ff45a8fadd10c4f539f0d56c
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git cat-file -p 75206bcb33ff9ad4f15f89b52cdf95bf666d67a8
 tree ffc871b48a6b9df8dc4a13e8e5da99ccf2ce458d
-author Matthew &lt;mb312@shanghai.local&gt; <span class="m">1333287013</span> +0100
-committer Matthew &lt;mb312@shanghai.local&gt; <span class="m">1333287013</span> +0100
+author Matthew Brett &lt;matthew.brett@gmail.com&gt; <span class="m">1333287013</span> +0100
+committer Matthew Brett &lt;matthew.brett@gmail.com&gt; <span class="m">1333287013</span> +0100
 
 First backup of my amazing idea
 </pre></div>
 </div>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="c1"># What type of git object is this?</span>
-$ git cat-file -t b00d8121a60532b1ff45a8fadd10c4f539f0d56c
+$ git cat-file -t 75206bcb33ff9ad4f15f89b52cdf95bf666d67a8
 commit
 </pre></div>
 </div>
@@ -2028,8 +2031,8 @@ file), the file hash, and the file name (see <a class="reference internal" href=
 <div class="section" id="git-log-what-are-the-commits-so-far">
 <h3>git log – what are the commits so far?<a class="headerlink" href="#git-log-what-are-the-commits-so-far" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git log
-commit b00d8121a60532b1ff45a8fadd10c4f539f0d56c
-Author: Matthew &lt;mb312@shanghai.local&gt;
+commit 75206bcb33ff9ad4f15f89b52cdf95bf666d67a8
+Author: Matthew Brett &lt;matthew.brett@gmail.com&gt;
 Date:   Sun Apr <span class="m">1</span> 14:30:13 <span class="m">2012</span> +0100
 
     First backup of my amazing idea
@@ -2037,23 +2040,23 @@ Date:   Sun Apr <span class="m">1</span> 14:30:13 <span class="m">2012</span> +0
 </div>
 <p>Notice that git log identifies each commit with its hash.  The hash is the
 hash for the contents of the commit message. As we saw above, the hash for our
-commit was <code class="docutils literal"><span class="pre">b00d8121a60532b1ff45a8fadd10c4f539f0d56c</span></code>.</p>
+commit was <code class="docutils literal"><span class="pre">75206bcb33ff9ad4f15f89b52cdf95bf666d67a8</span></code>.</p>
 <p>We can also ask to the see the parents of each commit in the log:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git log --parents
-commit b00d8121a60532b1ff45a8fadd10c4f539f0d56c
-Author: Matthew &lt;mb312@shanghai.local&gt;
+commit 75206bcb33ff9ad4f15f89b52cdf95bf666d67a8
+Author: Matthew Brett &lt;matthew.brett@gmail.com&gt;
 Date:   Sun Apr <span class="m">1</span> 14:30:13 <span class="m">2012</span> +0100
 
     First backup of my amazing idea
 </pre></div>
 </div>
 <p>Why are the output of <code class="docutils literal"><span class="pre">git</span> <span class="pre">log</span></code> and <code class="docutils literal"><span class="pre">git</span> <span class="pre">log</span> <span class="pre">--parents</span></code> the same in this
-case? (answer <a class="footnote-reference" href="#no-parents" id="id2">[3]</a>).</p>
+case? (answer <a class="footnote-reference" href="#no-parents" id="id3">[2]</a>).</p>
 </div>
 <div class="section" id="git-branch-which-branch-are-we-on">
 <h3>git branch - which branch are we on?<a class="headerlink" href="#git-branch-which-branch-are-we-on" title="Permalink to this headline">¶</a></h3>
 <p>Branches are bookmarks. They associate a name (like &#8220;my_bookmark&#8221; or &#8220;master&#8221;)
-with a commit (such as <code class="docutils literal"><span class="pre">b00d8121a60532b1ff45a8fadd10c4f539f0d56c</span></code>).</p>
+with a commit (such as <code class="docutils literal"><span class="pre">75206bcb33ff9ad4f15f89b52cdf95bf666d67a8</span></code>).</p>
 <p>The default branch (bookmark) for git is called <code class="docutils literal"><span class="pre">master</span></code>. Git creates it
 automatically when we do our first commit.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git branch
@@ -2063,7 +2066,7 @@ automatically when we do our first commit.</p>
 <p>Asking for more verbose detail shows us that the branch is pointing to a
 particular commit (where the commit is given by a hash):</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git branch -v
-* master b00d812 First backup of my amazing idea
+* master 75206bc First backup of my amazing idea
 </pre></div>
 </div>
 <p>In this case git abbreviated the 40 character hash to the first 7 digits,
@@ -2076,7 +2079,7 @@ master
 </pre></div>
 </div>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ cat .git/refs/heads/master
-b00d8121a60532b1ff45a8fadd10c4f539f0d56c
+75206bcb33ff9ad4f15f89b52cdf95bf666d67a8
 </pre></div>
 </div>
 <p>We will soon see that, if we are working on a branch, and we do a commit, then
@@ -2117,45 +2120,33 @@ Changes to be committed:
 <p>Finally we move the changes from the staging area into a commit with <code class="docutils literal"><span class="pre">git</span>
 <span class="pre">commit</span></code>:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ git commit -m <span class="s2">&quot;Add first draft of paper&quot;</span>
-<span class="o">[</span>master 33f112b<span class="o">]</span> Add first draft of paper
- Committer: Matthew &lt;mb312@shanghai.local&gt;
-Your name and email address were configured automatically based
-on your username and hostname. Please check that they are accurate.
-You can suppress this message by setting them explicitly:
-
-    git config --global user.name <span class="s2">&quot;Your Name&quot;</span>
-    git config --global user.email you@example.com
-
-After doing this, you may fix the identity used <span class="k">for</span> this commit with:
-
-    git commit --amend --reset-author
-
+<span class="o">[</span>master 7919d37<span class="o">]</span> Add first draft of paper
  <span class="m">1</span> file changed, <span class="m">29</span> insertions<span class="o">(</span>+<span class="o">)</span>
  create mode <span class="m">100644</span> nobel_prize.md
 </pre></div>
 </div>
 <p>Git shows us the first 7 digits of the new commit hash in the output from
-<code class="docutils literal"><span class="pre">git</span> <span class="pre">commit</span></code> – these are <code class="docutils literal"><span class="pre">33f112b</span></code>.</p>
+<code class="docutils literal"><span class="pre">git</span> <span class="pre">commit</span></code> – these are <code class="docutils literal"><span class="pre">7919d37</span></code>.</p>
 <p>Notice that the position of the current <code class="docutils literal"><span class="pre">master</span></code> branch is now this last
 commit:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git branch -v
-* master 33f112b Add first draft of paper
+* master 7919d37 Add first draft of paper
 </pre></div>
 </div>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ cat .git/refs/heads/master
-33f112b0d300c12f2431000277fe9b4253ae06eb
+7919d37dda9044f00cf2dc0677eed18156f75404
 </pre></div>
 </div>
 <p>We use <code class="docutils literal"><span class="pre">git</span> <span class="pre">log</span></code> to look at our short history.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git log
-commit 33f112b0d300c12f2431000277fe9b4253ae06eb
-Author: Matthew &lt;mb312@shanghai.local&gt;
+commit 7919d37dda9044f00cf2dc0677eed18156f75404
+Author: Matthew Brett &lt;matthew.brett@gmail.com&gt;
 Date:   Mon Apr <span class="m">2</span> 18:03:00 <span class="m">2012</span> +0100
 
     Add first draft of paper
 
-commit b00d8121a60532b1ff45a8fadd10c4f539f0d56c
-Author: Matthew &lt;mb312@shanghai.local&gt;
+commit 75206bcb33ff9ad4f15f89b52cdf95bf666d67a8
+Author: Matthew Brett &lt;matthew.brett@gmail.com&gt;
 Date:   Sun Apr <span class="m">1</span> 14:30:13 <span class="m">2012</span> +0100
 
     First backup of my amazing idea
@@ -2164,14 +2155,14 @@ Date:   Sun Apr <span class="m">1</span> 14:30:13 <span class="m">2012</span> +0
 <p>We add the <code class="docutils literal"><span class="pre">--parents</span></code> flag to show that the second commit points back to
 the first via its hash.  Git lists the parent hash after the commit hash:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git log --parents
-commit 33f112b0d300c12f2431000277fe9b4253ae06eb b00d8121a60532b1ff45a8fadd10c4f539f0d56c
-Author: Matthew &lt;mb312@shanghai.local&gt;
+commit 7919d37dda9044f00cf2dc0677eed18156f75404 75206bcb33ff9ad4f15f89b52cdf95bf666d67a8
+Author: Matthew Brett &lt;matthew.brett@gmail.com&gt;
 Date:   Mon Apr <span class="m">2</span> 18:03:00 <span class="m">2012</span> +0100
 
     Add first draft of paper
 
-commit b00d8121a60532b1ff45a8fadd10c4f539f0d56c
-Author: Matthew &lt;mb312@shanghai.local&gt;
+commit 75206bcb33ff9ad4f15f89b52cdf95bf666d67a8
+Author: Matthew Brett &lt;matthew.brett@gmail.com&gt;
 Date:   Sun Apr <span class="m">1</span> 14:30:13 <span class="m">2012</span> +0100
 
     First backup of my amazing idea
@@ -2278,26 +2269,14 @@ downloaded the figure:</p>
 </div>
 <p>Do a final check with <code class="docutils literal"><span class="pre">git</span> <span class="pre">status</span></code>, then make the commit with:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ git commit -m <span class="s2">&quot;Add another fudge factor&quot;</span>
-<span class="o">[</span>master 8fca247<span class="o">]</span> Add another fudge factor
- Committer: Matthew &lt;mb312@shanghai.local&gt;
-Your name and email address were configured automatically based
-on your username and hostname. Please check that they are accurate.
-You can suppress this message by setting them explicitly:
-
-    git config --global user.name <span class="s2">&quot;Your Name&quot;</span>
-    git config --global user.email you@example.com
-
-After doing this, you may fix the identity used <span class="k">for</span> this commit with:
-
-    git commit --amend --reset-author
-
+<span class="o">[</span>master 003c54a<span class="o">]</span> Add another fudge factor
  <span class="m">2</span> files changed, <span class="m">4</span> insertions<span class="o">(</span>+<span class="o">)</span>, <span class="m">1</span> deletion<span class="o">(</span>-<span class="o">)</span>
  rewrite fancy_figure.png <span class="o">(</span>96%<span class="o">)</span>
 </pre></div>
 </div>
 <p>The branch bookmark has moved again:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git branch -v
-* master 8fca247 Add another fudge factor
+* master 003c54a Add another fudge factor
 </pre></div>
 </div>
 </div>
@@ -2408,19 +2387,7 @@ $ git add fancy_figure.png
 </pre></div>
 </div>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ git commit -m <span class="s2">&quot;Change analysis and add references&quot;</span>
-<span class="o">[</span>master 6bf4912<span class="o">]</span> Change analysis and add references
- Committer: Matthew &lt;mb312@shanghai.local&gt;
-Your name and email address were configured automatically based
-on your username and hostname. Please check that they are accurate.
-You can suppress this message by setting them explicitly:
-
-    git config --global user.name <span class="s2">&quot;Your Name&quot;</span>
-    git config --global user.email you@example.com
-
-After doing this, you may fix the identity used <span class="k">for</span> this commit with:
-
-    git commit --amend --reset-author
-
+<span class="o">[</span>master 2d9e1df<span class="o">]</span> Change analysis and add references
  <span class="m">3</span> files changed, <span class="m">13</span> insertions<span class="o">(</span>+<span class="o">)</span>, <span class="m">2</span> deletions<span class="o">(</span>-<span class="o">)</span>
  rewrite fancy_figure.png <span class="o">(</span>89%<span class="o">)</span>
  create mode <span class="m">100644</span> references.bib
@@ -2428,7 +2395,7 @@ After doing this, you may fix the identity used <span class="k">for</span> this 
 </div>
 <p>The branch bookmark has moved to point to the new commit:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git branch -v
-* master 6bf4912 Change analysis and add references
+* master 2d9e1df Change analysis and add references
 </pre></div>
 </div>
 </div>
@@ -2456,13 +2423,13 @@ area for us.  The command to move the branch bookmark is <code class="docutils l
 <h3>Pointing backwards in history<a class="headerlink" href="#pointing-backwards-in-history" title="Permalink to this headline">¶</a></h3>
 <p>The commit that we want the branch to point to is the previous commit in our
 commit history.  We can use <code class="docutils literal"><span class="pre">git</span> <span class="pre">log</span></code> to see that this commit has hash
-<code class="docutils literal"><span class="pre">8fca247</span></code>.  So, we could do our reset with <code class="docutils literal"><span class="pre">git</span> <span class="pre">reset</span></code>
-<code class="docutils literal"><span class="pre">8fca247</span></code>.  There is a simpler and more readable way to write this
+<code class="docutils literal"><span class="pre">003c54a</span></code>.  So, we could do our reset with <code class="docutils literal"><span class="pre">git</span> <span class="pre">reset</span></code>
+<code class="docutils literal"><span class="pre">003c54a</span></code>.  There is a simpler and more readable way to write this
 common idea, of one commit back in history, and that is to add <code class="docutils literal"><span class="pre">~1</span></code> to a
 reference.  For example, to refer to the commit that is one step back in the
 history from the commit pointed to by the <code class="docutils literal"><span class="pre">master</span></code> branch, you can write
-<code class="docutils literal"><span class="pre">master~1</span></code>.  Because <code class="docutils literal"><span class="pre">master</span></code> points to commit <code class="docutils literal"><span class="pre">6bf4912</span></code>, you could
-also append the <code class="docutils literal"><span class="pre">~1</span></code> to <code class="docutils literal"><span class="pre">6bf4912</span></code>.  You can imagine that <code class="docutils literal"><span class="pre">master~2</span></code>
+<code class="docutils literal"><span class="pre">master~1</span></code>.  Because <code class="docutils literal"><span class="pre">master</span></code> points to commit <code class="docutils literal"><span class="pre">2d9e1df</span></code>, you could
+also append the <code class="docutils literal"><span class="pre">~1</span></code> to <code class="docutils literal"><span class="pre">2d9e1df</span></code>.  You can imagine that <code class="docutils literal"><span class="pre">master~2</span></code>
 will point two steps back in the commit history, and so on.</p>
 <p>So, a readable reset command for our purpose is:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git reset master~1
@@ -2473,7 +2440,7 @@ M	fancy_figure.png
 </div>
 <p>Notice that the branch pointer now points to the previous commit:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git branch -v
-* master 8fca247 Add another fudge factor
+* master 003c54a Add another fudge factor
 </pre></div>
 </div>
 <p>Remember in SAP that your procedure for breaking up the snapshot was to 1)
@@ -2514,19 +2481,7 @@ $ git add fancy_figure.png
 </pre></div>
 </div>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ git commit -m <span class="s2">&quot;Change parameters of analysis&quot;</span>
-<span class="o">[</span>master b373eb4<span class="o">]</span> Change parameters of analysis
- Committer: Matthew &lt;mb312@shanghai.local&gt;
-Your name and email address were configured automatically based
-on your username and hostname. Please check that they are accurate.
-You can suppress this message by setting them explicitly:
-
-    git config --global user.name <span class="s2">&quot;Your Name&quot;</span>
-    git config --global user.email you@example.com
-
-After doing this, you may fix the identity used <span class="k">for</span> this commit with:
-
-    git commit --amend --reset-author
-
+<span class="o">[</span>master d0ef727<span class="o">]</span> Change parameters of analysis
  <span class="m">2</span> files changed, <span class="m">3</span> insertions<span class="o">(</span>+<span class="o">)</span>, <span class="m">2</span> deletions<span class="o">(</span>-<span class="o">)</span>
  rewrite fancy_figure.png <span class="o">(</span>89%<span class="o">)</span>
 </pre></div>
@@ -2552,19 +2507,7 @@ nothing added to commit but untracked files present <span class="o">(</span>use 
 </pre></div>
 </div>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ git commit -m <span class="s2">&quot;Add references&quot;</span>
-<span class="o">[</span>master a9f35cf<span class="o">]</span> Add references
- Committer: Matthew &lt;mb312@shanghai.local&gt;
-Your name and email address were configured automatically based
-on your username and hostname. Please check that they are accurate.
-You can suppress this message by setting them explicitly:
-
-    git config --global user.name <span class="s2">&quot;Your Name&quot;</span>
-    git config --global user.email you@example.com
-
-After doing this, you may fix the identity used <span class="k">for</span> this commit with:
-
-    git commit --amend --reset-author
-
+<span class="o">[</span>master c3f19b2<span class="o">]</span> Add references
  <span class="m">1</span> file changed, <span class="m">10</span> insertions<span class="o">(</span>+<span class="o">)</span>
  create mode <span class="m">100644</span> references.bib
 </pre></div>
@@ -2586,20 +2529,20 @@ want.  We want the version of <code class="docutils literal"><span class="pre">c
 To find the first commit, we can use git log.  To make git log a bit less
 verbose, I&#8217;ve added the <code class="docutils literal"><span class="pre">--oneline</span></code> flag, to print out one line per commit:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git log --oneline
-a9f35cf Add references
-b373eb4 Change parameters of analysis
-8fca247 Add another fudge factor
-33f112b Add first draft of paper
-b00d812 First backup of my amazing idea
+c3f19b2 Add references
+d0ef727 Change parameters of analysis
+003c54a Add another fudge factor
+7919d37 Add first draft of paper
+75206bc First backup of my amazing idea
 </pre></div>
 </div>
 <p>Now we have the abbreviated commit hash for the first commit, we can checkout
 that version to the working tree:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git checkout b00d812 clever_analysis.py
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git checkout 75206bc clever_analysis.py
 </pre></div>
 </div>
 <p>We also want the previous version of the figure:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git checkout b00d812 fancy_figure.png
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git checkout 75206bc fancy_figure.png
 </pre></div>
 </div>
 <p>Notice that the checkout also added the files to the staging area:</p>
@@ -2614,19 +2557,7 @@ Changes to be committed:
 </div>
 <p>We are ready for our sixth commit:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ git commit -m <span class="s2">&quot;Revert to original script &amp; figure&quot;</span>
-<span class="o">[</span>master 32038b1<span class="o">]</span> Revert to original script <span class="p">&amp;</span> figure
- Committer: Matthew &lt;mb312@shanghai.local&gt;
-Your name and email address were configured automatically based
-on your username and hostname. Please check that they are accurate.
-You can suppress this message by setting them explicitly:
-
-    git config --global user.name <span class="s2">&quot;Your Name&quot;</span>
-    git config --global user.email you@example.com
-
-After doing this, you may fix the identity used <span class="k">for</span> this commit with:
-
-    git commit --amend --reset-author
-
+<span class="o">[</span>master 677c9a6<span class="o">]</span> Revert to original script <span class="p">&amp;</span> figure
  <span class="m">2</span> files changed, <span class="m">1</span> insertion<span class="o">(</span>+<span class="o">)</span>, <span class="m">5</span> deletions<span class="o">(</span>-<span class="o">)</span>
  rewrite fancy_figure.png <span class="o">(</span>97%<span class="o">)</span>
 </pre></div>
@@ -2641,7 +2572,7 @@ working directory to the conference.</p>
 <p>We as Josephine don&#8217;t want to change the previous bookmark, which is
 <code class="docutils literal"><span class="pre">master</span></code>:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git branch -v
-* master 32038b1 Revert to original script <span class="p">&amp;</span> figure
+* master 677c9a6 Revert to original script <span class="p">&amp;</span> figure
 </pre></div>
 </div>
 <p>We would like to use our own bookmark, so we can make changes without
@@ -2653,13 +2584,13 @@ affecting anyone else.  To do this we use <code class="docutils literal"><span c
 the commit at which the branch should start.  Now we have a new branch, that
 currently points to the same commit as <code class="docutils literal"><span class="pre">master</span></code>:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git branch -v
-  josephines-branch 32038b1 Revert to original script <span class="p">&amp;</span> figure
-* master            32038b1 Revert to original script <span class="p">&amp;</span> figure
+  josephines-branch 677c9a6 Revert to original script <span class="p">&amp;</span> figure
+* master            677c9a6 Revert to original script <span class="p">&amp;</span> figure
 </pre></div>
 </div>
 <p>The new branch is nothing but a text file pointing to the commit:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ cat .git/refs/heads/josephines-branch
-32038b105308dbd3b45b05b0b2c64e09a87861cf
+677c9a6ac3004e5d84d9739751a89867e09238f4
 </pre></div>
 </div>
 <p>Now we have two branches, git needs to know which branch we are working on.
@@ -2699,8 +2630,8 @@ Switched to branch <span class="s1">&#39;josephines-branch&#39;</span>
 </div>
 <p>The asterisk has now moved to <code class="docutils literal"><span class="pre">josephines-branch</span></code>:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git branch -v
-* josephines-branch 32038b1 Revert to original script <span class="p">&amp;</span> figure
-  master            32038b1 Revert to original script <span class="p">&amp;</span> figure
+* josephines-branch 677c9a6 Revert to original script <span class="p">&amp;</span> figure
+  master            677c9a6 Revert to original script <span class="p">&amp;</span> figure
 </pre></div>
 </div>
 <p>This is because the file <code class="docutils literal"><span class="pre">HEAD</span></code> now points to <code class="docutils literal"><span class="pre">josephines-branch</span></code>:</p>
@@ -2747,27 +2678,15 @@ Changes to be committed:
 </div>
 <p>Finally we make the commit:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ git commit -m <span class="s2">&quot;Expand the introduction&quot;</span>
-<span class="o">[</span>josephines-branch aa9dd5c<span class="o">]</span> Expand the introduction
- Committer: Matthew &lt;mb312@shanghai.local&gt;
-Your name and email address were configured automatically based
-on your username and hostname. Please check that they are accurate.
-You can suppress this message by setting them explicitly:
-
-    git config --global user.name <span class="s2">&quot;Your Name&quot;</span>
-    git config --global user.email you@example.com
-
-After doing this, you may fix the identity used <span class="k">for</span> this commit with:
-
-    git commit --amend --reset-author
-
+<span class="o">[</span>josephines-branch 0a5a1b9<span class="o">]</span> Expand the introduction
  <span class="m">1</span> file changed, <span class="m">6</span> insertions<span class="o">(</span>+<span class="o">)</span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal"><span class="pre">master</span></code> branch has not changed, but <code class="docutils literal"><span class="pre">josephines-branch</span></code> changed to
 point to the new commit:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git branch -v
-* josephines-branch aa9dd5c Expand the introduction
-  master            32038b1 Revert to original script <span class="p">&amp;</span> figure
+* josephines-branch 0a5a1b9 Expand the introduction
+  master            677c9a6 Revert to original script <span class="p">&amp;</span> figure
 </pre></div>
 </div>
 <p>Now we go back to being ourselves, working in the lab.  We change back to the
@@ -2778,8 +2697,8 @@ Switched to branch <span class="s1">&#39;master&#39;</span>
 </div>
 <p>The asterisk now points at <code class="docutils literal"><span class="pre">master</span></code>:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git branch -v
-  josephines-branch aa9dd5c Expand the introduction
-* master            32038b1 Revert to original script <span class="p">&amp;</span> figure
+  josephines-branch 0a5a1b9 Expand the introduction
+* master            677c9a6 Revert to original script <span class="p">&amp;</span> figure
 </pre></div>
 </div>
 <p>If you look at the contents of <code class="docutils literal"><span class="pre">nobel_prize.md</span></code> in the working directory,
@@ -2832,19 +2751,7 @@ $ git add fancy_figure.png
 </pre></div>
 </div>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ git commit -m <span class="s2">&quot;More fun with fudge&quot;</span>
-<span class="o">[</span>master 33420bf<span class="o">]</span> More fun with fudge
- Committer: Matthew &lt;mb312@shanghai.local&gt;
-Your name and email address were configured automatically based
-on your username and hostname. Please check that they are accurate.
-You can suppress this message by setting them explicitly:
-
-    git config --global user.name <span class="s2">&quot;Your Name&quot;</span>
-    git config --global user.email you@example.com
-
-After doing this, you may fix the identity used <span class="k">for</span> this commit with:
-
-    git commit --amend --reset-author
-
+<span class="o">[</span>master 7598e4e<span class="o">]</span> More fun with fudge
  <span class="m">2</span> files changed, <span class="m">2</span> insertions<span class="o">(</span>+<span class="o">)</span>
  rewrite fancy_figure.png <span class="o">(</span>96%<span class="o">)</span>
 </pre></div>
@@ -2852,8 +2759,8 @@ After doing this, you may fix the identity used <span class="k">for</span> this 
 <p>Because <code class="docutils literal"><span class="pre">HEAD</span></code> currently current points to <code class="docutils literal"><span class="pre">master</span></code>, git updated the
 <code class="docutils literal"><span class="pre">master</span></code> branch with the new commit:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git branch -v
-  josephines-branch aa9dd5c Expand the introduction
-* master            33420bf More fun with fudge
+  josephines-branch 0a5a1b9 Expand the introduction
+* master            7598e4e More fun with fudge
 </pre></div>
 </div>
 </div>
@@ -2871,15 +2778,15 @@ Merge made by the <span class="s1">&#39;recursive&#39;</span> strategy.
 changes the Josephine made to the paper.</p>
 <p>The commit has two parents, which are the two commits from which we merged:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git log --oneline --parents
-a9850f8 33420bf aa9dd5c Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
-aa9dd5c 32038b1 Expand the introduction
-33420bf 32038b1 More fun with fudge
-32038b1 a9f35cf Revert to original script <span class="p">&amp;</span> figure
-a9f35cf b373eb4 Add references
-b373eb4 8fca247 Change parameters of analysis
-8fca247 33f112b Add another fudge factor
-33f112b b00d812 Add first draft of paper
-b00d812 First backup of my amazing idea
+d3a7dd7 7598e4e 0a5a1b9 Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
+0a5a1b9 677c9a6 Expand the introduction
+7598e4e 677c9a6 More fun with fudge
+677c9a6 c3f19b2 Revert to original script <span class="p">&amp;</span> figure
+c3f19b2 d0ef727 Add references
+d0ef727 003c54a Change parameters of analysis
+003c54a 7919d37 Add another fudge factor
+7919d37 75206bc Add first draft of paper
+75206bc First backup of my amazing idea
 </pre></div>
 </div>
 </div>
@@ -2894,17 +2801,17 @@ think of this graph when we are working with a git repository.</p>
 <code class="docutils literal"><span class="pre">git</span> <span class="pre">log</span></code> has a useful flag called <code class="docutils literal"><span class="pre">--graph</span></code> which shows the commits as a
 graph using text characters:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git log --oneline --graph
-*   a9850f8 Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
+*   d3a7dd7 Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
 <span class="p">|</span><span class="se">\ </span> 
-<span class="p">|</span> * aa9dd5c Expand the introduction
-* <span class="p">|</span> 33420bf More fun with fudge
+<span class="p">|</span> * 0a5a1b9 Expand the introduction
+* <span class="p">|</span> 7598e4e More fun with fudge
 <span class="p">|</span>/  
-* 32038b1 Revert to original script <span class="p">&amp;</span> figure
-* a9f35cf Add references
-* b373eb4 Change parameters of analysis
-* 8fca247 Add another fudge factor
-* 33f112b Add first draft of paper
-* b00d812 First backup of my amazing idea
+* 677c9a6 Revert to original script <span class="p">&amp;</span> figure
+* c3f19b2 Add references
+* d0ef727 Change parameters of analysis
+* 003c54a Add another fudge factor
+* 7919d37 Add first draft of paper
+* 75206bc First backup of my amazing idea
 </pre></div>
 </div>
 <p>This kind of display is so useful that many of us have a shortcut to this
@@ -2919,17 +2826,17 @@ For example, you may want to set up an alias like this:</p>
 <code class="docutils literal"><span class="pre">slog</span></code> alias as the default for your user account, so you can use <code class="docutils literal"><span class="pre">git</span>
 <span class="pre">slog</span></code> whenever you are using git as this user on this computer.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git slog
-*   a9850f8 Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
+*   d3a7dd7 Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
 <span class="p">|</span><span class="se">\ </span> 
-<span class="p">|</span> * aa9dd5c Expand the introduction
-* <span class="p">|</span> 33420bf More fun with fudge
+<span class="p">|</span> * 0a5a1b9 Expand the introduction
+* <span class="p">|</span> 7598e4e More fun with fudge
 <span class="p">|</span>/  
-* 32038b1 Revert to original script <span class="p">&amp;</span> figure
-* a9f35cf Add references
-* b373eb4 Change parameters of analysis
-* 8fca247 Add another fudge factor
-* 33f112b Add first draft of paper
-* b00d812 First backup of my amazing idea
+* 677c9a6 Revert to original script <span class="p">&amp;</span> figure
+* c3f19b2 Add references
+* d0ef727 Change parameters of analysis
+* 003c54a Add another fudge factor
+* 7919d37 Add first draft of paper
+* 75206bc First backup of my amazing idea
 </pre></div>
 </div>
 </div>
@@ -3007,29 +2914,20 @@ set of tips that contains some very valuable nuggets, once you&#8217;re past the
 basics.</li>
 </ul>
 <p class="rubric">Footnotes</p>
-<table class="docutils footnote" frame="void" id="list-figure" rules="none">
+<table class="docutils footnote" frame="void" id="delete-git-index" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[1]</td><td>Would I get the same hash for the directory listing if I had
-had a different figure?  No – because the figure hash would be
-different, the directory listing would contain this different hash, and so
-the hash for the directory listing must be different.</td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="commit-figure" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label">[2]</td><td>Would the commit hash value change if the figure changed?
-Yes, because the change in the figure would cause a different hash for the
-figure; this would cause a different hash for the directory listing, and
-this hash in turn appears in the commit contents, causing a different hash
-for the commit.</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id2">[1]</a></td><td>What would happen if we delete the <code class="docutils literal"><span class="pre">.git/index</span></code> file?
+Remember, the <code class="docutils literal"><span class="pre">.git/index</span></code> file contains the directory listing for the
+staging area.  If we delete the file, git will assume that the directory
+listing is empty, and therefore that there are no files in the staging
+area.</td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="no-parents" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[3]</a></td><td>Why are the output of <code class="docutils literal"><span class="pre">git</span> <span class="pre">log</span></code> and <code class="docutils literal"><span class="pre">git</span> <span class="pre">log</span> <span class="pre">--parents</span></code>
+<tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td>Why are the output of <code class="docutils literal"><span class="pre">git</span> <span class="pre">log</span></code> and <code class="docutils literal"><span class="pre">git</span> <span class="pre">log</span> <span class="pre">--parents</span></code>
 the same in this case?  They are the same because this is the first commit,
 and the first commit has no parents.</td></tr>
 </tbody>
@@ -3037,7 +2935,7 @@ and the first commit has no parents.</td></tr>
 <table class="docutils footnote" frame="void" id="git-object-dir" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[4]</a></td><td>When git stores a file in the <code class="docutils literal"><span class="pre">.git/objects</span></code> directory,
+<tr><td class="label"><a class="fn-backref" href="#id1">[3]</a></td><td>When git stores a file in the <code class="docutils literal"><span class="pre">.git/objects</span></code> directory,
 it makes a hash from the file, takes the first two digits of the hash to
 make a directory name, and then stores a file in this directory with a
 filename from the remaining hash digits.  For example, when adding a file
