@@ -92,11 +92,12 @@ website.
     it early or later in your learning process. I leave it up to you to
     decide.
 
-So |--| have no truck with people who try and tell you that you can just use
-git and that you don't need the `deep shit`_. You *do* need the deep shit, but
-the deep shit isn't that deep, and it will take you an hour of your time to
-get all of it.  Then I'm betting that you'll see that the alchemist has
-succeeded at last, and the |--| er |--| lead has finally turned into gold.
+Of course it would be easier if you didn't need the `deep shit`_ |--| but if
+you want to spend the least time suffering from git, and the most time
+enjoying it, then you *do* need the deep shit. Luckily but the deep shit isn't
+that deep.  When you have got through it, I'm betting that you'll agree that
+the alchemist has succeeded at last, and the |--| er |--| lead has finally
+turned into gold.
 
 So |--| please |--| invest an hour and a half of your life to understand this
 stuff.  Concentrate, go slowly, make sure you get it. In return for 90 minutes
