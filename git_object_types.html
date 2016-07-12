@@ -31,8 +31,9 @@
     <script type="text/javascript" src="_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="Curious git" href="index.html" />
-    <link rel="next" title="How do git submodules work?" href="git_submodules.html" />
-    <link rel="prev" title="git remotes - working with other people, making backups" href="curious_remotes.html" />
+    <link rel="up" title="Deeper inside git" href="curious_details.html" />
+    <link rel="next" title="An algorithm for git push" href="git_push_algorithm.html" />
+    <link rel="prev" title="How do git submodules work?" href="git_submodules.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -68,16 +69,17 @@
   <ul class="dropdown-menu globaltoc"
       role="menu"
       aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="curious_intro.html">Learn git right for a long and happy life</a></li>
+<li class="toctree-l1"><a class="reference internal" href="curious_journey.html">A curious tale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="curious_git.html">Curious git</a></li>
 <li class="toctree-l1"><a class="reference internal" href="curious_remotes.html">git remotes - working with other people, making backups</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Types of git objects</a></li>
-<li class="toctree-l1"><a class="reference internal" href="git_submodules.html">How do git submodules work?</a></li>
-<li class="toctree-l1"><a class="reference internal" href="git_push_algorithm.html">An algorithm for git push</a></li>
-<li class="toctree-l1"><a class="reference internal" href="reading_git_objects.html">Reading git objects</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="curious_details.html">Deeper inside git</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="curious_git.html">The curious coder&#8217;s guide to git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="curious_git.html">Curious git</a></li>
 <li class="toctree-l1"><a class="reference internal" href="README.html">Curious git</a></li>
 <li class="toctree-l1"><a class="reference internal" href="np-versions/README.html">np-versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pdf_contents.html">The curious coder&#8217;s guide to git</a></li>
 </ul>
 </ul>
 </li>
@@ -107,11 +109,11 @@
               
                 
   <li>
-    <a href="curious_remotes.html" title="Previous Chapter: git remotes - working with other people, making backups"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; git remotes -...</span>
+    <a href="git_submodules.html" title="Previous Chapter: How do git submodules work?"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; How do git su...</span>
     </a>
   </li>
   <li>
-    <a href="git_submodules.html" title="Next Chapter: How do git submodules work?"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">How do git su... &raquo;</span>
+    <a href="git_push_algorithm.html" title="Next Chapter: An algorithm for git push"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">An algorithm ... &raquo;</span>
     </a>
   </li>
               
@@ -147,7 +149,7 @@
       
   <div class="section" id="types-of-git-objects">
 <span id="git-object-types"></span><h1>Types of git objects<a class="headerlink" href="#types-of-git-objects" title="Permalink to this headline">¶</a></h1>
-<p>If you have read <a class="reference internal" href="curious_git.html"><em>The curious coder&#8217;s guide to git</em></a>, you know that git stores different types
+<p>If you have read <a class="reference internal" href="curious_git.html"><em>Curious git</em></a>, you know that git stores different types
 of objects in <code class="docutils literal"><span class="pre">.git/objects</span></code>.  The object types are:</p>
 <ul class="simple">
 <li><em>commit</em>;</li>
@@ -167,12 +169,12 @@ Initialized empty Git repository in /Users/mb312/dev_trees/curious-git/working/e
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">echo</span> <span class="s2">&quot;An example file&quot;</span> &gt; example_file.txt
 $ git add example_file.txt
 $ git commit -m <span class="s2">&quot;An example commit&quot;</span>
-<span class="o">[</span>master <span class="o">(</span>root-commit<span class="o">)</span> 9ed776e<span class="o">]</span> An example commit
+<span class="o">[</span>master <span class="o">(</span>root-commit<span class="o">)</span> 9b7631e<span class="o">]</span> An example commit
  <span class="m">1</span> file changed, <span class="m">1</span> insertion<span class="o">(</span>+<span class="o">)</span>
  create mode <span class="m">100644</span> example_file.txt
 </pre></div>
 </div>
-<p>From <a class="reference internal" href="curious_git.html"><em>The curious coder&#8217;s guide to git</em></a>, we expect there will now be three objects in the
+<p>From <a class="reference internal" href="curious_git.html"><em>Curious git</em></a>, we expect there will now be three objects in the
 directory <code class="docutils literal"><span class="pre">.git/objects</span></code>, one storing the backup of <code class="docutils literal"><span class="pre">example_file.txt</span></code>,
 one storing the directory listing for the commit, and one storing the commit
 message:</p>
@@ -181,8 +183,8 @@ message:</p>
 │   └── 781156939ad540b2434d012446154321e41e03 [32B]
 ├── 83
 │   └── 207f0274383b4a79ff6d6c297e95204ba961bc [60B]
-├── 9e
-│   └── d776e44cddc0eba5a02b8f661f2d138b1c40e8 [135B]
+├── 9b
+│   └── 7631eb0ea73cfc9291f52a322575f4a34763ba [135B]
 ├── info
 └── pack
 </pre></div>
@@ -193,9 +195,9 @@ message:</p>
 author, committer, date and message.</p>
 <p>Git log will show us the hash for the commit message:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git log
-commit 9ed776e44cddc0eba5a02b8f661f2d138b1c40e8
+commit 9b7631eb0ea73cfc9291f52a322575f4a34763ba
 Author: Matthew Brett &lt;matthew.brett@gmail.com&gt;
-Date:   Mon Jul <span class="m">11</span> 16:32:56 <span class="m">2016</span> +0100
+Date:   Tue Jul <span class="m">12</span> 18:36:10 <span class="m">2016</span> +0100
 
     An example commit
 </pre></div>
@@ -208,15 +210,15 @@ that you will probably not need in your daily git work.</p>
 </div>
 <p><code class="docutils literal"><span class="pre">git</span> <span class="pre">cat-file</span> <span class="pre">-t</span></code> shows us the type of the object represented by a
 particular hash:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git cat-file -t 9ed776e44cddc0eba5a02b8f661f2d138b1c40e8
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git cat-file -t 9b7631eb0ea73cfc9291f52a322575f4a34763ba
 commit
 </pre></div>
 </div>
 <p><code class="docutils literal"><span class="pre">git</span> <span class="pre">cat-file</span> <span class="pre">-p</span></code> shows the contents of the file associated with this hash:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git cat-file -p 9ed776e44cddc0eba5a02b8f661f2d138b1c40e8
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git cat-file -p 9b7631eb0ea73cfc9291f52a322575f4a34763ba
 tree 83207f0274383b4a79ff6d6c297e95204ba961bc
-author Matthew Brett &lt;matthew.brett@gmail.com&gt; <span class="m">1468251176</span> +0100
-committer Matthew Brett &lt;matthew.brett@gmail.com&gt; <span class="m">1468251176</span> +0100
+author Matthew Brett &lt;matthew.brett@gmail.com&gt; <span class="m">1468344970</span> +0100
+committer Matthew Brett &lt;matthew.brett@gmail.com&gt; <span class="m">1468344970</span> +0100
 
 An example commit
 </pre></div>
@@ -266,30 +268,30 @@ so let&#8217;s make one:</p>
 </div>
 <p>This gives us a new object in <code class="docutils literal"><span class="pre">.git/objects</span></code>:</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>objects
+├── 28
+│   └── e562115d98a9c8271bdeaf85d11d20a50bc53c [145B]
 ├── 2f
 │   └── 781156939ad540b2434d012446154321e41e03 [32B]
-├── 69
-│   └── 8382b59f5ea0ebb8bc0fb99136aad6d6b11701 [146B]
 ├── 83
 │   └── 207f0274383b4a79ff6d6c297e95204ba961bc [60B]
-├── 9e
-│   └── d776e44cddc0eba5a02b8f661f2d138b1c40e8 [135B]
+├── 9b
+│   └── 7631eb0ea73cfc9291f52a322575f4a34763ba [135B]
 ├── info
 └── pack
 </pre></div>
 </div>
 <p>The object is of type &#8220;tag&#8221;:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git cat-file -t 698382b59f5ea0ebb8bc0fb99136aad6d6b11701
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git cat-file -t 28e562115d98a9c8271bdeaf85d11d20a50bc53c
 tag
 </pre></div>
 </div>
 <p>The tag object type contains the hash of the tagged object, the type of tagged
 object (usually a commit), the tag name, author, date and message:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git cat-file -p 698382b59f5ea0ebb8bc0fb99136aad6d6b11701
-object 9ed776e44cddc0eba5a02b8f661f2d138b1c40e8
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git cat-file -p 28e562115d98a9c8271bdeaf85d11d20a50bc53c
+object 9b7631eb0ea73cfc9291f52a322575f4a34763ba
 <span class="nb">type</span> commit
 tag first-commit
-tagger Matthew Brett &lt;matthew.brett@gmail.com&gt; <span class="m">1468251176</span> +0100
+tagger Matthew Brett &lt;matthew.brett@gmail.com&gt; <span class="m">1468344970</span> +0100
 
 Tag pointing to first commit
 </pre></div>
