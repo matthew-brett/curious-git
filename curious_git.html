@@ -97,17 +97,17 @@
 <li><a class="reference internal" href="#getting-help">Getting help</a></li>
 <li><a class="reference internal" href="#initializing-the-repository-directory">Initializing the repository directory</a></li>
 <li><a class="reference internal" href="#updating-terms-for-git">Updating terms for git</a></li>
-<li><a class="reference internal" href="#git-add-put-stuff-into-the-staging-area">git add – put stuff into the staging area</a></li>
+<li><a class="reference internal" href="#git-add-put-stuff-into-the-staging-area"><code class="docutils literal"><span class="pre">git</span> <span class="pre">add</span></code> – put stuff into the staging area</a></li>
 <li><a class="reference internal" href="#the-git-staging-area">The git staging area</a></li>
 <li><a class="reference internal" href="#git-objects">Git objects</a></li>
 <li><a class="reference internal" href="#hash-values-can-usually-be-abbreviated-to-seven-characters">Hash values can usually be abbreviated to seven characters</a></li>
-<li><a class="reference internal" href="#git-status-showing-the-status-of-files-in-the-working-tree">git status – showing the status of files in the working tree</a></li>
+<li><a class="reference internal" href="#git-status-showing-the-status-of-files-in-the-working-tree"><code class="docutils literal"><span class="pre">git</span> <span class="pre">status</span></code> – showing the status of files in the working tree</a></li>
 <li><a class="reference internal" href="#staging-the-other-files-with-git-add">Staging the other files with git add</a></li>
-<li><a class="reference internal" href="#git-commit-making-the-snapshot">git commit – making the snapshot</a></li>
-<li><a class="reference internal" href="#git-log-what-are-the-commits-so-far">git log – what are the commits so far?</a></li>
-<li><a class="reference internal" href="#git-branch-which-branch-are-we-on">git branch - which branch are we on?</a></li>
+<li><a class="reference internal" href="#git-commit-making-the-snapshot"><code class="docutils literal"><span class="pre">git</span> <span class="pre">commit</span></code> – making the snapshot</a></li>
+<li><a class="reference internal" href="#git-log-what-are-the-commits-so-far"><code class="docutils literal"><span class="pre">git</span> <span class="pre">log</span></code> – what are the commits so far?</a></li>
+<li><a class="reference internal" href="#git-branch-which-branch-are-we-on"><code class="docutils literal"><span class="pre">git</span> <span class="pre">branch</span></code> - which branch are we on?</a></li>
 <li><a class="reference internal" href="#a-second-commit">A second commit</a></li>
-<li><a class="reference internal" href="#git-diff-what-has-changed">git diff – what has changed?</a></li>
+<li><a class="reference internal" href="#git-diff-what-has-changed"><code class="docutils literal"><span class="pre">git</span> <span class="pre">diff</span></code> – what has changed?</a></li>
 <li><a class="reference internal" href="#you-need-to-git-add-a-file-to-put-it-into-the-staging-area">You need to <code class="docutils literal"><span class="pre">git</span> <span class="pre">add</span></code> a file to put it into the staging area</a></li>
 <li><a class="reference internal" href="#an-ordinary-day-in-gitworld">An ordinary day in gitworld</a></li>
 <li><a class="reference internal" href="#commit-four">Commit four</a></li>
@@ -311,7 +311,7 @@ default, and almost always in practice.</dd>
 </dl>
 </div>
 <div class="section" id="git-add-put-stuff-into-the-staging-area">
-<span id="git-add"></span><h2>git add – put stuff into the staging area<a class="headerlink" href="#git-add-put-stuff-into-the-staging-area" title="Permalink to this headline">¶</a></h2>
+<span id="git-add"></span><h2><code class="docutils literal"><span class="pre">git</span> <span class="pre">add</span></code> – put stuff into the staging area<a class="headerlink" href="#git-add-put-stuff-into-the-staging-area" title="Permalink to this headline">¶</a></h2>
 <p>In the next few sections, we will do our first commit (snapshot).</p>
 <p>First we will put the files for the commit into the staging area.</p>
 <p>The command to put files into the staging area is <code class="docutils literal"><span class="pre">git</span> <span class="pre">add</span></code>.</p>
@@ -461,7 +461,7 @@ plt.savefig<span class="o">(</span><span class="s1">&#39;fancy_figure.png&#39;</
 </div>
 </div>
 <div class="section" id="git-status-showing-the-status-of-files-in-the-working-tree">
-<h2>git status – showing the status of files in the working tree<a class="headerlink" href="#git-status-showing-the-status-of-files-in-the-working-tree" title="Permalink to this headline">¶</a></h2>
+<h2><code class="docutils literal"><span class="pre">git</span> <span class="pre">status</span></code> – showing the status of files in the working tree<a class="headerlink" href="#git-status-showing-the-status-of-files-in-the-working-tree" title="Permalink to this headline">¶</a></h2>
 <p>The working tree is the contents of the <code class="docutils literal"><span class="pre">nobel_prize</span></code> directory, excluding
 the <code class="docutils literal"><span class="pre">.git</span></code> repository directory.</p>
 <p><code class="docutils literal"><span class="pre">git</span> <span class="pre">status</span></code> tells us about the relationship of the files in the working
@@ -525,7 +525,7 @@ Changes to be committed:
 </div>
 </div>
 <div class="section" id="git-commit-making-the-snapshot">
-<h2>git commit – making the snapshot<a class="headerlink" href="#git-commit-making-the-snapshot" title="Permalink to this headline">¶</a></h2>
+<h2><code class="docutils literal"><span class="pre">git</span> <span class="pre">commit</span></code> – making the snapshot<a class="headerlink" href="#git-commit-making-the-snapshot" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ git commit -m <span class="s2">&quot;First backup of my amazing idea&quot;</span>
 <span class="o">[</span>master <span class="o">(</span>root-commit<span class="o">)</span> 75206bc<span class="o">]</span> First backup of my amazing idea
  <span class="m">3</span> files changed, <span class="m">5023</span> insertions<span class="o">(</span>+<span class="o">)</span>
@@ -598,7 +598,7 @@ entry in the directory (where &#8220;tree&#8221; means a sub-directory, and &#82
 file), the file hash, and the file name (see <a class="reference internal" href="git_object_types.html#git-object-types"><span>Types of git objects</span></a>).</p>
 </div>
 <div class="section" id="git-log-what-are-the-commits-so-far">
-<h2>git log – what are the commits so far?<a class="headerlink" href="#git-log-what-are-the-commits-so-far" title="Permalink to this headline">¶</a></h2>
+<h2><code class="docutils literal"><span class="pre">git</span> <span class="pre">log</span></code> – what are the commits so far?<a class="headerlink" href="#git-log-what-are-the-commits-so-far" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git log
 commit 75206bcb33ff9ad4f15f89b52cdf95bf666d67a8
 Author: Matthew Brett &lt;matthew.brett@gmail.com&gt;
@@ -623,7 +623,7 @@ Date:   Sun Apr <span class="m">1</span> 14:30:13 <span class="m">2012</span> +0
 case? (answer <a class="footnote-reference" href="#no-parents" id="id3">[2]</a>).</p>
 </div>
 <div class="section" id="git-branch-which-branch-are-we-on">
-<h2>git branch - which branch are we on?<a class="headerlink" href="#git-branch-which-branch-are-we-on" title="Permalink to this headline">¶</a></h2>
+<h2><code class="docutils literal"><span class="pre">git</span> <span class="pre">branch</span></code> - which branch are we on?<a class="headerlink" href="#git-branch-which-branch-are-we-on" title="Permalink to this headline">¶</a></h2>
 <p>Branches are bookmarks. They associate a name (like &#8220;my_bookmark&#8221; or &#8220;master&#8221;)
 with a commit (such as <code class="docutils literal"><span class="pre">75206bcb33ff9ad4f15f89b52cdf95bf666d67a8</span></code>).</p>
 <p>The default branch (bookmark) for git is called <code class="docutils literal"><span class="pre">master</span></code>. Git creates it
@@ -739,7 +739,7 @@ Date:   Sun Apr <span class="m">1</span> 14:30:13 <span class="m">2012</span> +0
 </div>
 </div>
 <div class="section" id="git-diff-what-has-changed">
-<h2>git diff – what has changed?<a class="headerlink" href="#git-diff-what-has-changed" title="Permalink to this headline">¶</a></h2>
+<h2><code class="docutils literal"><span class="pre">git</span> <span class="pre">diff</span></code> – what has changed?<a class="headerlink" href="#git-diff-what-has-changed" title="Permalink to this headline">¶</a></h2>
 <p>Our next commit will have edits to the <code class="docutils literal"><span class="pre">clever_analysis.py</span></code> script.  We will
 also refresh the figure with the result of running the script.</p>
 <p>I open the <code class="docutils literal"><span class="pre">clever_analysis.py</span></code> file in text editor and adjust the fudge
@@ -1349,7 +1349,7 @@ Merge made by the <span class="s1">&#39;recursive&#39;</span> strategy.
 changes the Josephine made to the paper.</p>
 <p>The commit has two parents, which are the two commits from which we merged:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git log --oneline --parents
-7b5b86c 7598e4e 0a5a1b9 Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
+d4c98ce 7598e4e 0a5a1b9 Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
 0a5a1b9 677c9a6 Expand the introduction
 7598e4e 677c9a6 More fun with fudge
 677c9a6 c3f19b2 Revert to original script <span class="p">&amp;</span> figure
@@ -1372,7 +1372,7 @@ think of this graph when we are working with a git repository.</p>
 <code class="docutils literal"><span class="pre">git</span> <span class="pre">log</span></code> has a useful flag called <code class="docutils literal"><span class="pre">--graph</span></code> which shows the commits as a
 graph using text characters:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git log --oneline --graph
-*   7b5b86c Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
+*   d4c98ce Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
 <span class="p">|</span><span class="se">\ </span> 
 <span class="p">|</span> * 0a5a1b9 Expand the introduction
 * <span class="p">|</span> 7598e4e More fun with fudge
@@ -1397,7 +1397,7 @@ For example, you may want to set up an alias like this:</p>
 <code class="docutils literal"><span class="pre">slog</span></code> alias as the default for your user account, so you can use <code class="docutils literal"><span class="pre">git</span>
 <span class="pre">slog</span></code> whenever you are using git as this user on this computer.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git slog
-*   7b5b86c Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
+*   d4c98ce Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
 <span class="p">|</span><span class="se">\ </span> 
 <span class="p">|</span> * 0a5a1b9 Expand the introduction
 * <span class="p">|</span> 7598e4e More fun with fudge

@@ -116,9 +116,9 @@ Repository directory
 
 .. _git-add:
 
-********************************************
-git add |--| put stuff into the staging area
-********************************************
+************************************************
+``git add`` |--| put stuff into the staging area
+************************************************
 
 In the next few sections, we will do our first commit (snapshot).
 
@@ -265,9 +265,9 @@ uniquely.  7 digits is nearly always enough, as in:
 
     git cat-file -p {{ analysis_1_hash_7 }}
 
-***************************************************************
-git status |--| showing the status of files in the working tree
-***************************************************************
+*******************************************************************
+``git status`` |--| showing the status of files in the working tree
+*******************************************************************
 
 The working tree is the contents of the ``nobel_prize`` directory, excluding
 the ``.git`` repository directory.
@@ -309,9 +309,9 @@ We have staged all three of our files.  We have three objects in
 
     {{ np_tree }} .git/objects
 
-***********************************
-git commit |--| making the snapshot
-***********************************
+***************************************
+``git commit`` |--| making the snapshot
+***************************************
 
 .. prizecommit:: commit_1_sha 2012-04-01 14:30:13
 
@@ -371,9 +371,9 @@ Each line in the directory listing gives the file permissions, the type of the
 entry in the directory (where "tree" means a sub-directory, and "blob" means a
 file), the file hash, and the file name (see :ref:`git-object-types`).
 
-*****************************************
-git log |--| what are the commits so far?
-*****************************************
+*********************************************
+``git log`` |--| what are the commits so far?
+*********************************************
 
 .. nprun::
 
@@ -392,9 +392,9 @@ We can also ask to the see the parents of each commit in the log:
 Why are the output of ``git log`` and ``git log --parents`` the same in this
 case? (answer [#no-parents]_).
 
-************************************
-git branch - which branch are we on?
-************************************
+****************************************
+``git branch`` - which branch are we on?
+****************************************
 
 Branches are bookmarks. They associate a name (like "my_bookmark" or "master")
 with a commit (such as |commit_1_sha|).
@@ -499,9 +499,9 @@ the first via its hash.  Git lists the parent hash after the commit hash:
 
     git log --parents
 
-*******************************
-git diff |--| what has changed?
-*******************************
+***********************************
+``git diff`` |--| what has changed?
+***********************************
 
 Our next commit will have edits to the ``clever_analysis.py`` script.  We will
 also refresh the figure with the result of running the script.
