@@ -201,6 +201,13 @@ latex_preamble = r"""
 \DeclareUnicodeCharacter{2500}{\textSFx}
 \DeclareUnicodeCharacter{2514}{\textSFii}
 \DeclareUnicodeCharacter{251C}{\textSFviii}
+% Go back to original fancyvrb Verbatim, with no page breaks
+\renewcommand{\Verbatim}[1][1]{%
+\OriginalVerbatim[#1, samepage=true]%
+}
+\renewcommand{\endVerbatim}{%
+\endOriginalVerbatim
+}
 """
 
 # Documents to append as an appendix to all manuals.
