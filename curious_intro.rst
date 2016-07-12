@@ -120,7 +120,7 @@ about files and directories.  You will ask git to keep snapshots of files in a
 directory, and it does just this; it stores snapshots of the files, so you can
 go back to them later.
 
-Now you know that actual fact, you are ready to read :doc:`curious_tale`.
+Now you know that actual fact, you are ready to read :doc:`curious_journey`.
 
 .. include:: links_names.inc
 .. include:: working/object_names.inc

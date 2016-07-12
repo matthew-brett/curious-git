@@ -6,19 +6,20 @@
 The curious coder's guide to git
 ================================
 
-You'll find the main tutorial starts at :doc:`curious_introduction`, and
-follows on through :doc:`curious_tale` to :doc:`curious_git`.
+You'll find the main tutorial starts at :doc:`curious_intro`, and follows on
+through :doc:`curious_journey` to :doc:`curious_git`.
 
 The other pages assume you've read the main tutorial sequence.
+
+You can also read the main tutorial `as a PDF <curious_git.pdf>`_.
 
 .. toctree::
     :maxdepth: 2
 
     curious_intro
-    curious_tale
+    curious_journey
     curious_git
     curious_remotes
-    git_submodules
     curious_details
 
 .. the hidden toctree is to avoid warnings during the build.  The
@@ -30,5 +31,6 @@ The other pages assume you've read the main tutorial sequence.
     curious_git
     README
     np-versions/README
+    pdf_contents
 
 .. include:: links_names.inc

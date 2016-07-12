@@ -105,9 +105,13 @@ git-clean: clean
 	# by git clean
 	git clean -fxd
 
-github: git-clean html
+github: git-clean latexpdf html
 	touch $(BUILDDIR)/html/.nojekyll
+	cp $(BUILDDIR)/latex/curious_git.pdf $(BUILDDIR)/html
 	ghp-import $(BUILDDIR)/html/
 	git push -u origin gh-pages
 	@echo
 	@echo "Published to Github"
+
+latexpdf: latex
+	cd $(BUILDDIR)/latex && make all-pdf

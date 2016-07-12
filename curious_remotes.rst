@@ -47,22 +47,7 @@ paper we saw in :doc:`curious_git`.  To type along, download and unzip
 :download:`nobel_prize </np-versions/nobel_prize.zip>`.  You should have a
 ``nobel_prize`` directory:
 
-.. workrun::
-    :hide:
-
-    # clean up old files from previous doc run
-    rm -rf nobel_prize repos .gitconfig
-    unzip ../np-versions/nobel_prize.zip
-
-.. prizevar:: np_tools
-    :omit_link:
-
-    echo "../../np-tools"
-
-.. prizevar:: np_tree
-    :omit_link:
-
-    echo "{{ np_tools }}/show_tree"
+.. include:: reset_env.inc
 
 .. prizeout::
 

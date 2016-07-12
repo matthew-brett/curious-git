@@ -2,14 +2,16 @@
 Curious git
 ###########
 
-In :doc:`curious_tale`, you built your own content management system.  Now you
-have done that, you know how git works |--| because it works in exactly the
-same way as your own system.  You will recognize hashes for files, directories
-and commits, commits linked by reference to their parents, the staging area,
-the ``objects`` directory, and bookmarks (branches).
+In :doc:`curious_journey`, you built your own content management system.  Now
+you have done that, you know how git works |--| because it works in exactly
+the same way as your own system.  You will recognize hashes for files,
+directories and commits, commits linked by reference to their parents, the
+staging area, the ``objects`` directory, and bookmarks (branches).
 
 Armed with this deep_ understanding, we retrace our steps to do the same
 content management tasks in git.
+
+.. include:: reset_env.inc
 
 *******************
 Basic configuration
@@ -68,14 +70,6 @@ Initializing the repository directory
 
 We first set this ``nobel_prize`` directory to be version controlled with git.
 We start off the working tree with the original files for the paper:
-
-.. workrun::
-    :hide:
-
-    rm -rf nobel_prize
-    cp ../nobel_prize.zip .
-    mkdir nobel_prize
-    cp ../np-versions/work1/* nobel_prize
 
 .. note::
 

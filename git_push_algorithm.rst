@@ -26,6 +26,11 @@ between nodes that form the *edges* in the graph.
     # Get the commit hash from the previous run of curious_remotes
     echo {{ remote-commit2-sha_7 }}
 
+.. prizevar:: before_paper
+
+    # Get the commit hash from the previous run of curious_remotes
+    echo {{ remote-commit1-sha }}
+
 If we start at a particular commit, and then track back following only one
 parent for each commit, this is a *path* in the *commit history*.
 
@@ -53,10 +58,6 @@ Something like this algorithm might do the job:
 
 There's a specific example of ``git push`` at :ref:`git-push`. Here is how
 that example would follow our algorithm:
-
-.. prizevar:: before_paper
-
-    git rev-parse {{ paper }}~1
 
 #. We look up the hash for ``master``, and we get |remote-commit2-sha| (abbreviated as
    |remote-commit2-sha_7|);
