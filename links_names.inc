@@ -12,6 +12,10 @@
 .. _github: http://github.com
 .. _bitbucket: https://bitbucket.org/
 
+.. Git pages
+.. _deep:
+.. _deep shit: http://rogerdudler.github.io/git-guide
+
 .. Editors
 .. _vim: http://www.vim.org
 .. _command-t: https://wincent.com/products/command-t
