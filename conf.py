@@ -197,6 +197,8 @@ latex_documents = [
 # Additional stuff for the LaTeX preamble.
 latex_preamble = r"""
 \renewcommand{\release}[1]{}
+% From http://tex.stackexchange.com/questions/281368/print-box-drawing-characters-with-pdflatex
+% Other characters at https://en.wikipedia.org/wiki/Box-drawing_character
 \usepackage{pmboxdraw}
 \DeclareUnicodeCharacter{2500}{\textSFx}
 \DeclareUnicodeCharacter{2514}{\textSFii}
