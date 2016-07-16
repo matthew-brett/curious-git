@@ -94,10 +94,10 @@ website.
 
 Of course it would be easier if you didn't need the `deep shit`_ |--| but if
 you want to spend the least time suffering from git, and the most time
-enjoying it, then you *do* need the deep shit. Luckily but the deep shit isn't
-that deep.  When you have got through it, I'm betting that you'll agree that
-the alchemist has succeeded at last, and the |--| er |--| lead has finally
-turned into gold.
+enjoying it, then you *do* need the deep shit. Luckily the deep shit isn't
+that deep.  When you have got to the bottom of it, I'm betting that you'll
+agree that the alchemist has succeeded at last, and the |--| er |--| lead has
+finally turned into gold.
 
 So |--| please |--| invest an hour and a half of your life to understand this
 stuff.  Concentrate, go slowly, make sure you get it. In return for 90 minutes

@@ -71,7 +71,7 @@
 <li class="toctree-l1"><a class="reference internal" href="curious_intro.html">Learn git right for a long and happy life</a></li>
 <li class="toctree-l1"><a class="reference internal" href="curious_journey.html">A curious tale</a></li>
 <li class="toctree-l1"><a class="reference internal" href="curious_git.html">Curious git</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">git remotes - working with other people, making backups</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">git remotes - working with other people, making backups</a></li>
 <li class="toctree-l1"><a class="reference internal" href="curious_details.html">Deeper inside git</a></li>
 </ul>
 <ul>
@@ -159,7 +159,7 @@
       
   <div class="section" id="git-remotes-working-with-other-people-making-backups">
 <h1>git remotes - working with other people, making backups<a class="headerlink" href="#git-remotes-working-with-other-people-making-backups" title="Permalink to this headline">¶</a></h1>
-<p>This page follows on from <a class="reference internal" href="curious_git.html"><em>Curious git</em></a>.</p>
+<p>This page follows on from <a class="reference internal" href="curious_git.html"><span class="doc">Curious git</span></a>.</p>
 <p>It covers git <strong>remotes</strong>.  Remotes are links to other git repositories.</p>
 <p>Now you are keeping the history of your data with git, you also want to make
 sure you have a backup in case your current computer dies.</p>
@@ -194,8 +194,8 @@ history of your work on the backup disk.</p>
 <div class="section" id="start-with-a-git-repository">
 <h2>Start with a git repository<a class="headerlink" href="#start-with-a-git-repository" title="Permalink to this headline">¶</a></h2>
 <p>To get started, we make a new repository with the same Nobel-prize-winning
-paper we saw in <a class="reference internal" href="curious_git.html"><em>Curious git</em></a>.  To type along, download and unzip
-<a class="reference download internal" href="_downloads/nobel_prize.zip"><code class="xref download docutils literal"><span class="pre">nobel_prize</span></code></a>.  You should have a
+paper we saw in <a class="reference internal" href="curious_git.html"><span class="doc">Curious git</span></a>.  To type along, download and unzip
+<a class="reference download internal" href="_downloads/nobel_prize.zip" download=""><code class="xref download docutils literal"><span class="pre">nobel_prize</span></code></a>.  You should have a
 <code class="docutils literal"><span class="pre">nobel_prize</span></code> directory:</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
 ├── clever_analysis.py [618B]
@@ -220,7 +220,7 @@ Initialized empty Git repository in /Users/mb312/dev_trees/curious-git/working/n
  create mode <span class="m">100644</span> fancy_figure.png
 </pre></div>
 </div>
-<p>As we expected from our <a class="reference internal" href="curious_git.html"><em>curious</em></a> understanding, there are
+<p>As we expected from our <a class="reference internal" href="curious_git.html"><span class="doc">curious</span></a> understanding, there are
 5 objects in the <code class="docutils literal"><span class="pre">.git/objects</span></code> directory, one for each of the three files
 we <code class="docutils literal"><span class="pre">git</span> <span class="pre">add</span></code>ed, one for the directory listing, and one for the commit file:</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>objects
@@ -380,7 +380,7 @@ information that the remote repository does not have.</p>
 <p>Let&#8217;s see that in action.</p>
 <p>First we make a new commit in the local repository. Let&#8217;s add the
 first draft of the Nobel prize paper.  As before, you can download this from
-<a class="reference download internal" href="_downloads/nobel_prize.md"><code class="xref download docutils literal"><span class="pre">nobel_prize.md</span></code></a>.  If you are
+<a class="reference download internal" href="_downloads/nobel_prize.md" download=""><code class="xref download docutils literal"><span class="pre">nobel_prize.md</span></code></a>.  If you are
 typing along, download <code class="docutils literal"><span class="pre">nobel_prize.md</span></code> to the <code class="docutils literal"><span class="pre">nobel_prize</span></code> directory.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ git status
 On branch master
@@ -517,7 +517,7 @@ To /Volumes/my_usb_disk/nobel_prize.git
 </pre></div>
 </div>
 <p>You might also be able to see how git would work out what to transfer.  See
-<a class="reference internal" href="git_push_algorithm.html"><em>An algorithm for git push</em></a> for how it could work in general, and for this case.</p>
+<a class="reference internal" href="git_push_algorithm.html"><span class="doc">An algorithm for git push</span></a> for how it could work in general, and for this case.</p>
 </div>
 <div class="section" id="git-clone-make-a-fresh-new-copy-of-the-repository">
 <h2>git clone – make a fresh new copy of the repository<a class="headerlink" href="#git-clone-make-a-fresh-new-copy-of-the-repository" title="Permalink to this headline">¶</a></h2>
@@ -708,7 +708,7 @@ and it is more obvious what to do.</p>
 <div class="section" id="linking-local-and-remote-branches">
 <h2>Linking local and remote branches<a class="headerlink" href="#linking-local-and-remote-branches" title="Permalink to this headline">¶</a></h2>
 <p>It can get a bit boring typing all of:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>git push usb_backup master
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">push</span> <span class="n">usb_backup</span> <span class="n">master</span>
 </pre></div>
 </div>
 <p>It may well be that we nearly always want to <code class="docutils literal"><span class="pre">git</span> <span class="pre">push</span></code> the <code class="docutils literal"><span class="pre">master</span></code>
@@ -901,7 +901,7 @@ hash for the <code class="docutils literal"><span class="pre">nobel_prize.md</sp
     </p>
     <p>
         &copy; Copyright 2012-2016 - Matthew Brett.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.5.<br/>
     </p>
   </div>
 </footer>

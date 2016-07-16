@@ -31,7 +31,6 @@
     <script type="text/javascript" src="_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="Curious git" href="index.html" />
-    <link rel="up" title="The curious coder’s guide to git" href="pdf_contents.html" />
     <link rel="next" title="Curious git" href="curious_git.html" />
     <link rel="prev" title="Learn git right for a long and happy life" href="curious_intro.html" />
 <meta charset='utf-8'>
@@ -70,7 +69,7 @@
       role="menu"
       aria-labelledby="dLabelGlobalToc"><ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="curious_intro.html">Learn git right for a long and happy life</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">A curious tale</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">A curious tale</a></li>
 <li class="toctree-l1"><a class="reference internal" href="curious_git.html">Curious git</a></li>
 <li class="toctree-l1"><a class="reference internal" href="curious_remotes.html">git remotes - working with other people, making backups</a></li>
 <li class="toctree-l1"><a class="reference internal" href="curious_details.html">Deeper inside git</a></li>
@@ -186,7 +185,7 @@ brain works by careful processing of some interesting data.  You&#8217;ve got th
 analysis script, the data file and a figure for the paper.  These are all in a
 directory modestly named <code class="docutils literal"><span class="pre">nobel_prize</span></code>.</p>
 <p>You can get this, the first draft, by downloading and unzipping
-<a class="reference download internal" href="_downloads/nobel_prize.zip"><code class="xref download docutils literal"><span class="pre">nobel_prize</span></code></a>.</p>
+<a class="reference download internal" href="_downloads/nobel_prize.zip" download=""><code class="xref download docutils literal"><span class="pre">nobel_prize</span></code></a>.</p>
 <p>Here&#8217;s the current contents of our <code class="docutils literal"><span class="pre">nobel_prize</span></code> directory:</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
 ├── clever_analysis.py [618B]
@@ -251,7 +250,7 @@ working directory:</p>
 </div>
 <p>You are going to do this every day you work on the project.</p>
 <p>On the second day, you add your first draft of the paper, <code class="docutils literal"><span class="pre">nobel_prize.md</span></code>.
-You can download this ground-breaking work at <a class="reference download internal" href="_downloads/nobel_prize.md"><code class="xref download docutils literal"><span class="pre">nobel_prize.md</span></code></a>.</p>
+You can download this ground-breaking work at <a class="reference download internal" href="_downloads/nobel_prize.md" download=""><code class="xref download docutils literal"><span class="pre">nobel_prize.md</span></code></a>.</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
 ├── working
 │   ├── clever_analysis.py [618B]
@@ -1122,14 +1121,14 @@ so on.  You would then need something like a text file called
 <code class="docutils literal"><span class="pre">directory_listing.txt</span></code> in the first commit directory to say that the file
 <code class="docutils literal"><span class="pre">fancy_figure.png</span></code> for this commit is available at
 <code class="docutils literal"><span class="pre">repo/objects/fancy_figure.png.v1</span></code>.  This could be something like:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span># directory_listing.txt in first commit
-fancy_figure.png -&gt; repo/objects/fancy_figure.png.v1
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># directory_listing.txt in first commit</span>
+<span class="n">fancy_figure</span><span class="o">.</span><span class="n">png</span> <span class="o">-&gt;</span> <span class="n">repo</span><span class="o">/</span><span class="n">objects</span><span class="o">/</span><span class="n">fancy_figure</span><span class="o">.</span><span class="n">png</span><span class="o">.</span><span class="n">v1</span>
 </pre></div>
 </div>
 <p><code class="docutils literal"><span class="pre">directory_listing.txt</span></code> for the second commit would point to the same file,
 but the third commit would have something like:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span># directory_listing.txt in third commit
-fancy_figure.png -&gt; repo/objects/fancy_figure.png.v2
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># directory_listing.txt in third commit</span>
+<span class="n">fancy_figure</span><span class="o">.</span><span class="n">png</span> <span class="o">-&gt;</span> <span class="n">repo</span><span class="o">/</span><span class="n">objects</span><span class="o">/</span><span class="n">fancy_figure</span><span class="o">.</span><span class="n">png</span><span class="o">.</span><span class="n">v2</span>
 </pre></div>
 </div>
 <p>You quickly realize this is going to get messy when you are working with other
@@ -1278,7 +1277,7 @@ duplicated files.</p>
 </div>
 <div class="section" id="gitwards-10-making-the-commits-unique">
 <h2>Gitwards 10: making the commits unique<a class="headerlink" href="#gitwards-10-making-the-commits-unique" title="Permalink to this headline">¶</a></h2>
-<p>Up in <a class="reference internal" href="#naming-from-hashes"><span>Gitwards 7: naming commits from hashes</span></a> you used the hash of <code class="docutils literal"><span class="pre">message.txt</span></code> as a
+<p>Up in <a class="reference internal" href="#naming-from-hashes"><span class="std std-ref">Gitwards 7: naming commits from hashes</span></a> you used the hash of <code class="docutils literal"><span class="pre">message.txt</span></code> as a
 nearly unique directory name for the commit.  Your thinking was that it was
 very unlikely that any two commits would have the same author, date, time, and
 note.  You have since added the <code class="docutils literal"><span class="pre">Parents</span></code> field to <code class="docutils literal"><span class="pre">message.txt</span></code> to make
@@ -1468,7 +1467,7 @@ called a <strong>branch</strong>.</p>
 </div>
 <div class="section" id="you-are-on-the-on-ramp">
 <h2>You are on the on-ramp<a class="headerlink" href="#you-are-on-the-on-ramp" title="Permalink to this headline">¶</a></h2>
-<p>You now know all the main ideas in git.  Follow me then to <a class="reference internal" href="curious_git.html"><em>Curious git</em></a>
+<p>You now know all the main ideas in git.  Follow me then to <a class="reference internal" href="curious_git.html"><span class="doc">Curious git</span></a>
 to see these ideas come to life in your actual git.</p>
 </div>
 </div>
@@ -1486,7 +1485,7 @@ to see these ideas come to life in your actual git.</p>
     </p>
     <p>
         &copy; Copyright 2012-2016 - Matthew Brett.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.5.<br/>
     </p>
   </div>
 </footer>

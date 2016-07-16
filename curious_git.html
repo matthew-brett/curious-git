@@ -31,7 +31,7 @@
     <script type="text/javascript" src="_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="Curious git" href="index.html" />
-    <link rel="up" title="The curious coder’s guide to git" href="pdf_contents.html" />
+    <link rel="next" title="git remotes - working with other people, making backups" href="curious_remotes.html" />
     <link rel="prev" title="A curious tale" href="curious_journey.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -70,12 +70,12 @@
       aria-labelledby="dLabelGlobalToc"><ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="curious_intro.html">Learn git right for a long and happy life</a></li>
 <li class="toctree-l1"><a class="reference internal" href="curious_journey.html">A curious tale</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Curious git</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Curious git</a></li>
 <li class="toctree-l1"><a class="reference internal" href="curious_remotes.html">git remotes - working with other people, making backups</a></li>
 <li class="toctree-l1"><a class="reference internal" href="curious_details.html">Deeper inside git</a></li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="">Curious git</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Curious git</a></li>
 <li class="toctree-l1"><a class="reference internal" href="README.html">Curious git</a></li>
 <li class="toctree-l1"><a class="reference internal" href="np-versions/README.html">np-versions</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="pdf_contents.html">The curious coder&#8217;s guide to git</a></li>
@@ -138,6 +138,10 @@
     <a href="curious_journey.html" title="Previous Chapter: A curious tale"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; A curious tale</span>
     </a>
   </li>
+  <li>
+    <a href="curious_remotes.html" title="Next Chapter: git remotes - working with other people, making backups"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">git remotes -... &raquo;</span>
+    </a>
+  </li>
               
             
             
@@ -171,7 +175,7 @@
       
   <div class="section" id="curious-git">
 <h1>Curious git<a class="headerlink" href="#curious-git" title="Permalink to this headline">¶</a></h1>
-<p>In <a class="reference internal" href="curious_journey.html"><em>A curious tale</em></a>, you built your own content management system.  Now
+<p>In <a class="reference internal" href="curious_journey.html"><span class="doc">A curious tale</span></a>, you built your own content management system.  Now
 you have done that, you know how git works – because it works in exactly
 the same way as your own system.  You will recognize hashes for files,
 directories and commits, commits linked by reference to their parents, the
@@ -195,9 +199,9 @@ working in.</p>
 <p>Every time we make a commit, we need to type a commit message.  Git will open
 our text editor for us to type the message, but first it needs to know what
 text editor we prefer.  Set your own preferred text editor here:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span># gedit is a reasonable choice for Linux
-# &quot;vi&quot; is the default.
-git config --global core.editor gedit
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># gedit is a reasonable choice for Linux</span>
+<span class="c1"># &quot;vi&quot; is the default.</span>
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">core</span><span class="o">.</span><span class="n">editor</span> <span class="n">gedit</span>
 </pre></div>
 </div>
 <p>We also turn on the use of color, which is very helpful in making the
@@ -258,7 +262,7 @@ We start off the working tree with the original files for the paper:</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">I highly recommend you type along.  Why not download
-<a class="reference download internal" href="_downloads/nobel_prize.zip"><code class="xref download docutils literal"><span class="pre">nobel_prize.zip</span></code></a> and unzip the
+<a class="reference download internal" href="_downloads/nobel_prize.zip" download=""><code class="xref download docutils literal"><span class="pre">nobel_prize.zip</span></code></a> and unzip the
 files to make the same <code class="docutils literal"><span class="pre">nobel_prize</span></code> directory as I have here?</p>
 </div>
 <div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
@@ -381,7 +385,7 @@ the staging area.</p>
 <h2>Git objects<a class="headerlink" href="#git-objects" title="Permalink to this headline">¶</a></h2>
 <p>Git objects are nearly as simple as the objects you were writing in your SAP.
 The hash is not the hash of the raw file, but the raw file prepended with a
-short housekeeping string.  See <a class="reference internal" href="reading_git_objects.html"><em>Reading git objects</em></a> for details.</p>
+short housekeeping string.  See <a class="reference internal" href="reading_git_objects.html"><span class="doc">Reading git objects</span></a> for details.</p>
 <p>We can see the contents of objects with the command <code class="docutils literal"><span class="pre">git</span> <span class="pre">cat-file</span> <span class="pre">-p</span></code>.  For
 example, here are the contents of the backup we just made of
 <code class="docutils literal"><span class="pre">clever_analysis.py</span></code>:</p>
@@ -595,7 +599,7 @@ tree
 </div>
 <p>Each line in the directory listing gives the file permissions, the type of the
 entry in the directory (where &#8220;tree&#8221; means a sub-directory, and &#8220;blob&#8221; means a
-file), the file hash, and the file name (see <a class="reference internal" href="git_object_types.html#git-object-types"><span>Types of git objects</span></a>).</p>
+file), the file hash, and the file name (see <a class="reference internal" href="git_object_types.html#git-object-types"><span class="std std-ref">Types of git objects</span></a>).</p>
 </div>
 <div class="section" id="git-log-what-are-the-commits-so-far">
 <h2><code class="docutils literal"><span class="pre">git</span> <span class="pre">log</span></code> – what are the commits so far?<a class="headerlink" href="#git-log-what-are-the-commits-so-far" title="Permalink to this headline">¶</a></h2>
@@ -658,7 +662,7 @@ git will update the branch to point to the new commit.</p>
 <h2>A second commit<a class="headerlink" href="#a-second-commit" title="Permalink to this headline">¶</a></h2>
 <p>In our second commit, we will add the first draft of the Nobel prize paper.
 As before, you can download this from
-<a class="reference download internal" href="_downloads/nobel_prize.md"><code class="xref download docutils literal"><span class="pre">nobel_prize.md</span></code></a>.  If you are
+<a class="reference download internal" href="_downloads/nobel_prize.md" download=""><code class="xref download docutils literal"><span class="pre">nobel_prize.md</span></code></a>.  If you are
 typing along, download <code class="docutils literal"><span class="pre">nobel_prize.md</span></code> to the <code class="docutils literal"><span class="pre">nobel_prize</span></code> directory.</p>
 <p>The staging area does not have an entry for <code class="docutils literal"><span class="pre">nobel_prize.md</span></code>, so <code class="docutils literal"><span class="pre">git</span>
 <span class="pre">status</span></code> identifies this file as <strong>untracked</strong>:</p>
@@ -827,10 +831,10 @@ Changes to be committed:
 script analyzes the data and writes the figure to the current directory.  If
 you have Python installed, with the <code class="docutils literal"><span class="pre">numpy</span></code> and <code class="docutils literal"><span class="pre">matplotlib</span></code> packages, you
 can run the analysis yourself with:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>python clever_analysis.py
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">clever_analysis</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
-<p>If not, you can download a <a class="reference download internal" href="_downloads/fancy_figure.png"><code class="xref download docutils literal"><span class="pre">version</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">figure</span> <span class="pre">I</span> <span class="pre">generated</span>
+<p>If not, you can download a <a class="reference download internal" href="_downloads/fancy_figure.png" download=""><code class="xref download docutils literal"><span class="pre">version</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">figure</span> <span class="pre">I</span> <span class="pre">generated</span>
 <span class="pre">earlier</span></code></a>.  After you have generated or
 downloaded the figure:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git add fancy_figure.png
@@ -864,7 +868,7 @@ downloaded the figure:</p>
 <h2>Commit four<a class="headerlink" href="#commit-four" title="Permalink to this headline">¶</a></h2>
 <p>For our next commit, we will add some more changes to the analysis script and
 figure, and add a new file, <code class="docutils literal"><span class="pre">references.bib</span></code>.</p>
-<p>To follow along, first download <a class="reference download internal" href="_downloads/references.bib"><code class="xref download docutils literal"><span class="pre">references.bib</span></code></a>.</p>
+<p>To follow along, first download <a class="reference download internal" href="_downloads/references.bib" download=""><code class="xref download docutils literal"><span class="pre">references.bib</span></code></a>.</p>
 <p>Next, edit <code class="docutils literal"><span class="pre">clever_analysis.py</span></code> again, to make these changes:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git diff
 diff --git a/clever_analysis.py b/clever_analysis.py
@@ -893,7 +897,7 @@ index 99cd07b..e5b2efa 100755
 </pre></div>
 </div>
 <p>Finally regenerate <code class="docutils literal"><span class="pre">fancy_figure.png</span></code>, or download the updated copy
-<a class="reference download internal" href="_downloads/fancy_figure1.png"><code class="xref download docutils literal"><span class="pre">from</span> <span class="pre">here</span></code></a>.</p>
+<a class="reference download internal" href="_downloads/fancy_figure1.png" download=""><code class="xref download docutils literal"><span class="pre">from</span> <span class="pre">here</span></code></a>.</p>
 <p>What will git status show now?</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git status
 On branch master
@@ -1302,7 +1306,7 @@ index 6560135..cf163af 100755
 </pre></div>
 </div>
 <p>If you are typing along, then you will also want to regenerate the figure with
-<code class="docutils literal"><span class="pre">python</span> <span class="pre">clever_analysis.py</span></code> or <a class="reference download internal" href="_downloads/fancy_figure2.png"><code class="xref download docutils literal"><span class="pre">download</span> <span class="pre">the</span> <span class="pre">new</span> <span class="pre">version</span></code></a>.</p>
+<code class="docutils literal"><span class="pre">python</span> <span class="pre">clever_analysis.py</span></code> or <a class="reference download internal" href="_downloads/fancy_figure2.png" download=""><code class="xref download docutils literal"><span class="pre">download</span> <span class="pre">the</span> <span class="pre">new</span> <span class="pre">version</span></code></a>.</p>
 <p>This gives:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git status
 On branch master
@@ -1349,7 +1353,7 @@ Merge made by the <span class="s1">&#39;recursive&#39;</span> strategy.
 changes the Josephine made to the paper.</p>
 <p>The commit has two parents, which are the two commits from which we merged:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git log --oneline --parents
-d4c98ce 7598e4e 0a5a1b9 Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
+<span class="m">7074120</span> 7598e4e 0a5a1b9 Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
 0a5a1b9 677c9a6 Expand the introduction
 7598e4e 677c9a6 More fun with fudge
 677c9a6 c3f19b2 Revert to original script <span class="p">&amp;</span> figure
@@ -1372,7 +1376,7 @@ think of this graph when we are working with a git repository.</p>
 <code class="docutils literal"><span class="pre">git</span> <span class="pre">log</span></code> has a useful flag called <code class="docutils literal"><span class="pre">--graph</span></code> which shows the commits as a
 graph using text characters:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git log --oneline --graph
-*   d4c98ce Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
+*   <span class="m">7074120</span> Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
 <span class="p">|</span><span class="se">\ </span> 
 <span class="p">|</span> * 0a5a1b9 Expand the introduction
 * <span class="p">|</span> 7598e4e More fun with fudge
@@ -1397,7 +1401,7 @@ For example, you may want to set up an alias like this:</p>
 <code class="docutils literal"><span class="pre">slog</span></code> alias as the default for your user account, so you can use <code class="docutils literal"><span class="pre">git</span>
 <span class="pre">slog</span></code> whenever you are using git as this user on this computer.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git slog
-*   d4c98ce Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
+*   <span class="m">7074120</span> Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
 <span class="p">|</span><span class="se">\ </span> 
 <span class="p">|</span> * 0a5a1b9 Expand the introduction
 * <span class="p">|</span> 7598e4e More fun with fudge
@@ -1418,7 +1422,7 @@ and on your own repository.</p>
 <p>You will also need to know about:</p>
 <ul class="simple">
 <li>git remotes – making backups; working with other people.  See
-<a class="reference internal" href="curious_remotes.html"><em>git remotes - working with other people, making backups</em></a>;</li>
+<a class="reference internal" href="curious_remotes.html"><span class="doc">git remotes - working with other people, making backups</span></a>;</li>
 <li>tags – making static bookmarks to commits;</li>
 </ul>
 <p>You will probably also find use for:</p>
@@ -1534,7 +1538,7 @@ files.</td></tr>
     </p>
     <p>
         &copy; Copyright 2012-2016 - Matthew Brett.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.5.<br/>
     </p>
   </div>
 </footer>

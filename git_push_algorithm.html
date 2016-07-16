@@ -147,7 +147,7 @@
       
   <div class="section" id="an-algorithm-for-git-push">
 <h1>An algorithm for git push<a class="headerlink" href="#an-algorithm-for-git-push" title="Permalink to this headline">¶</a></h1>
-<p>We saw how git stores its object in <a class="reference internal" href="curious_git.html"><em>Curious git</em></a>.</p>
+<p>We saw how git stores its object in <a class="reference internal" href="curious_git.html"><span class="doc">Curious git</span></a>.</p>
 <p>Now we know about how git stores its objects, we can work out how git knows
 which objects to copy when it does a push.</p>
 <div class="section" id="paths-through-commits">
@@ -179,7 +179,7 @@ remote objects directory;</li>
 <li>Update the local record of the last known position of the remote branch to
 point to the same commit.</li>
 </ol>
-<p>There&#8217;s a specific example of <code class="docutils literal"><span class="pre">git</span> <span class="pre">push</span></code> at <a class="reference internal" href="curious_remotes.html#git-push"><span>git push – synchronizing repositories</span></a>. Here is how
+<p>There&#8217;s a specific example of <code class="docutils literal"><span class="pre">git</span> <span class="pre">push</span></code> at <a class="reference internal" href="curious_remotes.html#git-push"><span class="std std-ref">git push – synchronizing repositories</span></a>. Here is how
 that example would follow our algorithm:</p>
 <ol class="arabic simple">
 <li>We look up the hash for <code class="docutils literal"><span class="pre">master</span></code>, and we get <code class="docutils literal"><span class="pre">7919d37dda9044f00cf2dc0677eed18156f75404</span></code> (abbreviated as
@@ -211,7 +211,7 @@ directory;</li>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>You have probably worked out by now that git directory
 listings can have files (called &#8220;blobs&#8221;) and subdirectories (&#8220;trees&#8221;) (see
-<a class="reference internal" href="git_object_types.html"><em>Types of git objects</em></a>).  When doing the copy, we actually have to recurse
+<a class="reference internal" href="git_object_types.html"><span class="doc">Types of git objects</span></a>).  When doing the copy, we actually have to recurse
 into any sub-directories to get needed file (&#8220;blob&#8221;) and subdirectory
 (&#8220;tree&#8221;) objects.  But, you get the idea.</td></tr>
 </tbody>
@@ -232,7 +232,7 @@ into any sub-directories to get needed file (&#8220;blob&#8221;) and subdirector
     </p>
     <p>
         &copy; Copyright 2012-2016 - Matthew Brett.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.5.<br/>
     </p>
   </div>
 </footer>
