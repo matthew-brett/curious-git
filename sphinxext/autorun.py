@@ -158,7 +158,7 @@ class LangMixin(VarsMixin):
         # Remove prefix
         p.codelines = (line[p.prefix_chars:] for line in self.content)
         # Make executable code
-        p.exe_code = u'\n'.join(p.codelines).encode(p.input_encoding)
+        p.exe_code = u'\n'.join(p.codelines)
         # Prepost, postpend extra code lines
         exe_pre = self.options.get('exe-pre', self.default_exe_pre)
         exe_post = self.options.get('exe-post', self.default_exe_post)
@@ -174,7 +174,7 @@ class LangMixin(VarsMixin):
         # Do env substitution
         exe_code = subst_vars(p.exe_code, self.get_typed_vars('run'))
         # Run the code
-        stdout, stderr = proc.communicate(exe_code)
+        stdout, stderr = proc.communicate(exe_code.encode(p.input_encoding))
         # Process output
         p.out = u''
         if stdout:
