@@ -251,11 +251,11 @@ Gitwards 3: breaking up work into chunks
 
 .. the staging area
 
-Now you are used to having the commit messages in ``message.txt``, you aren't
-so pleased with your fourth commit.  You now prefer to break your changes up
-into self-contained chunks of work, with a matching commit message.  But,
-looking at your fourth commit, it looks like you included two separate chunks
-of work.  You've even confessed to this in your commit message:
+Now you are used to your new system, you find that you like to break your
+changes up into self-contained chunks of work, each with their own commit, and
+a matching commit message.  When you look back at your fourth commit, it looks
+like you included two separate chunks of work into the same commit.  You've
+even confessed to this in your commit message:
 
 .. prizewrite:: snapshot_4/message.txt
 
