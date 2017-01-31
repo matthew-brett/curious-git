@@ -126,8 +126,11 @@ class LangMixin(VarsMixin):
     prompt_prefix = None
 
     def run_prepare(self):
+        self._prepare()
+        self._run_prepared()
+
+    def _prepare(self):
         p = _Params()
-        env = self.state.document.settings.env
         config = AutoRun.config
         try:
             language = self.arguments[0]
@@ -138,7 +141,6 @@ class LangMixin(VarsMixin):
             raise RunBlockError('Unknown language %s' % language)
 
         # Get configuration values for the language
-        args = config[language].split()
         p.language = language
         p.input_encoding = config.get(language+'_input_encoding','ascii')
         p.output_encoding = config.get(language+'_output_encoding','ascii')
@@ -147,6 +149,14 @@ class LangMixin(VarsMixin):
         lang_prefix = config.get(language + '_prompt_prefix', '')
         p.prompt_prefix = (lang_prefix if self.prompt_prefix is None
                            else self.prompt_prefix)
+        p.out = u''
+        self.params = p
+
+    def _run_prepared(self):
+        env = self.state.document.settings.env
+        config = AutoRun.config
+        p = self.params
+        args = config[p.language].split()
         # Build the code text
         _, p.cwd = env.relfn2path(self.options.get('cwd', self.default_cwd))
         proc = Popen(args,
@@ -176,7 +186,6 @@ class LangMixin(VarsMixin):
         # Run the code
         stdout, stderr = proc.communicate(exe_code.encode(p.input_encoding))
         # Process output
-        p.out = u''
         if stdout:
             p.out += stdout.decode(p.output_encoding)
         if stderr:
@@ -193,6 +202,7 @@ class RunBlock(Directive, LangMixin):
     option_spec = {
         'linenos': flag,
         'hide': flag,
+        'dont-run': flag,
         'hide-code': flag,
         'hide-out': flag,
         'highlighter': unchanged,
@@ -208,13 +218,17 @@ class RunBlock(Directive, LangMixin):
     def run(self):
         # Set default options
         self.set_opt_defaults()
+        self._prepare()
         # Run code, collect output
-        self.run_prepare()
-        if not 'allow-fail' in self.options and self.params.returncode != 0:
-            raise RuntimeError('Command {} failed with {} in doc {}'.format(
-                self.params.exe_code,
-                self.params.out,
-                self.state.document['source']))
+        if not 'dont-run' in self.options:
+            self._run_prepared()
+            if ('allow-fail' not in self.options and
+                self.params.returncode != 0):
+                raise RuntimeError(
+                    'Command {} failed with {} in doc {}'.format(
+                        self.params.exe_code,
+                        self.params.out,
+                        self.state.document['source']))
         params = self.params
         # Get the original code with prefixes
         if params.show_source:
