@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Curious git &mdash; Curious git</title>
+    <title>Curious git &#8212; Curious git</title>
     
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -19,7 +19,8 @@
         VERSION:     '0.2',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
@@ -30,7 +31,8 @@
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
-    <link rel="top" title="Curious git" href="index.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="git remotes - working with other people, making backups" href="curious_remotes.html" />
     <link rel="prev" title="A curious tale" href="curious_journey.html" />
 <meta charset='utf-8'>
@@ -149,7 +151,7 @@
             
               <li class="hidden-sm">
 <div id="sourcelink">
-  <a href="_sources/curious_git.txt"
+  <a href="_sources/curious_git.rst.txt"
      rel="nofollow">Source</a>
 </div></li>
             
@@ -920,7 +922,7 @@ no changes added to commit <span class="o">(</span>use <span class="s2">&quot;gi
 is &#8220;untracked&#8221;.  The staging area does contain an entry for
 <code class="docutils literal"><span class="pre">clever_analysis.py</span></code> and <code class="docutils literal"><span class="pre">fancy_figure.png</span></code>, so these files are tracked.
 Git has checked the hashes for these files, and they are different from the
-hashes in the staging area, so git knows these files have changed, compared
+hashes in the staging area, so git knows these files have changed, compared to
 the versions listed in the staging area.</p>
 <p>Before we add our changes, we confirm that they are as we expect with:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git diff
@@ -1353,7 +1355,7 @@ Merge made by the <span class="s1">&#39;recursive&#39;</span> strategy.
 changes the Josephine made to the paper.</p>
 <p>The commit has two parents, which are the two commits from which we merged:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git log --oneline --parents
-<span class="m">7074120</span> 7598e4e 0a5a1b9 Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
+b2e755d 7598e4e 0a5a1b9 Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
 0a5a1b9 677c9a6 Expand the introduction
 7598e4e 677c9a6 More fun with fudge
 677c9a6 c3f19b2 Revert to original script <span class="p">&amp;</span> figure
@@ -1376,7 +1378,7 @@ think of this graph when we are working with a git repository.</p>
 <code class="docutils literal"><span class="pre">git</span> <span class="pre">log</span></code> has a useful flag called <code class="docutils literal"><span class="pre">--graph</span></code> which shows the commits as a
 graph using text characters:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git log --oneline --graph
-*   <span class="m">7074120</span> Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
+*   b2e755d Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
 <span class="p">|</span><span class="se">\ </span> 
 <span class="p">|</span> * 0a5a1b9 Expand the introduction
 * <span class="p">|</span> 7598e4e More fun with fudge
@@ -1401,7 +1403,7 @@ For example, you may want to set up an alias like this:</p>
 <code class="docutils literal"><span class="pre">slog</span></code> alias as the default for your user account, so you can use <code class="docutils literal"><span class="pre">git</span>
 <span class="pre">slog</span></code> whenever you are using git as this user on this computer.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git slog
-*   <span class="m">7074120</span> Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
+*   b2e755d Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
 <span class="p">|</span><span class="se">\ </span> 
 <span class="p">|</span> * 0a5a1b9 Expand the introduction
 * <span class="p">|</span> 7598e4e More fun with fudge
@@ -1538,7 +1540,7 @@ files.</td></tr>
     </p>
     <p>
         &copy; Copyright 2012-2016 - Matthew Brett.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.5.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.1.<br/>
     </p>
   </div>
 </footer>

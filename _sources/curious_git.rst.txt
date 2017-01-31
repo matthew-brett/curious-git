@@ -659,7 +659,7 @@ The staging area does not list a file called ``references.bib`` so this file
 is "untracked".  The staging area does contain an entry for
 ``clever_analysis.py`` and ``fancy_figure.png``, so these files are tracked.
 Git has checked the hashes for these files, and they are different from the
-hashes in the staging area, so git knows these files have changed, compared
+hashes in the staging area, so git knows these files have changed, compared to
 the versions listed in the staging area.
 
 Before we add our changes, we confirm that they are as we expect with:
