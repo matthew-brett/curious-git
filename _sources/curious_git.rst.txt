@@ -854,10 +854,11 @@ We are at the stage in the SAP story where Josephine goes away to the
 conference.
 
 Let us pretend that we are Josephine, and that we have taken a copy of the
-working directory to the conference.
+`nobel_prize` directory to the conference.  The copy includes the ``.git``
+subdirectory, containing the git repository.
 
-We as Josephine don't want to change the previous bookmark, which is
-``master``:
+Now we (as Josephine) start doing some work.  We don't want to change the
+previous bookmark, which is ``master``:
 
 .. nprun::
 
