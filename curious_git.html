@@ -1356,7 +1356,7 @@ Merge made by the <span class="s1">&#39;recursive&#39;</span> strategy.
 changes the Josephine made to the paper.</p>
 <p>The commit has two parents, which are the two commits from which we merged:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git log --oneline --parents
-dcef494 7598e4e 0a5a1b9 Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
+28171bd 7598e4e 0a5a1b9 Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
 0a5a1b9 677c9a6 Expand the introduction
 7598e4e 677c9a6 More fun with fudge
 677c9a6 c3f19b2 Revert to original script <span class="p">&amp;</span> figure
@@ -1379,7 +1379,7 @@ think of this graph when we are working with a git repository.</p>
 <code class="docutils literal"><span class="pre">git</span> <span class="pre">log</span></code> has a useful flag called <code class="docutils literal"><span class="pre">--graph</span></code> which shows the commits as a
 graph using text characters:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git log --oneline --graph
-*   dcef494 Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
+*   28171bd Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
 <span class="p">|</span><span class="se">\ </span> 
 <span class="p">|</span> * 0a5a1b9 Expand the introduction
 * <span class="p">|</span> 7598e4e More fun with fudge
@@ -1404,7 +1404,7 @@ For example, you may want to set up an alias like this:</p>
 <code class="docutils literal"><span class="pre">slog</span></code> alias as the default for your user account, so you can use <code class="docutils literal"><span class="pre">git</span>
 <span class="pre">slog</span></code> whenever you are using git as this user on this computer.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git slog
-*   dcef494 Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
+*   28171bd Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
 <span class="p">|</span><span class="se">\ </span> 
 <span class="p">|</span> * 0a5a1b9 Expand the introduction
 * <span class="p">|</span> 7598e4e More fun with fudge
@@ -1424,8 +1424,7 @@ For example, you may want to set up an alias like this:</p>
 and on your own repository.</p>
 <p>You will also need to know about:</p>
 <ul class="simple">
-<li>git remotes – making backups; working with other people.  See
-<a class="reference internal" href="curious_remotes.html"><span class="doc">git remotes - working with other people, making backups</span></a>;</li>
+<li>git remotes – <a class="reference internal" href="curious_remotes.html"><span class="doc">git remotes - working with other people, making backups</span></a>;</li>
 <li>tags – making static bookmarks to commits;</li>
 </ul>
 <p>You will probably also find use for:</p>
