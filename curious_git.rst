@@ -1107,8 +1107,7 @@ and on your own repository.
 
 You will also need to know about:
 
-* git remotes |--| making backups; working with other people.  See
-  :doc:`curious_remotes`;
+* git remotes |--| :doc:`curious_remotes`;
 * tags |--| making static bookmarks to commits;
 
 You will probably also find use for:

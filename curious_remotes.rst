@@ -19,7 +19,7 @@ Commands for working with remotes are:
 * ``git remote`` |--| for adding and editing remotes;
 * ``git clone`` |--| make a new copy of a repository, and make a remote
   that points to the original repository;
-* ``git fetch`` |--| update stored information about a rempote repository;
+* ``git fetch`` |--| update stored information about a remote repository;
 * ``git push`` |--| upload information from this repository to a remote
   repository;
 * ``git pull`` |--| a command combining ``git fetch`` and ``git merge``.  The
@@ -540,6 +540,10 @@ It can get a bit boring typing all of::
 
     git push usb_backup master
 
+and, if you are using ``git pull``::
+
+    git pull usb_backup master
+
 It may well be that we nearly always want to ``git push`` the ``master``
 branch to ``usb_backup master``.
 
@@ -587,73 +591,16 @@ confusing warning. See ``git config --help`` for more detail:
 
 Notice that git didn't need to ask where to "push" to.
 
-Git also knows what to do if we do ``git fetch`` from this branch.
-
-To show this in action, we'll go over to the laptop, make a new commit, and
-push it to the backup on the USB drive.  Then we'll try a ``git fetch`` from
-the desktop, to show that git knows that the fetch should be from the USB
-remote.
-
-Making a new commit to the USB remote
--------------------------------------
-
-We go home to the laptop and fetch the desktop work from the USB drive.
-
-.. laptoprun::
-
-    cd nobel_prize
-    git fetch origin
-    git merge origin/master
-
-Then we do some more edits:
-
-.. prizelaprun::
-    :hide:
-
-    echo "More convinced by networks." >> nobel_prize.md
-
-.. prizelaprun::
-
-    git diff
-
-We add these edits as a new commit:
-
-.. prizelapcommit:: convinced 2012-04-12 22:13:31
-
-    git add nobel_prize.md
-    git commit -m "I think better at home"
-
-Then we push this commit back to the USB disk:
-
-.. prizelaprun::
-
-    git push origin master
-
-A fetch from the desktop, fetches from the USB remote
------------------------------------------------------
-
-We now have a new commit on the USB remote.  We can use this new commit to
-show that our previous ``git push usb_backup master --set-upstream`` from the
-desktop has associated the ``master`` branch with the USB remote, by default.
-
-We are now back to the work desktop to demonstrate "fetch":
-
-.. prizerun::
-
-    git fetch
-
-Notice that ``git fetch`` now knows where to "fetch" from.
-
-We still need to do an explicit merge:
-
-.. prizerun::
-
-    git merge usb_backup/master
+Remember that ``git pull usb_backup master`` is the same as ``git fetch
+usb_master`` followed by ``git merge usb_backup/master``.  Now we have set up
+the association of this branch with ``usb_backup/master``, a simple ``git
+pull`` will automatically fetch ``usb_backup`` and merge from
+``usb_backup/master``.
 
 Remotes in the interwebs
 ========================
 
-So far we've only used remotes on the filesystem of the laptop and desktop.
+So far we've only used remotes on the file system of the laptop and desktop.
 
 Remotes can also refer to storage on |--| remote |--| machines, using
 communication protocols such as the "git" protocol, ssh, http or https.
