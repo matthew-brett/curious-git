@@ -30,6 +30,22 @@ We are expecting that "myproject" will continue to develop.
 version control, we want to keep track of exactly which "myproject" version
 "super" is using.
 
+.. prizevar:: np_tools
+    :omit_link:
+
+    echo "../../np-tools"
+
+.. prizevar:: my_tree
+    :omit_link:
+
+    echo "../../tools/mytree.py"
+
+.. nprun::
+    :hide:
+
+    git config --global user.name "Matthew Brett"
+    git config --global user.email "matthew.brett@gmail.com"
+
 ``myproject``
 =============
 
@@ -69,20 +85,15 @@ Now a "super" project:
 
     mkdir super
     cd super
+    git init
 
 Remember (from :doc:`curious_git`) that doing ``git add`` on a file adds a new
 copy of that file to the ``.git/objects`` directory.  So, ``.git/objects``
 starts off empty:
 
-.. superrun::
+.. superout::
 
-    git init
-
-.. superrun::
-
-    tree -a .git/objects
-
-.. superrun::
+   {{ my_tree }} .git/objects
 
 When we ``git add`` a file, there is one new file in ``.git/objects``:
 
@@ -91,9 +102,9 @@ When we ``git add`` a file, there is one new file in ``.git/objects``:
     echo "This project will use ``myproject``" > README.txt
     git add README.txt
 
-.. superrun::
+.. superout::
 
-    tree -a .git/objects
+   {{ my_tree }} .git/objects
 
 Now do the first commit for "super":
 
@@ -108,9 +119,9 @@ The commit made two new objects in the ``.git/objects`` directory:
 
 So, we now have three files in ``.git/objects``:
 
-.. superrun::
+.. superout::
 
-    tree -a .git/objects
+   {{ my_tree }} .git/objects
 
 Adding ``myproject`` as a submodule of ``super``
 ================================================
@@ -140,9 +151,9 @@ As you saw, the output from ``git submodule`` says ``Cloning into
 subproject``, and sure enough, if we look in the new ``subproject`` directory,
 there is a clone of "myproject" there:
 
-.. superrun::
+.. superout::
 
-    tree -a subproject
+   {{ my_tree }} subproject
 
 So, ``git submodule`` has:
 
@@ -164,9 +175,9 @@ Why do I say that git "claimed" to have made a new file to record the
 Remember that we had three files in the ``.git/objects`` directory of "super"
 after the first commit.  After ``git submodule add`` we have four:
 
-.. superrun::
+.. superout::
 
-    tree -a .git/objects
+    {{ my_tree }} .git/objects
 
 .. workvar:: gitmodules-object
 
@@ -180,10 +191,10 @@ the new ``.gitmodules`` file:
 
     git cat-file -p {{ gitmodules-object }}
 
-If there is only one new object in ``.git/objects``, and that is for
-``.gitmodules``, then there is no new git object corresponding to the
-"myproject" repository.  What has in fact happened, is that git records the
-commit for "myproject" in the directory listing, instead of recording the
+There is only one new object in ``.git/objects``, and that is for
+``.gitmodules``.  Therefore there is no new git object corresponding to the
+"myproject" repository.  In fact what has happened, is that git records the
+commit for "myproject" in the *directory listing*, instead of recording the
 ``subproject`` directory as a subdirectory (tree object) or a file (blob
 object).  That is a bit difficult to see at the moment, because the directory
 listing is in the git staging area and not yet written into a tree object.  To
@@ -218,7 +229,8 @@ Updating submodules from their source repositories
 How do we keep the ``subproject`` copy of "myproject" up to date with the
 original ``myproject`` repository?
 
-We go back to the original "myproject" repository and make another commit:
+To show this in action, we start by going back to the original "myproject"
+repository to make another commit:
 
 .. superrun::
 
@@ -339,9 +351,9 @@ What happens if we clone the "super" project?
 
 What is in the new ``subproject`` directory?
 
-.. superclonedrun::
+.. superclonedout::
 
-    tree -a subproject
+    {{ my_tree }} subproject
 
 Nothing.  When you ``git clone`` a project with submodules, git does not clone
 the submodules.
@@ -380,9 +392,9 @@ Here's ``.git/config`` before the ``init`` step:
 We have done ``init``, but not ``update``. The submodule directory is still
 empty:
 
-.. superclonedrun::
+.. superclonedout::
 
-    tree -a subproject
+    {{ my_tree }} subproject
 
 To do the submodule clone, use ``git submodule update`` after ``git submodule
 init``:

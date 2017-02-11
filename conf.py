@@ -176,7 +176,7 @@ htmlhelp_basename = 'curious_git'
 #latex_paper_size = 'letter'
 
 # The font size ('10pt', '11pt' or '12pt').
-latex_font_size = '11pt'
+latex_elements = {'font_size': '11pt'}
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass
@@ -195,7 +195,7 @@ latex_documents = [
 #latex_use_parts = False
 
 # Additional stuff for the LaTeX preamble.
-latex_preamble = r"""
+latex_elements['preamble'] = r"""
 \renewcommand{\release}[1]{}
 % From http://tex.stackexchange.com/questions/281368/print-box-drawing-characters-with-pdflatex
 % Other characters at https://en.wikipedia.org/wiki/Box-drawing_character
@@ -216,7 +216,7 @@ latex_preamble = r"""
 #latex_appendices = []
 
 # If false, no module index is generated.
-latex_use_modindex = False
+latex_domain_indices = False
 
 # Set path to mathjax
 # mathjax_path="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"

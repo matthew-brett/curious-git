@@ -17,6 +17,12 @@ class ProjectRun(RunBlock):
     default_home = '/working'
 
 
+class ProjectOut(ProjectRun):
+    """ For displaying output only, with no highlighting
+    """
+    opt_defaults = {'highlighter': 'none', 'hide-code': True}
+
+
 class ProjectCommit(RunCommit):
     default_links_file = OBJECTS_INC
     default_cwd = '/working/myproject'
@@ -26,6 +32,12 @@ class ProjectCommit(RunCommit):
 class SuperRun(RunBlock):
     default_cwd = '/working/super'
     default_home = '/working'
+
+
+class SuperOut(SuperRun):
+    """ For displaying output only, with no highlighting
+    """
+    opt_defaults = {'highlighter': 'none', 'hide-code': True}
 
 
 class SuperCommit(RunCommit):
@@ -39,6 +51,12 @@ class SuperClonedRun(RunBlock):
     default_home = '/working'
 
 
+class SuperClonedOut(SuperClonedRun):
+    """ For displaying output only, with no highlighting
+    """
+    opt_defaults = {'highlighter': 'none', 'hide-code': True}
+
+
 class SuperClonedCommit(RunCommit):
     default_links_file = OBJECTS_INC
     default_cwd = '/working/super-cloned'
@@ -50,6 +68,12 @@ class SubProjectRun(RunBlock):
     default_home = '/working'
 
 
+class SubProjectOut(SubProjectRun):
+    """ For displaying output only, with no highlighting
+    """
+    opt_defaults = {'highlighter': 'none', 'hide-code': True}
+
+
 class SubProjectCommit(RunCommit):
     default_links_file = OBJECTS_INC
     default_cwd = '/working/super/subproject'
@@ -58,9 +82,13 @@ class SubProjectCommit(RunCommit):
 
 def setup(app):
     app.add_directive('projectrun', ProjectRun)
+    app.add_directive('projectout', ProjectOut)
     app.add_directive('superrun', SuperRun)
+    app.add_directive('superout', SuperOut)
     app.add_directive('superclonedrun', SuperClonedRun)
+    app.add_directive('superclonedout', SuperClonedOut)
     app.add_directive('subprojectrun', SubProjectRun)
+    app.add_directive('subprojectout', SubProjectOut)
     app.add_directive('projectcommit', ProjectCommit)
     app.add_directive('supercommit', SuperCommit)
     app.add_directive('superclonedcommit', SuperClonedCommit)
