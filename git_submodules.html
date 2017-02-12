@@ -201,24 +201,16 @@ $ git commit -m <span class="s2">&quot;Initial commit on myproject&quot;</span>
 <p>Now a &#8220;super&#8221; project:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ mkdir super
 $ <span class="nb">cd</span> super
+$ git init
+Initialized empty Git repository in /Users/mb312/dev_trees/curious-git/working/super/.git/
 </pre></div>
 </div>
 <p>Remember (from <a class="reference internal" href="curious_git.html"><span class="doc">Curious git</span></a>) that doing <code class="docutils literal"><span class="pre">git</span> <span class="pre">add</span></code> on a file adds a new
 copy of that file to the <code class="docutils literal"><span class="pre">.git/objects</span></code> directory.  So, <code class="docutils literal"><span class="pre">.git/objects</span></code>
 starts off empty:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git init
-Initialized empty Git repository in /Users/mb312/dev_trees/curious-git/working/super/.git/
-</pre></div>
-</div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ tree -a .git/objects
-.git/objects
+<div class="highlight-none"><div class="highlight"><pre><span></span>objects
 ├── info
 └── pack
-
-<span class="m">2</span> directories, <span class="m">0</span> files
-</pre></div>
-</div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ 
 </pre></div>
 </div>
 <p>When we <code class="docutils literal"><span class="pre">git</span> <span class="pre">add</span></code> a file, there is one new file in <code class="docutils literal"><span class="pre">.git/objects</span></code>:</p>
@@ -226,14 +218,11 @@ Initialized empty Git repository in /Users/mb312/dev_trees/curious-git/working/s
 $ git add README.txt
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ tree -a .git/objects
-.git/objects
+<div class="highlight-none"><div class="highlight"><pre><span></span>objects
 ├── 9c
-│   └── 0042144fc489d7b528ef186af49e78c2867f91
+│   └── 0042144fc489d7b528ef186af49e78c2867f91 [43B]
 ├── info
 └── pack
-
-<span class="m">3</span> directories, <span class="m">1</span> file
 </pre></div>
 </div>
 <p>Now do the first commit for &#8220;super&#8221;:</p>
@@ -249,18 +238,15 @@ $ git add README.txt
 <li>a <em>commit</em> object giving information about the commit itself.</li>
 </ul>
 <p>So, we now have three files in <code class="docutils literal"><span class="pre">.git/objects</span></code>:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ tree -a .git/objects
-.git/objects
+<div class="highlight-none"><div class="highlight"><pre><span></span>objects
 ├── 23
-│   └── 262403a0b913d02219ead935dd1a85d3724a0d
+│   └── 262403a0b913d02219ead935dd1a85d3724a0d [139B]
 ├── 9c
-│   └── 0042144fc489d7b528ef186af49e78c2867f91
+│   └── 0042144fc489d7b528ef186af49e78c2867f91 [43B]
 ├── f1
-│   └── 3a8c8331c76ac965c43b09d11ee2d72bb053c1
+│   └── 3a8c8331c76ac965c43b09d11ee2d72bb053c1 [55B]
 ├── info
 └── pack
-
-<span class="m">5</span> directories, <span class="m">3</span> files
 </pre></div>
 </div>
 </div>
@@ -308,12 +294,9 @@ index 0000000..196bbbb
 <p>As you saw, the output from <code class="docutils literal"><span class="pre">git</span> <span class="pre">submodule</span></code> says <code class="docutils literal"><span class="pre">Cloning</span> <span class="pre">into</span>
 <span class="pre">subproject</span></code>, and sure enough, if we look in the new <code class="docutils literal"><span class="pre">subproject</span></code> directory,
 there is a clone of &#8220;myproject&#8221; there:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ tree -a subproject
-subproject
-├── .git
-└── some_data.txt
-
-<span class="m">0</span> directories, <span class="m">2</span> files
+<div class="highlight-none"><div class="highlight"><pre><span></span>subproject
+├── .git [35B]
+└── some_data.txt [24B]
 </pre></div>
 </div>
 <p>So, <code class="docutils literal"><span class="pre">git</span> <span class="pre">submodule</span></code> has:</p>
@@ -333,20 +316,17 @@ the &#8220;myproject&#8221; commit that the submodule contains.</li>
 &#8220;myproject&#8221; commit?</p>
 <p>Remember that we had three files in the <code class="docutils literal"><span class="pre">.git/objects</span></code> directory of &#8220;super&#8221;
 after the first commit.  After <code class="docutils literal"><span class="pre">git</span> <span class="pre">submodule</span> <span class="pre">add</span></code> we have four:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ tree -a .git/objects
-.git/objects
+<div class="highlight-none"><div class="highlight"><pre><span></span>objects
 ├── 00
-│   └── b54ece7789a75ca80a0edb1e1b1e532a1833d8
+│   └── b54ece7789a75ca80a0edb1e1b1e532a1833d8 [64B]
 ├── 23
-│   └── 262403a0b913d02219ead935dd1a85d3724a0d
+│   └── 262403a0b913d02219ead935dd1a85d3724a0d [139B]
 ├── 9c
-│   └── 0042144fc489d7b528ef186af49e78c2867f91
+│   └── 0042144fc489d7b528ef186af49e78c2867f91 [43B]
 ├── f1
-│   └── 3a8c8331c76ac965c43b09d11ee2d72bb053c1
+│   └── 3a8c8331c76ac965c43b09d11ee2d72bb053c1 [55B]
 ├── info
 └── pack
-
-<span class="m">6</span> directories, <span class="m">4</span> files
 </pre></div>
 </div>
 <p>The new object has hash <code class="docutils literal"><span class="pre">00b54ece7789a75ca80a0edb1e1b1e532a1833d8</span></code>, and it contains the contents of
@@ -357,10 +337,10 @@ the new <code class="docutils literal"><span class="pre">.gitmodules</span></cod
 	<span class="nv">url</span> <span class="o">=</span> ../myproject
 </pre></div>
 </div>
-<p>If there is only one new object in <code class="docutils literal"><span class="pre">.git/objects</span></code>, and that is for
-<code class="docutils literal"><span class="pre">.gitmodules</span></code>, then there is no new git object corresponding to the
-&#8220;myproject&#8221; repository.  What has in fact happened, is that git records the
-commit for &#8220;myproject&#8221; in the directory listing, instead of recording the
+<p>There is only one new object in <code class="docutils literal"><span class="pre">.git/objects</span></code>, and that is for
+<code class="docutils literal"><span class="pre">.gitmodules</span></code>.  Therefore there is no new git object corresponding to the
+&#8220;myproject&#8221; repository.  In fact what has happened, is that git records the
+commit for &#8220;myproject&#8221; in the <em>directory listing</em>, instead of recording the
 <code class="docutils literal"><span class="pre">subproject</span></code> directory as a subdirectory (tree object) or a file (blob
 object).  That is a bit difficult to see at the moment, because the directory
 listing is in the git staging area and not yet written into a tree object.  To
@@ -400,7 +380,8 @@ Date:   Tue May <span class="m">1</span> 11:13:13 <span class="m">2012</span> +0
 <h3>Updating submodules from their source repositories<a class="headerlink" href="#updating-submodules-from-their-source-repositories" title="Permalink to this headline">¶</a></h3>
 <p>How do we keep the <code class="docutils literal"><span class="pre">subproject</span></code> copy of &#8220;myproject&#8221; up to date with the
 original <code class="docutils literal"><span class="pre">myproject</span></code> repository?</p>
-<p>We go back to the original &#8220;myproject&#8221; repository and make another commit:</p>
+<p>To show this in action, we start by going back to the original &#8220;myproject&#8221;
+repository to make another commit:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ../myproject
 </pre></div>
 </div>
@@ -542,10 +523,7 @@ subproject
 </pre></div>
 </div>
 <p>What is in the new <code class="docutils literal"><span class="pre">subproject</span></code> directory?</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ tree -a subproject
-subproject
-
-<span class="m">0</span> directories, <span class="m">0</span> files
+<div class="highlight-none"><div class="highlight"><pre><span></span>subproject
 </pre></div>
 </div>
 <p>Nothing.  When you <code class="docutils literal"><span class="pre">git</span> <span class="pre">clone</span></code> a project with submodules, git does not clone
@@ -606,10 +584,7 @@ $ cat .git/config
 </div>
 <p>We have done <code class="docutils literal"><span class="pre">init</span></code>, but not <code class="docutils literal"><span class="pre">update</span></code>. The submodule directory is still
 empty:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ tree -a subproject
-subproject
-
-<span class="m">0</span> directories, <span class="m">0</span> files
+<div class="highlight-none"><div class="highlight"><pre><span></span>subproject
 </pre></div>
 </div>
 <p>To do the submodule clone, use <code class="docutils literal"><span class="pre">git</span> <span class="pre">submodule</span> <span class="pre">update</span></code> after <code class="docutils literal"><span class="pre">git</span> <span class="pre">submodule</span>
