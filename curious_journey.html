@@ -429,7 +429,7 @@ to deal with that situation?</p>
 <p>To help yourself think about this problem, you decide to scrap your last
 commit, and go back to the situation where your working tree has the changes,
 but the snapshots (commits) do not.  All you have to do to get there, is
-delete the snapshot directory:</p>
+delete the <code class="docutils literal"><span class="pre">snapshot_4</span></code> directory:</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
 ├── working
 │   ├── clever_analysis.py [752B]
@@ -448,11 +448,11 @@ delete the snapshot directory:</p>
 </div>
 <p>You still have your changes in the working tree.  You have changed the
 analysis script and figure, and you have the new <code class="docutils literal"><span class="pre">references.bib</span></code> file.</p>
-<p>You want to break these changes changes up into two seperate commits:</p>
+<p>You want to break these changes up into two separate commits:</p>
 <ul class="simple">
-<li>A commit with the changes to the analysis script and figure, but without the
+<li>a commit with the changes to the analysis script and figure, but without the
 references;</li>
-<li>Another commit to add the references.</li>
+<li>another commit to add the references.</li>
 </ul>
 <p>To do this kind of thing, you are going to use a new directory called
 <code class="docutils literal"><span class="pre">staging</span></code>.  The <code class="docutils literal"><span class="pre">staging</span></code> directory starts off with the files from the
@@ -486,9 +486,9 @@ of the last commit (except the commit message):</p>
 <p>Call the <code class="docutils literal"><span class="pre">staging</span></code> directory – the <strong>staging area</strong>.  Your new sequence
 for making a commit is:</p>
 <ul class="simple">
-<li>Copy any changes for the next commit from the working tree to the staging
+<li>copy any changes for the next commit from the working tree to the staging
 area;</li>
-<li>Make the commit by copying the contents of the staging area to a snapshot
+<li>make the commit by copying the contents of the staging area to a snapshot
 directory, and adding a commit message.</li>
 </ul>
 <p>You are doing this by hand, but later git will make this much more automatic.</p>
@@ -533,9 +533,9 @@ Notes: Change parameters of analysis
 </div>
 <p>To finish, you make the second of the two commits.  Remember the sequence:</p>
 <ul class="simple">
-<li>Copy any changes for the next commit from the working tree to the staging
+<li>copy any changes for the next commit from the working tree to the staging
 area;</li>
-<li>Make the commit by taking a snapshot of the staging area.</li>
+<li>cake the commit by taking a snapshot of the staging area.</li>
 </ul>
 <p>You copy the rest of the changes to the staging area:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ cp working/references.bib staging
@@ -596,9 +596,9 @@ analysis script was correct, and you decide to restore that.</p>
 (<code class="docutils literal"><span class="pre">snapshot_1</span></code>).  You also want to checkout the generated figure.</p>
 <p>Following our new standard staging workflow, that means:</p>
 <ul class="simple">
-<li>Get the files you want from the old commit into the working directory, and
+<li>get the files you want from the old commit into the working directory, and
 the staging area;</li>
-<li>Make a new commit from the staging area.</li>
+<li>make a new commit from the staging area.</li>
 </ul>
 <p>For our simple SAP system, that looks like this:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="c1"># Copy files from old commit to working tree</span>
