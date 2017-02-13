@@ -271,7 +271,7 @@ to deal with that situation?
 To help yourself think about this problem, you decide to scrap your last
 commit, and go back to the situation where your working tree has the changes,
 but the snapshots (commits) do not.  All you have to do to get there, is
-delete the snapshot directory:
+delete the ``snapshot_4`` directory:
 
 .. nprun::
     :hide:
@@ -289,11 +289,11 @@ delete the snapshot directory:
 You still have your changes in the working tree.  You have changed the
 analysis script and figure, and you have the new ``references.bib`` file.
 
-You want to break these changes changes up into two seperate commits:
+You want to break these changes up into two separate commits:
 
-* A commit with the changes to the analysis script and figure, but without the
+* a commit with the changes to the analysis script and figure, but without the
   references;
-* Another commit to add the references.
+* another commit to add the references.
 
 To do this kind of thing, you are going to use a new directory called
 ``staging``.  The ``staging`` directory starts off with the files from the
@@ -320,9 +320,9 @@ of the last commit (except the commit message):
 Call the ``staging`` directory |--| the **staging area**.  Your new sequence
 for making a commit is:
 
-* Copy any changes for the next commit from the working tree to the staging
+* copy any changes for the next commit from the working tree to the staging
   area;
-* Make the commit by copying the contents of the staging area to a snapshot
+* make the commit by copying the contents of the staging area to a snapshot
   directory, and adding a commit message.
 
 You are doing this by hand, but later git will make this much more automatic.
@@ -360,9 +360,9 @@ This gives:
 
 To finish, you make the second of the two commits.  Remember the sequence:
 
-* Copy any changes for the next commit from the working tree to the staging
+* copy any changes for the next commit from the working tree to the staging
   area;
-* Make the commit by taking a snapshot of the staging area.
+* cake the commit by taking a snapshot of the staging area.
 
 You copy the rest of the changes to the staging area:
 
@@ -416,9 +416,9 @@ To do that, you will **checkout** the script from the first commit
 
 Following our new standard staging workflow, that means:
 
-* Get the files you want from the old commit into the working directory, and
+* get the files you want from the old commit into the working directory, and
   the staging area;
-* Make a new commit from the staging area.
+* make a new commit from the staging area.
 
 For our simple SAP system, that looks like this:
 
