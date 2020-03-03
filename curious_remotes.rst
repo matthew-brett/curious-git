@@ -624,7 +624,7 @@ Github will host some private repositories for education users.
    do a ``push`` to this backup repository.  The ``push`` has the effect of
    resetting the position of a branch (usually ``master``) in the backup repo.
    Git is very reluctant to set a branch position in a remote repository with
-   a working tree, because the new branch position will not not match the
+   a working tree, because the new branch position will not match the
    existing content of the working tree.  Git could either leave the remote
    working tree out of sync with the new branch position, or update the remote
    working tree by doing a checkout of the new branch position, but either
