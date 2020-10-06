@@ -1,36 +1,17 @@
 <!DOCTYPE html>
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
+    <meta charset="utf-8" />
     <title>A curious tale &#8212; Curious git</title>
-    
-    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '0.2',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Curious git" href="curious_git.html" />
@@ -39,9 +20,12 @@
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="_static/bootstrap-sphinx.js "></script>
 
-  </head>
-  <body role="document">
+  </head><body>
 
   <div id="navbar" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -80,7 +64,7 @@
 <li class="toctree-l1"><a class="reference internal" href="curious_git.html">Curious git</a></li>
 <li class="toctree-l1"><a class="reference internal" href="README.html">Curious git</a></li>
 <li class="toctree-l1"><a class="reference internal" href="np-versions/README.html">np-versions</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="pdf_contents.html">The curious coder&#8217;s guide to git</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="pdf_contents.html">The curious coder’s guide to git</a></li>
 </ul>
 </ul>
 </li>
@@ -160,7 +144,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-12 content">
+    <div class="body col-md-12 content" role="main">
       
   <div class="section" id="a-curious-tale">
 <h1>A curious tale<a class="headerlink" href="#a-curious-tale" title="Permalink to this headline">¶</a></h1>
@@ -170,11 +154,11 @@ snapshots.  We soon find it starts to look just like git.</p>
 <h2>The end of the story<a class="headerlink" href="#the-end-of-the-story" title="Permalink to this headline">¶</a></h2>
 <p>To understand why git does what it does, we first need to think about what a
 content manager should do, and why we would want one.</p>
-<p>If you&#8217;ve read the <a class="reference external" href="http://practical-neuroimaging.github.io/git_parable.html">git parable</a> (please do), then you&#8217;ll recognize many of
+<p>If you’ve read the <a class="reference external" href="http://practical-neuroimaging.github.io/git_parable.html">git parable</a> (please do), then you’ll recognize many of
 the ideas.  Why?  Because they are good ideas, worthy of re-use.</p>
 <p>As in the <a class="reference external" href="http://practical-neuroimaging.github.io/git_parable.html">git parable</a>, we will try and design our own content manager, and
 then see what git has to say.</p>
-<p>(If you don&#8217;t mind reading some Python code, and more jokes, then also try my
+<p>(If you don’t mind reading some Python code, and more jokes, then also try my
 <a class="reference external" href="http://matthew-brett.github.io/pydagogue/foundation.html">git foundation</a> page).</p>
 <p>While we are designing our own content management system, we will do a lot of
 stuff longhand, to show how things work.  When we get to git, we will find it
@@ -183,13 +167,13 @@ does these tasks for us.</p>
 <div class="section" id="the-story-begins">
 <h2>The story begins<a class="headerlink" href="#the-story-begins" title="Permalink to this headline">¶</a></h2>
 <p>You are writing a breakthrough paper showing that you can explain how the
-brain works by careful processing of some interesting data.  You&#8217;ve got the
+brain works by careful processing of some interesting data.  You’ve got the
 analysis script, the data file and a figure for the paper.  These are all in a
-directory modestly named <code class="docutils literal"><span class="pre">nobel_prize</span></code>.</p>
+directory modestly named <code class="docutils literal notranslate"><span class="pre">nobel_prize</span></code>.</p>
 <p>You can get this, the first draft, by downloading and unzipping
-<a class="reference download internal" href="_downloads/nobel_prize.zip" download=""><code class="xref download docutils literal"><span class="pre">nobel_prize</span></code></a>.</p>
-<p>Here&#8217;s the current contents of our <code class="docutils literal"><span class="pre">nobel_prize</span></code> directory:</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
+<a class="reference download internal" download="" href="_downloads/591a72b60b1c3b4c865fcf00ee05afc3/nobel_prize.zip"><code class="xref download docutils literal notranslate"><span class="pre">nobel_prize</span></code></a>.</p>
+<p>Here’s the current contents of our <code class="docutils literal notranslate"><span class="pre">nobel_prize</span></code> directory:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>nobel_prize
 ├── clever_analysis.py [618B]
 ├── expensive_data.csv [244K]
 └── fancy_figure.png [183K]
@@ -198,18 +182,18 @@ directory modestly named <code class="docutils literal"><span class="pre">nobel_
 </div>
 <div class="section" id="the-dog-ate-my-results">
 <h2>The dog ate my results<a class="headerlink" href="#the-dog-ate-my-results" title="Permalink to this headline">¶</a></h2>
-<p>You&#8217;ve been working on this study for a while.</p>
+<p>You’ve been working on this study for a while.</p>
 <p>At first, you were very excited with the results. You ran the script, made the
-figure, and the figure looked good.  That&#8217;s the figure you currently have in
-<code class="docutils literal"><span class="pre">nobel_prize</span></code> directory. You took this figure to your advisor, Josephine.
+figure, and the figure looked good.  That’s the figure you currently have in
+<code class="docutils literal notranslate"><span class="pre">nobel_prize</span></code> directory. You took this figure to your advisor, Josephine.
 She was excited too. You get ready to publish in Science.</p>
-<p>You&#8217;ve done a few changes to the script and figure since then.  Today you
+<p>You’ve done a few changes to the script and figure since then.  Today you
 finished cleaning up for the Science paper, and reran the analysis, and it
-doesn&#8217;t look quite the same. You go to see Josephine. She says &#8220;It used to
-look better than that&#8221;. That&#8217;s what you think too. But:</p>
+doesn’t look quite the same. You go to see Josephine. She says “It used to
+look better than that”. That’s what you think too. But:</p>
 <ul class="simple">
-<li><strong>Did it really look different before?</strong></li>
-<li>If it did, <strong>what caused the change in the figure?</strong></li>
+<li><p><strong>Did it really look different before?</strong></p></li>
+<li><p>If it did, <strong>what caused the change in the figure?</strong></p></li>
 </ul>
 </div>
 <div class="section" id="deja-vu-all-over-again">
@@ -221,25 +205,25 @@ start again.</p>
 </div>
 <div class="section" id="gitwards-1-make-regular-snapshots">
 <h2>Gitwards 1: make regular snapshots<a class="headerlink" href="#gitwards-1-make-regular-snapshots" title="Permalink to this headline">¶</a></h2>
-<p>You decide to make your own content management system.  It&#8217;s the simplest
-thing that could possibly work, so you call it the &#8220;Simple As Possible&#8221;
+<p>You decide to make your own content management system.  It’s the simplest
+thing that could possibly work, so you call it the “Simple As Possible”
 system, or SAP for short.</p>
 <p>Every time you finish doing some work on your paper, you make a snapshot
 of all the files for the paper.</p>
 <p>The snapshot is a copy of all the files in the working directory.</p>
-<p>First you make a directory called <code class="docutils literal"><span class="pre">working</span></code>, and move your files to that
+<p>First you make a directory called <code class="docutils literal notranslate"><span class="pre">working</span></code>, and move your files to that
 directory:</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>nobel_prize
 └── working
     ├── clever_analysis.py [618B]
     ├── expensive_data.csv [244K]
     └── fancy_figure.png [183K]
 </pre></div>
 </div>
-<p>When you&#8217;ve finished work for the day, you make a snapshot of the directory
+<p>When you’ve finished work for the day, you make a snapshot of the directory
 containing the files you are working on.  The snapshot is just a copy of your
 working directory:</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>nobel_prize
 ├── working
 │   ├── clever_analysis.py [618B]
 │   ├── expensive_data.csv [244K]
@@ -251,9 +235,9 @@ working directory:</p>
 </pre></div>
 </div>
 <p>You are going to do this every day you work on the project.</p>
-<p>On the second day, you add your first draft of the paper, <code class="docutils literal"><span class="pre">nobel_prize.md</span></code>.
-You can download this ground-breaking work at <a class="reference download internal" href="_downloads/nobel_prize.md" download=""><code class="xref download docutils literal"><span class="pre">nobel_prize.md</span></code></a>.</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
+<p>On the second day, you add your first draft of the paper, <code class="docutils literal notranslate"><span class="pre">nobel_prize.md</span></code>.
+You can download this ground-breaking work at <a class="reference download internal" download="" href="_downloads/0ca9cde69ea4402290c460f32f2dca47/nobel_prize.md"><code class="xref download docutils literal notranslate"><span class="pre">nobel_prize.md</span></code></a>.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>nobel_prize
 ├── working
 │   ├── clever_analysis.py [618B]
 │   ├── expensive_data.csv [244K]
@@ -266,7 +250,7 @@ You can download this ground-breaking work at <a class="reference download inter
 </pre></div>
 </div>
 <p>At the end of the day you make your second snapshot:</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>nobel_prize
 ├── working
 │   ├── clever_analysis.py [618B]
 │   ├── expensive_data.csv [244K]
@@ -285,7 +269,7 @@ You can download this ground-breaking work at <a class="reference download inter
 </div>
 <p>On the third day, you did some edits to the analysis script, and refreshed the
 figure by running the script.  You did a third snapshot.</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>nobel_prize
 ├── working
 │   ├── clever_analysis.py [716B]
 │   ├── expensive_data.csv [244K]
@@ -307,11 +291,11 @@ figure by running the script.  You did a third snapshot.</p>
     └── fancy_figure.png [183K]
 </pre></div>
 </div>
-<p>To make the directory listing more compact, I&#8217;ll sometimes show only the
-number of files / directories in a subdirectory.  For example, here&#8217;s a
+<p>To make the directory listing more compact, I’ll sometimes show only the
+number of files / directories in a subdirectory.  For example, here’s a
 listing of the three snapshots, but only showing the contents of the third
 snapshot:</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>nobel_prize
 ├── working
 │   ├── clever_analysis.py [716B]
 │   ├── expensive_data.csv [244K]
@@ -330,7 +314,7 @@ snapshot:</p>
 </div>
 <p>Finally, on the fourth day, you make some more edits to the script, and you
 add some references for the paper.</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>nobel_prize
 ├── working
 │   ├── clever_analysis.py [752B]
 │   ├── expensive_data.csv [244K]
@@ -353,20 +337,20 @@ add some references for the paper.</p>
 </div>
 <p>You are ready for your fateful meeting with Josephine.  Again she notices that
 the figure is different from the first time you showed her.  This time you can
-go and look in <code class="docutils literal"><span class="pre">nobel_prize/snapshot_1</span></code> to see if the figure really is
+go and look in <code class="docutils literal notranslate"><span class="pre">nobel_prize/snapshot_1</span></code> to see if the figure really is
 different.  Then you can go through the snapshots to see where the figure
 changed.</p>
-<p>You&#8217;ve already got a useful content management system, but you are going to
+<p>You’ve already got a useful content management system, but you are going to
 make it better.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="admonition-title">Note</p>
 <p>We are already at the stage where we can define some <a class="reference external" href="https://www.kernel.org/pub/software/scm/git/docs/gitglossary.html">terms</a> that
 apply to our system and that will later apply to git:</p>
-<dl class="last docutils">
-<dt>Commit</dt>
-<dd>A completed snapshot. For example, <code class="docutils literal"><span class="pre">snapshot_1</span></code> contains one commit.</dd>
-<dt>Working tree</dt>
-<dd>The files you are working on in <code class="docutils literal"><span class="pre">nobel_prize/working</span></code>.</dd>
+<dl class="simple">
+<dt>Commit</dt><dd><p>A completed snapshot. For example, <code class="docutils literal notranslate"><span class="pre">snapshot_1</span></code> contains one commit.</p>
+</dd>
+<dt>Working tree</dt><dd><p>The files you are working on in <code class="docutils literal notranslate"><span class="pre">nobel_prize/working</span></code>.</p>
+</dd>
 </dl>
 </div>
 </div>
@@ -378,19 +362,19 @@ commit date and some text giving a summary of the changes you made.  Next time
 you need to track down when and why something changed, you can look at the
 message to give yourself an idea of the changes in the commit.  That might
 save you time when you want to narrow down where to look for problems.</p>
-<p>So, for each commit, you write write a file called <code class="docutils literal"><span class="pre">message.txt</span></code>. The
+<p>So, for each commit, you write write a file called <code class="docutils literal notranslate"><span class="pre">message.txt</span></code>. The
 message for the first commit looks like this:</p>
 <div class="admonition">
-<em class="first">Contents of </em><code class="docutils literal"><span class="pre">snapshot_1/message.txt</span></code><div class="last highlight-none"><div class="highlight"><pre><span></span>Date: April 1 2012, 14.30
+<em>Contents of </em><code class="docutils literal notranslate"><span class="pre">snapshot_1/message.txt</span></code><div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Date: April 1 2012, 14.30
 Author: I. M. Awesome
 Notes: First backup of my amazing idea
 </pre></div>
 </div>
 </div>
-<p>There is a similar <code class="docutils literal"><span class="pre">messsage.txt</span></code> file for each commit. For example,
-here&#8217;s the message for the third commit:</p>
+<p>There is a similar <code class="docutils literal notranslate"><span class="pre">messsage.txt</span></code> file for each commit. For example,
+here’s the message for the third commit:</p>
 <div class="admonition">
-<em class="first">Contents of </em><code class="docutils literal"><span class="pre">snapshot_3/message.txt</span></code><div class="last highlight-none"><div class="highlight"><pre><span></span>Date: April 3 2012, 11.20
+<em>Contents of </em><code class="docutils literal notranslate"><span class="pre">snapshot_3/message.txt</span></code><div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Date: April 3 2012, 11.20
 Author: I. M. Awesome
 Notes: Add another fudge factor
 </pre></div>
@@ -399,12 +383,12 @@ Notes: Add another fudge factor
 <p>This third message is useful because it gives you a hint that this was where
 you made the important change to the script and figure.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<dl class="last docutils">
-<dt>Commit message</dt>
-<dd>Information about a commit, including the author, date, time, and some
+<p class="admonition-title">Note</p>
+<dl class="simple">
+<dt>Commit message</dt><dd><p>Information about a commit, including the author, date, time, and some
 information about the changes in the commit, compared to the previous
-commits.</dd>
+commits.</p>
+</dd>
 </dl>
 </div>
 </div>
@@ -413,10 +397,10 @@ commits.</dd>
 <p>Now you are used to your new system, you find that you like to break your
 changes up into self-contained chunks of work, each with their own commit, and
 a matching commit message.  When you look back at your fourth commit, it looks
-like you included two separate chunks of work into the same commit.  You&#8217;ve
+like you included two separate chunks of work into the same commit.  You’ve
 even confessed to this in your commit message:</p>
 <div class="admonition">
-<em class="first">Contents of </em><code class="docutils literal"><span class="pre">snapshot_4/message.txt</span></code><div class="last highlight-none"><div class="highlight"><pre><span></span>Date: April 4 2012, 01.40
+<em>Contents of </em><code class="docutils literal notranslate"><span class="pre">snapshot_4/message.txt</span></code><div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Date: April 4 2012, 01.40
 Author: I. M. Awesome
 Notes: Change analysis and add references
 </pre></div>
@@ -429,8 +413,8 @@ to deal with that situation?</p>
 <p>To help yourself think about this problem, you decide to scrap your last
 commit, and go back to the situation where your working tree has the changes,
 but the snapshots (commits) do not.  All you have to do to get there, is
-delete the <code class="docutils literal"><span class="pre">snapshot_4</span></code> directory:</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
+delete the <code class="docutils literal notranslate"><span class="pre">snapshot_4</span></code> directory:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>nobel_prize
 ├── working
 │   ├── clever_analysis.py [752B]
 │   ├── expensive_data.csv [244K]
@@ -447,22 +431,22 @@ delete the <code class="docutils literal"><span class="pre">snapshot_4</span></c
 </pre></div>
 </div>
 <p>You still have your changes in the working tree.  You have changed the
-analysis script and figure, and you have the new <code class="docutils literal"><span class="pre">references.bib</span></code> file.</p>
+analysis script and figure, and you have the new <code class="docutils literal notranslate"><span class="pre">references.bib</span></code> file.</p>
 <p>You want to break these changes up into two separate commits:</p>
 <ul class="simple">
-<li>a commit with the changes to the analysis script and figure, but without the
-references;</li>
-<li>another commit to add the references.</li>
+<li><p>a commit with the changes to the analysis script and figure, but without the
+references;</p></li>
+<li><p>another commit to add the references.</p></li>
 </ul>
 <p>To do this kind of thing, you are going to use a new directory called
-<code class="docutils literal"><span class="pre">staging</span></code>.  The <code class="docutils literal"><span class="pre">staging</span></code> directory starts off with the files from the
+<code class="docutils literal notranslate"><span class="pre">staging</span></code>.  The <code class="docutils literal notranslate"><span class="pre">staging</span></code> directory starts off with the files from the
 last commit.  When you want to add some changes that will go into your next
-commit, you copy the changes from the working tree to the <code class="docutils literal"><span class="pre">staging</span></code>
-directory.  You make the commit by copying the contents of <code class="docutils literal"><span class="pre">staging</span></code> to a
+commit, you copy the changes from the working tree to the <code class="docutils literal notranslate"><span class="pre">staging</span></code>
+directory.  You make the commit by copying the contents of <code class="docutils literal notranslate"><span class="pre">staging</span></code> to a
 new snapshot directory, and adding a commit message.</p>
-<p>To get started, you make the new <code class="docutils literal"><span class="pre">staging</span></code> directory by copying the contents
+<p>To get started, you make the new <code class="docutils literal notranslate"><span class="pre">staging</span></code> directory by copying the contents
 of the last commit (except the commit message):</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>nobel_prize
 ├── working
 │   ├── clever_analysis.py [752B]
 │   ├── expensive_data.csv [244K]
@@ -483,34 +467,34 @@ of the last commit (except the commit message):</p>
 ...
 </pre></div>
 </div>
-<p>Call the <code class="docutils literal"><span class="pre">staging</span></code> directory – the <strong>staging area</strong>.  Your new sequence
+<p>Call the <code class="docutils literal notranslate"><span class="pre">staging</span></code> directory – the <strong>staging area</strong>.  Your new sequence
 for making a commit is:</p>
 <ul class="simple">
-<li>copy any changes for the next commit from the working tree to the staging
-area;</li>
-<li>make the commit by copying the contents of the staging area to a snapshot
-directory, and adding a commit message.</li>
+<li><p>copy any changes for the next commit from the working tree to the staging
+area;</p></li>
+<li><p>make the commit by copying the contents of the staging area to a snapshot
+directory, and adding a commit message.</p></li>
 </ul>
 <p>You are doing this by hand, but later git will make this much more automatic.</p>
 <p>Now you are ready to make the first of your two new commits.  You copy the
 changed analysis script and figure from the working tree to the staging area:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cp working/clever_analysis.py staging
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cp working/clever_analysis.py staging
 $ cp working/fancy_figure.png staging
 </pre></div>
 </div>
 <p>The staging directory (staging area) now contains the right files for the
 first of your two commits.</p>
-<p>Next you make a commit by copying the staging area to <code class="docutils literal"><span class="pre">snapshot_4</span></code> and
+<p>Next you make a commit by copying the staging area to <code class="docutils literal notranslate"><span class="pre">snapshot_4</span></code> and
 adding a message:</p>
 <div class="admonition">
-<em class="first">Contents of </em><code class="docutils literal"><span class="pre">snapshot_4/message.txt</span></code><div class="last highlight-none"><div class="highlight"><pre><span></span>Date: April 4 2012, 01.40
+<em>Contents of </em><code class="docutils literal notranslate"><span class="pre">snapshot_4/message.txt</span></code><div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Date: April 4 2012, 01.40
 Author: I. M. Awesome
 Notes: Change parameters of analysis
 </pre></div>
 </div>
 </div>
 <p>This gives:</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>nobel_prize
 ├── working
 │   ├── clever_analysis.py [752B]
 │   ├── expensive_data.csv [244K]
@@ -533,25 +517,25 @@ Notes: Change parameters of analysis
 </div>
 <p>To finish, you make the second of the two commits.  Remember the sequence:</p>
 <ul class="simple">
-<li>copy any changes for the next commit from the working tree to the staging
-area;</li>
-<li>cake the commit by taking a snapshot of the staging area.</li>
+<li><p>copy any changes for the next commit from the working tree to the staging
+area;</p></li>
+<li><p>cake the commit by taking a snapshot of the staging area.</p></li>
 </ul>
 <p>You copy the rest of the changes to the staging area:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cp working/references.bib staging
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cp working/references.bib staging
 </pre></div>
 </div>
-<p>Finally, you do the commit by copying the contents of <code class="docutils literal"><span class="pre">staging</span></code> to a new
-directory <code class="docutils literal"><span class="pre">snapshot_5</span></code>, and adding a commit message:</p>
+<p>Finally, you do the commit by copying the contents of <code class="docutils literal notranslate"><span class="pre">staging</span></code> to a new
+directory <code class="docutils literal notranslate"><span class="pre">snapshot_5</span></code>, and adding a commit message:</p>
 <div class="admonition">
-<em class="first">Contents of </em><code class="docutils literal"><span class="pre">snapshot_5/message.txt</span></code><div class="last highlight-none"><div class="highlight"><pre><span></span>Date: April 4 2012, 02.10
+<em>Contents of </em><code class="docutils literal notranslate"><span class="pre">snapshot_5/message.txt</span></code><div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Date: April 4 2012, 02.10
 Author: I. M. Awesome
 Notes: Add references
 </pre></div>
 </div>
 </div>
 <p>Now you have:</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>nobel_prize
 ├── working
 │   ├── clever_analysis.py [752B]
 │   ├── expensive_data.csv [244K]
@@ -576,13 +560,13 @@ Notes: Add references
 </div>
 <p>We can add a couple of new terms to our vocabulary:</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<dl class="last docutils">
-<dt>Staging area</dt>
-<dd>Temporary area that contains the contents of the next commit.  We copy
+<p class="admonition-title">Note</p>
+<dl class="simple">
+<dt>Staging area</dt><dd><p>Temporary area that contains the contents of the next commit.  We copy
 changes from the working tree to the staging area to <strong>stage</strong> those
 changes.  We make the new <strong>commit</strong> from the contents of the
-<strong>staging area</strong>.</dd>
+<strong>staging area</strong>.</p>
+</dd>
 </dl>
 </div>
 </div>
@@ -593,34 +577,34 @@ changes.  We make the new <strong>commit</strong> from the contents of the
 <p>Now you look back over the commits, you realize that your first draft of the
 analysis script was correct, and you decide to restore that.</p>
 <p>To do that, you will <strong>checkout</strong> the script from the first commit
-(<code class="docutils literal"><span class="pre">snapshot_1</span></code>).  You also want to checkout the generated figure.</p>
+(<code class="docutils literal notranslate"><span class="pre">snapshot_1</span></code>).  You also want to checkout the generated figure.</p>
 <p>Following our new standard staging workflow, that means:</p>
 <ul class="simple">
-<li>get the files you want from the old commit into the working directory, and
-the staging area;</li>
-<li>make a new commit from the staging area.</li>
+<li><p>get the files you want from the old commit into the working directory, and
+the staging area;</p></li>
+<li><p>make a new commit from the staging area.</p></li>
 </ul>
 <p>For our simple SAP system, that looks like this:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="c1"># Copy files from old commit to working tree</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="c1"># Copy files from old commit to working tree</span>
 $ cp snapshot_1/clever_analysis.py working
 $ cp snapshot_1/fancy_figure.png working
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="c1"># Copy files from working tree to staging area</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="c1"># Copy files from working tree to staging area</span>
 $ cp working/clever_analysis.py staging
 $ cp working/fancy_figure.png staging
 </pre></div>
 </div>
-<p>Then do the commit by copying <code class="docutils literal"><span class="pre">staging</span></code>, and add a message:</p>
+<p>Then do the commit by copying <code class="docutils literal notranslate"><span class="pre">staging</span></code>, and add a message:</p>
 <div class="admonition">
-<em class="first">Contents of </em><code class="docutils literal"><span class="pre">snapshot_6/message.txt</span></code><div class="last highlight-none"><div class="highlight"><pre><span></span>Date: April 5 2012, 18.40
+<em>Contents of </em><code class="docutils literal notranslate"><span class="pre">snapshot_6/message.txt</span></code><div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Date: April 5 2012, 18.40
 Author: I. M. Awesome
 Notes: Revert to original script &amp; figure
 </pre></div>
 </div>
 </div>
 <p>This gives:</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>nobel_prize
 ├── working
 │   ├── clever_analysis.py [618B]
 │   ├── expensive_data.csv [244K]
@@ -656,11 +640,11 @@ Notes: Revert to original script &amp; figure
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<dl class="last docutils">
-<dt>Checkout (a file)</dt>
-<dd>To <strong>checkout</strong> a file is to restore the copy of a file as stored in a
-particular commit.</dd>
+<p class="admonition-title">Note</p>
+<dl class="simple">
+<dt>Checkout (a file)</dt><dd><p>To <strong>checkout</strong> a file is to restore the copy of a file as stored in a
+particular commit.</p>
+</dd>
 </dl>
 </div>
 </div>
@@ -670,11 +654,11 @@ particular commit.</dd>
 one person is working on the files in parallel.</p>
 <p>Josephine is impressed with your SAP content management system, and wants to
 use it to make some edits to the paper.  She takes a copy of your
-<code class="docutils literal"><span class="pre">nobel_prize</span></code> directory to put on her laptop.</p>
+<code class="docutils literal notranslate"><span class="pre">nobel_prize</span></code> directory to put on her laptop.</p>
 <p>She goes away for a conference.</p>
 <p>While she is away, you do some work on the analysis script, and regenerate the
-figure, to make <code class="docutils literal"><span class="pre">shapshot_7</span></code>:</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
+figure, to make <code class="docutils literal notranslate"><span class="pre">shapshot_7</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>nobel_prize
 ├── working
 │   ├── clever_analysis.py [692B]
 │   ├── expensive_data.csv [244K]
@@ -695,18 +679,18 @@ figure, to make <code class="docutils literal"><span class="pre">shapshot_7</spa
 </div>
 <p>Meanwhile, Josephine decides to work on the paper.  Following your procedure,
 she makes a commit herself.</p>
-<p>What should Josephine&#8217;s commit directory be called?</p>
-<p>She could call it <code class="docutils literal"><span class="pre">snapshot_7</span></code>, but then, when she gets back to the lab, and
-gives you her <code class="docutils literal"><span class="pre">nobel_prize</span></code> directory, her copy of <code class="docutils literal"><span class="pre">nobel_prize</span></code> and yours
-will both have a <code class="docutils literal"><span class="pre">snapshot_7</span></code> directory, but they will be different.  It
-would be easy to copy Josephine&#8217;s directory over yours or yours over
-Josephine&#8217;s, and lose the work.</p>
+<p>What should Josephine’s commit directory be called?</p>
+<p>She could call it <code class="docutils literal notranslate"><span class="pre">snapshot_7</span></code>, but then, when she gets back to the lab, and
+gives you her <code class="docutils literal notranslate"><span class="pre">nobel_prize</span></code> directory, her copy of <code class="docutils literal notranslate"><span class="pre">nobel_prize</span></code> and yours
+will both have a <code class="docutils literal notranslate"><span class="pre">snapshot_7</span></code> directory, but they will be different.  It
+would be easy to copy Josephine’s directory over yours or yours over
+Josephine’s, and lose the work.</p>
 <p>For the moment, you decide that Josephine will attach her name to the commit
 directory, to make it clear this is her snapshot.  So, she makes her commit
-into the directory <code class="docutils literal"><span class="pre">snapshot_7_josephine</span></code>.  When she comes back from the
-conference, you copy her <code class="docutils literal"><span class="pre">snapshot_7_josephine</span></code> into your <code class="docutils literal"><span class="pre">nobel_prize</span></code>
+into the directory <code class="docutils literal notranslate"><span class="pre">snapshot_7_josephine</span></code>.  When she comes back from the
+conference, you copy her <code class="docutils literal notranslate"><span class="pre">snapshot_7_josephine</span></code> into your <code class="docutils literal notranslate"><span class="pre">nobel_prize</span></code>
 directory:</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>nobel_prize
 ├── working
 │   ├── clever_analysis.py [692B]
 │   ├── expensive_data.csv [244K]
@@ -715,13 +699,6 @@ directory:</p>
 │   └── references.bib [244B]
 ├── staging
 │   (5 files)
-├── snapshot_7_josephine
-│   ├── clever_analysis.py [618B]
-│   ├── expensive_data.csv [244K]
-│   ├── fancy_figure.png [183K]
-│   ├── nobel_prize.md [979B]
-│   ├── references.bib [244B]
-│   └── message.txt [80B]
 ├── snapshot_7
 │   ├── clever_analysis.py [692B]
 │   ├── expensive_data.csv [244K]
@@ -729,20 +706,27 @@ directory:</p>
 │   ├── nobel_prize.md [730B]
 │   ├── references.bib [244B]
 │   └── message.txt [75B]
+├── snapshot_7_josephine
+│   ├── clever_analysis.py [618B]
+│   ├── expensive_data.csv [244K]
+│   ├── fancy_figure.png [183K]
+│   ├── nobel_prize.md [979B]
+│   ├── references.bib [244B]
+│   └── message.txt [80B]
 ...
 </pre></div>
 </div>
 <p>After the copy, you still have your own copy of the working tree, without
-Josephine&#8217;s changes to the paper. You want to combine your changes with her
+Josephine’s changes to the paper. You want to combine your changes with her
 changes.  To do this you do a <strong>merge</strong> by copying her changes to the paper
 into the working directory.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="c1"># Get Josephine&#39;s changes to the paper</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="c1"># Get Josephine&#39;s changes to the paper</span>
 $ cp snapshot_7_josephine/nobel_prize.md working
 </pre></div>
 </div>
 <p>Now you do a commit with these merged changes, by copying them into the
-staging area, and thence to <code class="docutils literal"><span class="pre">snapshot_8</span></code>, with a suitable message:</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
+staging area, and thence to <code class="docutils literal notranslate"><span class="pre">snapshot_8</span></code>, with a suitable message:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>nobel_prize
 ├── working
 │   ├── clever_analysis.py [692B]
 │   ├── expensive_data.csv [244K]
@@ -762,41 +746,34 @@ staging area, and thence to <code class="docutils literal"><span class="pre">sna
 │   ├── nobel_prize.md [979B]
 │   ├── references.bib [244B]
 │   └── message.txt [82B]
-├── snapshot_7_josephine
-│   ├── clever_analysis.py [618B]
-│   ├── expensive_data.csv [244K]
-│   ├── fancy_figure.png [183K]
-│   ├── nobel_prize.md [979B]
-│   ├── references.bib [244B]
-│   └── message.txt [80B]
 ...
 </pre></div>
 </div>
 <p>This new commit is the result of a merge, and therefore it is a <strong>merge
 commit</strong>.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<dl class="last docutils">
-<dt>Merge</dt>
-<dd>To make a new <strong>merge commit</strong> by combining changes from two (or
-more) commits.</dd>
+<p class="admonition-title">Note</p>
+<dl class="simple">
+<dt>Merge</dt><dd><p>To make a new <strong>merge commit</strong> by combining changes from two (or
+more) commits.</p>
+</dd>
 </dl>
 </div>
 </div>
 <div class="section" id="gitwards-6-how-should-you-name-your-commit-directories">
 <h2>Gitwards 6: how should you name your commit directories?<a class="headerlink" href="#gitwards-6-how-should-you-name-your-commit-directories" title="Permalink to this headline">¶</a></h2>
-<p>You like your new system, and so does Josephine, but you don&#8217;t much like your
-solution of adding Josephine&#8217;s name to the commit directory – as in
-<code class="docutils literal"><span class="pre">snapshot_7_josephine</span></code>.  There might be lots of people working on this
+<p>You like your new system, and so does Josephine, but you don’t much like your
+solution of adding Josephine’s name to the commit directory – as in
+<code class="docutils literal notranslate"><span class="pre">snapshot_7_josephine</span></code>.  There might be lots of people working on this
 paper.  With your naming system, you have to give out a unique name to each
-person working on <code class="docutils literal"><span class="pre">nobel_prize</span></code>.  As you think about this problem, you begin
+person working on <code class="docutils literal notranslate"><span class="pre">nobel_prize</span></code>.  As you think about this problem, you begin
 to realize that what you want is a system for giving each commit directory a
 unique name, that comes from the contents of the commit.  This is where you
 starting thinking about <strong>hashes</strong>.</p>
 </div>
 <div class="section" id="a-diversion-on-cryptographic-hashes">
 <h2>A diversion on cryptographic hashes<a class="headerlink" href="#a-diversion-on-cryptographic-hashes" title="Permalink to this headline">¶</a></h2>
-<p>This section describes &#8220;Cryptographic hashes&#8221;. These will give us an excellent
+<p>This section describes “Cryptographic hashes”. These will give us an excellent
 way to name our snapshots.  Later we will see that they are central to the way
 that git works.</p>
 <p>See : <a class="reference external" href="http://en.wikipedia.org/wiki/Cryptographic_hash_function">Wikipedia on hash
@@ -804,8 +781,8 @@ functions</a>.</p>
 <p>A <em>hash</em> is the result of running a <em>hash function</em> over a block of
 data. The hash is a fixed length string that is the characteristic
 <em>fingerprint</em> of that exact block of data.  One common hash function is called
-SHA1.  Let&#8217;s run this via the command line:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="c1"># Make a file with a single line of text</span>
+SHA1.  Let’s run this via the command line:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="c1"># Make a file with a single line of text</span>
 $ <span class="nb">echo</span> <span class="s2">&quot;git is a rude word in UK English&quot;</span> &gt; git_is_rude
 $ <span class="c1"># Show the SHA1 hash</span>
 $ shasum git_is_rude
@@ -815,37 +792,37 @@ $ shasum git_is_rude
 <p>Not too exciting so far. However, the rather magical nature of this string is
 not yet apparent. This SHA1 hash is a <em>cryptographic</em> hash because:</p>
 <ul class="simple">
-<li>the hash value is (almost) unique to this exact file contents, and</li>
-<li>it is (almost) impossible to find some other file contents with the same
-hash.</li>
+<li><p>the hash value is (almost) unique to this exact file contents, and</p></li>
+<li><p>it is (almost) impossible to find some other file contents with the same
+hash.</p></li>
 </ul>
-<p>By &#8220;almost impossible&#8221; I mean that finding a file with the same hash is
-roughly the same level of difficulty as trying something like <span class="math">\(16^{40}\)</span>
+<p>By “almost impossible” I mean that finding a file with the same hash is
+roughly the same level of difficulty as trying something like <span class="math notranslate nohighlight">\(16^{40}\)</span>
 different files (where 16 is the number of different hexadecimal digits, and
 40 is the length of the SHA1 string).</p>
 <p>In other words, there is no practical way for you to find another file with
 different contents that will give the same hash.</p>
 <p>For example, a tiny change in the string makes the hash completely different.
-Here I&#8217;ve just added a full stop at the end:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">echo</span> <span class="s2">&quot;git is a rude word in UK English.&quot;</span> &gt; git_is_rude_stop
+Here I’ve just added a full stop at the end:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">echo</span> <span class="s2">&quot;git is a rude word in UK English.&quot;</span> &gt; git_is_rude_stop
 $ shasum git_is_rude_stop
 23d97b00299c250b43049be67c97cf2e5ffc2428  git_is_rude_stop
 </pre></div>
 </div>
 <p>So, if you give me some data, and I calculate the SHA1 hash value, and it
-comes out as <code class="docutils literal"><span class="pre">30ad6c360a692c1fe66335bb00d00e0528346be5</span></code>, then I can be very
-sure that the data you gave me was exactly the ASCII string &#8220;git is a rude
-word in UK English&#8221;.</p>
+comes out as <code class="docutils literal notranslate"><span class="pre">30ad6c360a692c1fe66335bb00d00e0528346be5</span></code>, then I can be very
+sure that the data you gave me was exactly the ASCII string “git is a rude
+word in UK English”.</p>
 </div>
 <div class="section" id="gitwards-7-naming-commits-from-hashes">
 <span id="naming-from-hashes"></span><h2>Gitwards 7: naming commits from hashes<a class="headerlink" href="#gitwards-7-naming-commits-from-hashes" title="Permalink to this headline">¶</a></h2>
 <p>Now you have hashing under your belt, maybe it would be a good way of making a
 unique name for the commits.  You could take the SHA1 hash for the
-<code class="docutils literal"><span class="pre">message.txt</span></code> for each commit, and use that SHA1 hash as the name for the
+<code class="docutils literal notranslate"><span class="pre">message.txt</span></code> for each commit, and use that SHA1 hash as the name for the
 commit directory.  Because each message has the date and time and author and
-notes, it&#8217;s very unlikely that any two <code class="docutils literal"><span class="pre">message.txt</span></code> files will be the same.
-Here are the hashes for the current <code class="docutils literal"><span class="pre">message.txt</span></code> files:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="c1"># Show the SHA1 hash values for each message.txt</span>
+notes, it’s very unlikely that any two <code class="docutils literal notranslate"><span class="pre">message.txt</span></code> files will be the same.
+Here are the hashes for the current <code class="docutils literal notranslate"><span class="pre">message.txt</span></code> files:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="c1"># Show the SHA1 hash values for each message.txt</span>
 $ shasum snapshot*/message.txt
 99b52473039acea4427e13e42b96c78776e2baf5  snapshot_1/message.txt
 d396475cc691c8ac7ba7a318726f220c924cf60b  snapshot_2/message.txt
@@ -858,9 +835,9 @@ d396475cc691c8ac7ba7a318726f220c924cf60b  snapshot_2/message.txt
 df3e787c2a89ac991b1c89b39fb014c1f049a939  snapshot_8/message.txt
 </pre></div>
 </div>
-<p>For example you could rename the <code class="docutils literal"><span class="pre">snapshot_1</span></code> directory to <code class="docutils literal"><span class="pre">99b52473039acea4427e13e42b96c78776e2baf5</span></code>,
-then rename <code class="docutils literal"><span class="pre">snapshot_2</span></code> to <code class="docutils literal"><span class="pre">d396475cc691c8ac7ba7a318726f220c924cf60b</span></code> and so on.</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
+<p>For example you could rename the <code class="docutils literal notranslate"><span class="pre">snapshot_1</span></code> directory to <code class="docutils literal notranslate"><span class="pre">99b52473039acea4427e13e42b96c78776e2baf5</span></code>,
+then rename <code class="docutils literal notranslate"><span class="pre">snapshot_2</span></code> to <code class="docutils literal notranslate"><span class="pre">d396475cc691c8ac7ba7a318726f220c924cf60b</span></code> and so on.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>nobel_prize
 ├── working
 │   (5 files)
 ├── staging
@@ -886,19 +863,19 @@ then rename <code class="docutils literal"><span class="pre">snapshot_2</span></
 </pre></div>
 </div>
 <p>The problem you have now is that the directory names no longer tell you the
-sequence of the commits, so you can&#8217;t tell that <code class="docutils literal"><span class="pre">snapshot_2</span></code> (now
-<code class="docutils literal"><span class="pre">d396475cc691c8ac7ba7a318726f220c924cf60b</span></code>) follows <code class="docutils literal"><span class="pre">snapshot_1</span></code> (now <code class="docutils literal"><span class="pre">99b52473039acea4427e13e42b96c78776e2baf5</span></code>).</p>
+sequence of the commits, so you can’t tell that <code class="docutils literal notranslate"><span class="pre">snapshot_2</span></code> (now
+<code class="docutils literal notranslate"><span class="pre">d396475cc691c8ac7ba7a318726f220c924cf60b</span></code>) follows <code class="docutils literal notranslate"><span class="pre">snapshot_1</span></code> (now <code class="docutils literal notranslate"><span class="pre">99b52473039acea4427e13e42b96c78776e2baf5</span></code>).</p>
 <p>OK – you scratch the renaming for now while you have a rethink.</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>nobel_prize
 ├── working
 │   (5 files)
 ├── staging
 │   (5 files)
 ├── snapshot_8
 │   (6 files)
-├── snapshot_7_josephine
-│   (6 files)
 ├── snapshot_7
+│   (6 files)
+├── snapshot_7_josephine
 │   (6 files)
 ├── snapshot_6
 │   (6 files)
@@ -914,62 +891,62 @@ sequence of the commits, so you can&#8217;t tell that <code class="docutils lite
     (4 files)
 </pre></div>
 </div>
-<p>You still want to rename the commit directories, from the <code class="docutils literal"><span class="pre">message.txt</span></code>
+<p>You still want to rename the commit directories, from the <code class="docutils literal notranslate"><span class="pre">message.txt</span></code>
 hashes, but you need a way to store the sequence of commits, after you have
 done this.</p>
 <p>After some thought, you come up with a quite brilliant idea.  Each
-<code class="docutils literal"><span class="pre">message.txt</span></code> will point back to the previous commit in the sequence.  You
-add a new field to <code class="docutils literal"><span class="pre">messsage.txt</span></code> called <code class="docutils literal"><span class="pre">Parents</span></code>.
-<code class="docutils literal"><span class="pre">snapshot_1/message.txt</span></code> stays the same, because it has no parents:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cat snapshot_1/message.txt
-Date: April <span class="m">1</span> 2012, 14.30
+<code class="docutils literal notranslate"><span class="pre">message.txt</span></code> will point back to the previous commit in the sequence.  You
+add a new field to <code class="docutils literal notranslate"><span class="pre">messsage.txt</span></code> called <code class="docutils literal notranslate"><span class="pre">Parents</span></code>.
+<code class="docutils literal notranslate"><span class="pre">snapshot_1/message.txt</span></code> stays the same, because it has no parents:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cat snapshot_1/message.txt
+Date: April <span class="m">1</span> <span class="m">2012</span>, <span class="m">14</span>.30
 Author: I. M. Awesome
 Notes: First backup of my amazing idea
 </pre></div>
 </div>
-<p><code class="docutils literal"><span class="pre">snapshot_2/message.txt</span></code> does change, because it now points back to
-<code class="docutils literal"><span class="pre">snapshot_1</span></code>.  But, you&#8217;re going to rename the snapshot directories, so you
-want <code class="docutils literal"><span class="pre">snapshot_2/message.txt</span></code> to point back to the hash for
-<code class="docutils literal"><span class="pre">snapshot_1/message.txt</span></code>, which you know is <code class="docutils literal"><span class="pre">99b52473039acea4427e13e42b96c78776e2baf5</span></code>:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cat snapshot_2/message.txt
-Date: April <span class="m">2</span> 2012, 18.03
+<p><code class="docutils literal notranslate"><span class="pre">snapshot_2/message.txt</span></code> does change, because it now points back to
+<code class="docutils literal notranslate"><span class="pre">snapshot_1</span></code>.  But, you’re going to rename the snapshot directories, so you
+want <code class="docutils literal notranslate"><span class="pre">snapshot_2/message.txt</span></code> to point back to the hash for
+<code class="docutils literal notranslate"><span class="pre">snapshot_1/message.txt</span></code>, which you know is <code class="docutils literal notranslate"><span class="pre">99b52473039acea4427e13e42b96c78776e2baf5</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cat snapshot_2/message.txt
+Date: April <span class="m">2</span> <span class="m">2012</span>, <span class="m">18</span>.03
 Author: I. M. Awesome
 Notes: Add first draft of paper
 Parents: 99b52473039acea4427e13e42b96c78776e2baf5
 </pre></div>
 </div>
-<p>Now we&#8217;ve changed the contents and therefore the hash for
-<code class="docutils literal"><span class="pre">snapshot_2/message.txt</span></code>.  The hash was <code class="docutils literal"><span class="pre">d396475cc691c8ac7ba7a318726f220c924cf60b</span></code>, but now it
+<p>Now we’ve changed the contents and therefore the hash for
+<code class="docutils literal notranslate"><span class="pre">snapshot_2/message.txt</span></code>.  The hash was <code class="docutils literal notranslate"><span class="pre">d396475cc691c8ac7ba7a318726f220c924cf60b</span></code>, but now it
 is:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ shasum snapshot_2/message.txt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ shasum snapshot_2/message.txt
 9bf4cdd8847feeb49fe94cb96298acf7986a587d  snapshot_2/message.txt
 </pre></div>
 </div>
-<p>You keep doing this procedure, for all the commits, modifying <code class="docutils literal"><span class="pre">message.txt</span></code>
-and recalculating the hash, until you come to <code class="docutils literal"><span class="pre">snapshot_8</span></code>, the merge
-commit.  This commit is the result of merging two commits: <code class="docutils literal"><span class="pre">snapshot_7</span></code> and
-<code class="docutils literal"><span class="pre">snapshot_7_josephine</span></code>.  You can record this information by putting <em>two</em>
-parents into the <code class="docutils literal"><span class="pre">Parents</span></code> field of <code class="docutils literal"><span class="pre">snapshot_8/message.txt</span></code>, being the
-new hashes for <code class="docutils literal"><span class="pre">snapshot_7/message.txt</span></code> and
-<code class="docutils literal"><span class="pre">snapshot_7_josephine/message.txt</span></code>:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ shasum snapshot_7/message.txt
+<p>You keep doing this procedure, for all the commits, modifying <code class="docutils literal notranslate"><span class="pre">message.txt</span></code>
+and recalculating the hash, until you come to <code class="docutils literal notranslate"><span class="pre">snapshot_8</span></code>, the merge
+commit.  This commit is the result of merging two commits: <code class="docutils literal notranslate"><span class="pre">snapshot_7</span></code> and
+<code class="docutils literal notranslate"><span class="pre">snapshot_7_josephine</span></code>.  You can record this information by putting <em>two</em>
+parents into the <code class="docutils literal notranslate"><span class="pre">Parents</span></code> field of <code class="docutils literal notranslate"><span class="pre">snapshot_8/message.txt</span></code>, being the
+new hashes for <code class="docutils literal notranslate"><span class="pre">snapshot_7/message.txt</span></code> and
+<code class="docutils literal notranslate"><span class="pre">snapshot_7_josephine/message.txt</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ shasum snapshot_7/message.txt
 bee09a3b1c11456c6e1bc6784319954f40fef24b  snapshot_7/message.txt
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ shasum snapshot_7_josephine/message.txt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ shasum snapshot_7_josephine/message.txt
 905376d349af193c367217712bc231186f17fca7  snapshot_7_josephine/message.txt
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cat snapshot_8/message.txt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cat snapshot_8/message.txt
 Date: April 7 2012, 15.03
 Author: I. M. Awesome
 Notes: Merged Josephine&#39;s changes
 Parents: bee09a3b1c11456c6e1bc6784319954f40fef24b 905376d349af193c367217712bc231186f17fca7
 </pre></div>
 </div>
-<p>With the new <code class="docutils literal"><span class="pre">Parents</span></code> field, you have new hashes for all the
-<code class="docutils literal"><span class="pre">message.txt</span></code> files, except <code class="docutils literal"><span class="pre">snapshot_1</span></code> (that has no parent):</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ shasum snapshot_*/message.txt
+<p>With the new <code class="docutils literal notranslate"><span class="pre">Parents</span></code> field, you have new hashes for all the
+<code class="docutils literal notranslate"><span class="pre">message.txt</span></code> files, except <code class="docutils literal notranslate"><span class="pre">snapshot_1</span></code> (that has no parent):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ shasum snapshot_*/message.txt
 99b52473039acea4427e13e42b96c78776e2baf5  snapshot_1/message.txt
 9bf4cdd8847feeb49fe94cb96298acf7986a587d  snapshot_2/message.txt
 d9accd0a27c78b4333d70ee1a9d7dca0bcc3e682  snapshot_3/message.txt
@@ -982,9 +959,9 @@ bd9dc5fb9aacf208536fad1fad22696c9a79e277  snapshot_8/message.txt
 </pre></div>
 </div>
 <p>You can now rename your snapshot directories with the hash values, safe in the
-knowledge that the <code class="docutils literal"><span class="pre">message.txt</span></code> files have the information about the commit
+knowledge that the <code class="docutils literal notranslate"><span class="pre">message.txt</span></code> files have the information about the commit
 sequence.</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>nobel_prize
 ├── working
 │   (5 files)
 ├── staging
@@ -1010,9 +987,9 @@ sequence.</p>
 </pre></div>
 </div>
 <p>Now the commit directories are hash names, it is harder to see which commit is
-which, so here&#8217;s the directory listing where the commit directories have a
-label from the <code class="docutils literal"><span class="pre">Notes:</span></code> field in <code class="docutils literal"><span class="pre">message.txt</span></code>:</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
+which, so here’s the directory listing where the commit directories have a
+label from the <code class="docutils literal notranslate"><span class="pre">Notes:</span></code> field in <code class="docutils literal notranslate"><span class="pre">message.txt</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>nobel_prize
 ├── working
 │   (5 files)
 ├── staging
@@ -1038,39 +1015,39 @@ label from the <code class="docutils literal"><span class="pre">Notes:</span></c
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<dl class="last docutils">
-<dt>Commit hash</dt>
-<dd>The hash value for the file containing the <strong>commit message</strong>.</dd>
+<p class="admonition-title">Note</p>
+<dl class="simple">
+<dt>Commit hash</dt><dd><p>The hash value for the file containing the <strong>commit message</strong>.</p>
+</dd>
 </dl>
 </div>
 </div>
 <div class="section" id="gitwards-8-the-development-history-is-a-graph">
 <h2>Gitwards 8: the development history is a graph<a class="headerlink" href="#gitwards-8-the-development-history-is-a-graph" title="Permalink to this headline">¶</a></h2>
-<p>The commits are linked by the &#8220;Parents&#8221; field in the <code class="docutils literal"><span class="pre">message.txt</span></code> file.  We
+<p>The commits are linked by the “Parents” field in the <code class="docutils literal notranslate"><span class="pre">message.txt</span></code> file.  We
 can think of the commits in a graph, where the commits are the nodes, and the
-links between the nodes come from the hashes in the &#8220;Parents&#8221; field.</p>
-<div class="figure" id="id2">
+links between the nodes come from the hashes in the “Parents” field.</p>
+<div class="figure align-default" id="id2">
 <img alt="_images/snapshot_graph1.png" src="_images/snapshot_graph1.png" />
 <p class="caption"><span class="caption-text">Graph of development history for your SAP content management system.  The
 most recent commit is at the top, the first commit is at the bottom.  Your
-commits are in blue, Josephine&#8217;s are in pink.  Each commit label has the
-hash for the commit message, and the note in the <code class="docutils literal"><span class="pre">message.txt</span></code> file.</span></p>
+commits are in blue, Josephine’s are in pink.  Each commit label has the
+hash for the commit message, and the note in the <code class="docutils literal notranslate"><span class="pre">message.txt</span></code> file.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="gitwards-9-saving-space-with-file-hashes">
 <h2>Gitwards 9: saving space with file hashes<a class="headerlink" href="#gitwards-9-saving-space-with-file-hashes" title="Permalink to this headline">¶</a></h2>
-<p>While you&#8217;ve been working on your system, you&#8217;ve noticed that your snapshots
+<p>While you’ve been working on your system, you’ve noticed that your snapshots
 are not efficient on disk space.  For example, every commit / snapshot has an
-identical copy of the data <code class="docutils literal"><span class="pre">expensive_data.csv</span></code>.  If you had bigger files or
+identical copy of the data <code class="docutils literal notranslate"><span class="pre">expensive_data.csv</span></code>.  If you had bigger files or
 a longer development history, this could be a problem.</p>
-<p>Likewise, <code class="docutils literal"><span class="pre">fancy_figure.png</span></code> and <code class="docutils literal"><span class="pre">clever_analysis.py</span></code> are the same for the
+<p>Likewise, <code class="docutils literal notranslate"><span class="pre">fancy_figure.png</span></code> and <code class="docutils literal notranslate"><span class="pre">clever_analysis.py</span></code> are the same for the
 first two commits, and then again when you reverted to that copy in
-<code class="docutils literal"><span class="pre">snapshot_6</span></code> (that is now commit <code class="docutils literal"><span class="pre">9920fff7b55370a2c4c7566011de8aa2a263171f</span></code>).</p>
+<code class="docutils literal notranslate"><span class="pre">snapshot_6</span></code> (that is now commit <code class="docutils literal notranslate"><span class="pre">9920fff7b55370a2c4c7566011de8aa2a263171f</span></code>).</p>
 <p>You can show these files are the same by checking their hash strings.  If
 their hash strings are different, the files must be different.  All copies of
-<code class="docutils literal"><span class="pre">expensive_data.csv</span></code> have the same hash, and are therefore identical:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ shasum */expensive_data.csv
+<code class="docutils literal notranslate"><span class="pre">expensive_data.csv</span></code> have the same hash, and are therefore identical:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ shasum */expensive_data.csv
 bf2c7158afc60b244cba860fb0b2c04bb6481daf  00d03e9d1bf4ebaea380da3c62e9226189e39ff4/expensive_data.csv
 bf2c7158afc60b244cba860fb0b2c04bb6481daf  905376d349af193c367217712bc231186f17fca7/expensive_data.csv
 bf2c7158afc60b244cba860fb0b2c04bb6481daf  9920fff7b55370a2c4c7566011de8aa2a263171f/expensive_data.csv
@@ -1084,24 +1061,24 @@ bf2c7158afc60b244cba860fb0b2c04bb6481daf  staging/expensive_data.csv
 bf2c7158afc60b244cba860fb0b2c04bb6481daf  working/expensive_data.csv
 </pre></div>
 </div>
-<p><code class="docutils literal"><span class="pre">fancy_figure.png</span></code> is the same for the first two commits, changes for the
+<p><code class="docutils literal notranslate"><span class="pre">fancy_figure.png</span></code> is the same for the first two commits, changes for the
 third commit, and reverts back to the same contents at the 6th commit:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="c1"># First commit</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="c1"># First commit</span>
 $ shasum 99b52473039acea4427e13e42b96c78776e2baf5/fancy_figure.png
 e8fe49b1faf23b428865d0315c4763c6ec459897  99b52473039acea4427e13e42b96c78776e2baf5/fancy_figure.png
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="c1"># Second commit</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="c1"># Second commit</span>
 $ shasum 9bf4cdd8847feeb49fe94cb96298acf7986a587d/fancy_figure.png
 e8fe49b1faf23b428865d0315c4763c6ec459897  9bf4cdd8847feeb49fe94cb96298acf7986a587d/fancy_figure.png
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="c1"># Third commit</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="c1"># Third commit</span>
 $ shasum d9accd0a27c78b4333d70ee1a9d7dca0bcc3e682/fancy_figure.png
 863cf24c03c6ab1eb33c1022d6fc8f7a2876875a  d9accd0a27c78b4333d70ee1a9d7dca0bcc3e682/fancy_figure.png
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="c1"># Sixth commit</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="c1"># Sixth commit</span>
 $ shasum 9920fff7b55370a2c4c7566011de8aa2a263171f/fancy_figure.png
 e8fe49b1faf23b428865d0315c4763c6ec459897  9920fff7b55370a2c4c7566011de8aa2a263171f/fancy_figure.png
 </pre></div>
@@ -1109,39 +1086,39 @@ e8fe49b1faf23b428865d0315c4763c6ec459897  9920fff7b55370a2c4c7566011de8aa2a26317
 <p>You wonder if there is a way to store each unique version of the file just
 once, and make the commits point to the matching version.</p>
 <p>First you make a new directory to store files generated from your commits:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ mkdir repo
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mkdir repo
 </pre></div>
 </div>
 <p>Next you make a sub-directory to store the unique copies of the files in
 commits:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ mkdir repo/objects
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mkdir repo/objects
 </pre></div>
 </div>
 <p>You play with the idea of calling these unique versions something like
-<code class="docutils literal"><span class="pre">repo/objects/fancy_figure.png.v1</span></code>, <code class="docutils literal"><span class="pre">repo/objects/fancy_figure.png.v2</span></code> and
+<code class="docutils literal notranslate"><span class="pre">repo/objects/fancy_figure.png.v1</span></code>, <code class="docutils literal notranslate"><span class="pre">repo/objects/fancy_figure.png.v2</span></code> and
 so on.  You would then need something like a text file called
-<code class="docutils literal"><span class="pre">directory_listing.txt</span></code> in the first commit directory to say that the file
-<code class="docutils literal"><span class="pre">fancy_figure.png</span></code> for this commit is available at
-<code class="docutils literal"><span class="pre">repo/objects/fancy_figure.png.v1</span></code>.  This could be something like:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># directory_listing.txt in first commit</span>
+<code class="docutils literal notranslate"><span class="pre">directory_listing.txt</span></code> in the first commit directory to say that the file
+<code class="docutils literal notranslate"><span class="pre">fancy_figure.png</span></code> for this commit is available at
+<code class="docutils literal notranslate"><span class="pre">repo/objects/fancy_figure.png.v1</span></code>.  This could be something like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># directory_listing.txt in first commit</span>
 <span class="n">fancy_figure</span><span class="o">.</span><span class="n">png</span> <span class="o">-&gt;</span> <span class="n">repo</span><span class="o">/</span><span class="n">objects</span><span class="o">/</span><span class="n">fancy_figure</span><span class="o">.</span><span class="n">png</span><span class="o">.</span><span class="n">v1</span>
 </pre></div>
 </div>
-<p><code class="docutils literal"><span class="pre">directory_listing.txt</span></code> for the second commit would point to the same file,
+<p><code class="docutils literal notranslate"><span class="pre">directory_listing.txt</span></code> for the second commit would point to the same file,
 but the third commit would have something like:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># directory_listing.txt in third commit</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># directory_listing.txt in third commit</span>
 <span class="n">fancy_figure</span><span class="o">.</span><span class="n">png</span> <span class="o">-&gt;</span> <span class="n">repo</span><span class="o">/</span><span class="n">objects</span><span class="o">/</span><span class="n">fancy_figure</span><span class="o">.</span><span class="n">png</span><span class="o">.</span><span class="n">v2</span>
 </pre></div>
 </div>
 <p>You quickly realize this is going to get messy when you are working with other
-people, because you may store <code class="docutils literal"><span class="pre">repo/objects/fancy_figure.png.v3</span></code> while
+people, because you may store <code class="docutils literal notranslate"><span class="pre">repo/objects/fancy_figure.png.v3</span></code> while
 Josephine is also working on the figure, and is storing her own
-<code class="docutils literal"><span class="pre">repo/objects/fancy_figure.png.v3</span></code>.  You need a unique file name for each
+<code class="docutils literal notranslate"><span class="pre">repo/objects/fancy_figure.png.v3</span></code>.  You need a unique file name for each
 version of the file.</p>
 <p>Now you have your second quite brilliant hashing idea.  Why not use the
 <strong>hash</strong> of the file to make a unique file name?</p>
 <p>For example, here are the hash values for the files in the first commit:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ shasum 99b52473039acea4427e13e42b96c78776e2baf5/*
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ shasum 99b52473039acea4427e13e42b96c78776e2baf5/*
 c25a0bd91a7e8eb574b17296a25111233eac94b5  99b52473039acea4427e13e42b96c78776e2baf5/clever_analysis.py
 bf2c7158afc60b244cba860fb0b2c04bb6481daf  99b52473039acea4427e13e42b96c78776e2baf5/expensive_data.csv
 e8fe49b1faf23b428865d0315c4763c6ec459897  99b52473039acea4427e13e42b96c78776e2baf5/fancy_figure.png
@@ -1149,32 +1126,32 @@ e8fe49b1faf23b428865d0315c4763c6ec459897  99b52473039acea4427e13e42b96c78776e2ba
 </pre></div>
 </div>
 <p>To store the unique copies, you copy each file in the first commit to
-<code class="docutils literal"><span class="pre">repo/objects</span></code> with a unique file name.  <strong>The file name is the hash of the
-file contents</strong>.  For example, the hash for <code class="docutils literal"><span class="pre">fancy_figure.png</span></code> is
-<code class="docutils literal"><span class="pre">e8fe49b1faf23b428865d0315c4763c6ec459897</span></code>.  So, you do:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cp 99b52473039acea4427e13e42b96c78776e2baf5/fancy_figure.png repo/objects/e8fe49b1faf23b428865d0315c4763c6ec459897
+<code class="docutils literal notranslate"><span class="pre">repo/objects</span></code> with a unique file name.  <strong>The file name is the hash of the
+file contents</strong>.  For example, the hash for <code class="docutils literal notranslate"><span class="pre">fancy_figure.png</span></code> is
+<code class="docutils literal notranslate"><span class="pre">e8fe49b1faf23b428865d0315c4763c6ec459897</span></code>.  So, you do:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cp 99b52473039acea4427e13e42b96c78776e2baf5/fancy_figure.png repo/objects/e8fe49b1faf23b428865d0315c4763c6ec459897
 </pre></div>
 </div>
-<p>The hash values for <code class="docutils literal"><span class="pre">clever_analysis.py</span></code> and <code class="docutils literal"><span class="pre">expensive_data.csv</span></code> are
-<code class="docutils literal"><span class="pre">c25a0bd91a7e8eb574b17296a25111233eac94b5</span></code> and <code class="docutils literal"><span class="pre">bf2c7158afc60b244cba860fb0b2c04bb6481daf</span></code> respectively, so:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cp 99b52473039acea4427e13e42b96c78776e2baf5/clever_analysis.py repo/objects/c25a0bd91a7e8eb574b17296a25111233eac94b5
+<p>The hash values for <code class="docutils literal notranslate"><span class="pre">clever_analysis.py</span></code> and <code class="docutils literal notranslate"><span class="pre">expensive_data.csv</span></code> are
+<code class="docutils literal notranslate"><span class="pre">c25a0bd91a7e8eb574b17296a25111233eac94b5</span></code> and <code class="docutils literal notranslate"><span class="pre">bf2c7158afc60b244cba860fb0b2c04bb6481daf</span></code> respectively, so:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cp 99b52473039acea4427e13e42b96c78776e2baf5/clever_analysis.py repo/objects/c25a0bd91a7e8eb574b17296a25111233eac94b5
 $ cp 99b52473039acea4427e13e42b96c78776e2baf5/expensive_data.csv repo/objects/bf2c7158afc60b244cba860fb0b2c04bb6481daf
 </pre></div>
 </div>
-<p>These hash values become the <code class="docutils literal"><span class="pre">directory_listing.txt</span></code> for the first commit:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cat 99b52473039acea4427e13e42b96c78776e2baf5/directory_listing.txt
+<p>These hash values become the <code class="docutils literal notranslate"><span class="pre">directory_listing.txt</span></code> for the first commit:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cat 99b52473039acea4427e13e42b96c78776e2baf5/directory_listing.txt
 c25a0bd91a7e8eb574b17296a25111233eac94b5  clever_analysis.py
 bf2c7158afc60b244cba860fb0b2c04bb6481daf  expensive_data.csv
 e8fe49b1faf23b428865d0315c4763c6ec459897  fancy_figure.png
 </pre></div>
 </div>
-<p>Finally, you can delete <code class="docutils literal"><span class="pre">fancy_figure.png</span></code>, <code class="docutils literal"><span class="pre">clever_analysis.py</span></code> and
-<code class="docutils literal"><span class="pre">expensive_data.csv</span></code> in the first commit directory, because you have them
-backed up in <code class="docutils literal"><span class="pre">repo/objects</span></code>.</p>
-<p>So far you haven&#8217;t gained anything much except some odd-looking filenames.
+<p>Finally, you can delete <code class="docutils literal notranslate"><span class="pre">fancy_figure.png</span></code>, <code class="docutils literal notranslate"><span class="pre">clever_analysis.py</span></code> and
+<code class="docutils literal notranslate"><span class="pre">expensive_data.csv</span></code> in the first commit directory, because you have them
+backed up in <code class="docutils literal notranslate"><span class="pre">repo/objects</span></code>.</p>
+<p>So far you haven’t gained anything much except some odd-looking filenames.
 The payoff comes when you apply the same procedure to the second commit.  Here
 are the hashes for the files in the second commit:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ shasum 9bf4cdd8847feeb49fe94cb96298acf7986a587d/*
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ shasum 9bf4cdd8847feeb49fe94cb96298acf7986a587d/*
 c25a0bd91a7e8eb574b17296a25111233eac94b5  9bf4cdd8847feeb49fe94cb96298acf7986a587d/clever_analysis.py
 bf2c7158afc60b244cba860fb0b2c04bb6481daf  9bf4cdd8847feeb49fe94cb96298acf7986a587d/expensive_data.csv
 e8fe49b1faf23b428865d0315c4763c6ec459897  9bf4cdd8847feeb49fe94cb96298acf7986a587d/fancy_figure.png
@@ -1183,25 +1160,25 @@ e8fe49b1faf23b428865d0315c4763c6ec459897  9bf4cdd8847feeb49fe94cb96298acf7986a58
 </pre></div>
 </div>
 <p>Remember that, in the second commit, all you did was add the first draft of
-the paper as <code class="docutils literal"><span class="pre">nobel_prize.md</span></code>.  So, all the other files in the second commit
-(apart from <code class="docutils literal"><span class="pre">message.txt</span></code> that you are not storing) are the same as for the
+the paper as <code class="docutils literal notranslate"><span class="pre">nobel_prize.md</span></code>.  So, all the other files in the second commit
+(apart from <code class="docutils literal notranslate"><span class="pre">message.txt</span></code> that you are not storing) are the same as for the
 first commit, and therefore have the same hash.  You already have these files
-backed up in <code class="docutils literal"><span class="pre">repo/objects</span></code> so all you need to do is point
-<code class="docutils literal"><span class="pre">directory_listing.txt</span></code> at the original copies in <code class="docutils literal"><span class="pre">repo/objects</span></code>.</p>
-<p>For example, the hash for <code class="docutils literal"><span class="pre">fancy_figure.png</span></code> in the second commit is
-<code class="docutils literal"><span class="pre">e8fe49b1faf23b428865d0315c4763c6ec459897</span></code>.  When you are storing the files for the second commit
-in <code class="docutils literal"><span class="pre">repo/objects</span></code>, you notice that you already have a file
-named <code class="docutils literal"><span class="pre">e8fe49b1faf23b428865d0315c4763c6ec459897</span></code> in <code class="docutils literal"><span class="pre">repo/objects</span></code>, so you do not copy it a
+backed up in <code class="docutils literal notranslate"><span class="pre">repo/objects</span></code> so all you need to do is point
+<code class="docutils literal notranslate"><span class="pre">directory_listing.txt</span></code> at the original copies in <code class="docutils literal notranslate"><span class="pre">repo/objects</span></code>.</p>
+<p>For example, the hash for <code class="docutils literal notranslate"><span class="pre">fancy_figure.png</span></code> in the second commit is
+<code class="docutils literal notranslate"><span class="pre">e8fe49b1faf23b428865d0315c4763c6ec459897</span></code>.  When you are storing the files for the second commit
+in <code class="docutils literal notranslate"><span class="pre">repo/objects</span></code>, you notice that you already have a file
+named <code class="docutils literal notranslate"><span class="pre">e8fe49b1faf23b428865d0315c4763c6ec459897</span></code> in <code class="docutils literal notranslate"><span class="pre">repo/objects</span></code>, so you do not copy it a
 second time.  By checking the hashes for each file in the commit, you find
-that the only file you are missing is the new file <code class="docutils literal"><span class="pre">nobel_prize.md</span></code>.  This
-has hash <code class="docutils literal"><span class="pre">47eef829586738a0855060dc83f8e0781fbcac2c</span></code>, so you do a single copy to <code class="docutils literal"><span class="pre">repo/objects</span></code>:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="c1"># Only one copy needed to store files in second commit</span>
+that the only file you are missing is the new file <code class="docutils literal notranslate"><span class="pre">nobel_prize.md</span></code>.  This
+has hash <code class="docutils literal notranslate"><span class="pre">47eef829586738a0855060dc83f8e0781fbcac2c</span></code>, so you do a single copy to <code class="docutils literal notranslate"><span class="pre">repo/objects</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="c1"># Only one copy needed to store files in second commit</span>
 $ cp 9bf4cdd8847feeb49fe94cb96298acf7986a587d/nobel_prize.md repo/objects/47eef829586738a0855060dc83f8e0781fbcac2c
 </pre></div>
 </div>
-<p>As before, you can make <code class="docutils literal"><span class="pre">directory_listing.txt</span></code> for the second commit by
+<p>As before, you can make <code class="docutils literal notranslate"><span class="pre">directory_listing.txt</span></code> for the second commit by
 recording the hashes of the files:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cat 9bf4cdd8847feeb49fe94cb96298acf7986a587d/directory_listing.txt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cat 9bf4cdd8847feeb49fe94cb96298acf7986a587d/directory_listing.txt
 c25a0bd91a7e8eb574b17296a25111233eac94b5  clever_analysis.py
 bf2c7158afc60b244cba860fb0b2c04bb6481daf  expensive_data.csv
 e8fe49b1faf23b428865d0315c4763c6ec459897  fancy_figure.png
@@ -1209,15 +1186,15 @@ e8fe49b1faf23b428865d0315c4763c6ec459897  fancy_figure.png
 </pre></div>
 </div>
 <p>Before you start this procedure of moving the unique copies into
-<code class="docutils literal"><span class="pre">repo/objects</span></code>, your whole <code class="docutils literal"><span class="pre">nobel_prize</span></code> directory is size:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="c1"># Size of the contents of nobel_prize before moving to repo/objects</span>
+<code class="docutils literal notranslate"><span class="pre">repo/objects</span></code>, your whole <code class="docutils literal notranslate"><span class="pre">nobel_prize</span></code> directory is size:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="c1"># Size of the contents of nobel_prize before moving to repo/objects</span>
 $ du -hs .
-5.4M	.
+<span class="m">5</span>.4M	.
 </pre></div>
 </div>
 <p>When you run the procedure above on every commit, moving files to
-<code class="docutils literal"><span class="pre">repo/objects</span></code>, you have this:</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
+<code class="docutils literal notranslate"><span class="pre">repo/objects</span></code>, you have this:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>nobel_prize
 ├── working
 │   (5 files)
 ├── staging
@@ -1267,11 +1244,11 @@ $ du -hs .
     └── message.txt [87B]
 </pre></div>
 </div>
-<p>The whole <code class="docutils literal"><span class="pre">nobel_prize</span></code> directory is now smaller because you have no
+<p>The whole <code class="docutils literal notranslate"><span class="pre">nobel_prize</span></code> directory is now smaller because you have no
 duplicated files:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="c1"># Size of the contents of nobel_prize after moving to repo/objects</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="c1"># Size of the contents of nobel_prize after moving to repo/objects</span>
 $ du -hs .
-2.3M	.
+<span class="m">2</span>.3M	.
 </pre></div>
 </div>
 <p>The advantage in size gets larger as your system grows, and you have more
@@ -1279,20 +1256,20 @@ duplicated files.</p>
 </div>
 <div class="section" id="gitwards-10-making-the-commits-unique">
 <h2>Gitwards 10: making the commits unique<a class="headerlink" href="#gitwards-10-making-the-commits-unique" title="Permalink to this headline">¶</a></h2>
-<p>Up in <a class="reference internal" href="#naming-from-hashes"><span class="std std-ref">Gitwards 7: naming commits from hashes</span></a> you used the hash of <code class="docutils literal"><span class="pre">message.txt</span></code> as a
+<p>Up in <a class="reference internal" href="#naming-from-hashes"><span class="std std-ref">Gitwards 7: naming commits from hashes</span></a> you used the hash of <code class="docutils literal notranslate"><span class="pre">message.txt</span></code> as a
 nearly unique directory name for the commit.  Your thinking was that it was
 very unlikely that any two commits would have the same author, date, time, and
-note.  You have since added the <code class="docutils literal"><span class="pre">Parents</span></code> field to <code class="docutils literal"><span class="pre">message.txt</span></code> to make
+note.  You have since added the <code class="docutils literal notranslate"><span class="pre">Parents</span></code> field to <code class="docutils literal notranslate"><span class="pre">message.txt</span></code> to make
 it even more unlikely.  But – it could still happen.  You might be careless
 and make another commit very quickly after the previous, and without a note.
 You could even point back to the same parent.</p>
 <p>You would like to be even more confident that the commit message is unique to
 the commit, including the contents of the files in the commit.</p>
-<p>You now have a way of doing this.   The <code class="docutils literal"><span class="pre">directory_listing.txt</span></code> files
+<p>You now have a way of doing this.   The <code class="docutils literal notranslate"><span class="pre">directory_listing.txt</span></code> files
 contain a list of hashes and corresponding file names for this commit
-(snapshot).  For example, here is <code class="docutils literal"><span class="pre">directory_listing.txt</span></code> for the first
+(snapshot).  For example, here is <code class="docutils literal notranslate"><span class="pre">directory_listing.txt</span></code> for the first
 commit:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cat 99b52473039acea4427e13e42b96c78776e2baf5/directory_listing.txt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cat 99b52473039acea4427e13e42b96c78776e2baf5/directory_listing.txt
 c25a0bd91a7e8eb574b17296a25111233eac94b5 clever_analysis.py
 815bbcf64edacb6791cc2ebdc3afeb09797c9347 directory_listing.txt
 bf2c7158afc60b244cba860fb0b2c04bb6481daf expensive_data.csv
@@ -1301,31 +1278,31 @@ e8fe49b1faf23b428865d0315c4763c6ec459897 fancy_figure.png
 </div>
 <p>The contents of this file are (very nearly) unique to the contents of the
 files in the snapshot.  If any of the files changed, then the hash of the file
-would change and the corresponding line in <code class="docutils literal"><span class="pre">directory_listing.txt</span></code> would
+would change and the corresponding line in <code class="docutils literal notranslate"><span class="pre">directory_listing.txt</span></code> would
 change.  If you renamed the file, the name of the file would change and the
-corresponding line in <code class="docutils literal"><span class="pre">directory_listing.txt</span></code> would change.</p>
-<p>Now you know what to do.  You take a hash of the <code class="docutils literal"><span class="pre">directory_listing.txt</span></code>
+corresponding line in <code class="docutils literal notranslate"><span class="pre">directory_listing.txt</span></code> would change.</p>
+<p>Now you know what to do.  You take a hash of the <code class="docutils literal notranslate"><span class="pre">directory_listing.txt</span></code>
 file:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ shasum 99b52473039acea4427e13e42b96c78776e2baf5/directory_listing.txt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ shasum 99b52473039acea4427e13e42b96c78776e2baf5/directory_listing.txt
 85d49d8555aeb254d1d4acd377034772944a35fe  99b52473039acea4427e13e42b96c78776e2baf5/directory_listing.txt
 </pre></div>
 </div>
-<p>You put this has into a new field in <code class="docutils literal"><span class="pre">message.txt</span></code> called <code class="docutils literal"><span class="pre">Directory</span>
+<p>You put this has into a new field in <code class="docutils literal notranslate"><span class="pre">message.txt</span></code> called <code class="docutils literal notranslate"><span class="pre">Directory</span>
 <span class="pre">hash:</span></code>:</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>Date: April 1 2012, 14.30
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Date: April 1 2012, 14.30
 Author: I. M. Awesome
 Notes: First backup of my amazing idea
 Directory hash: 85d49d8555aeb254d1d4acd377034772944a35fe
 </pre></div>
 </div>
-<p>Now, if any file in the commit changes, <code class="docutils literal"><span class="pre">directory_listing.txt</span></code> will change,
-and so its hash will change, and so <code class="docutils literal"><span class="pre">message.txt</span></code> will change.</p>
-<p>Now you&#8217;ve added the <code class="docutils literal"><span class="pre">Directory</span> <span class="pre">hash</span></code> field to <code class="docutils literal"><span class="pre">messsage.txt</span></code> you have
-also changed the hash values of the <code class="docutils literal"><span class="pre">message.txt</span></code> files.  Because you&#8217;ve
-changed the hashes of the <code class="docutils literal"><span class="pre">message.txt</span></code> files, you go back through your
+<p>Now, if any file in the commit changes, <code class="docutils literal notranslate"><span class="pre">directory_listing.txt</span></code> will change,
+and so its hash will change, and so <code class="docutils literal notranslate"><span class="pre">message.txt</span></code> will change.</p>
+<p>Now you’ve added the <code class="docutils literal notranslate"><span class="pre">Directory</span> <span class="pre">hash</span></code> field to <code class="docutils literal notranslate"><span class="pre">messsage.txt</span></code> you have
+also changed the hash values of the <code class="docutils literal notranslate"><span class="pre">message.txt</span></code> files.  Because you’ve
+changed the hashes of the <code class="docutils literal notranslate"><span class="pre">message.txt</span></code> files, you go back through your
 commits updating the parent hashes to the new ones, and renaming the commit
 directories with the new hashes.  You end up with this:</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>nobel_prize
 ├── working
 │   (5 files)
 ├── staging
@@ -1352,12 +1329,12 @@ directories with the new hashes.  You end up with this:</p>
     (2 files)
 </pre></div>
 </div>
-<p>With your new system, if any two commits have the same <code class="docutils literal"><span class="pre">message.txt</span></code> then
+<p>With your new system, if any two commits have the same <code class="docutils literal notranslate"><span class="pre">message.txt</span></code> then
 they also have the same date, author, note, parents and file contents.  They
 are therefore exactly the same commit.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">The commit message is unique to the contents of the files in the snapshot
+<p class="admonition-title">Note</p>
+<p>The commit message is unique to the contents of the files in the snapshot
 (because of the directory hash) and unique to its previous history
 (because of the parent hash(es)).</p>
 </div>
@@ -1365,8 +1342,8 @@ are therefore exactly the same commit.</p>
 <div class="section" id="gitwards-11-away-with-the-snapshot-directories">
 <h2>Gitwards 11: away with the snapshot directories<a class="headerlink" href="#gitwards-11-away-with-the-snapshot-directories" title="Permalink to this headline">¶</a></h2>
 <p>You are reflecting on your idea about hashing the directory listing, and your
-eye falls idly on the current directory tree of <code class="docutils literal"><span class="pre">nobel_prize</span></code>:</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
+eye falls idly on the current directory tree of <code class="docutils literal notranslate"><span class="pre">nobel_prize</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>nobel_prize
 ├── working
 │   (5 files)
 ├── staging
@@ -1403,28 +1380,28 @@ eye falls idly on the current directory tree of <code class="docutils literal"><
     └── message.txt [144B]
 </pre></div>
 </div>
-<p>It occurs to you that you can move the <code class="docutils literal"><span class="pre">directory_listing.txt</span></code> and
-<code class="docutils literal"><span class="pre">message.txt</span></code> files into your <code class="docutils literal"><span class="pre">repo/objects</span></code> directory.  When you have
+<p>It occurs to you that you can move the <code class="docutils literal notranslate"><span class="pre">directory_listing.txt</span></code> and
+<code class="docutils literal notranslate"><span class="pre">message.txt</span></code> files into your <code class="docutils literal notranslate"><span class="pre">repo/objects</span></code> directory.  When you have
 done that, you can get rid of the commit directories entirely.</p>
-<p>First you take the hash of each <code class="docutils literal"><span class="pre">directory_listing.txt</span></code> and move it into the
-<code class="docutils literal"><span class="pre">repo/objects</span></code> directory as you did for the other files:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ shasum 9c0b782981cc2ee322ec4b595dc472799f8808bd/directory_listing.txt
+<p>First you take the hash of each <code class="docutils literal notranslate"><span class="pre">directory_listing.txt</span></code> and move it into the
+<code class="docutils literal notranslate"><span class="pre">repo/objects</span></code> directory as you did for the other files:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ shasum 9c0b782981cc2ee322ec4b595dc472799f8808bd/directory_listing.txt
 85d49d8555aeb254d1d4acd377034772944a35fe  9c0b782981cc2ee322ec4b595dc472799f8808bd/directory_listing.txt
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cp 9c0b782981cc2ee322ec4b595dc472799f8808bd/directory_listing.txt repo/objects/85d49d8555aeb254d1d4acd377034772944a35fe
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cp 9c0b782981cc2ee322ec4b595dc472799f8808bd/directory_listing.txt repo/objects/85d49d8555aeb254d1d4acd377034772944a35fe
 </pre></div>
 </div>
-<p>Then you do the same for the <code class="docutils literal"><span class="pre">message.txt</span></code> file:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cp 9c0b782981cc2ee322ec4b595dc472799f8808bd/message.txt repo/objects/9c0b782981cc2ee322ec4b595dc472799f8808bd
+<p>Then you do the same for the <code class="docutils literal notranslate"><span class="pre">message.txt</span></code> file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cp 9c0b782981cc2ee322ec4b595dc472799f8808bd/message.txt repo/objects/9c0b782981cc2ee322ec4b595dc472799f8808bd
 </pre></div>
 </div>
 <p>There are 9 commits, so there are 9 x 2 new files with
-hash filenames in <code class="docutils literal"><span class="pre">repo/objects</span></code> (a hashed copy of <code class="docutils literal"><span class="pre">directory_listing.txt</span></code>
-and <code class="docutils literal"><span class="pre">message.txt</span></code> for each commit).</p>
-<p>Now you don&#8217;t need the snapshot directories at all, because the hashed files
-in <code class="docutils literal"><span class="pre">repo/objects</span></code> have all the information about the snapshots.</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>nobel_prize
+hash filenames in <code class="docutils literal notranslate"><span class="pre">repo/objects</span></code> (a hashed copy of <code class="docutils literal notranslate"><span class="pre">directory_listing.txt</span></code>
+and <code class="docutils literal notranslate"><span class="pre">message.txt</span></code> for each commit).</p>
+<p>Now you don’t need the snapshot directories at all, because the hashed files
+in <code class="docutils literal notranslate"><span class="pre">repo/objects</span></code> have all the information about the snapshots.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>nobel_prize
 ├── working
 │   (5 files)
 ├── staging
@@ -1435,34 +1412,34 @@ in <code class="docutils literal"><span class="pre">repo/objects</span></code> h
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">In git as in your SAP content management system, a <strong>repository
+<p class="admonition-title">Note</p>
+<p>In git as in your SAP content management system, a <strong>repository
 directory</strong> stores all the data from the snapshots.  In your case that
-directory is <code class="docutils literal"><span class="pre">repo</span></code>.  For git, it will be a directory called <code class="docutils literal"><span class="pre">.git</span></code>.</p>
+directory is <code class="docutils literal notranslate"><span class="pre">repo</span></code>.  For git, it will be a directory called <code class="docutils literal notranslate"><span class="pre">.git</span></code>.</p>
 </div>
 </div>
 <div class="section" id="gitwards-12-where-am-i">
 <h2>Gitwards 12: where am I?<a class="headerlink" href="#gitwards-12-where-am-i" title="Permalink to this headline">¶</a></h2>
 <p>You have one last problem to face – where is your latest commit?</p>
-<p>When your snapshot directory names had numbers, like <code class="docutils literal"><span class="pre">snapshot_8</span></code>, you could
+<p>When your snapshot directory names had numbers, like <code class="docutils literal notranslate"><span class="pre">snapshot_8</span></code>, you could
 use the numbers to find the most recent commit.  Now all you have is a
-directory called <code class="docutils literal"><span class="pre">repo/objects</span></code> with unhelpful file names made from hashes.
+directory called <code class="docutils literal notranslate"><span class="pre">repo/objects</span></code> with unhelpful file names made from hashes.
 Which of these files has your latest commit?</p>
 <p>You could write down the latest commit hash on a piece of paper, after you
 make the commit, but this sounds like a job better done by a computer.</p>
 <p>So, when you make a new commit, you store the hash for that commit in a file
-called <code class="docutils literal"><span class="pre">repo/my_bookmark</span></code>.  It is a text file with the hash string as
-contents.  Your last commit was <code class="docutils literal"><span class="pre">f46773cff294d07a331a6aa0ee32b3615cb009b8</span></code>, so
-<code class="docutils literal"><span class="pre">repo/my_bookmark</span></code> has contents:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cat repo/my_bookmark
+called <code class="docutils literal notranslate"><span class="pre">repo/my_bookmark</span></code>.  It is a text file with the hash string as
+contents.  Your last commit was <code class="docutils literal notranslate"><span class="pre">f46773cff294d07a331a6aa0ee32b3615cb009b8</span></code>, so
+<code class="docutils literal notranslate"><span class="pre">repo/my_bookmark</span></code> has contents:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cat repo/my_bookmark
 f46773cff294d07a331a6aa0ee32b3615cb009b8
 </pre></div>
 </div>
 <p>You can imagine that, when Josephine is working on the same set of files, she
-might want her own bookmark, maybe in a file called <code class="docutils literal"><span class="pre">josephines-bookmark</span></code>.</p>
+might want her own bookmark, maybe in a file called <code class="docutils literal notranslate"><span class="pre">josephines-bookmark</span></code>.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">You keep track of the latest commit in a particular sequence by storing
+<p class="admonition-title">Note</p>
+<p>You keep track of the latest commit in a particular sequence by storing
 the latest <strong>commit hash</strong> in a bookmark file.  In git this bookmark is
 called a <strong>branch</strong>.</p>
 </div>
@@ -1487,7 +1464,7 @@ to see these ideas come to life in your actual git.</p>
     </p>
     <p>
         &copy; Copyright 2012-2016 - Matthew Brett.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.1.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.<br/>
     </p>
   </div>
 </footer>

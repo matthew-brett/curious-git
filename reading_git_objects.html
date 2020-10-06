@@ -1,36 +1,17 @@
 <!DOCTYPE html>
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
+    <meta charset="utf-8" />
     <title>Reading git objects &#8212; Curious git</title>
-    
-    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '0.2',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Curious git" href="README.html" />
@@ -39,9 +20,12 @@
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="_static/bootstrap-sphinx.js "></script>
 
-  </head>
-  <body role="document">
+  </head><body>
 
   <div id="navbar" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -80,7 +64,7 @@
 <li class="toctree-l1"><a class="reference internal" href="curious_git.html">Curious git</a></li>
 <li class="toctree-l1"><a class="reference internal" href="README.html">Curious git</a></li>
 <li class="toctree-l1"><a class="reference internal" href="np-versions/README.html">np-versions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pdf_contents.html">The curious coder&#8217;s guide to git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pdf_contents.html">The curious coder’s guide to git</a></li>
 </ul>
 </ul>
 </li>
@@ -140,34 +124,34 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-12 content">
+    <div class="body col-md-12 content" role="main">
       
   <div class="section" id="reading-git-objects">
 <h1>Reading git objects<a class="headerlink" href="#reading-git-objects" title="Permalink to this headline">¶</a></h1>
-<p>By default, git stores objects in <code class="docutils literal"><span class="pre">.git/objects</span></code> as their original contents,
+<p>By default, git stores objects in <code class="docutils literal notranslate"><span class="pre">.git/objects</span></code> as their original contents,
 compressed, and prepended with a few extra characters (see below).</p>
 <p>These are easy to read with a small amount of code.</p>
-<p>git will read the files for you with <code class="docutils literal"><span class="pre">git</span> <span class="pre">show</span></code> or <code class="docutils literal"><span class="pre">git</span> <span class="pre">cat-file</span></code>.</p>
+<p>git will read the files for you with <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">show</span></code> or <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">cat-file</span></code>.</p>
 <p>When a repository gets larger, git may use another, less simple format to
 store the data, called <em>packfiles</em>, in which case these simple code fragments
-won&#8217;t work.  The fragments are to show the simplicity of the default way that
+won’t work.  The fragments are to show the simplicity of the default way that
 git stores objects.</p>
-<p>git uses a library called <code class="docutils literal"><span class="pre">zlib</span></code> for compressing the objects.</p>
+<p>git uses a library called <code class="docutils literal notranslate"><span class="pre">zlib</span></code> for compressing the objects.</p>
 <p>To show how this works, first generate a small git repository to make an
 object file:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="c1"># Make a new empty git repository</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="c1"># Make a new empty git repository</span>
 $ mkdir git_example
 $ <span class="nb">cd</span> git_example
 $ git init
 Initialized empty Git repository in /Users/mb312/dev_trees/curious-git/working/git_example/.git/
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="c1"># Make and stage a file, to create an object in .git/objects</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="c1"># Make and stage a file, to create an object in .git/objects</span>
 $ <span class="nb">echo</span> <span class="s2">&quot;My data fits on one line&quot;</span> &gt; my_file.txt
 $ git add my_file.txt
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="c1"># Show the .git/objects directory</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="c1"># Show the .git/objects directory</span>
 $ tree -a .git/objects
 .git/objects
 ├── e2
@@ -180,26 +164,26 @@ $ tree -a .git/objects
 </div>
 <p>We can read this object using some simple Python code.  Start up the Python
 console and:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">zlib</span>  <span class="c1"># A compression / decompression library</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">zlib</span>  <span class="c1"># A compression / decompression library</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;working/git_example/.git/objects/e2/7bb34b0807ebf1b91bb66a4c147430cde4f08f&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">compressed_contents</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">decompressed_contents</span> <span class="o">=</span> <span class="n">zlib</span><span class="o">.</span><span class="n">decompress</span><span class="p">(</span><span class="n">compressed_contents</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">decompressed_contents</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">decompressed_contents</span>
 <span class="go">&#39;blob 25\x00My data fits on one line\n&#39;</span>
 </pre></div>
 </div>
-<p>The contents of the object file is the original contents prepended by <code class="docutils literal"><span class="pre">blob</span>
+<p>The contents of the object file is the original contents prepended by <code class="docutils literal notranslate"><span class="pre">blob</span>
 <span class="pre">25</span></code> and a 0 byte, where 25 is the number of characters in the file, not
 including the housekeeping string:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">decompressed_contents</span><span class="p">)</span>  <span class="c1"># (length of housekeeping string = 8) + 25</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">decompressed_contents</span><span class="p">)</span>  <span class="c1"># (length of housekeeping string = 8) + 25</span>
 <span class="go">33</span>
 </pre></div>
 </div>
 <p>The hash value for the file is the hash of the decompressed file, including
 the housekeeping string:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">hashlib</span> <span class="k">import</span> <span class="n">sha1</span>  <span class="c1"># SHA1 hash algorithm</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">hashlib</span> <span class="kn">import</span> <span class="n">sha1</span>  <span class="c1"># SHA1 hash algorithm</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">hash_value</span> <span class="o">=</span> <span class="n">sha1</span><span class="p">(</span><span class="n">decompressed_contents</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">hash_value</span>
 <span class="go">&#39;e27bb34b0807ebf1b91bb66a4c147430cde4f08f&#39;</span>
@@ -220,7 +204,7 @@ the housekeeping string:</p>
     </p>
     <p>
         &copy; Copyright 2012-2016 - Matthew Brett.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.1.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.<br/>
     </p>
   </div>
 </footer>

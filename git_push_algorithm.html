@@ -1,36 +1,17 @@
 <!DOCTYPE html>
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
+    <meta charset="utf-8" />
     <title>An algorithm for git push &#8212; Curious git</title>
-    
-    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '0.2',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Reading git objects" href="reading_git_objects.html" />
@@ -39,9 +20,12 @@
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="_static/bootstrap-sphinx.js "></script>
 
-  </head>
-  <body role="document">
+  </head><body>
 
   <div id="navbar" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -80,7 +64,7 @@
 <li class="toctree-l1"><a class="reference internal" href="curious_git.html">Curious git</a></li>
 <li class="toctree-l1"><a class="reference internal" href="README.html">Curious git</a></li>
 <li class="toctree-l1"><a class="reference internal" href="np-versions/README.html">np-versions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pdf_contents.html">The curious coder&#8217;s guide to git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pdf_contents.html">The curious coder’s guide to git</a></li>
 </ul>
 </ul>
 </li>
@@ -108,11 +92,11 @@
               
                 
   <li>
-    <a href="git_object_types.html" title="Previous Chapter: Types of git objects"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Types of git ...</span>
+    <a href="git_object_types.html" title="Previous Chapter: Types of git objects"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Types of git objects</span>
     </a>
   </li>
   <li>
-    <a href="reading_git_objects.html" title="Next Chapter: Reading git objects"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Reading git o... &raquo;</span>
+    <a href="reading_git_objects.html" title="Next Chapter: Reading git objects"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Reading git objects &raquo;</span>
     </a>
   </li>
               
@@ -144,7 +128,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-12 content">
+    <div class="body col-md-12 content" role="main">
       
   <div class="section" id="an-algorithm-for-git-push">
 <h1>An algorithm for git push<a class="headerlink" href="#an-algorithm-for-git-push" title="Permalink to this headline">¶</a></h1>
@@ -164,59 +148,58 @@ parent for each commit, this is a <em>path</em> in the <em>commit history</em>.<
 <h2>An algorithm<a class="headerlink" href="#an-algorithm" title="Permalink to this headline">¶</a></h2>
 <p>Something like this algorithm might do the job:</p>
 <ol class="arabic simple">
-<li>Get the commit hash corresponding the branch we are going to push;</li>
-<li>Follow every commit path (see above)back from this commit, until we hit a
+<li><p>Get the commit hash corresponding the branch we are going to push;</p></li>
+<li><p>Follow every commit path (see above)back from this commit, until we hit a
 commit hash (filename) that the remote has.  All the previous commits on
-the path, that the remote does not have, are <em>missing commits</em>;</li>
-<li>For every <em>missing commit</em> get the corresponding tree (directory listing)
+the path, that the remote does not have, are <em>missing commits</em>;</p></li>
+<li><p>For every <em>missing commit</em> get the corresponding tree (directory listing)
 object.  If the tree object is not in the remote objects directory, add to
-the list of <em>missing trees</em>;</li>
-<li>For every <em>missing tree</em> read the tree directory listing. Find any blob
+the list of <em>missing trees</em>;</p></li>
+<li><p>For every <em>missing tree</em> read the tree directory listing. Find any blob
 (file) objects in the directory listing that are not in the remote objects
-directory, add to the list of <em>missing blob</em> objects <a class="footnote-reference" href="#sub-trees" id="id1">[1]</a>;</li>
-<li>Copy all <em>missing commit</em>, <em>missing tree</em> and <em>missing blob</em> objects to the
-remote objects directory;</li>
-<li>Update the remote branch to point to the same commit as the local branch;</li>
-<li>Update the local record of the last known position of the remote branch to
-point to the same commit.</li>
+directory, add to the list of <em>missing blob</em> objects <a class="footnote-reference brackets" href="#sub-trees" id="id1">1</a>;</p></li>
+<li><p>Copy all <em>missing commit</em>, <em>missing tree</em> and <em>missing blob</em> objects to the
+remote objects directory;</p></li>
+<li><p>Update the remote branch to point to the same commit as the local branch;</p></li>
+<li><p>Update the local record of the last known position of the remote branch to
+point to the same commit.</p></li>
 </ol>
-<p>There&#8217;s a specific example of <code class="docutils literal"><span class="pre">git</span> <span class="pre">push</span></code> at <a class="reference internal" href="curious_remotes.html#git-push"><span class="std std-ref">git push – synchronizing repositories</span></a>. Here is how
+<p>There’s a specific example of <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code> at <a class="reference internal" href="curious_remotes.html#git-push"><span class="std std-ref">git push – synchronizing repositories</span></a>. Here is how
 that example would follow our algorithm:</p>
 <ol class="arabic simple">
-<li>We look up the hash for <code class="docutils literal"><span class="pre">master</span></code>, and we get <code class="docutils literal"><span class="pre">7919d37dda9044f00cf2dc0677eed18156f75404</span></code> (abbreviated as
-<code class="docutils literal"><span class="pre">7919d37</span></code>);</li>
-<li>We follow all commit history paths back from <code class="docutils literal"><span class="pre">7919d37</span></code> to
-check for missing commits. We start with <code class="docutils literal"><span class="pre">7919d37</span></code>. The remote
-does not have a matching file in <code class="docutils literal"><span class="pre">objects</span></code>, so this is a missing commit.
-We only have one path to follow, because <code class="docutils literal"><span class="pre">7919d37</span></code> has only
-one parent – <code class="docutils literal"><span class="pre">{{</span> <span class="pre">remote-commit1-sha</span> <span class="pre">}}</span></code> – and the remote does have a
-corresponding object, so we can stop looking for missing commits;</li>
-<li>We only have one missing commit, <code class="docutils literal"><span class="pre">7919d37</span></code>.  We look in the
-contents of <code class="docutils literal"><span class="pre">7919d37</span></code> to find the tree object hash.  This is
-<code class="docutils literal"><span class="pre">2ce031cc4219d31835831f064a6a2d4fb0497c53</span></code>.  We check for this object in the remote objects directory, and
-sure enough, it is missing. We add this tree to the list of missing trees;</li>
-<li>We only have one missing tree – <code class="docutils literal"><span class="pre">2ce031cc4219d31835831f064a6a2d4fb0497c53</span></code>. We look in the contents of
+<li><p>We look up the hash for <code class="docutils literal notranslate"><span class="pre">master</span></code>, and we get <code class="docutils literal notranslate"><span class="pre">7919d37dda9044f00cf2dc0677eed18156f75404</span></code> (abbreviated as
+<code class="docutils literal notranslate"><span class="pre">7919d37</span></code>);</p></li>
+<li><p>We follow all commit history paths back from <code class="docutils literal notranslate"><span class="pre">7919d37</span></code> to
+check for missing commits. We start with <code class="docutils literal notranslate"><span class="pre">7919d37</span></code>. The remote
+does not have a matching file in <code class="docutils literal notranslate"><span class="pre">objects</span></code>, so this is a missing commit.
+We only have one path to follow, because <code class="docutils literal notranslate"><span class="pre">7919d37</span></code> has only
+one parent – <code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">remote-commit1-sha</span> <span class="pre">}}</span></code> – and the remote does have a
+corresponding object, so we can stop looking for missing commits;</p></li>
+<li><p>We only have one missing commit, <code class="docutils literal notranslate"><span class="pre">7919d37</span></code>.  We look in the
+contents of <code class="docutils literal notranslate"><span class="pre">7919d37</span></code> to find the tree object hash.  This is
+<code class="docutils literal notranslate"><span class="pre">2ce031cc4219d31835831f064a6a2d4fb0497c53</span></code>.  We check for this object in the remote objects directory, and
+sure enough, it is missing. We add this tree to the list of missing trees;</p></li>
+<li><p>We only have one missing tree – <code class="docutils literal notranslate"><span class="pre">2ce031cc4219d31835831f064a6a2d4fb0497c53</span></code>. We look in the contents of
 this tree object and check in the remote object directory for each object
-in this listing. The only missing object is <code class="docutils literal"><span class="pre">3ef5df2f711c919685f2063f24d0a18bab17760a</span></code>;</li>
-<li>We copy the objects for the missing commits (<code class="docutils literal"><span class="pre">{{</span> <span class="pre">remote-commit1-sha</span> <span class="pre">}}</span></code>), missing trees
-(<code class="docutils literal"><span class="pre">2ce031cc4219d31835831f064a6a2d4fb0497c53</span></code>) and missing blobs (<code class="docutils literal"><span class="pre">3ef5df2f711c919685f2063f24d0a18bab17760a</span></code>) to the remote objects
-directory;</li>
-<li>We set remote <code class="docutils literal"><span class="pre">refs/heads/master</span></code> to contain the hash
-<code class="docutils literal"><span class="pre">7919d37</span></code>;</li>
-<li>Set the local <code class="docutils literal"><span class="pre">refs/remotes/usb_backup/master</span></code> to contain
-<code class="docutils literal"><span class="pre">7919d37</span></code>.</li>
+in this listing. The only missing object is <code class="docutils literal notranslate"><span class="pre">3ef5df2f711c919685f2063f24d0a18bab17760a</span></code>;</p></li>
+<li><p>We copy the objects for the missing commits (<code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">remote-commit1-sha</span> <span class="pre">}}</span></code>), missing trees
+(<code class="docutils literal notranslate"><span class="pre">2ce031cc4219d31835831f064a6a2d4fb0497c53</span></code>) and missing blobs (<code class="docutils literal notranslate"><span class="pre">3ef5df2f711c919685f2063f24d0a18bab17760a</span></code>) to the remote objects
+directory;</p></li>
+<li><p>We set remote <code class="docutils literal notranslate"><span class="pre">refs/heads/master</span></code> to contain the hash
+<code class="docutils literal notranslate"><span class="pre">7919d37</span></code>;</p></li>
+<li><p>Set the local <code class="docutils literal notranslate"><span class="pre">refs/remotes/usb_backup/master</span></code> to contain
+<code class="docutils literal notranslate"><span class="pre">7919d37</span></code>.</p></li>
 </ol>
 <p class="rubric">Footnotes</p>
-<table class="docutils footnote" frame="void" id="sub-trees" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>You have probably worked out by now that git directory
-listings can have files (called &#8220;blobs&#8221;) and subdirectories (&#8220;trees&#8221;) (see
+<dl class="footnote brackets">
+<dt class="label" id="sub-trees"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>You have probably worked out by now that git directory
+listings can have files (called “blobs”) and subdirectories (“trees”) (see
 <a class="reference internal" href="git_object_types.html"><span class="doc">Types of git objects</span></a>).  When doing the copy, we actually have to recurse
-into any sub-directories to get needed file (&#8220;blob&#8221;) and subdirectory
-(&#8220;tree&#8221;) objects.  But, you get the idea.</td></tr>
-</tbody>
-</table>
+into any sub-directories to get needed file (“blob”) and subdirectory
+(“tree”) objects.  But, you get the idea.</p>
+</dd>
+</dl>
 </div>
 </div>
 
@@ -233,7 +216,7 @@ into any sub-directories to get needed file (&#8220;blob&#8221;) and subdirector
     </p>
     <p>
         &copy; Copyright 2012-2016 - Matthew Brett.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.1.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.<br/>
     </p>
   </div>
 </footer>
