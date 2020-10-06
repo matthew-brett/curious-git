@@ -150,8 +150,6 @@ class TreeMaker(object):
         """
         if root_path is None:
             root_path = getcwd()
-        # ensure return of unicode paths from listdir
-        root_path = unicode(root_path)
         return self._tree_string(root_path, indent_str=u'')
 
     def _tree_string(self, root_path, indent_str):
@@ -241,6 +239,10 @@ def get_parser():
     return parser
 
 
+def printout(s):
+    return sys.stdout.write(s + '\n')
+
+
 def output_tree(args, klass=TreeMaker):
     # Basename needs slash removed
     root_dir = args.root_dir
@@ -251,7 +253,6 @@ def output_tree(args, klass=TreeMaker):
                        elide_dirs=args.elide_dir,
                        unelide_dirs=args.unelide_dir,
                        colors=args.colors)
-    printout = lambda s : sys.stdout.write((s + u'\n').encode(args.encoding))
     printout(tree_maker.color_path(basename(root_dir)))
     tree_str = tree_maker.as_string(root_dir)
     if tree_str is None:

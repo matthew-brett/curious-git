@@ -7,6 +7,7 @@ from os.path import (dirname, join as pjoin, abspath)
 
 from hashlib import sha1
 
+
 MY_PATH = dirname(__file__)
 sys.path.append(abspath(MY_PATH))
 from nobel_prize import (DEFAULT_PATH, COMMIT_MSG_FNAME)
@@ -27,14 +28,19 @@ def msg_for(suffix):
 
 
 def read_file(fname):
-    with open(fname, 'rb') as fobj:
+    with open(fname, 'rt') as fobj:
         contents = fobj.read()
     return contents
 
 
+def sha1_for(fname):
+    text = read_file(fname).encode('latin1')
+    return sha1(text).hexdigest()
+
+
+
 def make_links(link_from, link_tos):
-    shas = [sha1(read_file(msg_for(lt))).hexdigest()
-            for lt in link_tos]
+    shas = [sha1_for(msg_for(lt)) for lt in link_tos]
     parents = 'Parents: {}\n'.format(' '.join(shas))
     from_fname = msg_for(link_from)
     from_msg = read_file(from_fname)

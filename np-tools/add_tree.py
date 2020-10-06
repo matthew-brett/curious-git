@@ -16,7 +16,7 @@ from nobel_prize import (DEFAULT_PATH, COMMIT_MSG_FNAME, DIR_LIST_FNAME,
 
 def read_expand_info(message_fname):
     info = read_info(message_fname)
-    info['old_hash'] = sha1(info['message']).hexdigest()
+    info['old_hash'] = sha1(info['message'].encode('latin1')).hexdigest()
     dir_list_path = pjoin(dirname(message_fname), DIR_LIST_FNAME)
     info['directory hash'] = hash_for(dir_list_path)
     if 'parents' in info:
@@ -34,7 +34,7 @@ def fix_from(root, infos):
     """ Add tree hash; fix parents """
     # Assume root has correct parents (or none)
     old_hash = root['old_hash']
-    new_hash = sha1(info2str(root)).hexdigest()
+    new_hash = sha1(info2str(root).encode('latin1')).hexdigest()
     for info in infos:
         if not 'parents' in info:
             continue

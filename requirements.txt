@@ -1,3 +1,5 @@
+# brew install tree graphviz
 sphinx
 sphinx_bootstrap_theme
+texext
 ghp_import

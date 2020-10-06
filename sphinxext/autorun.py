@@ -46,7 +46,7 @@ from subprocess import Popen, PIPE
 import re
 
 from docutils import nodes
-from sphinx.util.compat import Directive
+from docutils.parsers.rst import Directive
 from docutils.parsers.rst.directives import flag, unchanged
 from sphinx.errors import SphinxError
 

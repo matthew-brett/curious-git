@@ -94,7 +94,7 @@ def main():
     nodes = []
     for message_fname in glob(globber):
         info = read_info(message_fname)
-        sha = sha1(info['message']).hexdigest()
+        sha = sha1(info['message'].encode('latin1')).hexdigest()
         node_class = AUTHOR2NODE_CLASS[info['author']]
         node = node_class(name=sha,
                           label='\n'.join((sha, info['notes'])),

@@ -3,9 +3,10 @@
 """
 
 from docutils import nodes
-from sphinx.util.compat import Directive
+from docutils.parsers.rst import Directive
 from docutils.parsers.rst.directives import flag, unchanged
 from sphinx.errors import SphinxError
+
 
 class FileContents(nodes.Admonition, nodes.Element):
     pass
