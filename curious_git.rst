@@ -1157,7 +1157,7 @@ similar approach to varying levels of detail:
 You might also try:
 
 * For windows users, `an Illustrated Guide to Git on Windows
-  <http://nathanj.github.com/gitguide/tour.html>`__ is useful in that it
+  <http://nathanj.github.io/gitguide/tour.html>`__ is useful in that it
   contains also some information about handling SSH (necessary to interface
   with git hosted on remote servers when collaborating) as well as screenshots
   of the Windows interface.
@@ -1172,9 +1172,8 @@ You might also try:
 * `Git Magic
   <http://www-cs-students.stanford.edu/~blynn/gitmagic/index.html>`_ : Another
   book-size guide that has useful snippets.
-* The `learning center <http://learn.github.com>`__ at Github Guides on a
-  number of topics, some specific to github hosting but much of it of general
-  value.
+* `Github Guides <https://guides.github.com>`_ have tutorials on a number of
+  topics, some specific to Github hosting but much of it of general value.
 * A `port <http://cworth.org/hgbook-git/tour>`__ of the Hg book's beginning
   The `Mercurial book <http://hgbook.red-bean.com>`__ has a reputation for
   clarity, so Carl Worth decided to `port

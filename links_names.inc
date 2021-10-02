@@ -71,13 +71,13 @@
 .. _CC0 license: http://creativecommons.org/publicdomain/zero/1.0/legalcode
 
 .. Friend pages
-.. _docosx: http://matthew-brett.github.com/docosx
-.. _developing on mac: http://matthew-brett.github.com/docosx/develop_mac.html
-.. _booting macs: http://matthew-brett.github.com/docosx/booting_macs.html
+.. _docosx: http://matthew-brett.github.io/docosx
+.. _developing on mac: http://matthew-brett.github.io/docosx/develop_mac.html
+.. _booting macs: http://matthew-brett.github.io/docosx/booting_macs.html
 .. _runtime linking on Mac:
-    http://matthew-brett.github.com/docosx/mac_runtime_link.html
+    http://matthew-brett.github.io/docosx/mac_runtime_link.html
 .. _osx legacy packaging redux:
-    http://matthew-brett.github.com/docosx/osx_legacy_package_redux.html
+    http://matthew-brett.github.io/docosx/osx_legacy_package_redux.html
 
 .. Pydagogue
 .. _pydagogue : http://matthew-brett.github.io/pydagogue
