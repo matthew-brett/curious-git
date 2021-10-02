@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Reading git objects &#8212; Curious git</title>
-    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Curious git" href="README.html" />
@@ -20,9 +20,9 @@
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
-<script type="text/javascript" src="_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="_static/js/jquery-1.12.4.min.js "></script>
 <script type="text/javascript" src="_static/js/jquery-fix.js "></script>
-<script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="_static/bootstrap-3.4.1/js/bootstrap.min.js "></script>
 <script type="text/javascript" src="_static/bootstrap-sphinx.js "></script>
 
   </head><body>
@@ -126,7 +126,7 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="reading-git-objects">
+  <section id="reading-git-objects">
 <h1>Reading git objects<a class="headerlink" href="#reading-git-objects" title="Permalink to this headline">¶</a></h1>
 <p>By default, git stores objects in <code class="docutils literal notranslate"><span class="pre">.git/objects</span></code> as their original contents,
 compressed, and prepended with a few extra characters (see below).</p>
@@ -143,7 +143,7 @@ object file:</p>
 $ mkdir git_example
 $ <span class="nb">cd</span> git_example
 $ git init
-Initialized empty Git repository in /Users/mb312/dev_trees/curious-git/working/git_example/.git/
+Initialized empty Git repository <span class="k">in</span> /Users/mb312/dev_trees/curious-git/working/git_example/.git/
 </pre></div>
 </div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="c1"># Make and stage a file, to create an object in .git/objects</span>
@@ -189,7 +189,7 @@ the housekeeping string:</p>
 <span class="go">&#39;e27bb34b0807ebf1b91bb66a4c147430cde4f08f&#39;</span>
 </pre></div>
 </div>
-</div>
+</section>
 
 
     </div>
@@ -204,7 +204,7 @@ the housekeeping string:</p>
     </p>
     <p>
         &copy; Copyright 2012-2016 - Matthew Brett.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br/>
     </p>
   </div>
 </footer>

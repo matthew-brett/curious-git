@@ -59,7 +59,7 @@ Something like this algorithm might do the job:
 There's a specific example of ``git push`` at :ref:`git-push`. Here is how
 that example would follow our algorithm:
 
-#. We look up the hash for ``master``, and we get |remote-commit2-sha| (abbreviated as
+#. We look up the hash for ``main``, and we get |remote-commit2-sha| (abbreviated as
    |remote-commit2-sha_7|);
 #. We follow all commit history paths back from |remote-commit2-sha_7| to
    check for missing commits. We start with |remote-commit2-sha_7|. The remote
@@ -77,9 +77,9 @@ that example would follow our algorithm:
 #. We copy the objects for the missing commits (|before_paper|), missing trees
    (|new-tree|) and missing blobs (|new-file|) to the remote objects
    directory;
-#. We set remote ``refs/heads/master`` to contain the hash
+#. We set remote ``refs/heads/main`` to contain the hash
    |remote-commit2-sha_7|;
-#. Set the local ``refs/remotes/usb_backup/master`` to contain
+#. Set the local ``refs/remotes/usb_backup/main`` to contain
    |remote-commit2-sha_7|.
 
 .. rubric:: Footnotes

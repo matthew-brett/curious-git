@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>git remotes - working with other people, making backups &#8212; Curious git</title>
-    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Deeper inside git" href="curious_details.html" />
@@ -20,9 +20,9 @@
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
-<script type="text/javascript" src="_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="_static/js/jquery-1.12.4.min.js "></script>
 <script type="text/javascript" src="_static/js/jquery-fix.js "></script>
-<script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="_static/bootstrap-3.4.1/js/bootstrap.min.js "></script>
 <script type="text/javascript" src="_static/bootstrap-sphinx.js "></script>
 
   </head><body>
@@ -139,7 +139,7 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="git-remotes-working-with-other-people-making-backups">
+  <section id="git-remotes-working-with-other-people-making-backups">
 <h1>git remotes - working with other people, making backups<a class="headerlink" href="#git-remotes-working-with-other-people-making-backups" title="Permalink to this headline">¶</a></h1>
 <p>This page follows on from <a class="reference internal" href="curious_git.html"><span class="doc">Curious git</span></a>.</p>
 <p>It covers git <strong>remotes</strong>.  Remotes are links to other git repositories.</p>
@@ -161,7 +161,7 @@ repository;</p></li>
 command first fetches information from the remote repository, then merges
 the current state of a remote branch with a local branch.</p></li>
 </ul>
-<div class="section" id="keeping-backups-with-remotes">
+<section id="keeping-backups-with-remotes">
 <h2>Keeping backups with remotes<a class="headerlink" href="#keeping-backups-with-remotes" title="Permalink to this headline">¶</a></h2>
 <p>Let’s say you have an external backup disk and you want to record all the
 history of your work on the backup disk.</p>
@@ -172,8 +172,8 @@ history of your work on the backup disk.</p>
 <span class="pre">add</span></code>;</p></li>
 <li><p>Send the changes to the backup repository with <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code>.</p></li>
 </ul>
-</div>
-<div class="section" id="start-with-a-git-repository">
+</section>
+<section id="start-with-a-git-repository">
 <h2>Start with a git repository<a class="headerlink" href="#start-with-a-git-repository" title="Permalink to this headline">¶</a></h2>
 <p>To get started, we make a new repository with the same Nobel-prize-winning
 paper we saw in <a class="reference internal" href="curious_git.html"><span class="doc">Curious git</span></a>.  To type along, download and unzip
@@ -187,7 +187,7 @@ paper we saw in <a class="reference internal" href="curious_git.html"><span clas
 </div>
 <p>Now make a new git repository:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ git init
-Initialized empty Git repository in /Users/mb312/dev_trees/curious-git/working/nobel_prize/.git/
+Initialized empty Git repository <span class="k">in</span> /Users/mb312/dev_trees/curious-git/working/nobel_prize/.git/
 </pre></div>
 </div>
 <p>Add all the files and make the first commit:</p>
@@ -195,7 +195,7 @@ Initialized empty Git repository in /Users/mb312/dev_trees/curious-git/working/n
 <span class="o">[</span>desktop<span class="o">]</span>$ git add fancy_figure.png
 <span class="o">[</span>desktop<span class="o">]</span>$ git add expensive_data.csv
 <span class="o">[</span>desktop<span class="o">]</span>$ git commit -m <span class="s2">&quot;First backup of my amazing idea&quot;</span>
-<span class="o">[</span>master <span class="o">(</span>root-commit<span class="o">)</span> 75206bc<span class="o">]</span> First backup of my amazing idea
+<span class="o">[</span>main <span class="o">(</span>root-commit<span class="o">)</span> 75206bc<span class="o">]</span> First backup of my amazing idea
  <span class="m">3</span> files changed, <span class="m">5023</span> insertions<span class="o">(</span>+<span class="o">)</span>
  create mode <span class="m">100755</span> clever_analysis.py
  create mode <span class="m">100644</span> expensive_data.csv
@@ -220,13 +220,13 @@ we <code class="docutils literal notranslate"><span class="pre">git</span> <span
     └── d447c15c125991b8a292bdb433aaf19998a3e9 [179K]
 </pre></div>
 </div>
-</div>
-<div class="section" id="make-the-empty-backup-repository">
+</section>
+<section id="make-the-empty-backup-repository">
 <h2>Make the empty backup repository<a class="headerlink" href="#make-the-empty-backup-repository" title="Permalink to this headline">¶</a></h2>
 <p>Let’s say your external disk is mounted at <code class="docutils literal notranslate"><span class="pre">/Volumes/my_usb_disk</span></code>.</p>
 <p>We make a new empty repository:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ git init --bare /Volumes/my_usb_disk/nobel_prize.git
-Initialized empty Git repository in /Volumes/my_usb_disk/nobel_prize.git/
+Initialized empty Git repository <span class="k">in</span> /Volumes/my_usb_disk/nobel_prize.git/
 </pre></div>
 </div>
 <p>Notice the <code class="docutils literal notranslate"><span class="pre">--bare</span></code> flag.  This tells git to make a repository that does not
@@ -242,8 +242,8 @@ are used to seeing in the <code class="docutils literal notranslate"><span class
 ├── info
 │   └── exclude [240B]
 ├── hooks
-│   (12 files)
-├── HEAD [23B]
+│   (13 files)
+├── HEAD [21B]
 ├── config [111B]
 └── description [73B]
 </pre></div>
@@ -253,8 +253,8 @@ edit the files in the <code class="docutils literal notranslate"><span class="pr
 editing files in our local <code class="docutils literal notranslate"><span class="pre">nobel_prize</span></code> directory, committing those changes
 locally (as we have done above), and then “pushing” these changes to the
 backup repository <a class="footnote-reference brackets" href="#bare-detail" id="id1">1</a>.</p>
-</div>
-<div class="section" id="tell-the-current-git-repository-about-the-backup-repository">
+</section>
+<section id="tell-the-current-git-repository-about-the-backup-repository">
 <h2>Tell the current git repository about the backup repository<a class="headerlink" href="#tell-the-current-git-repository-about-the-backup-repository" title="Permalink to this headline">¶</a></h2>
 <p>Check we’re in our local git repository:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ <span class="nb">pwd</span>
@@ -288,8 +288,8 @@ file – <code class="docutils literal notranslate"><span class="pre">.git/confi
 	<span class="nv">fetch</span> <span class="o">=</span> +refs/heads/*:refs/remotes/usb_backup/*
 </pre></div>
 </div>
-</div>
-<div class="section" id="git-push-push-all-data-for-a-local-branch-to-the-remote">
+</section>
+<section id="git-push-push-all-data-for-a-local-branch-to-the-remote">
 <h2>git push – push all data for a local branch to the remote<a class="headerlink" href="#git-push-push-all-data-for-a-local-branch-to-the-remote" title="Permalink to this headline">¶</a></h2>
 <p>We now want to synchronize the data in our <code class="docutils literal notranslate"><span class="pre">nobel_prize</span></code> repository with the
 remote <code class="docutils literal notranslate"><span class="pre">usb_backup</span></code>.  The command to do this is <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code>.</p>
@@ -301,13 +301,13 @@ of the <code class="docutils literal notranslate"><span class="pre">usb_backup</
 </pre></div>
 </div>
 <p>Then we push:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ git push usb_backup master
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ git push usb_backup main
 To /Volumes/my_usb_disk/nobel_prize.git
- * <span class="o">[</span>new branch<span class="o">]</span>      master -&gt; master
+ * <span class="o">[</span>new branch<span class="o">]</span>      main -&gt; main
 </pre></div>
 </div>
 <p>This command tells git to take all the information necessary to reconstruct
-the history of the <code class="docutils literal notranslate"><span class="pre">master</span></code> branch, and send it to the remote repository.
+the history of the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch, and send it to the remote repository.
 Sure enough, we now have the new files in <code class="docutils literal notranslate"><span class="pre">.git/objects</span></code> of the backup
 repository:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>objects
@@ -325,36 +325,36 @@ repository:</p>
     └── d447c15c125991b8a292bdb433aaf19998a3e9 [179K]
 </pre></div>
 </div>
-<p>You’ll see that the ‘master’ branch in the backup repository now points to the
-same commit as the master branch in the local repository:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ cat .git/refs/heads/master
+<p>You’ll see that the ‘main’ branch in the backup repository now points to the
+same commit as the main branch in the local repository:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ cat .git/refs/heads/main
 75206bcb33ff9ad4f15f89b52cdf95bf666d67a8
 </pre></div>
 </div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ cat /Volumes/my_usb_disk/nobel_prize.git/refs/heads/master
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ cat /Volumes/my_usb_disk/nobel_prize.git/refs/heads/main
 75206bcb33ff9ad4f15f89b52cdf95bf666d67a8
 </pre></div>
 </div>
-<p>The local repository has a copy of the last known position of the master
+<p>The local repository has a copy of the last known position of the main
 branch in the remote repository.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ cat .git/refs/remotes/usb_backup/master
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ cat .git/refs/remotes/usb_backup/main
 75206bcb33ff9ad4f15f89b52cdf95bf666d67a8
 </pre></div>
 </div>
 <p>You can see the last known positions of the remote branches using the <code class="docutils literal notranslate"><span class="pre">-r</span></code>
 flag to <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ git branch -r  -v
-  usb_backup/master 75206bc First backup of my amazing idea
+  usb_backup/main 75206bc First backup of my amazing idea
 </pre></div>
 </div>
 <p>To see both local and remote branches, use the <code class="docutils literal notranslate"><span class="pre">-a</span></code> flag:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ git branch -a  -v
-* master                    75206bc First backup of my amazing idea
-  remotes/usb_backup/master 75206bc First backup of my amazing idea
+* main                    75206bc First backup of my amazing idea
+  remotes/usb_backup/main 75206bc First backup of my amazing idea
 </pre></div>
 </div>
-</div>
-<div class="section" id="git-push-synchronizing-repositories">
+</section>
+<section id="git-push-synchronizing-repositories">
 <span id="git-push"></span><h2>git push – synchronizing repositories<a class="headerlink" href="#git-push-synchronizing-repositories" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code> is an excellent way to do backups, because it only transfers the
 information that the remote repository does not have.</p>
@@ -364,9 +364,9 @@ first draft of the Nobel prize paper.  As before, you can download this from
 <a class="reference download internal" download="" href="_downloads/0ca9cde69ea4402290c460f32f2dca47/nobel_prize.md"><code class="xref download docutils literal notranslate"><span class="pre">nobel_prize.md</span></code></a>.  If you are
 typing along, download <code class="docutils literal notranslate"><span class="pre">nobel_prize.md</span></code> to the <code class="docutils literal notranslate"><span class="pre">nobel_prize</span></code> directory.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ git status
-On branch master
+On branch main
 Untracked files:
-  <span class="o">(</span>use <span class="s2">&quot;git add &lt;file&gt;...&quot;</span> to include in what will be committed<span class="o">)</span>
+  <span class="o">(</span>use <span class="s2">&quot;git add &lt;file&gt;...&quot;</span> to include <span class="k">in</span> what will be committed<span class="o">)</span>
 	nobel_prize.md
 
 nothing added to commit but untracked files present <span class="o">(</span>use <span class="s2">&quot;git add&quot;</span> to track<span class="o">)</span>
@@ -375,16 +375,16 @@ nothing added to commit but untracked files present <span class="o">(</span>use 
 <p>We stage the file and make the commit:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ git add nobel_prize.md
 <span class="o">[</span>desktop<span class="o">]</span>$ git commit -m <span class="s2">&quot;Add first draft of paper&quot;</span>
-<span class="o">[</span>master 7919d37<span class="o">]</span> Add first draft of paper
+<span class="o">[</span>main 7919d37<span class="o">]</span> Add first draft of paper
  <span class="m">1</span> file changed, <span class="m">29</span> insertions<span class="o">(</span>+<span class="o">)</span>
  create mode <span class="m">100644</span> nobel_prize.md
 </pre></div>
 </div>
-<p>Git updated the local <code class="docutils literal notranslate"><span class="pre">master</span></code> branch, but the remote does not know about
+<p>Git updated the local <code class="docutils literal notranslate"><span class="pre">main</span></code> branch, but the remote does not know about
 this update yet:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ git branch -a -v
-* master                    7919d37 Add first draft of paper
-  remotes/usb_backup/master 75206bc First backup of my amazing idea
+* main                    7919d37 Add first draft of paper
+  remotes/usb_backup/main 75206bc First backup of my amazing idea
 </pre></div>
 </div>
 <p>We already know there will be three new objects in <code class="docutils literal notranslate"><span class="pre">.git/objects</span></code> after this
@@ -401,18 +401,18 @@ work out how to find these objects starting with <code class="docutils literal n
 hash (like this <a class="footnote-reference brackets" href="#long-way" id="id2">2</a>), but here I’m going to take a short-cut and use
 the obscure <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">rev-parse</span></code> command to get the hashes of the objects we
 need:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ <span class="c1"># The hash of the current commit on the &quot;master&quot; branch</span>
-<span class="o">[</span>desktop<span class="o">]</span>$ git rev-parse master
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ <span class="c1"># The hash of the current commit on the &quot;main&quot; branch</span>
+<span class="o">[</span>desktop<span class="o">]</span>$ git rev-parse main
 7919d37dda9044f00cf2dc0677eed18156f75404
 </pre></div>
 </div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ <span class="c1"># The hash of the directory listing</span>
-<span class="o">[</span>desktop<span class="o">]</span>$ git rev-parse master:./
+<span class="o">[</span>desktop<span class="o">]</span>$ git rev-parse main:./
 2ce031cc4219d31835831f064a6a2d4fb0497c53
 </pre></div>
 </div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ <span class="c1"># The hash of the nobel_prize.md file</span>
-<span class="o">[</span>desktop<span class="o">]</span>$ git rev-parse master:nobel_prize.md
+<span class="o">[</span>desktop<span class="o">]</span>$ git rev-parse main:nobel_prize.md
 3ef5df2f711c919685f2063f24d0a18bab17760a
 </pre></div>
 </div>
@@ -463,15 +463,15 @@ done a <code class="docutils literal notranslate"><span class="pre">push</span><
 </pre></div>
 </div>
 <p>Now we do a push:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ git push usb_backup master
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ git push usb_backup main
 To /Volumes/my_usb_disk/nobel_prize.git
-   75206bc..7919d37  master -&gt; master
+   75206bc..7919d37  main -&gt; main
 </pre></div>
 </div>
 <p>The branches are synchronized again:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ git branch -a -v
-* master                    7919d37 Add first draft of paper
-  remotes/usb_backup/master 7919d37 Add first draft of paper
+* main                    7919d37 Add first draft of paper
+  remotes/usb_backup/main 7919d37 Add first draft of paper
 </pre></div>
 </div>
 <p>After the push, we do have the new objects in the remote repository:</p>
@@ -498,8 +498,8 @@ To /Volumes/my_usb_disk/nobel_prize.git
 </div>
 <p>You might also be able to see how git would work out what to transfer.  See
 <a class="reference internal" href="git_push_algorithm.html"><span class="doc">An algorithm for git push</span></a> for how it could work in general, and for this case.</p>
-</div>
-<div class="section" id="git-clone-make-a-fresh-new-copy-of-the-repository">
+</section>
+<section id="git-clone-make-a-fresh-new-copy-of-the-repository">
 <h2>git clone – make a fresh new copy of the repository<a class="headerlink" href="#git-clone-make-a-fresh-new-copy-of-the-repository" title="Permalink to this headline">¶</a></h2>
 <p>Imagine we have so far been working on our trusty work desktop.</p>
 <p>We unplug the external hard drive, put it in our trusty bag, and take the
@@ -537,9 +537,9 @@ origin	/Volumes/my_usb_disk/nobel_prize.git <span class="o">(</span>push<span cl
 <p>The clone command generated a fresh copy of the repository, so the remote and
 the local copy are synchronized:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>laptop<span class="o">]</span>$ git branch -a -v
-* master                7919d37 Add first draft of paper
-  remotes/origin/HEAD   -&gt; origin/master
-  remotes/origin/master 7919d37 Add first draft of paper
+* main                7919d37 Add first draft of paper
+  remotes/origin/HEAD -&gt; origin/main
+  remotes/origin/main 7919d37 Add first draft of paper
 </pre></div>
 </div>
 <p>Now we could make some edits:</p>
@@ -548,7 +548,7 @@ diff --git a/nobel_prize.md b/nobel_prize.md
 index 3ef5df2..cdbb9fb <span class="m">100644</span>
 --- a/nobel_prize.md
 +++ b/nobel_prize.md
-@@ -27,3 +27,4 @@ brain thinks in straight lines.
+@@ -27,3 +27,4 @@ brain thinks <span class="k">in</span> straight lines.
  
  That is my theory, it is mine and belongs to me, and I own it and what it is,
  too.
@@ -558,32 +558,32 @@ index 3ef5df2..cdbb9fb <span class="m">100644</span>
 <p>Then we do an add and commit:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>laptop<span class="o">]</span>$ git add nobel_prize.md
 <span class="o">[</span>laptop<span class="o">]</span>$ git commit -m <span class="s2">&quot;More great ideas after some wine&quot;</span>
-<span class="o">[</span>master 159f3b0<span class="o">]</span> More great ideas after some wine
+<span class="o">[</span>main 159f3b0<span class="o">]</span> More great ideas after some wine
  <span class="m">1</span> file changed, <span class="m">1</span> insertion<span class="o">(</span>+<span class="o">)</span>
 </pre></div>
 </div>
 <p>The local copy is now ahead of the remote:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>laptop<span class="o">]</span>$ git branch -a -v
-* master                159f3b0 <span class="o">[</span>ahead <span class="m">1</span><span class="o">]</span> More great ideas after some wine
-  remotes/origin/HEAD   -&gt; origin/master
-  remotes/origin/master 7919d37 Add first draft of paper
+* main                159f3b0 <span class="o">[</span>ahead <span class="m">1</span><span class="o">]</span> More great ideas after some wine
+  remotes/origin/HEAD -&gt; origin/main
+  remotes/origin/main 7919d37 Add first draft of paper
 </pre></div>
 </div>
 <p>At the end of the night’s work, we push back to the remote on the USB disk:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>laptop<span class="o">]</span>$ git push origin master
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>laptop<span class="o">]</span>$ git push origin main
 To /Volumes/my_usb_disk/nobel_prize.git
-   7919d37..159f3b0  master -&gt; master
+   7919d37..159f3b0  main -&gt; main
 </pre></div>
 </div>
 <p>The local and remote are synchronized again:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>laptop<span class="o">]</span>$ git branch -a -v
-* master                159f3b0 More great ideas after some wine
-  remotes/origin/HEAD   -&gt; origin/master
-  remotes/origin/master 159f3b0 More great ideas after some wine
+* main                159f3b0 More great ideas after some wine
+  remotes/origin/HEAD -&gt; origin/main
+  remotes/origin/main 159f3b0 More great ideas after some wine
 </pre></div>
 </div>
-</div>
-<div class="section" id="git-fetch-get-all-data-from-a-remote">
+</section>
+<section id="git-fetch-get-all-data-from-a-remote">
 <h2>git fetch – get all data from a remote<a class="headerlink" href="#git-fetch-get-all-data-from-a-remote" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch</span></code> fetches data from a remote repository into a local one.</p>
 <p>Now we are back at the work desktop.  We don’t have the great ideas from last
@@ -599,18 +599,18 @@ Date:   Mon Apr <span class="m">2</span> <span class="m">18</span>:03:00 <span c
 </div>
 <p>Here are the branch positions in the work desktop repository:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ git branch -a -v
-* master                    7919d37 Add first draft of paper
-  remotes/usb_backup/master 7919d37 Add first draft of paper
+* main                    7919d37 Add first draft of paper
+  remotes/usb_backup/main 7919d37 Add first draft of paper
 </pre></div>
 </div>
 <p>As you can see, the last known positions of the remote branches have not
 changed from last night.  This reminds us that the last known positions only
 get refreshed when we do an explicit git command to communicate with the
 remote copy.  Git stores the “last known positions” in <code class="docutils literal notranslate"><span class="pre">refs/remotes</span></code>.  For
-example, if the remote name is <code class="docutils literal notranslate"><span class="pre">usb_backup</span></code> and the branch is <code class="docutils literal notranslate"><span class="pre">master</span></code>,
+example, if the remote name is <code class="docutils literal notranslate"><span class="pre">usb_backup</span></code> and the branch is <code class="docutils literal notranslate"><span class="pre">main</span></code>,
 then the last known position (commit hash) is the contents of the file
-<code class="docutils literal notranslate"><span class="pre">refs/remotes/usb_backup/master</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ cat .git/refs/remotes/usb_backup/master
+<code class="docutils literal notranslate"><span class="pre">refs/remotes/usb_backup/main</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ cat .git/refs/remotes/usb_backup/main
 7919d37dda9044f00cf2dc0677eed18156f75404
 </pre></div>
 </div>
@@ -629,29 +629,29 @@ remote repository into the local repository);</p></li>
 positions from the remote:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ git fetch usb_backup
 From /Volumes/my_usb_disk/nobel_prize
-   7919d37..159f3b0  master     -&gt; usb_backup/master
+   7919d37..159f3b0  main       -&gt; usb_backup/main
 </pre></div>
 </div>
 <p>The last known positions are now the same as those on the remote repository:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ git branch -a -v
-* master                    7919d37 Add first draft of paper
-  remotes/usb_backup/master 159f3b0 More great ideas after some wine
+* main                    7919d37 Add first draft of paper
+  remotes/usb_backup/main 159f3b0 More great ideas after some wine
 </pre></div>
 </div>
-<p>We can set our local master branch to be the same as the remote master branch
+<p>We can set our local main branch to be the same as the remote main branch
 by doing a merge:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ git merge usb_backup/master
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ git merge usb_backup/main
 Updating 7919d37..159f3b0
 Fast-forward
  nobel_prize.md <span class="p">|</span> <span class="m">1</span> +
  <span class="m">1</span> file changed, <span class="m">1</span> insertion<span class="o">(</span>+<span class="o">)</span>
 </pre></div>
 </div>
-<p>This does a merge between <code class="docutils literal notranslate"><span class="pre">usb_backup/master</span></code> and local <code class="docutils literal notranslate"><span class="pre">master</span></code>.  In this
+<p>This does a merge between <code class="docutils literal notranslate"><span class="pre">usb_backup/main</span></code> and local <code class="docutils literal notranslate"><span class="pre">main</span></code>.  In this
 case, the “merge” is very straightforward, because there have been no new
-changes in local <code class="docutils literal notranslate"><span class="pre">master</span></code> since the new edits we have in the remote.
-Therefore the “merge” only involves setting local <code class="docutils literal notranslate"><span class="pre">master</span></code> to point to the
-same commit as <code class="docutils literal notranslate"><span class="pre">usb_backup/master</span></code>.  This is called a “fast-forward” merge,
+changes in local <code class="docutils literal notranslate"><span class="pre">main</span></code> since the new edits we have in the remote.
+Therefore the “merge” only involves setting local <code class="docutils literal notranslate"><span class="pre">main</span></code> to point to the
+same commit as <code class="docutils literal notranslate"><span class="pre">usb_backup/main</span></code>.  This is called a “fast-forward” merge,
 because it only involves advancing the branch pointer, rather than fusing two
 lines of development with a merge commit:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ git log --oneline --graph
@@ -660,18 +660,30 @@ lines of development with a merge commit:</p>
 * 75206bc First backup of my amazing idea
 </pre></div>
 </div>
-</div>
-<div class="section" id="git-pull-git-fetch-followed-by-git-merge">
+</section>
+<section id="git-pull-git-fetch-followed-by-git-merge">
 <h2>git pull – git fetch followed by git merge<a class="headerlink" href="#git-pull-git-fetch-followed-by-git-merge" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code> is a shortcut for <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch</span></code> followed by <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">merge</span></code>.</p>
 <p>For example, instead of doing <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch</span> <span class="pre">usb_backup</span></code> and <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">merge</span>
-<span class="pre">usb_backup/master</span></code> above, we could have done <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span> <span class="pre">usb_backup</span> <span class="pre">master</span></code>.
+<span class="pre">usb_backup/main</span></code> above, we could have done <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span> <span class="pre">usb_backup</span> <span class="pre">main</span></code>.
 If we do that now, there is nothing to do, because we have already done the
 fetch and the merge:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ git pull usb_backup master
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ git pull usb_backup main
 Already up to date.
+hint: Pulling without specifying how to reconcile divergent branches is
+hint: discouraged. You can squelch this message by running one of the following
+hint: commands sometime before your next pull:
+hint: 
+hint:   git config pull.rebase <span class="nb">false</span>  <span class="c1"># merge (the default strategy)</span>
+hint:   git config pull.rebase <span class="nb">true</span>   <span class="c1"># rebase</span>
+hint:   git config pull.ff only       <span class="c1"># fast-forward only</span>
+hint: 
+hint: You can replace <span class="s2">&quot;git config&quot;</span> with <span class="s2">&quot;git config --global&quot;</span> to <span class="nb">set</span> a default
+hint: preference <span class="k">for</span> all repositories. You can also pass --rebase, --no-rebase,
+hint: or --ff-only on the <span class="nb">command</span> line to override the configured default per
+hint: invocation.
 From /Volumes/my_usb_disk/nobel_prize
- * branch            master     -&gt; FETCH_HEAD
+ * branch            main       -&gt; FETCH_HEAD
 </pre></div>
 </div>
 <p>When you first start using git, I strongly recommend you always use an
@@ -684,22 +696,22 @@ file.  You may well get merge conflicts, which can be rather surprising and
 confusing, even for experienced users.  If you do <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch</span></code> followed by
 <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">merge</span></code>, the steps are clearer so the merge conflict is less confusing
 and it is more obvious what to do.</p>
-</div>
-<div class="section" id="linking-local-and-remote-branches">
+</section>
+<section id="linking-local-and-remote-branches">
 <h2>Linking local and remote branches<a class="headerlink" href="#linking-local-and-remote-branches" title="Permalink to this headline">¶</a></h2>
 <p>It can get a bit boring typing all of:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">push</span> <span class="n">usb_backup</span> <span class="n">master</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">push</span> <span class="n">usb_backup</span> <span class="n">main</span>
 </pre></div>
 </div>
 <p>and, if you are using <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">pull</span> <span class="n">usb_backup</span> <span class="n">master</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">pull</span> <span class="n">usb_backup</span> <span class="n">main</span>
 </pre></div>
 </div>
-<p>It may well be that we nearly always want to <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code> the <code class="docutils literal notranslate"><span class="pre">master</span></code>
-branch to <code class="docutils literal notranslate"><span class="pre">usb_backup</span> <span class="pre">master</span></code>.</p>
+<p>It may well be that we nearly always want to <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code> the <code class="docutils literal notranslate"><span class="pre">main</span></code>
+branch to <code class="docutils literal notranslate"><span class="pre">usb_backup</span> <span class="pre">main</span></code>.</p>
 <p>We can set this up using the <code class="docutils literal notranslate"><span class="pre">--set-upstream</span></code> flag to <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code>.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ git push usb_backup master --set-upstream
-Branch <span class="s1">&#39;master&#39;</span> <span class="nb">set</span> up to track remote branch <span class="s1">&#39;master&#39;</span> from <span class="s1">&#39;usb_backup&#39;</span>.
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ git push usb_backup main --set-upstream
+Branch <span class="s1">&#39;main&#39;</span> <span class="nb">set</span> up to track remote branch <span class="s1">&#39;main&#39;</span> from <span class="s1">&#39;usb_backup&#39;</span>.
 Everything up-to-date
 </pre></div>
 </div>
@@ -716,9 +728,9 @@ repository:</p>
 <span class="o">[</span>remote <span class="s2">&quot;usb_backup&quot;</span><span class="o">]</span>
 	<span class="nv">url</span> <span class="o">=</span> /Volumes/my_usb_disk/nobel_prize.git
 	<span class="nv">fetch</span> <span class="o">=</span> +refs/heads/*:refs/remotes/usb_backup/*
-<span class="o">[</span>branch <span class="s2">&quot;master&quot;</span><span class="o">]</span>
+<span class="o">[</span>branch <span class="s2">&quot;main&quot;</span><span class="o">]</span>
 	<span class="nv">remote</span> <span class="o">=</span> usb_backup
-	<span class="nv">merge</span> <span class="o">=</span> refs/heads/master
+	<span class="nv">merge</span> <span class="o">=</span> refs/heads/main
 </pre></div>
 </div>
 <p>We add some edits:</p>
@@ -727,7 +739,7 @@ diff --git a/nobel_prize.md b/nobel_prize.md
 index cdbb9fb..cffcbd2 <span class="m">100644</span>
 --- a/nobel_prize.md
 +++ b/nobel_prize.md
-@@ -28,3 +28,4 @@ brain thinks in straight lines.
+@@ -28,3 +28,4 @@ brain thinks <span class="k">in</span> straight lines.
  That is my theory, it is mine and belongs to me, and I own it and what it is,
  too.
  The brain is a really big network.
@@ -736,11 +748,11 @@ index cdbb9fb..cffcbd2 <span class="m">100644</span>
 </div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ git add nobel_prize.md
 <span class="o">[</span>desktop<span class="o">]</span>$ git commit -m <span class="s2">&quot;Rethinking the drinking again&quot;</span>
-<span class="o">[</span>master ede0f86<span class="o">]</span> Rethinking the drinking again
+<span class="o">[</span>main ede0f86<span class="o">]</span> Rethinking the drinking again
  <span class="m">1</span> file changed, <span class="m">1</span> insertion<span class="o">(</span>+<span class="o">)</span>
 </pre></div>
 </div>
-<p>Now instead of <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">usb_backup</span> <span class="pre">master</span></code> we can just do <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code>.</p>
+<p>Now instead of <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">usb_backup</span> <span class="pre">main</span></code> we can just do <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code>.</p>
 <p>Before we try this, we need to set a default configuration variable to avoid a
 confusing warning. See <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">config</span> <span class="pre">--help</span></code> for more detail:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ git config push.default simple
@@ -748,17 +760,17 @@ confusing warning. See <code class="docutils literal notranslate"><span class="p
 </div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ git push
 To /Volumes/my_usb_disk/nobel_prize.git
-   159f3b0..ede0f86  master -&gt; master
+   159f3b0..ede0f86  main -&gt; main
 </pre></div>
 </div>
 <p>Notice that git didn’t need to ask where to “push” to.</p>
-<p>Remember that <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span> <span class="pre">usb_backup</span> <span class="pre">master</span></code> is the same as <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch</span>
-<span class="pre">usb_master</span></code> followed by <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">merge</span> <span class="pre">usb_backup/master</span></code>.  Now we have set up
-the association of this branch with <code class="docutils literal notranslate"><span class="pre">usb_backup/master</span></code>, a simple <code class="docutils literal notranslate"><span class="pre">git</span>
+<p>Remember that <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span> <span class="pre">usb_backup</span> <span class="pre">main</span></code> is the same as <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch</span>
+<span class="pre">usb_main</span></code> followed by <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">merge</span> <span class="pre">usb_backup/main</span></code>.  Now we have set up
+the association of this branch with <code class="docutils literal notranslate"><span class="pre">usb_backup/main</span></code>, a simple <code class="docutils literal notranslate"><span class="pre">git</span>
 <span class="pre">pull</span></code> will automatically fetch <code class="docutils literal notranslate"><span class="pre">usb_backup</span></code> and merge from
-<code class="docutils literal notranslate"><span class="pre">usb_backup/master</span></code>.</p>
-</div>
-<div class="section" id="remotes-in-the-interwebs">
+<code class="docutils literal notranslate"><span class="pre">usb_backup/main</span></code>.</p>
+</section>
+<section id="remotes-in-the-interwebs">
 <h2>Remotes in the interwebs<a class="headerlink" href="#remotes-in-the-interwebs" title="Permalink to this headline">¶</a></h2>
 <p>So far we’ve only used remotes on the file system of the laptop and desktop.</p>
 <p>Remotes can also refer to storage on – remote – machines, using
@@ -780,7 +792,7 @@ Github will host some private repositories for education users.</p>
 <dd><p>The reason we need a bare repository for our backup goes
 deeper than the fact we do not need a working tree.  We are soon going to
 do a <code class="docutils literal notranslate"><span class="pre">push</span></code> to this backup repository.  The <code class="docutils literal notranslate"><span class="pre">push</span></code> has the effect of
-resetting the position of a branch (usually <code class="docutils literal notranslate"><span class="pre">master</span></code>) in the backup repo.
+resetting the position of a branch (usually <code class="docutils literal notranslate"><span class="pre">main</span></code>) in the backup repo.
 Git is very reluctant to set a branch position in a remote repository with
 a working tree, because the new branch position will not not match the
 existing content of the working tree.  Git could either leave the remote
@@ -803,8 +815,8 @@ with the tree hash to show the directory listing.  This will give you the
 hash for the <code class="docutils literal notranslate"><span class="pre">nobel_prize.md</span></code> file.</p>
 </dd>
 </dl>
-</div>
-</div>
+</section>
+</section>
 
 
     </div>
@@ -819,7 +831,7 @@ hash for the <code class="docutils literal notranslate"><span class="pre">nobel_
     </p>
     <p>
         &copy; Copyright 2012-2016 - Matthew Brett.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br/>
     </p>
   </div>
 </footer>
