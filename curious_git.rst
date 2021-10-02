@@ -41,6 +41,15 @@ text editor we prefer.  Set your own preferred text editor here::
     # "vi" is the default.
     git config --global core.editor gedit
 
+Next we set the name of the default *branch*.  We will explain branches later
+on, but, for now, just apply this configuration to be compatible with newer
+versions of Git:
+
+.. nprun::
+
+    # Set the default branch name to "main"
+    git config --global init.defaultBranch main
+
 We also turn on the use of color, which is very helpful in making the
 output of git easier to read:
 

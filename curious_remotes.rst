@@ -56,17 +56,18 @@ paper we saw in :doc:`curious_git`.  To type along, download and unzip
 
 Now make a new git repository:
 
-.. prizerun::
-
-    git init
-
-Add all the files and make the first commit:
-
 .. nprun::
     :hide:
 
     git config --global user.name "Matthew Brett"
     git config --global user.email "matthew.brett@gmail.com"
+    git config --global init.defaultBranch main
+
+.. prizerun::
+
+    git init
+
+Add all the files and make the first commit:
 
 .. prizecommit:: remote_commit_1_sha 2012-04-01 14:30:13
 
