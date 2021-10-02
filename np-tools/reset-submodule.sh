@@ -1,5 +1,5 @@
 #!/bin/bash
-# Reset submodule copy to point to latest master
+# Reset submodule copy to point to latest main
 set -e
 
 MY_DIR=$(dirname "$BASH_SOURCE[0]}")
@@ -9,4 +9,4 @@ for tag in $(git tag); do
     git tag -d $tag
 done
 git fetch origin
-git reset --hard origin/master
+git reset --hard origin/main

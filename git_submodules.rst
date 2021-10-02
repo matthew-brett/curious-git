@@ -209,7 +209,7 @@ object (directory listing) for this commit:
 
 .. superrun::
 
-    git ls-tree master
+    git ls-tree main
 
 As you can see, the two real files |--| ``.gitmodules`` and ``README.txt``
 |--| are listed as type ``blob``, with the hashes of their file contents. This
@@ -276,7 +276,7 @@ We can do a ``fetch`` / ``merge`` to get the new commit:
 
     # This is the same as "git pull"
     git fetch origin
-    git merge origin/master
+    git merge origin/main
 
 Now what do we see in ``super``?
 
@@ -314,7 +314,7 @@ If we do the commit, we can see the root tree listing now points
 
 .. superrun::
 
-    git ls-tree master
+    git ls-tree main
 
 Cloning a repository with submodules
 ====================================

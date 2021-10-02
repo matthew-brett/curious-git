@@ -169,10 +169,10 @@ Then we push:
 
 .. prizerun::
 
-    git push usb_backup master
+    git push usb_backup main
 
 This command tells git to take all the information necessary to reconstruct
-the history of the ``master`` branch, and send it to the remote repository.
+the history of the ``main`` branch, and send it to the remote repository.
 Sure enough, we now have the new files in ``.git/objects`` of the backup
 repository:
 
@@ -180,23 +180,23 @@ repository:
 
     {{ np_tree }} {{ usb_mountpoint }}/nobel_prize.git/objects
 
-You'll see that the 'master' branch in the backup repository now points to the
-same commit as the master branch in the local repository:
+You'll see that the 'main' branch in the backup repository now points to the
+same commit as the main branch in the local repository:
 
 .. prizerun::
 
-    cat .git/refs/heads/master
+    cat .git/refs/heads/main
 
 .. prizerun::
 
-    cat {{ usb_mountpoint }}/nobel_prize.git/refs/heads/master
+    cat {{ usb_mountpoint }}/nobel_prize.git/refs/heads/main
 
-The local repository has a copy of the last known position of the master
+The local repository has a copy of the last known position of the main
 branch in the remote repository.
 
 .. prizerun::
 
-    cat .git/refs/remotes/usb_backup/master
+    cat .git/refs/remotes/usb_backup/main
 
 You can see the last known positions of the remote branches using the ``-r``
 flag to ``git branch``:
@@ -242,7 +242,7 @@ We stage the file and make the commit:
     git add nobel_prize.md
     git commit -m "Add first draft of paper"
 
-Git updated the local ``master`` branch, but the remote does not know about
+Git updated the local ``main`` branch, but the remote does not know about
 this update yet:
 
 .. prizerun::
@@ -266,12 +266,12 @@ need:
 
 .. prizerun::
 
-    # The hash of the current commit on the "master" branch
-    git rev-parse master
+    # The hash of the current commit on the "main" branch
+    git rev-parse main
 
 .. prizevar:: new-commit
 
-    git rev-parse master
+    git rev-parse main
 
 .. prizevar:: sha_fname
 
@@ -284,11 +284,11 @@ need:
 .. prizerun::
 
     # The hash of the directory listing
-    git rev-parse master:./
+    git rev-parse main:./
 
 .. prizevar:: new-tree
 
-    git rev-parse master:./
+    git rev-parse main:./
 
 .. prizevar:: new-tree-fname
 
@@ -297,11 +297,11 @@ need:
 .. prizerun::
 
     # The hash of the nobel_prize.md file
-    git rev-parse master:nobel_prize.md
+    git rev-parse main:nobel_prize.md
 
 .. prizevar:: new-file
 
-    git rev-parse master:nobel_prize.md
+    git rev-parse main:nobel_prize.md
 
 .. prizevar:: new-file-fname
 
@@ -333,7 +333,7 @@ Now we do a push:
 
 .. prizerun::
 
-    git push usb_backup master
+    git push usb_backup main
 
 The branches are synchronized again:
 
@@ -426,7 +426,7 @@ At the end of the night's work, we push back to the remote on the USB disk:
 
 .. prizelaprun::
 
-    git push origin master
+    git push origin main
 
 The local and remote are synchronized again:
 
@@ -457,13 +457,13 @@ As you can see, the last known positions of the remote branches have not
 changed from last night.  This reminds us that the last known positions only
 get refreshed when we do an explicit git command to communicate with the
 remote copy.  Git stores the "last known positions" in ``refs/remotes``.  For
-example, if the remote name is ``usb_backup`` and the branch is ``master``,
+example, if the remote name is ``usb_backup`` and the branch is ``main``,
 then the last known position (commit hash) is the contents of the file
-``refs/remotes/usb_backup/master``:
+``refs/remotes/usb_backup/main``:
 
 .. prizerun::
 
-    cat .git/refs/remotes/usb_backup/master
+    cat .git/refs/remotes/usb_backup/main
 
 The commands that update the last known positions are:
 
@@ -489,18 +489,18 @@ The last known positions are now the same as those on the remote repository:
 
     git branch -a -v
 
-We can set our local master branch to be the same as the remote master branch
+We can set our local main branch to be the same as the remote main branch
 by doing a merge:
 
 .. prizerun::
 
-    git merge usb_backup/master
+    git merge usb_backup/main
 
-This does a merge between ``usb_backup/master`` and local ``master``.  In this
+This does a merge between ``usb_backup/main`` and local ``main``.  In this
 case, the "merge" is very straightforward, because there have been no new
-changes in local ``master`` since the new edits we have in the remote.
-Therefore the "merge" only involves setting local ``master`` to point to the
-same commit as ``usb_backup/master``.  This is called a "fast-forward" merge,
+changes in local ``main`` since the new edits we have in the remote.
+Therefore the "merge" only involves setting local ``main`` to point to the
+same commit as ``usb_backup/main``.  This is called a "fast-forward" merge,
 because it only involves advancing the branch pointer, rather than fusing two
 lines of development with a merge commit:
 
@@ -514,13 +514,13 @@ git pull |--| git fetch followed by git merge
 ``git pull`` is a shortcut for ``git fetch`` followed by ``git merge``.
 
 For example, instead of doing ``git fetch usb_backup`` and ``git merge
-usb_backup/master`` above, we could have done ``git pull usb_backup master``.
+usb_backup/main`` above, we could have done ``git pull usb_backup main``.
 If we do that now, there is nothing to do, because we have already done the
 fetch and the merge:
 
 .. prizerun::
 
-    git pull usb_backup master
+    git pull usb_backup main
 
 When you first start using git, I strongly recommend you always use an
 explicit ``git fetch`` followed by ``git merge`` instead of ``git pull``.  It
@@ -538,20 +538,20 @@ Linking local and remote branches
 
 It can get a bit boring typing all of::
 
-    git push usb_backup master
+    git push usb_backup main
 
 and, if you are using ``git pull``::
 
-    git pull usb_backup master
+    git pull usb_backup main
 
-It may well be that we nearly always want to ``git push`` the ``master``
-branch to ``usb_backup master``.
+It may well be that we nearly always want to ``git push`` the ``main``
+branch to ``usb_backup main``.
 
 We can set this up using the ``--set-upstream`` flag to ``git push``.
 
 .. prizerun::
 
-    git push usb_backup master --set-upstream
+    git push usb_backup main --set-upstream
 
 Git then records this association in the ``.git/config`` file of the
 repository:
@@ -576,7 +576,7 @@ We add some edits:
     git add nobel_prize.md
     git commit -m "Rethinking the drinking again"
 
-Now instead of ``git push usb_backup master`` we can just do ``git push``.
+Now instead of ``git push usb_backup main`` we can just do ``git push``.
 
 Before we try this, we need to set a default configuration variable to avoid a
 confusing warning. See ``git config --help`` for more detail:
@@ -591,11 +591,11 @@ confusing warning. See ``git config --help`` for more detail:
 
 Notice that git didn't need to ask where to "push" to.
 
-Remember that ``git pull usb_backup master`` is the same as ``git fetch
-usb_master`` followed by ``git merge usb_backup/master``.  Now we have set up
-the association of this branch with ``usb_backup/master``, a simple ``git
+Remember that ``git pull usb_backup main`` is the same as ``git fetch
+usb_main`` followed by ``git merge usb_backup/main``.  Now we have set up
+the association of this branch with ``usb_backup/main``, a simple ``git
 pull`` will automatically fetch ``usb_backup`` and merge from
-``usb_backup/master``.
+``usb_backup/main``.
 
 Remotes in the interwebs
 ========================
@@ -622,7 +622,7 @@ Github will host some private repositories for education users.
 .. [#bare-detail] The reason we need a bare repository for our backup goes
    deeper than the fact we do not need a working tree.  We are soon going to
    do a ``push`` to this backup repository.  The ``push`` has the effect of
-   resetting the position of a branch (usually ``master``) in the backup repo.
+   resetting the position of a branch (usually ``main``) in the backup repo.
    Git is very reluctant to set a branch position in a remote repository with
    a working tree, because the new branch position will not not match the
    existing content of the working tree.  Git could either leave the remote

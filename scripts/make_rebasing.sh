@@ -30,7 +30,7 @@ git co -b topic
 make_commit A
 make_commit B
 make_commit C
-git co master
+git co main
 make_commit F
 make_commit G
 cd ..
@@ -45,7 +45,7 @@ git co -b topicA
 make_commit E
 make_commit F
 make_commit G
-git co -b topicB master
+git co -b topicB main
 make_commit H
 make_commit I
 make_commit J

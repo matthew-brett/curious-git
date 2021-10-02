@@ -396,10 +396,10 @@ case? (answer [#no-parents]_).
 ``git branch`` - which branch are we on?
 ****************************************
 
-Branches are bookmarks. They associate a name (like "my_bookmark" or "master")
+Branches are bookmarks. They associate a name (like "my_bookmark" or "main")
 with a commit (such as |commit_1_sha|).
 
-The default branch (bookmark) for git is called ``master``. Git creates it
+The default branch (bookmark) for git is called ``main``. Git creates it
 automatically when we do our first commit.
 
 .. nprun::
@@ -426,7 +426,7 @@ of the branch, and the contents is the hash of the commit that it points to:
 
 .. nprun::
 
-    cat .git/refs/heads/master
+    cat .git/refs/heads/main
 
 We will soon see that, if we are working on a branch, and we do a commit, then
 git will update the branch to point to the new commit.
@@ -475,7 +475,7 @@ commit``:
 Git shows us the first 7 digits of the new commit hash in the output from
 ``git commit`` |--| these are |commit_2_sha_7|.
 
-Notice that the position of the current ``master`` branch is now this last
+Notice that the position of the current ``main`` branch is now this last
 commit:
 
 .. nprun::
@@ -484,7 +484,7 @@ commit:
 
 .. nprun::
 
-    cat .git/refs/heads/master
+    cat .git/refs/heads/main
 
 We use ``git log`` to look at our short history.
 
@@ -709,7 +709,7 @@ with two commits:
 
 In the SAP story, you had to delete a snapshot directory manually, and reset
 the staging area directory to have the contents of the previous commit.  In
-git, all we have to do is reset the current ``master`` branch bookmark to
+git, all we have to do is reset the current ``main`` branch bookmark to
 point to the previous commit.  By default, git will also reset the staging
 area for us.  The command to move the branch bookmark is ``git reset``.
 
@@ -723,16 +723,16 @@ commit history.  We can use ``git log`` to see that this commit has hash
 |commit_3_sha_7|.  There is a simpler and more readable way to write this
 common idea, of one commit back in history, and that is to add ``~1`` to a
 reference.  For example, to refer to the commit that is one step back in the
-history from the commit pointed to by the ``master`` branch, you can write
-``master~1``.  Because ``master`` points to commit |commit_4_sha_7|, you could
-also append the ``~1`` to |commit_4_sha_7|.  You can imagine that ``master~2``
+history from the commit pointed to by the ``main`` branch, you can write
+``main~1``.  Because ``main`` points to commit |commit_4_sha_7|, you could
+also append the ``~1`` to |commit_4_sha_7|.  You can imagine that ``main~2``
 will point two steps back in the commit history, and so on.
 
 So, a readable reset command for our purpose is:
 
 .. nprun::
 
-    git reset master~1
+    git reset main~1
 
 Notice that the branch pointer now points to the previous commit:
 
@@ -858,7 +858,7 @@ Let us pretend that we are Josephine, and that we have taken a copy of the
 subdirectory, containing the git repository.
 
 Now we (as Josephine) start doing some work.  We don't want to change the
-previous bookmark, which is ``master``:
+previous bookmark, which is ``main``:
 
 .. nprun::
 
@@ -869,11 +869,11 @@ affecting anyone else.  To do this we use ``git branch`` with arguments:
 
 .. nprun::
 
-    git branch josephines-branch master
+    git branch josephines-branch main
 
 The first argument is the name of the branch we want to create.  The second is
 the commit at which the branch should start.  Now we have a new branch, that
-currently points to the same commit as ``master``:
+currently points to the same commit as ``main``:
 
 .. nprun::
 
@@ -886,9 +886,9 @@ The new branch is nothing but a text file pointing to the commit:
     cat .git/refs/heads/josephines-branch
 
 Now we have two branches, git needs to know which branch we are working on.
-The asterisk next to ``master`` in the output of ``git branch`` means that we
-are working on ``master`` at the moment.  If we make another commit, it will
-update the ``master`` bookmark.
+The asterisk next to ``main`` in the output of ``git branch`` means that we
+are working on ``main`` at the moment.  If we make another commit, it will
+update the ``main`` bookmark.
 
 Git stores the current branch in the file ``.git/HEAD``:
 
@@ -902,7 +902,7 @@ log starting at the branch or commit you are currently working on".  In fact,
 this is also the default behavior of ``git log``.
 
 We now want to make ``josephines-branch`` current, so any new commits will
-update ``josephines-branch`` instead of ``master``.
+update ``josephines-branch`` instead of ``main``.
 
 *************************************************
 Changing the current branch with ``git checkout``
@@ -918,7 +918,7 @@ to the first and most common use of ``git checkout``, which is to:
   given commit.
 
 We are about to do ``git checkout josephines-branch``.  When we do this, we
-are only going to see the first of these two effects, because ``master`` and
+are only going to see the first of these two effects, because ``main`` and
 ``josephines-branch`` point to the same commit, and so have the same file
 contents:
 
@@ -938,7 +938,7 @@ This is because the file ``HEAD`` now points to ``josephines-branch``:
 
     cat .git/HEAD
 
-If we do a commit, git will update ``josephines-branch``, not ``master``.
+If we do a commit, git will update ``josephines-branch``, not ``main``.
 
 **************************
 Making commits on branches
@@ -970,7 +970,7 @@ Finally we make the commit:
 
     git commit -m "Expand the introduction"
 
-The ``master`` branch has not changed, but ``josephines-branch`` changed to
+The ``main`` branch has not changed, but ``josephines-branch`` changed to
 point to the new commit:
 
 .. nprun::
@@ -978,13 +978,13 @@ point to the new commit:
     git branch -v
 
 Now we go back to being ourselves, working in the lab.  We change back to the
-``master`` branch:
+``main`` branch:
 
 .. nprun::
 
-    git checkout master
+    git checkout main
 
-The asterisk now points at ``master``:
+The asterisk now points at ``main``:
 
 .. nprun::
 
@@ -992,8 +992,8 @@ The asterisk now points at ``master``:
 
 If you look at the contents of ``nobel_prize.md`` in the working directory,
 you will see that we are back to the contents before Josephine's changes.
-This is because ``git checkout master`` reverted the files to their state as
-of the last commit on the ``master`` branch.
+This is because ``git checkout main`` reverted the files to their state as
+of the last commit on the ``main`` branch.
 
 Now we make our own changes to the script and figure. Here are the changes to
 the script:
@@ -1033,8 +1033,8 @@ As usual, we add the files and do the commit:
 
     git commit -m "More fun with fudge"
 
-Because ``HEAD`` currently current points to ``master``, git updated the
-``master`` branch with the new commit:
+Because ``HEAD`` currently current points to ``main``, git updated the
+``main`` branch with the new commit:
 
 .. nprun::
 
@@ -1044,7 +1044,7 @@ Because ``HEAD`` currently current points to ``master``, git updated the
 Merging lines of development with ``git merge``
 ***********************************************
 
-We next want to get Josephine's changes into the ``master`` branch.
+We next want to get Josephine's changes into the ``main`` branch.
 
 We do this with ``git merge``:
 
