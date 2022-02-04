@@ -392,7 +392,7 @@ Notice that git log identifies each commit with its hash.  The hash is the
 hash for the contents of the commit message. As we saw above, the hash for our
 commit was |commit_1_sha|.
 
-We can also ask to the see the parents of each commit in the log:
+We can also ask to see the parents of each commit in the log:
 
 .. nprun::
 
