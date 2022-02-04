@@ -362,7 +362,7 @@ To finish, you make the second of the two commits.  Remember the sequence:
 
 * copy any changes for the next commit from the working tree to the staging
   area;
-* cake the commit by taking a snapshot of the staging area.
+* make the commit by taking a snapshot of the staging area.
 
 You copy the rest of the changes to the staging area:
 

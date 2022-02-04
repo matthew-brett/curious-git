@@ -3,12 +3,11 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Curious git &#8212; Curious git</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
@@ -20,9 +19,9 @@
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
-<script type="text/javascript" src="_static/js/jquery-1.12.4.min.js "></script>
+<script type="text/javascript" src="_static/js/jquery-1.11.0.min.js "></script>
 <script type="text/javascript" src="_static/js/jquery-fix.js "></script>
-<script type="text/javascript" src="_static/bootstrap-3.4.1/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
 <script type="text/javascript" src="_static/bootstrap-sphinx.js "></script>
 
   </head><body>
@@ -159,7 +158,7 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <section id="curious-git">
+  <div class="section" id="curious-git">
 <h1>Curious git<a class="headerlink" href="#curious-git" title="Permalink to this headline">¶</a></h1>
 <p>In <a class="reference internal" href="curious_journey.html"><span class="doc">A curious tale</span></a>, you built your own content management system.  Now
 you have done that, you know how git works – because it works in exactly
@@ -168,7 +167,7 @@ directories and commits, commits linked by reference to their parents, the
 staging area, the <code class="docutils literal notranslate"><span class="pre">objects</span></code> directory, and bookmarks (branches).</p>
 <p>Armed with this <a class="reference external" href="http://rogerdudler.github.io/git-guide">deep</a> understanding, we retrace our steps to do the same
 content management tasks in git.</p>
-<section id="basic-configuration">
+<div class="section" id="basic-configuration">
 <h2>Basic configuration<a class="headerlink" href="#basic-configuration" title="Permalink to this headline">¶</a></h2>
 <p>We need to tell git our name and email address before we start.</p>
 <p>Git will use this information to fill in the author information in each
@@ -191,8 +190,8 @@ text editor we prefer.  Set your own preferred text editor here:</p>
 </pre></div>
 </div>
 <p>Next we set the name of the default <em>branch</em>.  We will explain branches later
-on, but, for now, just apply this configuration for compatibility with modern
-versions of the Git package:</p>
+on, but, for now, just apply this configuration to be compatible with newer
+versions of Git:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="c1"># Set the default branch name to &quot;main&quot;</span>
 $ git config --global init.defaultBranch main
 </pre></div>
@@ -202,14 +201,15 @@ output of git easier to read:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git config --global color.ui <span class="s2">&quot;auto&quot;</span>
 </pre></div>
 </div>
-</section>
-<section id="getting-help">
+</div>
+<div class="section" id="getting-help">
 <h2>Getting help<a class="headerlink" href="#getting-help" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git <span class="nb">help</span>
 usage: git <span class="o">[</span>--version<span class="o">]</span> <span class="o">[</span>--help<span class="o">]</span> <span class="o">[</span>-C &lt;path&gt;<span class="o">]</span> <span class="o">[</span>-c &lt;name&gt;<span class="o">=</span>&lt;value&gt;<span class="o">]</span>
            <span class="o">[</span>--exec-path<span class="o">[=</span>&lt;path&gt;<span class="o">]]</span> <span class="o">[</span>--html-path<span class="o">]</span> <span class="o">[</span>--man-path<span class="o">]</span> <span class="o">[</span>--info-path<span class="o">]</span>
            <span class="o">[</span>-p <span class="p">|</span> --paginate <span class="p">|</span> -P <span class="p">|</span> --no-pager<span class="o">]</span> <span class="o">[</span>--no-replace-objects<span class="o">]</span> <span class="o">[</span>--bare<span class="o">]</span>
            <span class="o">[</span>--git-dir<span class="o">=</span>&lt;path&gt;<span class="o">]</span> <span class="o">[</span>--work-tree<span class="o">=</span>&lt;path&gt;<span class="o">]</span> <span class="o">[</span>--namespace<span class="o">=</span>&lt;name&gt;<span class="o">]</span>
+           <span class="o">[</span>--super-prefix<span class="o">=</span>&lt;path&gt;<span class="o">]</span> <span class="o">[</span>--config-env<span class="o">=</span>&lt;name&gt;<span class="o">=</span>&lt;envvar&gt;<span class="o">]</span>
            &lt;command&gt; <span class="o">[</span>&lt;args&gt;<span class="o">]</span>
 
 These are common Git commands used <span class="k">in</span> various situations:
@@ -260,8 +260,8 @@ See <span class="s1">&#39;git help git&#39;</span> <span class="k">for</span> an
 works. One purpose of this tutorial is to explain git in such a way that
 it will be easier to understand the help pages.</p>
 </div>
-</section>
-<section id="initializing-the-repository-directory">
+</div>
+<div class="section" id="initializing-the-repository-directory">
 <h2>Initializing the repository directory<a class="headerlink" href="#initializing-the-repository-directory" title="Permalink to this headline">¶</a></h2>
 <p>We first set this <code class="docutils literal notranslate"><span class="pre">nobel_prize</span></code> directory to be version controlled with git.
 We start off the working tree with the original files for the paper:</p>
@@ -281,7 +281,7 @@ files to make the same <code class="docutils literal notranslate"><span class="p
 <span class="pre">init</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> nobel_prize
 $ git init
-Initialized empty Git repository <span class="k">in</span> /Users/mb312/dev_trees/curious-git/working/nobel_prize/.git/
+Initialized empty Git repository <span class="k">in</span> /Volumes/zorg/mb312/dev_trees/curious-git/working/nobel_prize/.git/
 </pre></div>
 </div>
 <p>What happened when we did <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">init</span></code>? Just what we were expecting; we have a
@@ -305,8 +305,8 @@ new repository directory in <code class="docutils literal notranslate"><span cla
 <p>The <code class="docutils literal notranslate"><span class="pre">objects</span></code> directory looks familiar.  It has exactly the same purpose as
 it did for your SAP system.  At the moment it contains a couple of empty
 directories, because we have not added any objects yet.</p>
-</section>
-<section id="updating-terms-for-git">
+</div>
+<div class="section" id="updating-terms-for-git">
 <h2>Updating terms for git<a class="headerlink" href="#updating-terms-for-git" title="Permalink to this headline">¶</a></h2>
 <dl class="simple">
 <dt>Working directory</dt><dd><p>The directory containing the files you are working on.  In our case this
@@ -318,8 +318,8 @@ files for working with commits.  The directory has name <code class="docutils li
 default, and almost always in practice.</p>
 </dd>
 </dl>
-</section>
-<section id="git-add-put-stuff-into-the-staging-area">
+</div>
+<div class="section" id="git-add-put-stuff-into-the-staging-area">
 <span id="git-add"></span><h2><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code> – put stuff into the staging area<a class="headerlink" href="#git-add-put-stuff-into-the-staging-area" title="Permalink to this headline">¶</a></h2>
 <p>In the next few sections, we will do our first commit (snapshot).</p>
 <p>First we will put the files for the commit into the staging area.</p>
@@ -345,8 +345,8 @@ your daily git life.  I’m using it here to show you how git works.</p>
 <span class="m">100755</span> 6560135a5943c0509608fee6d900b775e3041197 <span class="m">0</span>	clever_analysis.py
 </pre></div>
 </div>
-</section>
-<section id="the-git-staging-area">
+</div>
+<div class="section" id="the-git-staging-area">
 <h2>The git staging area<a class="headerlink" href="#the-git-staging-area" title="Permalink to this headline">¶</a></h2>
 <p>It is time to think about what the staging area is, in git.  In your SAP
 system, the staging area was a directory.  You also started off by using
@@ -385,8 +385,8 @@ file <code class="docutils literal notranslate"><span class="pre">.git/objects/6
 the staging area.</p>
 <p>For extra points, what do you think would happen if we deleted the
 <code class="docutils literal notranslate"><span class="pre">.git/index</span></code> file (answer <a class="footnote-reference brackets" href="#delete-git-index" id="id2">1</a>)?</p>
-</section>
-<section id="git-objects">
+</div>
+<div class="section" id="git-objects">
 <h2>Git objects<a class="headerlink" href="#git-objects" title="Permalink to this headline">¶</a></h2>
 <p>Git objects are nearly as simple as the objects you were writing in your SAP.
 The hash is not the hash of the raw file, but the raw file prepended with a
@@ -437,8 +437,8 @@ Large Object.  You can get the object <em>type</em> from the object hash with th
 blob
 </pre></div>
 </div>
-</section>
-<section id="hash-values-can-usually-be-abbreviated-to-seven-characters">
+</div>
+<div class="section" id="hash-values-can-usually-be-abbreviated-to-seven-characters">
 <h2>Hash values can usually be abbreviated to seven characters<a class="headerlink" href="#hash-values-can-usually-be-abbreviated-to-seven-characters" title="Permalink to this headline">¶</a></h2>
 <p>We only need to give git enough hash digits for git to identify the object
 uniquely.  7 digits is nearly always enough, as in:</p>
@@ -468,8 +468,8 @@ plt.title<span class="o">(</span><span class="s1">&#39;Important finding&#39;</s
 plt.savefig<span class="o">(</span><span class="s1">&#39;fancy_figure.png&#39;</span><span class="o">)</span>
 </pre></div>
 </div>
-</section>
-<section id="git-status-showing-the-status-of-files-in-the-working-tree">
+</div>
+<div class="section" id="git-status-showing-the-status-of-files-in-the-working-tree">
 <h2><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> – showing the status of files in the working tree<a class="headerlink" href="#git-status-showing-the-status-of-files-in-the-working-tree" title="Permalink to this headline">¶</a></h2>
 <p>The working tree is the contents of the <code class="docutils literal notranslate"><span class="pre">nobel_prize</span></code> directory, excluding
 the <code class="docutils literal notranslate"><span class="pre">.git</span></code> repository directory.</p>
@@ -498,8 +498,8 @@ the working directory are <code class="docutils literal notranslate"><span class
 <p>An untracked file is a file with a filename that is not listed the staging
 area directory listing. Until you run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code> on an untracked file, git
 will ignore these files and assume you don’t want to keep track of them.</p>
-</section>
-<section id="staging-the-other-files-with-git-add">
+</div>
+<div class="section" id="staging-the-other-files-with-git-add">
 <h2>Staging the other files with git add<a class="headerlink" href="#staging-the-other-files-with-git-add" title="Permalink to this headline">¶</a></h2>
 <p>We do want to keep track of the other files, so we stage them:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git add fancy_figure.png
@@ -529,8 +529,8 @@ Changes to be committed:
     └── d447c15c125991b8a292bdb433aaf19998a3e9 [179K]
 </pre></div>
 </div>
-</section>
-<section id="git-commit-making-the-snapshot">
+</div>
+<div class="section" id="git-commit-making-the-snapshot">
 <h2><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span></code> – making the snapshot<a class="headerlink" href="#git-commit-making-the-snapshot" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ git commit -m <span class="s2">&quot;First backup of my amazing idea&quot;</span>
 <span class="o">[</span>main <span class="o">(</span>root-commit<span class="o">)</span> 75206bc<span class="o">]</span> First backup of my amazing idea
@@ -602,8 +602,8 @@ tree
 <p>Each line in the directory listing gives the file permissions, the type of the
 entry in the directory (where “tree” means a sub-directory, and “blob” means a
 file), the file hash, and the file name (see <a class="reference internal" href="git_object_types.html#git-object-types"><span class="std std-ref">Types of git objects</span></a>).</p>
-</section>
-<section id="git-log-what-are-the-commits-so-far">
+</div>
+<div class="section" id="git-log-what-are-the-commits-so-far">
 <h2><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span></code> – what are the commits so far?<a class="headerlink" href="#git-log-what-are-the-commits-so-far" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git log
 commit 75206bcb33ff9ad4f15f89b52cdf95bf666d67a8
@@ -616,7 +616,7 @@ Date:   Sun Apr <span class="m">1</span> <span class="m">14</span>:30:13 <span c
 <p>Notice that git log identifies each commit with its hash.  The hash is the
 hash for the contents of the commit message. As we saw above, the hash for our
 commit was <code class="docutils literal notranslate"><span class="pre">75206bcb33ff9ad4f15f89b52cdf95bf666d67a8</span></code>.</p>
-<p>We can also ask to the see the parents of each commit in the log:</p>
+<p>We can also ask to see the parents of each commit in the log:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git log --parents
 commit 75206bcb33ff9ad4f15f89b52cdf95bf666d67a8
 Author: Matthew Brett &lt;matthew.brett@gmail.com&gt;
@@ -627,8 +627,8 @@ Date:   Sun Apr <span class="m">1</span> <span class="m">14</span>:30:13 <span c
 </div>
 <p>Why are the output of <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span></code> and <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span> <span class="pre">--parents</span></code> the same in this
 case? (answer <a class="footnote-reference brackets" href="#no-parents" id="id3">2</a>).</p>
-</section>
-<section id="git-branch-which-branch-are-we-on">
+</div>
+<div class="section" id="git-branch-which-branch-are-we-on">
 <h2><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span></code> - which branch are we on?<a class="headerlink" href="#git-branch-which-branch-are-we-on" title="Permalink to this headline">¶</a></h2>
 <p>Branches are bookmarks. They associate a name (like “my_bookmark” or “main”)
 with a commit (such as <code class="docutils literal notranslate"><span class="pre">75206bcb33ff9ad4f15f89b52cdf95bf666d67a8</span></code>).</p>
@@ -659,8 +659,8 @@ main
 </div>
 <p>We will soon see that, if we are working on a branch, and we do a commit, then
 git will update the branch to point to the new commit.</p>
-</section>
-<section id="a-second-commit">
+</div>
+<div class="section" id="a-second-commit">
 <h2>A second commit<a class="headerlink" href="#a-second-commit" title="Permalink to this headline">¶</a></h2>
 <p>In our second commit, we will add the first draft of the Nobel prize paper.
 As before, you can download this from
@@ -741,8 +741,8 @@ Date:   Sun Apr <span class="m">1</span> <span class="m">14</span>:30:13 <span c
     First backup of my amazing idea
 </pre></div>
 </div>
-</section>
-<section id="git-diff-what-has-changed">
+</div>
+<div class="section" id="git-diff-what-has-changed">
 <h2><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span></code> – what has changed?<a class="headerlink" href="#git-diff-what-has-changed" title="Permalink to this headline">¶</a></h2>
 <p>Our next commit will have edits to the <code class="docutils literal notranslate"><span class="pre">clever_analysis.py</span></code> script.  We will
 also refresh the figure with the result of running the script.</p>
@@ -794,8 +794,8 @@ Changes not staged <span class="k">for</span> commit:
 no changes added to commit <span class="o">(</span>use <span class="s2">&quot;git add&quot;</span> and/or <span class="s2">&quot;git commit -a&quot;</span><span class="o">)</span>
 </pre></div>
 </div>
-</section>
-<section id="you-need-to-git-add-a-file-to-put-it-into-the-staging-area">
+</div>
+<div class="section" id="you-need-to-git-add-a-file-to-put-it-into-the-staging-area">
 <h2>You need to <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code> a file to put it into the staging area<a class="headerlink" href="#you-need-to-git-add-a-file-to-put-it-into-the-staging-area" title="Permalink to this headline">¶</a></h2>
 <p>Remember that git only commits stuff that you have added to the staging area.</p>
 <p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> tells us that <code class="docutils literal notranslate"><span class="pre">clever_analysis.py</span></code> has been “modified”, and
@@ -852,8 +852,8 @@ downloaded the figure:</p>
 * main 003c54a Add another fudge factor
 </pre></div>
 </div>
-</section>
-<section id="an-ordinary-day-in-gitworld">
+</div>
+<div class="section" id="an-ordinary-day-in-gitworld">
 <h2>An ordinary day in gitworld<a class="headerlink" href="#an-ordinary-day-in-gitworld" title="Permalink to this headline">¶</a></h2>
 <p>We now have the main commands for daily work with git;</p>
 <ul class="simple">
@@ -863,8 +863,8 @@ downloaded the figure:</p>
 <li><p>Add changes to the staging area with <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code>;</p></li>
 <li><p>Make the commit with <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span></code>.</p></li>
 </ul>
-</section>
-<section id="commit-four">
+</div>
+<div class="section" id="commit-four">
 <h2>Commit four<a class="headerlink" href="#commit-four" title="Permalink to this headline">¶</a></h2>
 <p>For our next commit, we will add some more changes to the analysis script and
 figure, and add a new file, <code class="docutils literal notranslate"><span class="pre">references.bib</span></code>.</p>
@@ -971,8 +971,8 @@ $ git add fancy_figure.png
 * main 2d9e1df Change analysis and add references
 </pre></div>
 </div>
-</section>
-<section id="undoing-a-commit-with-git-reset">
+</div>
+<div class="section" id="undoing-a-commit-with-git-reset">
 <h2>Undoing a commit with <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">reset</span></code><a class="headerlink" href="#undoing-a-commit-with-git-reset" title="Permalink to this headline">¶</a></h2>
 <p>As you found in the SAP story, this last commit doesn’t look quite right,
 because the commit message refers to two different types of changes.  With
@@ -991,8 +991,8 @@ the staging area directory to have the contents of the previous commit.  In
 git, all we have to do is reset the current <code class="docutils literal notranslate"><span class="pre">main</span></code> branch bookmark to
 point to the previous commit.  By default, git will also reset the staging
 area for us.  The command to move the branch bookmark is <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">reset</span></code>.</p>
-</section>
-<section id="pointing-backwards-in-history">
+</div>
+<div class="section" id="pointing-backwards-in-history">
 <h2>Pointing backwards in history<a class="headerlink" href="#pointing-backwards-in-history" title="Permalink to this headline">¶</a></h2>
 <p>The commit that we want the branch to point to is the previous commit in our
 commit history.  We can use <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span></code> to see that this commit has hash
@@ -1042,8 +1042,8 @@ no changes added to commit <span class="o">(</span>use <span class="s2">&quot;gi
 </div>
 <p>We have the changes from our original fourth commit in our working tree, but
 we have not staged them.  We are ready to make our new separate commits.</p>
-</section>
-<section id="a-new-fourth-commit">
+</div>
+<div class="section" id="a-new-fourth-commit">
 <h2>A new fourth commit<a class="headerlink" href="#a-new-fourth-commit" title="Permalink to this headline">¶</a></h2>
 <p>As we planned, we make a commit by adding only the changes from the script and
 figure:</p>
@@ -1068,8 +1068,8 @@ Untracked files:
 nothing added to commit but untracked files present <span class="o">(</span>use <span class="s2">&quot;git add&quot;</span> to track<span class="o">)</span>
 </pre></div>
 </div>
-</section>
-<section id="the-fifth-commit">
+</div>
+<div class="section" id="the-fifth-commit">
 <h2>The fifth commit<a class="headerlink" href="#the-fifth-commit" title="Permalink to this headline">¶</a></h2>
 <p>To finish our work splitting the fourth commit into two, we add and commit the
 <code class="docutils literal notranslate"><span class="pre">references.bib</span></code> file:</p>
@@ -1082,8 +1082,8 @@ nothing added to commit but untracked files present <span class="o">(</span>use 
  create mode <span class="m">100644</span> references.bib
 </pre></div>
 </div>
-</section>
-<section id="getting-a-file-from-a-previous-commit-git-checkout">
+</div>
+<div class="section" id="getting-a-file-from-a-previous-commit-git-checkout">
 <h2>Getting a file from a previous commit – <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span></code><a class="headerlink" href="#getting-a-file-from-a-previous-commit-git-checkout" title="Permalink to this headline">¶</a></h2>
 <p>In the SAP story, we found that the first version of the analysis script was
 correct, and we made a new commit after restoring this version from the first
@@ -1133,8 +1133,8 @@ Changes to be committed:
  rewrite fancy_figure.png <span class="o">(</span><span class="m">97</span>%<span class="o">)</span>
 </pre></div>
 </div>
-</section>
-<section id="using-bookmarks-git-branch">
+</div>
+<div class="section" id="using-bookmarks-git-branch">
 <h2>Using bookmarks – <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span></code><a class="headerlink" href="#using-bookmarks-git-branch" title="Permalink to this headline">¶</a></h2>
 <p>We are at the stage in the SAP story where Josephine goes away to the
 conference.</p>
@@ -1180,8 +1180,8 @@ log starting at the branch or commit you are currently working on”.  In fact,
 this is also the default behavior of <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span></code>.</p>
 <p>We now want to make <code class="docutils literal notranslate"><span class="pre">josephines-branch</span></code> current, so any new commits will
 update <code class="docutils literal notranslate"><span class="pre">josephines-branch</span></code> instead of <code class="docutils literal notranslate"><span class="pre">main</span></code>.</p>
-</section>
-<section id="changing-the-current-branch-with-git-checkout">
+</div>
+<div class="section" id="changing-the-current-branch-with-git-checkout">
 <h2>Changing the current branch with <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span></code><a class="headerlink" href="#changing-the-current-branch-with-git-checkout" title="Permalink to this headline">¶</a></h2>
 <p>We previously saw that <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">&lt;commit&gt;</span> <span class="pre">&lt;filename&gt;</span></code> will get the
 file <code class="docutils literal notranslate"><span class="pre">&lt;filename&gt;</span></code> as of commit <code class="docutils literal notranslate"><span class="pre">&lt;commit&gt;</span></code>, and restore it to the working
@@ -1212,8 +1212,8 @@ ref: refs/heads/josephines-branch
 </pre></div>
 </div>
 <p>If we do a commit, git will update <code class="docutils literal notranslate"><span class="pre">josephines-branch</span></code>, not <code class="docutils literal notranslate"><span class="pre">main</span></code>.</p>
-</section>
-<section id="making-commits-on-branches">
+</div>
+<div class="section" id="making-commits-on-branches">
 <h2>Making commits on branches<a class="headerlink" href="#making-commits-on-branches" title="Permalink to this headline">¶</a></h2>
 <p>Josephine did some edits to the paper.  If you are typing along, make these
 changes to <code class="docutils literal notranslate"><span class="pre">nobel_prize.md</span></code>:</p>
@@ -1333,8 +1333,8 @@ $ git add fancy_figure.png
 * main              7598e4e More fun with fudge
 </pre></div>
 </div>
-</section>
-<section id="merging-lines-of-development-with-git-merge">
+</div>
+<div class="section" id="merging-lines-of-development-with-git-merge">
 <h2>Merging lines of development with <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">merge</span></code><a class="headerlink" href="#merging-lines-of-development-with-git-merge" title="Permalink to this headline">¶</a></h2>
 <p>We next want to get Josephine’s changes into the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch.</p>
 <p>We do this with <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">merge</span></code>:</p>
@@ -1348,7 +1348,7 @@ Merge made by the <span class="s1">&#39;recursive&#39;</span> strategy.
 changes the Josephine made to the paper.</p>
 <p>The commit has two parents, which are the two commits from which we merged:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git log --oneline --parents
-0a6e0a5 7598e4e 0a5a1b9 Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
+9bcf78c 7598e4e 0a5a1b9 Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
 0a5a1b9 677c9a6 Expand the introduction
 7598e4e 677c9a6 More fun with fudge
 677c9a6 c3f19b2 Revert to original script <span class="p">&amp;</span> figure
@@ -1359,8 +1359,8 @@ d0ef727 003c54a Change parameters of analysis
 75206bc First backup of my amazing idea
 </pre></div>
 </div>
-</section>
-<section id="the-commit-parents-make-the-development-history-into-a-graph">
+</div>
+<div class="section" id="the-commit-parents-make-the-development-history-into-a-graph">
 <h2>The commit parents make the development history into a graph<a class="headerlink" href="#the-commit-parents-make-the-development-history-into-a-graph" title="Permalink to this headline">¶</a></h2>
 <p>As you saw in your SAP system, we can think of the commits as nodes in a
 graph.  Each commit stores the identity of its parent commit(s).  The pointers
@@ -1371,7 +1371,7 @@ think of this graph when we are working with a git repository.</p>
 <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span></code> has a useful flag called <code class="docutils literal notranslate"><span class="pre">--graph</span></code> which shows the commits as a
 graph using text characters:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git log --oneline --graph
-*   0a6e0a5 Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
+*   9bcf78c Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
 <span class="p">|</span><span class="se">\ </span> 
 <span class="p">|</span> * 0a5a1b9 Expand the introduction
 * <span class="p">|</span> 7598e4e More fun with fudge
@@ -1396,7 +1396,7 @@ For example, you may want to set up an alias like this:</p>
 <code class="docutils literal notranslate"><span class="pre">slog</span></code> alias as the default for your user account, so you can use <code class="docutils literal notranslate"><span class="pre">git</span>
 <span class="pre">slog</span></code> whenever you are using git as this user on this computer.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git slog
-*   0a6e0a5 Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
+*   9bcf78c Merge branch <span class="s1">&#39;josephines-branch&#39;</span>
 <span class="p">|</span><span class="se">\ </span> 
 <span class="p">|</span> * 0a5a1b9 Expand the introduction
 * <span class="p">|</span> 7598e4e More fun with fudge
@@ -1409,8 +1409,8 @@ For example, you may want to set up an alias like this:</p>
 * 75206bc First backup of my amazing idea
 </pre></div>
 </div>
-</section>
-<section id="other-commands-you-need-to-know">
+</div>
+<div class="section" id="other-commands-you-need-to-know">
 <h2>Other commands you need to know<a class="headerlink" href="#other-commands-you-need-to-know" title="Permalink to this headline">¶</a></h2>
 <p>This tutorial gives you the basics on working with files on your own computer,
 and on your own repository.</p>
@@ -1427,16 +1427,16 @@ show a list of previous commits that you have made;</p></li>
 rewrite the development history by altering or transplanting commits.  See
 <a class="reference external" href="http://matthew-brett.github.io/pydagogue/foundation.html">rebase without tears</a>.</p></li>
 </ul>
-</section>
-<section id="git-are-you-ready">
+</div>
+<div class="section" id="git-are-you-ready">
 <h2>Git: are you ready?<a class="headerlink" href="#git-are-you-ready" title="Permalink to this headline">¶</a></h2>
 <p>If you followed this tutorial, you now have a good knowledge of how git works.
 This will make it much easier to understand why git commands do what they do,
 and what to do when things go wrong.  You know all the main terms that the git
 manual pages use, so git’s own help will be more useful to you.  You will
 likely lead a long life of deep personal fulfillment.</p>
-</section>
-<section id="other-git-ish-things-to-read">
+</div>
+<div class="section" id="other-git-ish-things-to-read">
 <h2>Other git-ish things to read<a class="headerlink" href="#other-git-ish-things-to-read" title="Permalink to this headline">¶</a></h2>
 <p>As you’ve seen, this tutorial makes the bold assumption that you’ll be able to
 understand how git works by seeing how it is <em>built</em>. These documents take a
@@ -1508,8 +1508,8 @@ one flat directory, the directory would soon have a very large number of
 files.</p>
 </dd>
 </dl>
-</section>
-</section>
+</div>
+</div>
 
 
     </div>
@@ -1524,7 +1524,7 @@ files.</p>
     </p>
     <p>
         &copy; Copyright 2012-2016 - Matthew Brett.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.3.<br/>
     </p>
   </div>
 </footer>

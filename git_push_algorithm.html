@@ -3,12 +3,11 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>An algorithm for git push &#8212; Curious git</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
@@ -20,9 +19,9 @@
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
-<script type="text/javascript" src="_static/js/jquery-1.12.4.min.js "></script>
+<script type="text/javascript" src="_static/js/jquery-1.11.0.min.js "></script>
 <script type="text/javascript" src="_static/js/jquery-fix.js "></script>
-<script type="text/javascript" src="_static/bootstrap-3.4.1/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
 <script type="text/javascript" src="_static/bootstrap-sphinx.js "></script>
 
   </head><body>
@@ -130,12 +129,12 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <section id="an-algorithm-for-git-push">
+  <div class="section" id="an-algorithm-for-git-push">
 <h1>An algorithm for git push<a class="headerlink" href="#an-algorithm-for-git-push" title="Permalink to this headline">¶</a></h1>
 <p>We saw how git stores its object in <a class="reference internal" href="curious_git.html"><span class="doc">Curious git</span></a>.</p>
 <p>Now we know about how git stores its objects, we can work out how git knows
 which objects to copy when it does a push.</p>
-<section id="paths-through-commits">
+<div class="section" id="paths-through-commits">
 <h2>Paths through commits<a class="headerlink" href="#paths-through-commits" title="Permalink to this headline">¶</a></h2>
 <p>Git commits form a graph.  The commits are the <em>nodes</em> in the graph.  Each
 commit (except the first) has one or more parents, stored as hash references
@@ -143,8 +142,8 @@ in the commit object. The references to commit parents are the links
 between nodes that form the <em>edges</em> in the graph.</p>
 <p>If we start at a particular commit, and then track back following only one
 parent for each commit, this is a <em>path</em> in the <em>commit history</em>.</p>
-</section>
-<section id="an-algorithm">
+</div>
+<div class="section" id="an-algorithm">
 <h2>An algorithm<a class="headerlink" href="#an-algorithm" title="Permalink to this headline">¶</a></h2>
 <p>Something like this algorithm might do the job:</p>
 <ol class="arabic simple">
@@ -200,8 +199,8 @@ into any sub-directories to get needed file (“blob”) and subdirectory
 (“tree”) objects.  But, you get the idea.</p>
 </dd>
 </dl>
-</section>
-</section>
+</div>
+</div>
 
 
     </div>
@@ -216,7 +215,7 @@ into any sub-directories to get needed file (“blob”) and subdirectory
     </p>
     <p>
         &copy; Copyright 2012-2016 - Matthew Brett.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.3.<br/>
     </p>
   </div>
 </footer>

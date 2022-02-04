@@ -355,7 +355,7 @@ separate step is useful when you want to use a different clone URL from the
 one recorded in ``.gitmodules``. This might happen if you want to use a local
 repository to clone from instead of a slower internet repository.  In this
 case, you can do ``git submodule init``, edit ``.git/config``, and then do the
-cloning with ``git submdoule update``.
+cloning with ``git submodule update``.
 
 Here's ``.git/config`` before the ``init`` step:
 

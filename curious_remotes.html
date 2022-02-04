@@ -3,12 +3,11 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>git remotes - working with other people, making backups &#8212; Curious git</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
@@ -20,9 +19,9 @@
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
-<script type="text/javascript" src="_static/js/jquery-1.12.4.min.js "></script>
+<script type="text/javascript" src="_static/js/jquery-1.11.0.min.js "></script>
 <script type="text/javascript" src="_static/js/jquery-fix.js "></script>
-<script type="text/javascript" src="_static/bootstrap-3.4.1/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
 <script type="text/javascript" src="_static/bootstrap-sphinx.js "></script>
 
   </head><body>
@@ -139,7 +138,7 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <section id="git-remotes-working-with-other-people-making-backups">
+  <div class="section" id="git-remotes-working-with-other-people-making-backups">
 <h1>git remotes - working with other people, making backups<a class="headerlink" href="#git-remotes-working-with-other-people-making-backups" title="Permalink to this headline">¶</a></h1>
 <p>This page follows on from <a class="reference internal" href="curious_git.html"><span class="doc">Curious git</span></a>.</p>
 <p>It covers git <strong>remotes</strong>.  Remotes are links to other git repositories.</p>
@@ -161,7 +160,7 @@ repository;</p></li>
 command first fetches information from the remote repository, then merges
 the current state of a remote branch with a local branch.</p></li>
 </ul>
-<section id="keeping-backups-with-remotes">
+<div class="section" id="keeping-backups-with-remotes">
 <h2>Keeping backups with remotes<a class="headerlink" href="#keeping-backups-with-remotes" title="Permalink to this headline">¶</a></h2>
 <p>Let’s say you have an external backup disk and you want to record all the
 history of your work on the backup disk.</p>
@@ -172,8 +171,8 @@ history of your work on the backup disk.</p>
 <span class="pre">add</span></code>;</p></li>
 <li><p>Send the changes to the backup repository with <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code>.</p></li>
 </ul>
-</section>
-<section id="start-with-a-git-repository">
+</div>
+<div class="section" id="start-with-a-git-repository">
 <h2>Start with a git repository<a class="headerlink" href="#start-with-a-git-repository" title="Permalink to this headline">¶</a></h2>
 <p>To get started, we make a new repository with the same Nobel-prize-winning
 paper we saw in <a class="reference internal" href="curious_git.html"><span class="doc">Curious git</span></a>.  To type along, download and unzip
@@ -187,7 +186,7 @@ paper we saw in <a class="reference internal" href="curious_git.html"><span clas
 </div>
 <p>Now make a new git repository:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ git init
-Initialized empty Git repository <span class="k">in</span> /Users/mb312/dev_trees/curious-git/working/nobel_prize/.git/
+Initialized empty Git repository <span class="k">in</span> /Volumes/zorg/mb312/dev_trees/curious-git/working/nobel_prize/.git/
 </pre></div>
 </div>
 <p>Add all the files and make the first commit:</p>
@@ -220,8 +219,8 @@ we <code class="docutils literal notranslate"><span class="pre">git</span> <span
     └── d447c15c125991b8a292bdb433aaf19998a3e9 [179K]
 </pre></div>
 </div>
-</section>
-<section id="make-the-empty-backup-repository">
+</div>
+<div class="section" id="make-the-empty-backup-repository">
 <h2>Make the empty backup repository<a class="headerlink" href="#make-the-empty-backup-repository" title="Permalink to this headline">¶</a></h2>
 <p>Let’s say your external disk is mounted at <code class="docutils literal notranslate"><span class="pre">/Volumes/my_usb_disk</span></code>.</p>
 <p>We make a new empty repository:</p>
@@ -253,12 +252,12 @@ edit the files in the <code class="docutils literal notranslate"><span class="pr
 editing files in our local <code class="docutils literal notranslate"><span class="pre">nobel_prize</span></code> directory, committing those changes
 locally (as we have done above), and then “pushing” these changes to the
 backup repository <a class="footnote-reference brackets" href="#bare-detail" id="id1">1</a>.</p>
-</section>
-<section id="tell-the-current-git-repository-about-the-backup-repository">
+</div>
+<div class="section" id="tell-the-current-git-repository-about-the-backup-repository">
 <h2>Tell the current git repository about the backup repository<a class="headerlink" href="#tell-the-current-git-repository-about-the-backup-repository" title="Permalink to this headline">¶</a></h2>
 <p>Check we’re in our local git repository:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ <span class="nb">pwd</span>
-/Users/mb312/dev_trees/curious-git/working/nobel_prize
+/Volumes/zorg/mb312/dev_trees/curious-git/working/nobel_prize
 </pre></div>
 </div>
 <p>Add a remote.  A remote is a link to another repository.</p>
@@ -288,8 +287,8 @@ file – <code class="docutils literal notranslate"><span class="pre">.git/confi
 	<span class="nv">fetch</span> <span class="o">=</span> +refs/heads/*:refs/remotes/usb_backup/*
 </pre></div>
 </div>
-</section>
-<section id="git-push-push-all-data-for-a-local-branch-to-the-remote">
+</div>
+<div class="section" id="git-push-push-all-data-for-a-local-branch-to-the-remote">
 <h2>git push – push all data for a local branch to the remote<a class="headerlink" href="#git-push-push-all-data-for-a-local-branch-to-the-remote" title="Permalink to this headline">¶</a></h2>
 <p>We now want to synchronize the data in our <code class="docutils literal notranslate"><span class="pre">nobel_prize</span></code> repository with the
 remote <code class="docutils literal notranslate"><span class="pre">usb_backup</span></code>.  The command to do this is <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code>.</p>
@@ -353,8 +352,8 @@ flag to <code class="docutils literal notranslate"><span class="pre">git</span> 
   remotes/usb_backup/main 75206bc First backup of my amazing idea
 </pre></div>
 </div>
-</section>
-<section id="git-push-synchronizing-repositories">
+</div>
+<div class="section" id="git-push-synchronizing-repositories">
 <span id="git-push"></span><h2>git push – synchronizing repositories<a class="headerlink" href="#git-push-synchronizing-repositories" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code> is an excellent way to do backups, because it only transfers the
 information that the remote repository does not have.</p>
@@ -498,8 +497,8 @@ To /Volumes/my_usb_disk/nobel_prize.git
 </div>
 <p>You might also be able to see how git would work out what to transfer.  See
 <a class="reference internal" href="git_push_algorithm.html"><span class="doc">An algorithm for git push</span></a> for how it could work in general, and for this case.</p>
-</section>
-<section id="git-clone-make-a-fresh-new-copy-of-the-repository">
+</div>
+<div class="section" id="git-clone-make-a-fresh-new-copy-of-the-repository">
 <h2>git clone – make a fresh new copy of the repository<a class="headerlink" href="#git-clone-make-a-fresh-new-copy-of-the-repository" title="Permalink to this headline">¶</a></h2>
 <p>Imagine we have so far been working on our trusty work desktop.</p>
 <p>We unplug the external hard drive, put it in our trusty bag, and take the
@@ -582,8 +581,8 @@ To /Volumes/my_usb_disk/nobel_prize.git
   remotes/origin/main 159f3b0 More great ideas after some wine
 </pre></div>
 </div>
-</section>
-<section id="git-fetch-get-all-data-from-a-remote">
+</div>
+<div class="section" id="git-fetch-get-all-data-from-a-remote">
 <h2>git fetch – get all data from a remote<a class="headerlink" href="#git-fetch-get-all-data-from-a-remote" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch</span></code> fetches data from a remote repository into a local one.</p>
 <p>Now we are back at the work desktop.  We don’t have the great ideas from last
@@ -660,8 +659,8 @@ lines of development with a merge commit:</p>
 * 75206bc First backup of my amazing idea
 </pre></div>
 </div>
-</section>
-<section id="git-pull-git-fetch-followed-by-git-merge">
+</div>
+<div class="section" id="git-pull-git-fetch-followed-by-git-merge">
 <h2>git pull – git fetch followed by git merge<a class="headerlink" href="#git-pull-git-fetch-followed-by-git-merge" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code> is a shortcut for <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch</span></code> followed by <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">merge</span></code>.</p>
 <p>For example, instead of doing <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch</span> <span class="pre">usb_backup</span></code> and <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">merge</span>
@@ -670,18 +669,6 @@ If we do that now, there is nothing to do, because we have already done the
 fetch and the merge:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>desktop<span class="o">]</span>$ git pull usb_backup main
 Already up to date.
-hint: Pulling without specifying how to reconcile divergent branches is
-hint: discouraged. You can squelch this message by running one of the following
-hint: commands sometime before your next pull:
-hint: 
-hint:   git config pull.rebase <span class="nb">false</span>  <span class="c1"># merge (the default strategy)</span>
-hint:   git config pull.rebase <span class="nb">true</span>   <span class="c1"># rebase</span>
-hint:   git config pull.ff only       <span class="c1"># fast-forward only</span>
-hint: 
-hint: You can replace <span class="s2">&quot;git config&quot;</span> with <span class="s2">&quot;git config --global&quot;</span> to <span class="nb">set</span> a default
-hint: preference <span class="k">for</span> all repositories. You can also pass --rebase, --no-rebase,
-hint: or --ff-only on the <span class="nb">command</span> line to override the configured default per
-hint: invocation.
 From /Volumes/my_usb_disk/nobel_prize
  * branch            main       -&gt; FETCH_HEAD
 </pre></div>
@@ -696,8 +683,8 @@ file.  You may well get merge conflicts, which can be rather surprising and
 confusing, even for experienced users.  If you do <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch</span></code> followed by
 <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">merge</span></code>, the steps are clearer so the merge conflict is less confusing
 and it is more obvious what to do.</p>
-</section>
-<section id="linking-local-and-remote-branches">
+</div>
+<div class="section" id="linking-local-and-remote-branches">
 <h2>Linking local and remote branches<a class="headerlink" href="#linking-local-and-remote-branches" title="Permalink to this headline">¶</a></h2>
 <p>It can get a bit boring typing all of:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">push</span> <span class="n">usb_backup</span> <span class="n">main</span>
@@ -769,8 +756,8 @@ To /Volumes/my_usb_disk/nobel_prize.git
 the association of this branch with <code class="docutils literal notranslate"><span class="pre">usb_backup/main</span></code>, a simple <code class="docutils literal notranslate"><span class="pre">git</span>
 <span class="pre">pull</span></code> will automatically fetch <code class="docutils literal notranslate"><span class="pre">usb_backup</span></code> and merge from
 <code class="docutils literal notranslate"><span class="pre">usb_backup/main</span></code>.</p>
-</section>
-<section id="remotes-in-the-interwebs">
+</div>
+<div class="section" id="remotes-in-the-interwebs">
 <h2>Remotes in the interwebs<a class="headerlink" href="#remotes-in-the-interwebs" title="Permalink to this headline">¶</a></h2>
 <p>So far we’ve only used remotes on the file system of the laptop and desktop.</p>
 <p>Remotes can also refer to storage on – remote – machines, using
@@ -815,8 +802,8 @@ with the tree hash to show the directory listing.  This will give you the
 hash for the <code class="docutils literal notranslate"><span class="pre">nobel_prize.md</span></code> file.</p>
 </dd>
 </dl>
-</section>
-</section>
+</div>
+</div>
 
 
     </div>
@@ -831,7 +818,7 @@ hash for the <code class="docutils literal notranslate"><span class="pre">nobel_
     </p>
     <p>
         &copy; Copyright 2012-2016 - Matthew Brett.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.3.<br/>
     </p>
   </div>
 </footer>

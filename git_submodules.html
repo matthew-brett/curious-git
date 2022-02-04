@@ -3,12 +3,11 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>How do git submodules work? &#8212; Curious git</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
@@ -20,9 +19,9 @@
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
-<script type="text/javascript" src="_static/js/jquery-1.12.4.min.js "></script>
+<script type="text/javascript" src="_static/js/jquery-1.11.0.min.js "></script>
 <script type="text/javascript" src="_static/js/jquery-fix.js "></script>
-<script type="text/javascript" src="_static/bootstrap-3.4.1/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
 <script type="text/javascript" src="_static/bootstrap-sphinx.js "></script>
 
   </head><body>
@@ -138,19 +137,19 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <section id="how-do-git-submodules-work">
+  <div class="section" id="how-do-git-submodules-work">
 <h1>How do git submodules work?<a class="headerlink" href="#how-do-git-submodules-work" title="Permalink to this headline">¶</a></h1>
 <p>Git submodules can be a little confusing.</p>
 <p>This page explains how git <em>stores</em> submodules.  My hope is that this will make
 it easier to understand how to <em>use</em> submodules.</p>
 <p>If you’ve read <a class="reference internal" href="curious_git.html"><span class="doc">Curious git</span></a> you will recognize this way of thinking.</p>
-<section id="why-submodules">
+<div class="section" id="why-submodules">
 <h2>Why submodules?<a class="headerlink" href="#why-submodules" title="Permalink to this headline">¶</a></h2>
 <p>Submodules are useful when you have a project that is under git version
 control, and you want to include a copy of another project that is also under
 git version control.</p>
-</section>
-<section id="worked-example">
+</div>
+<div class="section" id="worked-example">
 <h2>Worked example<a class="headerlink" href="#worked-example" title="Permalink to this headline">¶</a></h2>
 <p>We will call the project that we need to use <code class="docutils literal notranslate"><span class="pre">myproject</span></code>, and the project
 that is using <code class="docutils literal notranslate"><span class="pre">myproject</span></code> we will call <code class="docutils literal notranslate"><span class="pre">super</span></code>.</p>
@@ -158,13 +157,13 @@ that is using <code class="docutils literal notranslate"><span class="pre">mypro
 <p><code class="docutils literal notranslate"><span class="pre">super</span></code> is going to start using some version of <code class="docutils literal notranslate"><span class="pre">myproject</span></code>.  In the
 spirit of version control, we want to keep track of exactly which
 <code class="docutils literal notranslate"><span class="pre">myproject</span></code> version <code class="docutils literal notranslate"><span class="pre">super</span></code> is using.</p>
-<section id="myproject">
+<div class="section" id="myproject">
 <h3><code class="docutils literal notranslate"><span class="pre">myproject</span></code><a class="headerlink" href="#myproject" title="Permalink to this headline">¶</a></h3>
 <p>We make a little <code class="docutils literal notranslate"><span class="pre">myproject</span></code> to start:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mkdir myproject
 $ <span class="nb">cd</span> myproject
 $ git init
-Initialized empty Git repository <span class="k">in</span> /Users/mb312/dev_trees/curious-git/working/myproject/.git/
+Initialized empty Git repository <span class="k">in</span> /Volumes/zorg/mb312/dev_trees/curious-git/working/myproject/.git/
 </pre></div>
 </div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">echo</span> <span class="s2">&quot;Important code and data&quot;</span> &gt; some_data.txt
@@ -179,14 +178,14 @@ $ git commit -m <span class="s2">&quot;Initial commit on myproject&quot;</span>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ..
 </pre></div>
 </div>
-</section>
-<section id="super">
+</div>
+<div class="section" id="super">
 <h3><code class="docutils literal notranslate"><span class="pre">super</span></code><a class="headerlink" href="#super" title="Permalink to this headline">¶</a></h3>
 <p>Now a <code class="docutils literal notranslate"><span class="pre">super</span></code> project:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mkdir super
 $ <span class="nb">cd</span> super
 $ git init
-Initialized empty Git repository <span class="k">in</span> /Users/mb312/dev_trees/curious-git/working/super/.git/
+Initialized empty Git repository <span class="k">in</span> /Volumes/zorg/mb312/dev_trees/curious-git/working/super/.git/
 </pre></div>
 </div>
 <p>Remember (from <a class="reference internal" href="curious_git.html"><span class="doc">Curious git</span></a>) that doing <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code> on a file adds a new
@@ -233,14 +232,14 @@ $ git add README.txt
 └── pack
 </pre></div>
 </div>
-</section>
-<section id="adding-myproject-as-a-submodule-of-super">
+</div>
+<div class="section" id="adding-myproject-as-a-submodule-of-super">
 <h3>Adding <code class="docutils literal notranslate"><span class="pre">myproject</span></code> as a submodule of <code class="docutils literal notranslate"><span class="pre">super</span></code><a class="headerlink" href="#adding-myproject-as-a-submodule-of-super" title="Permalink to this headline">¶</a></h3>
 <p>We use a git submodule to put <code class="docutils literal notranslate"><span class="pre">myproject</span></code> inside <code class="docutils literal notranslate"><span class="pre">super</span></code>.  We will use the
 name <code class="docutils literal notranslate"><span class="pre">subproject</span></code> for the submodule copy of <code class="docutils literal notranslate"><span class="pre">myproject</span></code>, to make clear
 that it is the submodule copy:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git submodule add ../myproject subproject
-Cloning into <span class="s1">&#39;/Users/mb312/dev_trees/curious-git/working/super/subproject&#39;</span>...
+Cloning into <span class="s1">&#39;/Volumes/zorg/mb312/dev_trees/curious-git/working/super/subproject&#39;</span>...
 <span class="k">done</span>.
 </pre></div>
 </div>
@@ -292,8 +291,8 @@ the relationship of the <code class="docutils literal notranslate"><span class="
 the <code class="docutils literal notranslate"><span class="pre">myproject</span></code> commit that the submodule contains.</p></li>
 </ol>
 <p>It’s the last of these three that is a little strange, so we will explore.</p>
-</section>
-<section id="storing-the-current-commit-of-myproject">
+</div>
+<div class="section" id="storing-the-current-commit-of-myproject">
 <h3>Storing the current commit of <code class="docutils literal notranslate"><span class="pre">myproject</span></code><a class="headerlink" href="#storing-the-current-commit-of-myproject" title="Permalink to this headline">¶</a></h3>
 <p>Why do I say that git “claimed” to have made a new file to record the
 <code class="docutils literal notranslate"><span class="pre">myproject</span></code> commit?</p>
@@ -358,8 +357,8 @@ Date:   Tue May <span class="m">1</span> <span class="m">11</span>:13:13 <span c
     Initial commit on myproject
 </pre></div>
 </div>
-</section>
-<section id="updating-submodules-from-their-source-repositories">
+</div>
+<div class="section" id="updating-submodules-from-their-source-repositories">
 <h3>Updating submodules from their source repositories<a class="headerlink" href="#updating-submodules-from-their-source-repositories" title="Permalink to this headline">¶</a></h3>
 <p>How do we keep the <code class="docutils literal notranslate"><span class="pre">subproject</span></code> copy of <code class="docutils literal notranslate"><span class="pre">myproject</span></code> up to date with the
 original <code class="docutils literal notranslate"><span class="pre">myproject</span></code> repository?</p>
@@ -399,8 +398,8 @@ cloning. The <code class="docutils literal notranslate"><span class="pre">myproj
 $ <span class="nb">cd</span> subproject
 $ <span class="c1"># Now we&#39;re in the submodule clone of &quot;myproject&quot;</span>
 $ git remote -v
-origin	/Users/mb312/dev_trees/curious-git/working/myproject <span class="o">(</span>fetch<span class="o">)</span>
-origin	/Users/mb312/dev_trees/curious-git/working/myproject <span class="o">(</span>push<span class="o">)</span>
+origin	/Volumes/zorg/mb312/dev_trees/curious-git/working/myproject <span class="o">(</span>fetch<span class="o">)</span>
+origin	/Volumes/zorg/mb312/dev_trees/curious-git/working/myproject <span class="o">(</span>push<span class="o">)</span>
 </pre></div>
 </div>
 <p>We can do a <code class="docutils literal notranslate"><span class="pre">fetch</span></code> / <code class="docutils literal notranslate"><span class="pre">merge</span></code> to get the new commit:</p>
@@ -412,7 +411,7 @@ Fast-forward
  some_more_data.txt <span class="p">|</span> <span class="m">1</span> +
  <span class="m">1</span> file changed, <span class="m">1</span> insertion<span class="o">(</span>+<span class="o">)</span>
  create mode <span class="m">100644</span> some_more_data.txt
-From /Users/mb312/dev_trees/curious-git/working/myproject
+From /Volumes/zorg/mb312/dev_trees/curious-git/working/myproject
    196bbbb..43c26bf  main       -&gt; origin/main
 </pre></div>
 </div>
@@ -463,8 +462,8 @@ pointing to in the staging area, but adds no new files to <code class="docutils 
 <span class="m">160000</span> commit 43c26bf6df6a4efade8082f3a5473b807d07c161	subproject
 </pre></div>
 </div>
-</section>
-<section id="cloning-a-repository-with-submodules">
+</div>
+<div class="section" id="cloning-a-repository-with-submodules">
 <h3>Cloning a repository with submodules<a class="headerlink" href="#cloning-a-repository-with-submodules" title="Permalink to this headline">¶</a></h3>
 <p>What happens if we clone the <code class="docutils literal notranslate"><span class="pre">super</span></code> project?</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ..
@@ -499,7 +498,7 @@ separate step is useful when you want to use a different clone URL from the
 one recorded in <code class="docutils literal notranslate"><span class="pre">.gitmodules</span></code>. This might happen if you want to use a local
 repository to clone from instead of a slower internet repository.  In this
 case, you can do <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">submodule</span> <span class="pre">init</span></code>, edit <code class="docutils literal notranslate"><span class="pre">.git/config</span></code>, and then do the
-cloning with <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">submdoule</span> <span class="pre">update</span></code>.</p>
+cloning with <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">submodule</span> <span class="pre">update</span></code>.</p>
 <p>Here’s <code class="docutils literal notranslate"><span class="pre">.git/config</span></code> before the <code class="docutils literal notranslate"><span class="pre">init</span></code> step:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="c1"># .git/config before submodule init</span>
 $ cat .git/config
@@ -511,7 +510,7 @@ $ cat .git/config
 	<span class="nv">ignorecase</span> <span class="o">=</span> <span class="nb">true</span>
 	<span class="nv">precomposeunicode</span> <span class="o">=</span> <span class="nb">true</span>
 <span class="o">[</span>remote <span class="s2">&quot;origin&quot;</span><span class="o">]</span>
-	<span class="nv">url</span> <span class="o">=</span> /Users/mb312/dev_trees/curious-git/working/super
+	<span class="nv">url</span> <span class="o">=</span> /Volumes/zorg/mb312/dev_trees/curious-git/working/super
 	<span class="nv">fetch</span> <span class="o">=</span> +refs/heads/*:refs/remotes/origin/*
 <span class="o">[</span>branch <span class="s2">&quot;main&quot;</span><span class="o">]</span>
 	<span class="nv">remote</span> <span class="o">=</span> origin
@@ -519,7 +518,7 @@ $ cat .git/config
 </pre></div>
 </div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git submodule init
-Submodule <span class="s1">&#39;subproject&#39;</span> <span class="o">(</span>/Users/mb312/dev_trees/curious-git/working/myproject<span class="o">)</span> registered <span class="k">for</span> path <span class="s1">&#39;subproject&#39;</span>
+Submodule <span class="s1">&#39;subproject&#39;</span> <span class="o">(</span>/Volumes/zorg/mb312/dev_trees/curious-git/working/myproject<span class="o">)</span> registered <span class="k">for</span> path <span class="s1">&#39;subproject&#39;</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">.git/config</span></code> after the <code class="docutils literal notranslate"><span class="pre">init</span></code>:</p>
@@ -533,14 +532,14 @@ $ cat .git/config
 	<span class="nv">ignorecase</span> <span class="o">=</span> <span class="nb">true</span>
 	<span class="nv">precomposeunicode</span> <span class="o">=</span> <span class="nb">true</span>
 <span class="o">[</span>remote <span class="s2">&quot;origin&quot;</span><span class="o">]</span>
-	<span class="nv">url</span> <span class="o">=</span> /Users/mb312/dev_trees/curious-git/working/super
+	<span class="nv">url</span> <span class="o">=</span> /Volumes/zorg/mb312/dev_trees/curious-git/working/super
 	<span class="nv">fetch</span> <span class="o">=</span> +refs/heads/*:refs/remotes/origin/*
 <span class="o">[</span>branch <span class="s2">&quot;main&quot;</span><span class="o">]</span>
 	<span class="nv">remote</span> <span class="o">=</span> origin
 	<span class="nv">merge</span> <span class="o">=</span> refs/heads/main
 <span class="o">[</span>submodule <span class="s2">&quot;subproject&quot;</span><span class="o">]</span>
 	<span class="nv">active</span> <span class="o">=</span> <span class="nb">true</span>
-	<span class="nv">url</span> <span class="o">=</span> /Users/mb312/dev_trees/curious-git/working/myproject
+	<span class="nv">url</span> <span class="o">=</span> /Volumes/zorg/mb312/dev_trees/curious-git/working/myproject
 </pre></div>
 </div>
 <p>We have done <code class="docutils literal notranslate"><span class="pre">init</span></code>, but not <code class="docutils literal notranslate"><span class="pre">update</span></code>. The submodule directory is still
@@ -552,7 +551,7 @@ empty:</p>
 <span class="pre">init</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git submodule update
 Submodule path <span class="s1">&#39;subproject&#39;</span>: checked out <span class="s1">&#39;43c26bf6df6a4efade8082f3a5473b807d07c161&#39;</span>
-Cloning into <span class="s1">&#39;/Users/mb312/dev_trees/curious-git/working/super-cloned/subproject&#39;</span>...
+Cloning into <span class="s1">&#39;/Volumes/zorg/mb312/dev_trees/curious-git/working/super-cloned/subproject&#39;</span>...
 <span class="k">done</span>.
 </pre></div>
 </div>
@@ -561,9 +560,9 @@ you can do both <code class="docutils literal notranslate"><span class="pre">ini
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git submodule update --init
 </pre></div>
 </div>
-</section>
-</section>
-</section>
+</div>
+</div>
+</div>
 
 
     </div>
@@ -578,7 +577,7 @@ you can do both <code class="docutils literal notranslate"><span class="pre">ini
     </p>
     <p>
         &copy; Copyright 2012-2016 - Matthew Brett.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.3.<br/>
     </p>
   </div>
 </footer>

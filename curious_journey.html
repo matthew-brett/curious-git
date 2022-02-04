@@ -3,16 +3,15 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>A curious tale &#8212; Curious git</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Curious git" href="curious_git.html" />
@@ -21,9 +20,9 @@
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
-<script type="text/javascript" src="_static/js/jquery-1.12.4.min.js "></script>
+<script type="text/javascript" src="_static/js/jquery-1.11.0.min.js "></script>
 <script type="text/javascript" src="_static/js/jquery-fix.js "></script>
-<script type="text/javascript" src="_static/bootstrap-3.4.1/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
 <script type="text/javascript" src="_static/bootstrap-sphinx.js "></script>
 
   </head><body>
@@ -147,11 +146,11 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <section id="a-curious-tale">
+  <div class="section" id="a-curious-tale">
 <h1>A curious tale<a class="headerlink" href="#a-curious-tale" title="Permalink to this headline">¶</a></h1>
 <p>Here is a story where we develop a very simple system for storing file
 snapshots.  We soon find it starts to look just like git.</p>
-<section id="the-end-of-the-story">
+<div class="section" id="the-end-of-the-story">
 <h2>The end of the story<a class="headerlink" href="#the-end-of-the-story" title="Permalink to this headline">¶</a></h2>
 <p>To understand why git does what it does, we first need to think about what a
 content manager should do, and why we would want one.</p>
@@ -164,8 +163,8 @@ then see what git has to say.</p>
 <p>While we are designing our own content management system, we will do a lot of
 stuff longhand, to show how things work.  When we get to git, we will find it
 does these tasks for us.</p>
-</section>
-<section id="the-story-begins">
+</div>
+<div class="section" id="the-story-begins">
 <h2>The story begins<a class="headerlink" href="#the-story-begins" title="Permalink to this headline">¶</a></h2>
 <p>You are writing a breakthrough paper showing that you can explain how the
 brain works by careful processing of some interesting data.  You’ve got the
@@ -180,8 +179,8 @@ directory modestly named <code class="docutils literal notranslate"><span class=
 └── fancy_figure.png [183K]
 </pre></div>
 </div>
-</section>
-<section id="the-dog-ate-my-results">
+</div>
+<div class="section" id="the-dog-ate-my-results">
 <h2>The dog ate my results<a class="headerlink" href="#the-dog-ate-my-results" title="Permalink to this headline">¶</a></h2>
 <p>You’ve been working on this study for a while.</p>
 <p>At first, you were very excited with the results. You ran the script, made the
@@ -196,15 +195,15 @@ look better than that”. That’s what you think too. But:</p>
 <li><p><strong>Did it really look different before?</strong></p></li>
 <li><p>If it did, <strong>what caused the change in the figure?</strong></p></li>
 </ul>
-</section>
-<section id="deja-vu-all-over-again">
+</div>
+<div class="section" id="deja-vu-all-over-again">
 <h2>Deja vu all over again<a class="headerlink" href="#deja-vu-all-over-again" title="Permalink to this headline">¶</a></h2>
 <p>Given you are so clever and you have discovered how the brain works, it is
 really easy for you to leap in your time machine, and go back two weeks to
 start again.</p>
 <p>What are you going to do differently this time?</p>
-</section>
-<section id="gitwards-1-make-regular-snapshots">
+</div>
+<div class="section" id="gitwards-1-make-regular-snapshots">
 <h2>Gitwards 1: make regular snapshots<a class="headerlink" href="#gitwards-1-make-regular-snapshots" title="Permalink to this headline">¶</a></h2>
 <p>You decide to make your own content management system.  It’s the simplest
 thing that could possibly work, so you call it the “Simple As Possible”
@@ -354,8 +353,8 @@ apply to our system and that will later apply to git:</p>
 </dd>
 </dl>
 </div>
-</section>
-<section id="gitwards-2-reminding-yourself-of-what-you-did">
+</div>
+<div class="section" id="gitwards-2-reminding-yourself-of-what-you-did">
 <h2>Gitwards 2: reminding yourself of what you did<a class="headerlink" href="#gitwards-2-reminding-yourself-of-what-you-did" title="Permalink to this headline">¶</a></h2>
 <p>Your experience tracking down the change in the figure makes you think that it
 would be good to save a message with each snapshot (commit) to record the
@@ -392,8 +391,8 @@ commits.</p>
 </dd>
 </dl>
 </div>
-</section>
-<section id="gitwards-3-breaking-up-work-into-chunks">
+</div>
+<div class="section" id="gitwards-3-breaking-up-work-into-chunks">
 <h2>Gitwards 3: breaking up work into chunks<a class="headerlink" href="#gitwards-3-breaking-up-work-into-chunks" title="Permalink to this headline">¶</a></h2>
 <p>Now you are used to your new system, you find that you like to break your
 changes up into self-contained chunks of work, each with their own commit, and
@@ -520,7 +519,7 @@ Notes: Change parameters of analysis
 <ul class="simple">
 <li><p>copy any changes for the next commit from the working tree to the staging
 area;</p></li>
-<li><p>cake the commit by taking a snapshot of the staging area.</p></li>
+<li><p>make the commit by taking a snapshot of the staging area.</p></li>
 </ul>
 <p>You copy the rest of the changes to the staging area:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cp working/references.bib staging
@@ -570,8 +569,8 @@ changes.  We make the new <strong>commit</strong> from the contents of the
 </dd>
 </dl>
 </div>
-</section>
-<section id="gitwards-4-getting-files-from-previous-commits">
+</div>
+<div class="section" id="gitwards-4-getting-files-from-previous-commits">
 <h2>Gitwards 4: getting files from previous commits<a class="headerlink" href="#gitwards-4-getting-files-from-previous-commits" title="Permalink to this headline">¶</a></h2>
 <p>Remember that you found the figure had changed?</p>
 <p>You also found that the problem was in the third commit.</p>
@@ -648,8 +647,8 @@ particular commit.</p>
 </dd>
 </dl>
 </div>
-</section>
-<section id="gitwards-5-two-people-working-at-the-same-time">
+</div>
+<div class="section" id="gitwards-5-two-people-working-at-the-same-time">
 <h2>Gitwards 5: two people working at the same time<a class="headerlink" href="#gitwards-5-two-people-working-at-the-same-time" title="Permalink to this headline">¶</a></h2>
 <p>One reason that git is so powerful is that it works very well when more than
 one person is working on the files in parallel.</p>
@@ -760,8 +759,8 @@ more) commits.</p>
 </dd>
 </dl>
 </div>
-</section>
-<section id="gitwards-6-how-should-you-name-your-commit-directories">
+</div>
+<div class="section" id="gitwards-6-how-should-you-name-your-commit-directories">
 <h2>Gitwards 6: how should you name your commit directories?<a class="headerlink" href="#gitwards-6-how-should-you-name-your-commit-directories" title="Permalink to this headline">¶</a></h2>
 <p>You like your new system, and so does Josephine, but you don’t much like your
 solution of adding Josephine’s name to the commit directory – as in
@@ -771,8 +770,8 @@ person working on <code class="docutils literal notranslate"><span class="pre">n
 to realize that what you want is a system for giving each commit directory a
 unique name, that comes from the contents of the commit.  This is where you
 starting thinking about <strong>hashes</strong>.</p>
-</section>
-<section id="a-diversion-on-cryptographic-hashes">
+</div>
+<div class="section" id="a-diversion-on-cryptographic-hashes">
 <h2>A diversion on cryptographic hashes<a class="headerlink" href="#a-diversion-on-cryptographic-hashes" title="Permalink to this headline">¶</a></h2>
 <p>This section describes “Cryptographic hashes”. These will give us an excellent
 way to name our snapshots.  Later we will see that they are central to the way
@@ -814,8 +813,8 @@ $ shasum git_is_rude_stop
 comes out as <code class="docutils literal notranslate"><span class="pre">30ad6c360a692c1fe66335bb00d00e0528346be5</span></code>, then I can be very
 sure that the data you gave me was exactly the ASCII string “git is a rude
 word in UK English”.</p>
-</section>
-<section id="gitwards-7-naming-commits-from-hashes">
+</div>
+<div class="section" id="gitwards-7-naming-commits-from-hashes">
 <span id="naming-from-hashes"></span><h2>Gitwards 7: naming commits from hashes<a class="headerlink" href="#gitwards-7-naming-commits-from-hashes" title="Permalink to this headline">¶</a></h2>
 <p>Now you have hashing under your belt, maybe it would be a good way of making a
 unique name for the commits.  You could take the SHA1 hash for the
@@ -1022,23 +1021,21 @@ label from the <code class="docutils literal notranslate"><span class="pre">Note
 </dd>
 </dl>
 </div>
-</section>
-<section id="gitwards-8-the-development-history-is-a-graph">
+</div>
+<div class="section" id="gitwards-8-the-development-history-is-a-graph">
 <h2>Gitwards 8: the development history is a graph<a class="headerlink" href="#gitwards-8-the-development-history-is-a-graph" title="Permalink to this headline">¶</a></h2>
 <p>The commits are linked by the “Parents” field in the <code class="docutils literal notranslate"><span class="pre">message.txt</span></code> file.  We
 can think of the commits in a graph, where the commits are the nodes, and the
 links between the nodes come from the hashes in the “Parents” field.</p>
-<figure class="align-default" id="id2">
+<div class="figure align-default" id="id2">
 <img alt="_images/snapshot_graph1.png" src="_images/snapshot_graph1.png" />
-<figcaption>
-<p><span class="caption-text">Graph of development history for your SAP content management system.  The
+<p class="caption"><span class="caption-text">Graph of development history for your SAP content management system.  The
 most recent commit is at the top, the first commit is at the bottom.  Your
 commits are in blue, Josephine’s are in pink.  Each commit label has the
 hash for the commit message, and the note in the <code class="docutils literal notranslate"><span class="pre">message.txt</span></code> file.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
-</section>
-<section id="gitwards-9-saving-space-with-file-hashes">
+</div>
+</div>
+<div class="section" id="gitwards-9-saving-space-with-file-hashes">
 <h2>Gitwards 9: saving space with file hashes<a class="headerlink" href="#gitwards-9-saving-space-with-file-hashes" title="Permalink to this headline">¶</a></h2>
 <p>While you’ve been working on your system, you’ve noticed that your snapshots
 are not efficient on disk space.  For example, every commit / snapshot has an
@@ -1256,8 +1253,8 @@ $ du -hs .
 </div>
 <p>The advantage in size gets larger as your system grows, and you have more
 duplicated files.</p>
-</section>
-<section id="gitwards-10-making-the-commits-unique">
+</div>
+<div class="section" id="gitwards-10-making-the-commits-unique">
 <h2>Gitwards 10: making the commits unique<a class="headerlink" href="#gitwards-10-making-the-commits-unique" title="Permalink to this headline">¶</a></h2>
 <p>Up in <a class="reference internal" href="#naming-from-hashes"><span class="std std-ref">Gitwards 7: naming commits from hashes</span></a> you used the hash of <code class="docutils literal notranslate"><span class="pre">message.txt</span></code> as a
 nearly unique directory name for the commit.  Your thinking was that it was
@@ -1341,8 +1338,8 @@ are therefore exactly the same commit.</p>
 (because of the directory hash) and unique to its previous history
 (because of the parent hash(es)).</p>
 </div>
-</section>
-<section id="gitwards-11-away-with-the-snapshot-directories">
+</div>
+<div class="section" id="gitwards-11-away-with-the-snapshot-directories">
 <h2>Gitwards 11: away with the snapshot directories<a class="headerlink" href="#gitwards-11-away-with-the-snapshot-directories" title="Permalink to this headline">¶</a></h2>
 <p>You are reflecting on your idea about hashing the directory listing, and your
 eye falls idly on the current directory tree of <code class="docutils literal notranslate"><span class="pre">nobel_prize</span></code>:</p>
@@ -1420,8 +1417,8 @@ in <code class="docutils literal notranslate"><span class="pre">repo/objects</sp
 directory</strong> stores all the data from the snapshots.  In your case that
 directory is <code class="docutils literal notranslate"><span class="pre">repo</span></code>.  For git, it will be a directory called <code class="docutils literal notranslate"><span class="pre">.git</span></code>.</p>
 </div>
-</section>
-<section id="gitwards-12-where-am-i">
+</div>
+<div class="section" id="gitwards-12-where-am-i">
 <h2>Gitwards 12: where am I?<a class="headerlink" href="#gitwards-12-where-am-i" title="Permalink to this headline">¶</a></h2>
 <p>You have one last problem to face – where is your latest commit?</p>
 <p>When your snapshot directory names had numbers, like <code class="docutils literal notranslate"><span class="pre">snapshot_8</span></code>, you could
@@ -1446,13 +1443,13 @@ might want her own bookmark, maybe in a file called <code class="docutils litera
 the latest <strong>commit hash</strong> in a bookmark file.  In git this bookmark is
 called a <strong>branch</strong>.</p>
 </div>
-</section>
-<section id="you-are-on-the-on-ramp">
+</div>
+<div class="section" id="you-are-on-the-on-ramp">
 <h2>You are on the on-ramp<a class="headerlink" href="#you-are-on-the-on-ramp" title="Permalink to this headline">¶</a></h2>
 <p>You now know all the main ideas in git.  Follow me then to <a class="reference internal" href="curious_git.html"><span class="doc">Curious git</span></a>
 to see these ideas come to life in your actual git.</p>
-</section>
-</section>
+</div>
+</div>
 
 
     </div>
@@ -1467,7 +1464,7 @@ to see these ideas come to life in your actual git.</p>
     </p>
     <p>
         &copy; Copyright 2012-2016 - Matthew Brett.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.3.<br/>
     </p>
   </div>
 </footer>
